@@ -67,6 +67,7 @@ const muiTheme = {
   },
   typography: {
     fontFamily: primaryFontFamily,
+    useNextVariants: true,
   },
 };
 
