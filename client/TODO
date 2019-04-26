@@ -1,21 +1,19 @@
-1. add “commitlintmsg” - Aakash - DONE
-2. fix hooks command - Aakash - DONE
-3. add more basic atoms - Aakash
-4. add fonts (DONE), icons - Aakash
-5. refine/add npm scripts, pre-commit hook - Aakash - DONE
-6. add proper documentation to all the files - Aakash
-7. update README file - Aakash
-8. Setup accessibility tool pa11y - Aakash
+Architecture
+================================================================================
+1. add more basic atoms
+2. add icons
+3. add proper documentation to all the files
+4. update README file
+5. Setup accessibility tool pa11y
+6. travis-ci/circle-ci
+7. Create logger utility
+8. Create config.js file for hostname, ports, etc
+9. lighthouse
+10. Theme
+11. jsDoc
 
-9. Storybook development - Sachin
-
-10. setup test cases in jest and update the scripts command accordingly - Amresh - DONE
-
-11. travis-ci - Shivam
-
-
-12. Create logger utility
-13. Create config.js file for hostname, ports, etc
-14. lighthouse
-15. Theme
-16. jsDoc
+AuditTrackR
+================================================================================
+1. create `sign-in` page
+2. create `sign-up` page
+3. create `new audit form` page
