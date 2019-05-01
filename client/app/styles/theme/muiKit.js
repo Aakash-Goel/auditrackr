@@ -51,15 +51,15 @@ const card = {
   background: '#fff',
 };
 
-const primaryFontFamily =
-  '-apple-system, BlinkMacSystemFont, "Roboto", "Helvetica", "Arial", sans-serif';
+const primaryFontFamily = '"Roboto", "Helvetica", "Arial", sans-serif';
 
 const secondaryFontFamily =
-  '-apple-system, BlinkMacSystemFont, "Rubik", "Helvetica Neue", "Arial", sans-serif';
+  '"Simplifica", "Helvetica Neue", "Arial", sans-serif';
 
 const defaultFont = {
   fontFamily: primaryFontFamily,
-  fontWeight: '300',
+  fontWeight: '400',
+  fontSize: '14px',
   lineHeight: '1.5em',
 };
 
@@ -70,8 +70,9 @@ const successColor = '#4caf50';
 const warningColor = '#ff9800';
 const errorColor = '#f44336';
 const whiteColor = '#fff';
-const blackColor = '#000';
-const grayColor = '#999999';
+const blackColor = '#14171a';
+const grayColor = '#aab8c2';
+const brandColor = '#191846';
 
 const primaryBoxShadow = {
   boxShadow:
@@ -191,6 +192,7 @@ export {
   whiteColor,
   blackColor,
   grayColor,
+  brandColor,
   primaryBoxShadow,
   infoBoxShadow,
   successBoxShadow,
