@@ -8,4 +8,5 @@ export const WEB_FONTS_PATH = [
   '/static/fonts/rubik/Rubik-Light.woff2',
   '/static/fonts/rubik/Rubik-Medium.woff2',
   '/static/fonts/rubik/Rubik-Regular.woff2',
+  '/static/fonts/simplifica/Simplifica-Typeface.ttf',
 ];
