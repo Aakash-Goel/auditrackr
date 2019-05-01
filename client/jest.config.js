@@ -9,6 +9,8 @@ module.exports = {
   collectCoverageFrom: [
     '**/app/components/**/*.{js,jsx}',
     '!**/app/components/**/*{mock,stories,style,index}.{js}',
+    '!**/app/components/organisms/**',
+    '!**/app/components/templates/**',
     '!**/node_modules/**',
     '!**/build/**',
   ],
