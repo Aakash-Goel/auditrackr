@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Title atom renders correctly if children is present 1`] = `
+<h1
+  className="Title-h1-1"
+>
+  Heading Tag
+</h1>
+`;
+
+exports[`Title atom renders correctly with img object 1`] = `
+<h2>
+  <img
+    alt="Test img"
+  />
+  Heading with Image tag
+</h2>
+`;
+
+exports[`Title atom renders null if children is not present 1`] = `null`;
