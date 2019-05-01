@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Link from 'next/link';
 
 import GridContainer from '../../atoms/Grid/GridContainer';
 import GridItem from '../../atoms/Grid/GridItem';
@@ -101,6 +102,13 @@ class MessageForm extends Component {
 
     return (
       <div>
+        <div>
+          <Link href="/login">
+            <Button type="submit" color="primary">
+              Go to Login Page
+            </Button>
+          </Link>
+        </div>
         <GridContainer justify="center">
           <GridItem xs={10}>
             <h2>Enter your message below:</h2>
