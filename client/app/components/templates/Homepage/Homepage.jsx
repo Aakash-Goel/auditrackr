@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 // import { createStructuredSelector } from 'reselect';
 
 import Head from '../../atoms/Head';
-import withMaterial from '../../../lib/withMaterialUI';
 
 import MessageForm from '../../organisms/MessageForm';
 
@@ -40,4 +39,4 @@ Homepage.defaultProps = defaultProps;
 //   testData: selectCount(),
 // });
 
-export default connect()(withMaterial(Homepage));
+export default connect()(Homepage);
