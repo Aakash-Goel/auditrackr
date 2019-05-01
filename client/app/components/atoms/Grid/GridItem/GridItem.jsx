@@ -1,5 +1,6 @@
 import React from 'react';
 import { object, node, string } from 'prop-types';
+import classnames from 'classnames';
 
 import withStyles from '@material-ui/core/styles/withStyles';
 import Grid from '@material-ui/core/Grid';
@@ -27,16 +28,20 @@ const style = {
     position: 'relative',
     width: '100%',
     minHeight: '1px',
-    paddingRight: '15px',
-    paddingLeft: '15px',
     flexBasis: 'auto',
   },
 };
 
 const GridItem = ({ ...props }) => {
   const { classes, children, className, ...rest } = props;
+
+  const gridItemClasses = classnames({
+    [classes.grid]: true,
+    [className]: className,
+  });
+
   return (
-    <Grid item {...rest} className={`${classes.grid} ${className}`}>
+    <Grid item {...rest} className={gridItemClasses}>
       {children}
     </Grid>
   );

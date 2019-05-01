@@ -1,6 +1,6 @@
 import React from 'react';
 import { object, bool, oneOf, node, string } from 'prop-types';
-import classNames from 'classnames';
+import classnames from 'classnames';
 
 import withStyles from '@material-ui/core/styles/withStyles';
 import Button from '@material-ui/core/Button';
@@ -79,7 +79,7 @@ const CustomButton = ({ ...props }) => {
     ...rest
   } = props;
 
-  const btnClasses = classNames({
+  const btnClasses = classnames({
     [classes.button]: true,
     [classes[size]]: size,
     [classes[color]]: color,

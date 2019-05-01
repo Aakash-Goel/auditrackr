@@ -1,6 +1,6 @@
 import React from 'react';
 import { object, bool, node, string } from 'prop-types';
-import classNames from 'classnames';
+import classnames from 'classnames';
 import { isEmpty } from 'lodash';
 
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -57,26 +57,26 @@ const CustomInput = ({ ...props }) => {
     success,
   } = props;
 
-  const labelClasses = classNames({
+  const labelClasses = classnames({
     [` ${classes.labelRootError}`]: error,
     [` ${classes.labelRootSuccess}`]: success && !error,
   });
-  const underlineClasses = classNames({
+  const underlineClasses = classnames({
     [classes.underlineError]: error,
     [classes.underlineSuccess]: success && !error,
     [classes.underline]: true,
     [classes.whiteUnderline]: white,
   });
-  const marginTop = classNames({
+  const marginTop = classnames({
     [inputRootCustomClasses]: inputRootCustomClasses !== undefined,
   });
-  const inputClasses = classNames({
+  const inputClasses = classnames({
     [classes.input]: true,
     [classes.whiteInput]: white,
   });
   let formControlClasses;
   if (!isEmpty(formControlProps)) {
-    formControlClasses = classNames(
+    formControlClasses = classnames(
       formControlProps.className,
       classes.formControl
     );

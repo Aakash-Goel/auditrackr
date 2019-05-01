@@ -1,5 +1,6 @@
 import React from 'react';
 import { object, node, string } from 'prop-types';
+import classnames from 'classnames';
 
 import withStyles from '@material-ui/core/styles/withStyles';
 import Grid from '@material-ui/core/Grid';
@@ -23,17 +24,19 @@ const defaultProps = {
 };
 
 const style = {
-  grid: {
-    marginRight: '-15px',
-    marginLeft: '-15px',
-    width: 'auto',
-  },
+  grid: {},
 };
 
 const GridContainer = ({ ...props }) => {
   const { classes, children, className, ...rest } = props;
+
+  const gridContainerClasses = classnames({
+    [classes.grid]: true,
+    [className]: className,
+  });
+
   return (
-    <Grid container {...rest} className={`${classes.grid} ${className}`}>
+    <Grid container {...rest} className={gridContainerClasses}>
       {children}
     </Grid>
   );

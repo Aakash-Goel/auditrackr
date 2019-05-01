@@ -2,7 +2,7 @@
 
 exports[`<GridContainer/> renders correctly with empty props 1`] = `
 <div
-  className="MuiGrid-container-2 GridContainer-grid-1 "
+  className="MuiGrid-container-2 GridContainer-grid-1"
 >
   My content goes here
 </div>
