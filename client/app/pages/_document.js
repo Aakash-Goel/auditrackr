@@ -14,57 +14,64 @@
  */
 import React, { Fragment } from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
-import { SheetsRegistry } from 'jss';
+import { object } from 'prop-types';
 import flush from 'styled-jsx/server';
-import JssProvider from 'react-jss/lib/JssProvider';
-import {
-  MuiThemeProvider,
-  createGenerateClassName,
-  createMuiTheme,
-  withStyles,
-} from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
 
-import muiTheme from '../styles/theme/muiTheme';
+import { withStyles } from '@material-ui/core/styles';
+
 import catchErrors from '../utils/errorBoundary';
 import preloadAssets from '../utils/preloadAssets';
 import { WEB_FONTS_PATH } from '../constants';
 import globalStyles from '../styles/globalStyles';
 
-/**
- * Module variables.
- * @private
- */
-const theme = createMuiTheme({ ...muiTheme });
-
 export default class MyDocument extends Document {
   static getInitialProps({ renderPage }) {
-    const sheetsRegistry = new SheetsRegistry();
-    // Create a new class name generator.
-    const generateClassName = createGenerateClassName();
-    // Create a sheetsManager instance.
-    const sheetsManager = new Map();
-    // Create App instance.
-    const page = renderPage(App => props => {
-      const Component = withStyles(globalStyles)(App);
+    // Resolution order
+    //
+    // On the server:
+    // 1. app.getInitialProps
+    // 2. page.getInitialProps
+    // 3. document.getInitialProps
+    // 4. app.render
+    // 5. page.render
+    // 6. document.render
+    //
+    // On the server with error:
+    // 1. document.getInitialProps
+    // 2. app.render
+    // 3. page.render
+    // 4. document.render
+    //
+    // On the client
+    // 1. app.getInitialProps
+    // 2. page.getInitialProps
+    // 3. app.render
+    // 4. page.render
 
-      return (
-        <JssProvider
-          registry={sheetsRegistry}
-          generateClassName={generateClassName}
-        >
-          <MuiThemeProvider theme={theme} sheetsManager={sheetsManager}>
-            <CssBaseline />
-            <Component {...props} />
-          </MuiThemeProvider>
-        </JssProvider>
-      );
+    // Render app and page and get the context of the page with collected side effects.
+    let pageContext;
+    const page = renderPage(Component => {
+      const WrappedComponent = props => {
+        ({ pageContext } = props);
+        return <Component {...props} />;
+      };
+
+      WrappedComponent.propTypes = {
+        pageContext: object.isRequired,
+      };
+
+      return withStyles(globalStyles)(WrappedComponent);
     });
-    // Grab CSS from our sheetsRegistry.
-    const css = sheetsRegistry.toString();
+
+    let css;
+    // It might be undefined, e.g. after an error.
+    if (pageContext) {
+      css = pageContext.sheetsRegistry.toString();
+    }
 
     return {
       ...page,
+      pageContext,
       styles: (
         <Fragment>
           <style
@@ -81,11 +88,18 @@ export default class MyDocument extends Document {
   render() {
     const Content = catchErrors(Main);
     const preLoadFonts = WEB_FONTS_PATH || [];
+    const { pageContext } = this.props;
 
     return (
       <html lang="en">
         <Head>
           <meta httpEquiv="X-UA-Compatible" content="IE=Edge" />
+          <meta
+            name="theme-color"
+            content={
+              pageContext ? pageContext.theme.palette.primary.main : null
+            }
+          />
           {preloadAssets(preLoadFonts, 'font')}
         </Head>
         <body className="app">
