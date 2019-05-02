@@ -26,7 +26,7 @@ const propTypes = {
       onClick: func,
     })
   ).isRequired,
-  color: oneOf(['primary', 'info', 'success', 'warning', 'danger']),
+  color: oneOf(['primary', 'info', 'success', 'warning', 'error']),
 };
 
 const defaultProps = {

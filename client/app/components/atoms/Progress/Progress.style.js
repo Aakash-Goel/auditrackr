@@ -3,9 +3,8 @@ import {
   infoColor,
   successColor,
   warningColor,
-  dangerColor,
-  roseColor,
-  grayColor,
+  errorColor,
+  greyColor,
 } from '../../../styles/theme/muiKit';
 
 const progressStyles = {
@@ -19,8 +18,8 @@ const progressStyles = {
   warning: {
     backgroundColor: warningColor,
   },
-  danger: {
-    backgroundColor: dangerColor,
+  error: {
+    backgroundColor: errorColor,
   },
   success: {
     backgroundColor: successColor,
@@ -28,11 +27,8 @@ const progressStyles = {
   info: {
     backgroundColor: infoColor,
   },
-  rose: {
-    backgroundColor: roseColor,
-  },
-  gray: {
-    backgroundColor: grayColor,
+  grey: {
+    backgroundColor: greyColor,
   },
   primaryBackground: {
     background: 'rgba(156, 39, 176, 0.2)',
@@ -40,7 +36,7 @@ const progressStyles = {
   warningBackground: {
     background: 'rgba(255, 152, 0, 0.2)',
   },
-  dangerBackground: {
+  errorBackground: {
     background: 'rgba(244, 67, 54, 0.2)',
   },
   successBackground: {
@@ -49,10 +45,7 @@ const progressStyles = {
   infoBackground: {
     background: 'rgba(0, 188, 212, 0.2)',
   },
-  roseBackground: {
-    background: 'rgba(233, 30, 99, 0.2)',
-  },
-  grayBackground: {
+  greyBackground: {
     background: 'rgba(221, 221, 221, 0.2)',
   },
   primaryBufferBackground: {
@@ -61,7 +54,7 @@ const progressStyles = {
   warningBufferBackground: {
     background: 'rgba(255, 152, 0, 0.5)',
   },
-  dangerBufferBackground: {
+  errorBufferBackground: {
     background: 'rgba(244, 67, 54, 0.5)',
   },
   successBufferBackground: {
@@ -70,10 +63,7 @@ const progressStyles = {
   infoBufferBackground: {
     background: 'rgba(0, 188, 212, 0.5)',
   },
-  roseBufferBackground: {
-    background: 'rgba(233, 30, 99, 0.5)',
-  },
-  grayBufferBackground: {
+  greyBufferBackground: {
     background: 'rgba(221, 221, 221, 0.5)',
   },
 };

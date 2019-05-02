@@ -58,8 +58,8 @@ const secondaryFontFamily =
 
 const defaultFont = {
   fontFamily: primaryFontFamily,
-  fontWeight: '400',
-  fontSize: '14px',
+  fontWeight: '500',
+  fontSize: '16px',
   lineHeight: '1.5em',
 };
 
@@ -71,7 +71,7 @@ const warningColor = '#ff9800';
 const errorColor = '#f44336';
 const whiteColor = '#fff';
 const blackColor = '#14171a';
-const grayColor = '#aab8c2';
+const greyColor = '#999999';
 const brandColor = '#191846';
 
 const primaryBoxShadow = {
@@ -191,7 +191,7 @@ export {
   errorColor,
   whiteColor,
   blackColor,
-  grayColor,
+  greyColor,
   brandColor,
   primaryBoxShadow,
   infoBoxShadow,

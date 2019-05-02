@@ -1,10 +1,10 @@
 import {
-  grayColor,
+  greyColor,
   primaryColor,
   infoColor,
   successColor,
   warningColor,
-  dangerColor,
+  errorColor,
 } from '../../../styles/theme/muiKit';
 
 const paginationStyles = {
@@ -39,7 +39,7 @@ const paginationStyles = {
     textDecoration: 'none',
     boxSizing: 'border-box',
     '&,&:hover,&:focus': {
-      color: grayColor,
+      color: greyColor,
     },
     '&:hover,&:focus': {
       zIndex: '3',
@@ -102,10 +102,10 @@ const paginationStyles = {
       cursor: 'default',
     },
   },
-  danger: {
+  error: {
     '&,&:hover,&:focus': {
-      backgroundColor: dangerColor,
-      borderColor: dangerColor,
+      backgroundColor: errorColor,
+      borderColor: errorColor,
       color: '#FFFFFF',
       boxShadow:
         '0 4px 5px 0 rgba(244, 67, 54, 0.14), 0 1px 10px 0 rgba(244, 67, 54, 0.12), 0 2px 4px -1px rgba(244, 67, 54, 0.2)',

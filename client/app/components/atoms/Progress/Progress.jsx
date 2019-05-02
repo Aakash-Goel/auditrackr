@@ -17,9 +17,9 @@ const propTypes = {
     'info',
     'success',
     'warning',
-    'danger',
+    'error',
     'rose',
-    'gray',
+    'grey',
   ]),
 };
 
@@ -28,7 +28,7 @@ const propTypes = {
  * @private
  */
 const defaultProps = {
-  color: 'gray',
+  color: 'grey',
 };
 
 const CustomProgress = ({ ...props }) => {
