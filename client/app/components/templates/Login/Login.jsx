@@ -2,7 +2,11 @@ import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import { object } from 'prop-types';
 import classnames from 'classnames';
+import Link from 'next/link';
 
+import InputAdornment from '@material-ui/core/InputAdornment';
+import EmailOutlined from '@material-ui/icons/EmailOutlined';
+import LockOutlined from '@material-ui/icons/LockOutlined';
 import withStyles from '@material-ui/core/styles/withStyles';
 
 import Head from '../../atoms/Head';
@@ -10,6 +14,7 @@ import GridContainer from '../../atoms/Grid/GridContainer';
 import GridItem from '../../atoms/Grid/GridItem';
 import Title from '../../atoms/Title';
 import Input from '../../atoms/Input';
+import Button from '../../atoms/Button';
 
 import loginStyles from './Login.style';
 
@@ -44,19 +49,28 @@ const LoginContainer = ({ ...props }) => {
               className={classnames(classes.loginSignupWrapper)}
             >
               <GridItem xs={12}>
-                <Title level={1}>Login to your account</Title>
-                <div>
-                  <form noValidate autoComplete="off">
-                    <div>
+                <Title level={1} className={classnames(classes.heading)}>
+                  Login to your account
+                </Title>
+                <div className={classnames(classes.formWrapper)}>
+                  <form autoComplete="off">
+                    <div className={classnames(classes.inputWrapper)}>
                       <Input
                         labelText="Enter your e-mail address"
                         formControlProps={{
                           required: true,
                           fullWidth: true,
                         }}
+                        inputProps={{
+                          endAdornment: (
+                            <InputAdornment position="end" color="primary">
+                              <EmailOutlined className={classes.icon} />
+                            </InputAdornment>
+                          ),
+                        }}
                       />
                     </div>
-                    <div>
+                    <div className={classnames(classes.inputWrapper)}>
                       <Input
                         labelText="Enter your password"
                         formControlProps={{
@@ -65,10 +79,52 @@ const LoginContainer = ({ ...props }) => {
                         }}
                         inputProps={{
                           type: 'password',
+                          endAdornment: (
+                            <InputAdornment position="end" color="primary">
+                              <LockOutlined className={classes.icon} />
+                            </InputAdornment>
+                          ),
                         }}
                       />
                     </div>
+                    <GridContainer
+                      className={classnames(classes.buttonsWrapper)}
+                    >
+                      <GridItem xs={12} md={6}>
+                        <Button
+                          type="submit"
+                          fullWidth
+                          size="lg"
+                          className={classnames(classes.btnSubmit)}
+                        >
+                          Login
+                        </Button>
+                      </GridItem>
+                      <GridItem
+                        xs={12}
+                        md={6}
+                        className={classnames(classes.btnLinkWrapper)}
+                      >
+                        <Button
+                          link
+                          textTransform="nn"
+                          className={classnames(classes.btnLink)}
+                        >
+                          Forget password?
+                        </Button>
+                      </GridItem>
+                    </GridContainer>
                   </form>
+                </div>
+                <div>
+                  <p className={classnames(classes.helper)}>
+                    Don&#39;t have an account?
+                    <Link href="/signup">
+                      <Button link size="lg" textTransform="nn">
+                        Sign up
+                      </Button>
+                    </Link>
+                  </p>
                 </div>
               </GridItem>
             </GridContainer>
