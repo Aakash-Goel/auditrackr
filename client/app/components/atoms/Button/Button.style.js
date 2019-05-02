@@ -7,14 +7,15 @@ import {
   errorColor,
   blackColor,
   whiteColor,
+  greyColor,
 } from '../../../styles/theme/muiKit';
 
 const buttonStyles = theme => ({
   button: {
     minHeight: 'auto',
     minWidth: 'auto',
-    backgroundColor: theme.palette.custom.grey,
-    color: theme.palette.common.white,
+    backgroundColor: greyColor,
+    color: whiteColor,
     boxShadow:
       '0 2px 2px 0 rgba(153, 153, 153, 0.14), 0 3px 1px -2px rgba(153, 153, 153, 0.2), 0 1px 5px 0 rgba(153, 153, 153, 0.12)',
     border: 'none',
@@ -34,8 +35,8 @@ const buttonStyles = theme => ({
     touchAction: 'manipulation',
     cursor: 'pointer',
     '&:hover,&:focus': {
-      color: theme.palette.common.white,
-      backgroundColor: theme.palette.custom.grey,
+      color: whiteColor,
+      backgroundColor: greyColor,
       boxShadow:
         '0 14px 26px -12px rgba(153, 153, 153, 0.42), 0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(153, 153, 153, 0.2)',
     },

@@ -9,16 +9,20 @@ exports[`<Button/> renders correctly with empty props 1`] = `
       "black": "CustomButton-black-9",
       "block": "CustomButton-block-21",
       "button": "CustomButton-button-1",
+      "cap": "CustomButton-cap-25",
       "disabled": "CustomButton-disabled-17",
       "error": "CustomButton-error-8",
       "facebook": "CustomButton-facebook-12",
       "fullWidth": "CustomButton-fullWidth-2",
       "github": "CustomButton-github-14",
       "google": "CustomButton-google-13",
+      "iht": "CustomButton-iht-26",
       "info": "CustomButton-info-5",
       "justIcon": "CustomButton-justIcon-24",
       "lg": "CustomButton-lg-18",
       "link": "CustomButton-link-22",
+      "lwc": "CustomButton-lwc-27",
+      "nn": "CustomButton-nn-28",
       "outlined": "CustomButton-outlined-23",
       "primary": "CustomButton-primary-3",
       "round": "CustomButton-round-20",
@@ -28,11 +32,12 @@ exports[`<Button/> renders correctly with empty props 1`] = `
       "success": "CustomButton-success-6",
       "transparent": "CustomButton-transparent-16",
       "twitter": "CustomButton-twitter-11",
+      "upc": "CustomButton-upc-29",
       "warning": "CustomButton-warning-7",
       "white": "CustomButton-white-10",
     }
   }
-  color=""
+  color="primary"
   disabled={false}
   fullWidth={false}
   justIcon={false}
@@ -41,13 +46,14 @@ exports[`<Button/> renders correctly with empty props 1`] = `
   round={true}
   simple={false}
   size=""
+  textTransform="upc"
 />
 `;
 
 exports[`<Button/> renders correctly with props 1`] = `
 <button
   aria-label="Checkout"
-  className="MuiButtonBase-root-51 MuiButton-root-25 MuiButton-text-27 MuiButton-flat-30 CustomButton-button-1 CustomButton-primary-3 CustomButton-round-20"
+  className="MuiButtonBase-root-56 MuiButton-root-30 MuiButton-text-32 MuiButton-flat-35 CustomButton-button-1 CustomButton-primary-3 CustomButton-round-20 CustomButton-upc-29"
   disabled={false}
   onBlur={[Function]}
   onContextMenu={[Function]}
@@ -69,12 +75,12 @@ exports[`<Button/> renders correctly with props 1`] = `
   type="button"
 >
   <span
-    className="MuiButton-label-26"
+    className="MuiButton-label-31"
   >
     Click Here
   </span>
   <span
-    className="MuiTouchRipple-root-54"
+    className="MuiTouchRipple-root-59"
   />
 </button>
 `;

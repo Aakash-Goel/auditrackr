@@ -1,4 +1,12 @@
-const inputStyles = theme => ({
+import {
+  primaryColor,
+  successColor,
+  errorColor,
+  whiteColor,
+  greyColor,
+} from '../../../styles/theme/muiKit';
+
+const inputStyles = () => ({
   disabled: {
     '&:before': {
       borderColor: 'transparent !important',
@@ -6,55 +14,55 @@ const inputStyles = theme => ({
   },
   underline: {
     '&:hover:not($disabled):before,&:before': {
-      borderColor: `${theme.palette.custom.grey} !important`,
+      borderColor: `${greyColor} !important`,
     },
   },
   underlineError: {
     '&:after': {
-      borderColor: theme.palette.error.main,
+      borderColor: errorColor,
     },
   },
   underlineSuccess: {
     '&:after': {
-      borderColor: theme.palette.custom.success,
+      borderColor: successColor,
     },
   },
   whiteUnderline: {
     '&:hover:not($disabled):before,&:before': {
-      borderColor: theme.palette.common.white,
+      borderColor: whiteColor,
     },
     '&:after': {
-      borderColor: theme.palette.common.white,
+      borderColor: whiteColor,
     },
   },
   labelRoot: {
-    color: theme.palette.custom.grey,
+    color: greyColor,
   },
   labelRootError: {
-    color: `${theme.palette.error.main} !important`,
+    color: `${errorColor} !important`,
   },
   labelRootSuccess: {
-    color: `${theme.palette.custom.success} !important`,
+    color: `${successColor} !important`,
   },
   formControl: {
     fontWeight: 500,
     position: 'relative',
     '& svg,& .fab,& .far,& .fal,& .fas,& .material-icons': {
-      color: theme.palette.custom.grey,
+      color: greyColor,
     },
   },
   input: {
-    color: theme.palette.primary.main,
+    color: primaryColor,
     '&,&::placeholder': {
       opacity: '1',
     },
     '&::placeholder': {
-      color: theme.palette.custom.grey,
+      color: greyColor,
     },
   },
   whiteInput: {
     '&,&::placeholder': {
-      color: theme.palette.common.white,
+      color: whiteColor,
       opacity: '1',
     },
   },
