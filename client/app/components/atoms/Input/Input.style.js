@@ -1,11 +1,4 @@
-import {
-  primaryColor,
-  errorColor,
-  successColor,
-  defaultFont,
-} from '../../../styles/theme/muiKit';
-
-const inputStyles = {
+const inputStyles = theme => ({
   disabled: {
     '&:before': {
       borderColor: 'transparent !important',
@@ -13,75 +6,58 @@ const inputStyles = {
   },
   underline: {
     '&:hover:not($disabled):before,&:before': {
-      borderColor: '#D2D2D2 !important',
-      borderWidth: '1px !important',
-    },
-    '&:after': {
-      borderColor: primaryColor,
+      borderColor: `${theme.palette.custom.grey} !important`,
     },
   },
   underlineError: {
     '&:after': {
-      borderColor: errorColor,
+      borderColor: theme.palette.error.main,
     },
   },
   underlineSuccess: {
     '&:after': {
-      borderColor: successColor,
+      borderColor: theme.palette.custom.success,
     },
   },
   whiteUnderline: {
     '&:hover:not($disabled):before,&:before': {
-      borderColor: '#FFFFFF',
+      borderColor: theme.palette.common.white,
     },
     '&:after': {
-      borderColor: '#FFFFFF',
+      borderColor: theme.palette.common.white,
     },
   },
   labelRoot: {
-    ...defaultFont,
-    color: '#AAAAAA',
-    fontWeight: '400',
-    fontSize: '14px',
-    lineHeight: '1.42857',
-    top: '10px',
-    '& + $underline': {
-      marginTop: '0px',
-    },
+    color: theme.palette.custom.grey,
   },
   labelRootError: {
-    color: `${errorColor} !important`,
+    color: `${theme.palette.error.main} !important`,
   },
   labelRootSuccess: {
-    color: `${successColor} !important`,
+    color: `${theme.palette.custom.success} !important`,
   },
   formControl: {
-    margin: '0 0 17px 0',
-    paddingTop: '27px',
+    fontWeight: 500,
     position: 'relative',
     '& svg,& .fab,& .far,& .fal,& .fas,& .material-icons': {
-      color: '#495057',
+      color: theme.palette.custom.grey,
     },
   },
   input: {
-    color: '#495057',
+    color: theme.palette.primary.main,
     '&,&::placeholder': {
-      fontSize: '14px',
-      fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-      fontWeight: '400',
-      lineHeight: '1.42857',
       opacity: '1',
     },
     '&::placeholder': {
-      color: '#AAAAAA',
+      color: theme.palette.custom.grey,
     },
   },
   whiteInput: {
     '&,&::placeholder': {
-      color: '#FFFFFF',
+      color: theme.palette.common.white,
       opacity: '1',
     },
   },
-};
+});
 
 export default inputStyles;
