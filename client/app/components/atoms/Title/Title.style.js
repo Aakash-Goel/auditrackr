@@ -1,8 +1,3 @@
-// h1 {
-//   font-size: var(--h1);
-//   letter-spacing: 0.1px;
-// }
-
 const titleStyles = () => ({
   h1: {
     fontSize: '54px',
