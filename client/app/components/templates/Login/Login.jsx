@@ -15,6 +15,7 @@ import GridItem from '../../atoms/Grid/GridItem';
 import Title from '../../atoms/Title';
 import Input from '../../atoms/Input';
 import Button from '../../atoms/Button';
+import Carousel from '../../atoms/Carousel';
 
 import loginStyles from './Login.style';
 
@@ -28,6 +29,13 @@ const propTypes = {
 
 const LoginContainer = ({ ...props }) => {
   const { classes } = props;
+
+  const settings = {
+    dots: true,
+    arrows: false,
+    autoplay: true,
+    dotsClass: classnames(classes.carouselDotsClass),
+  };
 
   return (
     <Fragment>
@@ -44,11 +52,8 @@ const LoginContainer = ({ ...props }) => {
             md={5}
             className={classnames(classes.cell, classes.utilityBlock)}
           >
-            <GridContainer
-              direction="column"
-              className={classnames(classes.loginSignupWrapper)}
-            >
-              <GridItem xs={12}>
+            <GridContainer direction="column" alignItems="center">
+              <GridItem xs={8}>
                 <Title level={1} className={classnames(classes.heading)}>
                   Login to your account
                 </Title>
@@ -118,14 +123,22 @@ const LoginContainer = ({ ...props }) => {
                 </div>
                 <div>
                   <p className={classnames(classes.helper)}>
-                    Don&#39;t have an account?
+                    Don&#39;t have an account?&nbsp;
                     <Link href="/signup">
-                      <Button link size="lg" textTransform="nn">
+                      <Button href="/signup" link size="lg" textTransform="nn">
                         Sign up
                       </Button>
                     </Link>
                   </p>
                 </div>
+              </GridItem>
+              <GridItem
+                xs={12}
+                className={classnames(classes.copyrightWrapper)}
+              >
+                <p>
+                  Copyright &copy; 2019-2020 AuditTrackR. All rights reserved{' '}
+                </p>
               </GridItem>
             </GridContainer>
           </GridItem>
@@ -133,7 +146,107 @@ const LoginContainer = ({ ...props }) => {
             md={7}
             className={classnames(classes.cell, classes.infoBlock)}
           >
-            left
+            <GridContainer direction="column" alignItems="center">
+              <GridItem
+                xs={12}
+                md={5}
+                className={classnames(classes.carouselWrapper)}
+              >
+                <Carousel {...settings}>
+                  <div>
+                    <Title
+                      level={2}
+                      className={classnames(classes.carouselHeading)}
+                    >
+                      Don&#39;t let a messy audit be your fate
+                    </Title>
+                    <div className={classnames(classes.carouselImgWrapper)}>
+                      <img alt="a" src="/static/images/audit.png" />
+                    </div>
+                  </div>
+                  <div>
+                    <Title
+                      level={2}
+                      className={classnames(classes.carouselHeading)}
+                    >
+                      Don&#39;t let a messy audit be your fate
+                    </Title>
+                    <div className={classnames(classes.carouselImgWrapper)}>
+                      <img alt="b" src="/static/images/audit.png" />
+                    </div>
+                  </div>
+                  <div>
+                    <Title
+                      level={2}
+                      className={classnames(classes.carouselHeading)}
+                    >
+                      Don&#39;t let a messy audit be your fate
+                    </Title>
+                    <div className={classnames(classes.carouselImgWrapper)}>
+                      <img alt="c" src="/static/images/audit.png" />
+                    </div>
+                  </div>
+                  <div>
+                    <Title
+                      level={2}
+                      className={classnames(classes.carouselHeading)}
+                    >
+                      Don&#39;t let a messy audit be your fate
+                    </Title>
+                    <div className={classnames(classes.carouselImgWrapper)}>
+                      <img alt="d" src="/static/images/audit.png" />
+                    </div>
+                  </div>
+                </Carousel>
+              </GridItem>
+              <GridItem xs={12} className={classnames(classes.footerWrapper)}>
+                <ul className={classnames(classes.footerList)}>
+                  <li className={classnames(classes.footerItem)}>
+                    <Link href="/about">
+                      <Button href="/about" link size="lg" textTransform="nn">
+                        About us
+                      </Button>
+                    </Link>
+                  </li>
+
+                  <li className={classnames(classes.footerItem)}>
+                    <Link href="/help">
+                      <Button href="/help" link size="lg" textTransform="nn">
+                        Help center
+                      </Button>
+                    </Link>
+                  </li>
+                  <li className={classnames(classes.footerItem)}>
+                    <Link href="/contact">
+                      <Button href="/contact" link size="lg" textTransform="nn">
+                        Contact us
+                      </Button>
+                    </Link>
+                  </li>
+                  <li className={classnames(classes.footerItem)}>
+                    <Link href="/tos">
+                      <Button href="/tos" link size="lg" textTransform="nn">
+                        Terms
+                      </Button>
+                    </Link>
+                  </li>
+                  <li className={classnames(classes.footerItem)}>
+                    <Link href="/privacy">
+                      <Button href="/privacy" link size="lg" textTransform="nn">
+                        Privacy policy
+                      </Button>
+                    </Link>
+                  </li>
+                  <li className={classnames(classes.footerItem)}>
+                    <Link href="/cookies">
+                      <Button href="/cookies" link size="lg" textTransform="nn">
+                        Cookies
+                      </Button>
+                    </Link>
+                  </li>
+                </ul>
+              </GridItem>
+            </GridContainer>
           </GridItem>
         </GridContainer>
       </div>
