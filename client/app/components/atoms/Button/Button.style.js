@@ -301,6 +301,8 @@ const buttonStyles = theme => ({
       color: '#999999',
       boxShadow: 'none',
       margin: 0,
+      padding: 0,
+      lineHeight: '1.5',
     },
     '&:hover,&:focus': {
       color: '#999999',

@@ -24,5 +24,10 @@ export default {
       fontFamily: primaryFontFamily,
       fontWeight: 400,
     },
+    'ol, ul': {
+      margin: 0,
+      padding: 0,
+      listStyle: 'none',
+    },
   },
 };
