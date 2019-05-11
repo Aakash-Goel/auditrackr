@@ -70,7 +70,7 @@ const successColor = '#4caf50';
 const warningColor = '#ff9800';
 const errorColor = '#f44336';
 const whiteColor = '#fff';
-const blackColor = '#14171a';
+const blackColor = '#14171a'; // possible list ['#262B33']
 const greyColor = '#999999';
 const brandColor = '#191846';
 

@@ -4,10 +4,9 @@ import { object } from 'prop-types';
 import classnames from 'classnames';
 import Link from 'next/link';
 
-import InputAdornment from '@material-ui/core/InputAdornment';
-import EmailOutlined from '@material-ui/icons/EmailOutlined';
-import LockOutlined from '@material-ui/icons/LockOutlined';
-import withStyles from '@material-ui/core/styles/withStyles';
+import { InputAdornment } from '@material-ui/core';
+import { EmailOutlined, LockOutlined } from '@material-ui/icons';
+import { withStyles } from '@material-ui/core/styles';
 
 import Head from '../../atoms/Head';
 import GridContainer from '../../atoms/Grid/GridContainer';
@@ -58,7 +57,7 @@ const LoginContainer = ({ ...props }) => {
                   Login to your account
                 </Title>
                 <div className={classnames(classes.formWrapper)}>
-                  <form autoComplete="off">
+                  <form noValidate autoComplete="off">
                     <div className={classnames(classes.inputWrapper)}>
                       <Input
                         labelText="Enter your e-mail address"

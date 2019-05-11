@@ -200,8 +200,13 @@ const buttonStyles = theme => ({
     },
   },
   simple: {
-    '&,&:focus,&:hover,&:visited': {
-      color: '#FFFFFF',
+    '&': {
+      color: greyColor,
+      background: 'transparent',
+      boxShadow: 'none',
+    },
+    '&:hover': {
+      color: blackColor,
       background: 'transparent',
       boxShadow: 'none',
     },
@@ -261,13 +266,16 @@ const buttonStyles = theme => ({
       },
     },
     '&$github': {
-      '&,&:focus,&:hover,&:visited': {
+      '&': {
         color: '#333333',
+      },
+      '&:hover,&:focus': {
+        color: whiteColor,
       },
     },
   },
   transparent: {
-    '&,&:focus,&:hover,&:visited': {
+    '&,&:hover': {
       color: 'inherit',
       background: 'transparent',
       boxShadow: 'none',

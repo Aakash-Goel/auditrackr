@@ -52,6 +52,7 @@ class MyApp extends App {
     const { Component, pageProps, store } = this.props;
     return (
       <Container>
+        {/* Wrap every page in JSS and Theme providers */}
         <JssProvider
           registry={this.pageContext.sheetsRegistry}
           generateClassName={this.pageContext.generateClassName}
