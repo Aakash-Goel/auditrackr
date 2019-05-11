@@ -5,7 +5,7 @@
  *
  */
 
-const router = require('./routes');
+const router = require('../routes');
 
 /**
  * Module variables.

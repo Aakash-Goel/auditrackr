@@ -13,7 +13,7 @@ const next = require('next');
 const compression = require('compression');
 const helmet = require('helmet');
 
-const routes = require('./routes');
+const routes = require('../routes');
 const logger = require('../app/utils/logger');
 
 /**
@@ -45,11 +45,11 @@ const handler = routes.getRequestHandler(
       .render(req, res, route.page, query)
       .then(() => {
         /* eslint-disable-next-line no-console */
-        console.log('success');
+        // console.log('success');
       })
       .catch(err => {
         /* eslint-disable-next-line no-console */
-        console.log(err);
+        logger.error(err.stack);
       });
   }
 );

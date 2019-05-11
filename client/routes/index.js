@@ -11,7 +11,11 @@ const routes = require('next-routes')();
 //
 // ------------ ROUTES ---------------
 // @StartRoutes
-routes.add('signin', '/sign_in');
+routes.add({
+  name: 'create-audit',
+  pattern: '/account/audit/create',
+  page: 'audit/create-new',
+});
 // @EndRoutes
 // ------------ ROUTES ---------------
 //
