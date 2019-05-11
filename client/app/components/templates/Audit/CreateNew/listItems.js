@@ -9,7 +9,8 @@ import DashboardIcon from '@material-ui/icons/Dashboard';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import PeopleIcon from '@material-ui/icons/People';
 import AssignmentIcon from '@material-ui/icons/Assignment';
-import Button from '../../../atoms/Button';
+
+import { Button } from 'app-components';
 
 /* eslint-disable no-unused-vars, no-undef */
 class ListItemLink extends React.Component {

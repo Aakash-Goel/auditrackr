@@ -13,8 +13,8 @@ const next = require('next');
 const compression = require('compression');
 const helmet = require('helmet');
 
-const routes = require('../routes');
-const logger = require('../app/utils/logger');
+const routes = require('../routes'); // eslint-disable-line module-resolver/use-alias
+const logger = require('../app/utils/logger'); // eslint-disable-line module-resolver/use-alias
 
 /**
  * Module variables.

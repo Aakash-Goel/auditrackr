@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
 import Link from 'next/link';
 
-import GridContainer from '../../atoms/Grid/GridContainer';
-import GridItem from '../../atoms/Grid/GridItem';
-import Input from '../../atoms/Input';
-import Button from '../../atoms/Button';
-
-import ServiceUtil from '../../../utils/serviceUtil';
+import { GridContainer, GridItem, Input, Button } from 'app-components';
+import ServiceUtil from 'app-utils/serviceUtil';
 
 /* istanbul ignore next */
 class MessageForm extends Component {

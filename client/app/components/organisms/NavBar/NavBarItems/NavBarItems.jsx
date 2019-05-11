@@ -5,8 +5,8 @@ import { object, string, bool, func, node } from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { ListItem, ListSubheader, Collapse } from '@material-ui/core';
 
-import { Link } from '../../../../../routes';
-import Button from '../../../atoms/Button';
+import { Button } from 'app-components';
+import { Link } from 'app-routes';
 
 import navBarItemsStyles from './NavBarItems.style';
 

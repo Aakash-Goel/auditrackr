@@ -3,9 +3,8 @@ import { object } from 'prop-types';
 
 import { withStyles } from '@material-ui/core/styles';
 
-import AppBar from '../../../organisms/AppBar';
-import NavBar from '../../../organisms/NavBar';
-import pages from '../../../../constants/navBarList';
+import { AppBar, NavBar } from 'app-components';
+import pages from 'app-constants/navBarList';
 
 const styles = theme => ({
   root: {

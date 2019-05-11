@@ -11,15 +11,17 @@ import {
 } from '@material-ui/icons';
 import { withStyles } from '@material-ui/core/styles';
 
-import { Link } from '../../../../routes';
-import Head from '../../atoms/Head';
-import GridContainer from '../../atoms/Grid/GridContainer';
-import GridItem from '../../atoms/Grid/GridItem';
-import Title from '../../atoms/Title';
-import Input from '../../atoms/Input';
-import Button from '../../atoms/Button';
-import Checkbox from '../../atoms/Checkbox';
-import Carousel from '../../atoms/Carousel';
+import {
+  Head,
+  GridContainer,
+  GridItem,
+  Title,
+  Input,
+  Button,
+  Checkbox,
+  Carousel,
+} from 'app-components';
+import { Link } from 'routes';
 
 import signUpStyles from './SignUp.styles';
 

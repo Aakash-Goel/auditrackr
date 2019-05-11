@@ -19,10 +19,10 @@ import flush from 'styled-jsx/server';
 
 import { withStyles } from '@material-ui/core/styles';
 
-import catchErrors from '../utils/errorBoundary';
-import preloadAssets from '../utils/preloadAssets';
-import { WEB_FONTS_PATH } from '../constants';
-import globalStyles from '../styles/globalStyles';
+import catchErrors from 'app-utils/errorBoundary';
+import preloadAssets from 'app-utils/preloadAssets';
+import { WEB_FONTS_PATH } from 'app-constants';
+import globalStyles from 'app-styles/globalStyles';
 
 export default class MyDocument extends Document {
   static getInitialProps({ renderPage }) {

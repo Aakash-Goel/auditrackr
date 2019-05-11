@@ -1,4 +1,19 @@
 {
   "presets": ["next/babel"],
-  "plugins": []
+  "plugins": [
+    ["module-resolver", {
+      "root": ["."],
+      "alias": {
+        "app-containers": "./app/containers",
+        "app-components": "./app/components",
+        "app-constants": "./app/constants",
+        "app-static": "./app/static",
+        "app-styles": "./app/styles",
+        "app-pages": "./app/pages",
+        "app-utils": "./app/utils",
+        "app-lib": "./app/lib",
+        "app-routes": "./routes"
+      }
+    }]
+  ]
 }

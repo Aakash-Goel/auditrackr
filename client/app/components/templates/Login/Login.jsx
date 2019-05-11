@@ -7,14 +7,16 @@ import { InputAdornment } from '@material-ui/core';
 import { EmailOutlined, LockOutlined } from '@material-ui/icons';
 import { withStyles } from '@material-ui/core/styles';
 
-import { Link } from '../../../../routes';
-import Head from '../../atoms/Head';
-import GridContainer from '../../atoms/Grid/GridContainer';
-import GridItem from '../../atoms/Grid/GridItem';
-import Title from '../../atoms/Title';
-import Input from '../../atoms/Input';
-import Button from '../../atoms/Button';
-import Carousel from '../../atoms/Carousel';
+import {
+  Head,
+  GridContainer,
+  GridItem,
+  Title,
+  Input,
+  Button,
+  Carousel,
+} from 'app-components';
+import { Link } from 'routes';
 
 import loginStyles from './Login.style';
 

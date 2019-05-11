@@ -5,7 +5,7 @@ import {
   successColor,
   warningColor,
   errorColor,
-} from '../../../styles/theme/muiKit';
+} from 'app-styles/theme/muiKit';
 
 const paginationStyles = {
   pagination: {

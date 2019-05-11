@@ -4,7 +4,7 @@ import {
   errorColor,
   whiteColor,
   greyColor,
-} from '../../../styles/theme/muiKit';
+} from 'app-styles/theme/muiKit';
 
 const inputStyles = () => ({
   disabled: {

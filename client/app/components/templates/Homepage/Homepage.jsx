@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 // import { createStructuredSelector } from 'reselect';
 
-import Head from '../../atoms/Head';
-
-import MessageForm from '../../organisms/MessageForm';
+import { Head, MessageForm } from 'app-components';
 
 // import { selectCount } from './HomepageSelectors';
 

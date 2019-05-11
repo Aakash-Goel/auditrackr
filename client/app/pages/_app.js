@@ -21,9 +21,9 @@ import JssProvider from 'react-jss/lib/JssProvider';
 import { MuiThemeProvider, withStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
-import getPageContext from '../utils/getPageContext';
+import getPageContext from 'app-utils/getPageContext';
+import globalStyles from 'app-styles/globalStyles';
 import createStore from '../store/store';
-import globalStyles from '../styles/globalStyles';
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
