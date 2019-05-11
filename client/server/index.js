@@ -13,6 +13,7 @@ const next = require('next');
 const compression = require('compression');
 const helmet = require('helmet');
 
+const routes = require('./routes');
 const logger = require('../app/utils/logger');
 
 /**
@@ -37,7 +38,22 @@ const helmetConfig = {
 };
 
 const app = next({ dev: isDev, dir: './app' });
-const handle = app.getRequestHandler();
+const handler = routes.getRequestHandler(
+  app,
+  async ({ req, res, route, query }) => {
+    app
+      .render(req, res, route.page, query)
+      .then(() => {
+        /* eslint-disable-next-line no-console */
+        console.log('success');
+      })
+      .catch(err => {
+        /* eslint-disable-next-line no-console */
+        console.log(err);
+      });
+  }
+);
+// const handle = app.getRequestHandler();
 
 /**
  * Connect to next and then start the server
@@ -54,7 +70,7 @@ app
     server.use(helmet(helmetConfig));
 
     server.get('*', (req, res) => {
-      return handle(req, res);
+      return handler(req, res);
     });
 
     // Start up the server and listening to port
