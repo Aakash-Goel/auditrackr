@@ -44,7 +44,7 @@
     "lint:js:fix": "npm run lint:eslint -- . --fix",
     "pretest": "npm run test:clean",
     "test:clean": "rimraf ./reports/coverage",
-    "test": "cross-env NODE_ENV=test jest",
+    "test": "cross-env NODE_ENV=test jest --config ./internals/testing/jest.config.js",
     "test:watch": "npm run test -- --watch --coverage=false",
     "test:update-snapshot": "npm run test -- --updateSnapshot --coverage=false",
     "test:coverage": "npm run test -- --coverage"
