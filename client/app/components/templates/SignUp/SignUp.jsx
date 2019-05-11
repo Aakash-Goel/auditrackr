@@ -2,7 +2,6 @@ import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import { object } from 'prop-types';
 import classnames from 'classnames';
-import Link from 'next/link';
 
 import { InputAdornment } from '@material-ui/core';
 import {
@@ -12,6 +11,7 @@ import {
 } from '@material-ui/icons';
 import { withStyles } from '@material-ui/core/styles';
 
+import { Link } from '../../../../routes';
 import Head from '../../atoms/Head';
 import GridContainer from '../../atoms/Grid/GridContainer';
 import GridItem from '../../atoms/Grid/GridItem';
@@ -137,7 +137,7 @@ const SignUpContainer = ({ ...props }) => {
                           }}
                         />
                         By signing up you agree&nbsp;
-                        <Link href="/tos">
+                        <Link to="/tos">
                           <Button href="/tos" link size="lg" textTransform="nn">
                             Terms & Conditions
                           </Button>
@@ -162,7 +162,7 @@ const SignUpContainer = ({ ...props }) => {
                         md={6}
                         className={classnames(classes.btnLinkWrapper)}
                       >
-                        <Link href="/login">
+                        <Link to="/login">
                           <Button
                             href="/login"
                             link
@@ -247,7 +247,7 @@ const SignUpContainer = ({ ...props }) => {
               <GridItem xs={12} className={classnames(classes.footerWrapper)}>
                 <ul className={classnames(classes.footerList)}>
                   <li className={classnames(classes.footerItem)}>
-                    <Link href="/about">
+                    <Link to="/about">
                       <Button href="/about" link size="lg" textTransform="nn">
                         About us
                       </Button>
@@ -255,35 +255,35 @@ const SignUpContainer = ({ ...props }) => {
                   </li>
 
                   <li className={classnames(classes.footerItem)}>
-                    <Link href="/help">
+                    <Link to="/help">
                       <Button href="/help" link size="lg" textTransform="nn">
                         Help center
                       </Button>
                     </Link>
                   </li>
                   <li className={classnames(classes.footerItem)}>
-                    <Link href="/contact">
+                    <Link to="/contact">
                       <Button href="/contact" link size="lg" textTransform="nn">
                         Contact us
                       </Button>
                     </Link>
                   </li>
                   <li className={classnames(classes.footerItem)}>
-                    <Link href="/tos">
+                    <Link to="/tos">
                       <Button href="/tos" link size="lg" textTransform="nn">
                         Terms
                       </Button>
                     </Link>
                   </li>
                   <li className={classnames(classes.footerItem)}>
-                    <Link href="/privacy">
+                    <Link to="/privacy">
                       <Button href="/privacy" link size="lg" textTransform="nn">
                         Privacy policy
                       </Button>
                     </Link>
                   </li>
                   <li className={classnames(classes.footerItem)}>
-                    <Link href="/cookies">
+                    <Link to="/cookies">
                       <Button href="/cookies" link size="lg" textTransform="nn">
                         Cookies
                       </Button>

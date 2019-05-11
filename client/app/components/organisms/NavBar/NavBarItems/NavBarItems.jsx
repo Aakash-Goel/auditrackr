@@ -1,11 +1,11 @@
 import React, { PureComponent } from 'react';
 import classnames from 'classnames';
 import { object, string, bool, func, node } from 'prop-types';
-import Link from 'next/link';
 
 import { withStyles } from '@material-ui/core/styles';
 import { ListItem, ListSubheader, Collapse } from '@material-ui/core';
 
+import { Link } from '../../../../../routes';
 import Button from '../../../atoms/Button';
 
 import navBarItemsStyles from './NavBarItems.style';
@@ -67,7 +67,7 @@ class NavBarItems extends PureComponent {
     if (href) {
       return (
         <ListItem className={classes.navLink} disableGutters>
-          <Link href={href}>
+          <Link to={href}>
             <Button
               simple
               fullWidth
