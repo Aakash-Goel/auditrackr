@@ -3,56 +3,104 @@ import classnames from 'classnames';
 import { object, bool, string, func } from 'prop-types';
 
 import { withStyles } from '@material-ui/core/styles';
-import { AppBar, Toolbar, IconButton, Badge } from '@material-ui/core';
-import { Menu, ChevronLeft, NotificationsOutlined } from '@material-ui/icons';
+import {
+  AppBar as MuiAppBar,
+  Toolbar,
+  IconButton,
+  Badge,
+  Avatar,
+  MenuList,
+  MenuItem,
+  Popper,
+  Paper,
+  Grow,
+  ClickAwayListener,
+} from '@material-ui/core';
+import {
+  Menu as MenuIcon,
+  ChevronLeft,
+  NotificationsOutlined,
+} from '@material-ui/icons';
+
+import { Button } from 'app-components';
+import { Link } from 'app-routes';
 
 import appBarStyles from './AppBar.style';
 
 const propTypes = {
   classes: object.isRequired,
-  isOpen: bool,
+  isMenuOpen: bool,
   className: string,
   onHandleDrawerClose: func,
   onHandleDrawerOpen: func,
 };
 
 const defaultProps = {
-  isOpen: false,
+  isMenuOpen: false,
   className: '',
   onHandleDrawerClose: () => {},
   onHandleDrawerOpen: () => {},
 };
 
 class CustomAppBar extends PureComponent {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isPopOverOpen: false,
+    };
+
+    this.handleClose = this.handleClose.bind(this);
+    this.handleToggle = this.handleToggle.bind(this);
+  }
+
+  handleClose = event => {
+    if (this.anchorEl.contains(event.target)) {
+      return;
+    }
+
+    this.setState({ isPopOverOpen: false });
+  };
+
+  handleToggle = () => {
+    this.setState(state => ({ isPopOverOpen: !state.isPopOverOpen }));
+  };
+
   render() {
     const {
       classes,
-      isOpen,
+      isMenuOpen,
       onHandleDrawerClose,
       onHandleDrawerOpen,
     } = this.props;
 
+    const { isPopOverOpen } = this.state;
+
     return (
-      <AppBar
+      <MuiAppBar
         position="fixed"
-        className={classnames(classes.appBar, isOpen && classes.appBarShift)}
+        className={classnames(
+          classes.appBar,
+          isMenuOpen && classes.appBarShift
+        )}
       >
         <Toolbar disableGutters className={classes.toolbar}>
           <div
             className={classnames(
               classes.logo,
-              !isOpen && classes.logoClosedDrawer
+              !isMenuOpen && classes.logoClosedDrawer
             )}
           >
             <span>icon</span>
-            <span className={classnames(!isOpen && classes.displayHide)}>
-              Logo Desktop
+            <span className={classnames(!isMenuOpen && classes.displayHide)}>
+              {' '}
+              logo
             </span>
           </div>
           <div
             className={classnames(
               classes.topNav,
-              !isOpen && classes.topNavClosedDrawer
+              !isMenuOpen && classes.topNavClosedDrawer
             )}
           >
             <IconButton
@@ -61,7 +109,7 @@ class CustomAppBar extends PureComponent {
               onClick={onHandleDrawerClose}
               className={classnames(
                 classes.menuButton,
-                !isOpen && classes.menuButtonHidden
+                !isMenuOpen && classes.menuButtonHidden
               )}
             >
               <ChevronLeft />
@@ -72,20 +120,75 @@ class CustomAppBar extends PureComponent {
               onClick={onHandleDrawerOpen}
               className={classnames(
                 classes.menuButton,
-                isOpen && classes.menuButtonHidden
+                isMenuOpen && classes.menuButtonHidden
               )}
             >
-              <Menu />
+              <MenuIcon />
             </IconButton>
-            <div className={classes.contentWrapper}>...</div>
+            <div className={classes.contentWrapper} />
+            <Link to="/account/audit/create">
+              <Button href="/account/audit/create" size="sm">
+                Start Audit
+              </Button>
+            </Link>
             <IconButton color="inherit">
               <Badge badgeContent={4} color="primary">
                 <NotificationsOutlined />
               </Badge>
             </IconButton>
+            <div>
+              <IconButton
+                color="inherit"
+                size="sm"
+                buttonRef={node => {
+                  this.anchorEl = node;
+                }}
+                aria-owns={isPopOverOpen ? 'menu-list-grow' : undefined}
+                aria-haspopup="true"
+                onClick={this.handleToggle}
+              >
+                <Avatar
+                  alt="Remy Sharp"
+                  src="/static/images/avatars/1.jpg"
+                  className={classes.avatar}
+                  component="span"
+                />
+              </IconButton>
+              <Popper
+                open={isPopOverOpen}
+                anchorEl={this.anchorEl}
+                transition
+                disablePortal
+              >
+                {({ TransitionProps, placement }) => (
+                  <Grow
+                    {...TransitionProps}
+                    id="menu-list-grow"
+                    style={{
+                      transformOrigin:
+                        placement === 'bottom' ? 'center top' : 'center bottom',
+                    }}
+                  >
+                    <Paper>
+                      <ClickAwayListener onClickAway={this.handleClose}>
+                        <MenuList>
+                          <MenuItem onClick={this.handleClose}>
+                            Profile
+                          </MenuItem>
+                          <MenuItem onClick={this.handleClose}>
+                            My account
+                          </MenuItem>
+                          <MenuItem onClick={this.handleClose}>Logout</MenuItem>
+                        </MenuList>
+                      </ClickAwayListener>
+                    </Paper>
+                  </Grow>
+                )}
+              </Popper>
+            </div>
           </div>
         </Toolbar>
-      </AppBar>
+      </MuiAppBar>
     );
   }
 }

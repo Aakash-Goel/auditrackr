@@ -16,7 +16,7 @@ import {
   Button,
   Carousel,
 } from 'app-components';
-import { Link } from 'routes';
+import { Link } from 'app-routes';
 
 import loginStyles from './Login.style';
 

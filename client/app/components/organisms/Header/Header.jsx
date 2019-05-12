@@ -24,7 +24,7 @@ const Header = props => {
 
   return (
     <AppBar
-      isOpen={isMenuOpen}
+      isMenuOpen={isMenuOpen}
       onHandleDrawerOpen={onMenuOpen}
       onHandleDrawerClose={onMenuClose}
     />

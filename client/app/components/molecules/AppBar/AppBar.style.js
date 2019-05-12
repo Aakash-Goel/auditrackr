@@ -54,6 +54,10 @@ const appBarStyles = theme => ({
   menuButtonHidden: {
     display: 'none',
   },
+  avatar: {
+    width: 30,
+    height: 30,
+  },
 
   '@media (min-width: 768px)': {
     logo: {
