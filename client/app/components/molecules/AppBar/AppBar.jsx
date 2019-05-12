@@ -77,7 +77,7 @@ class CustomAppBar extends PureComponent {
             >
               <Menu />
             </IconButton>
-            <div className={classes.contentWrapper}>Dashboard</div>
+            <div className={classes.contentWrapper}>...</div>
             <IconButton color="inherit">
               <Badge badgeContent={4} color="primary">
                 <NotificationsOutlined />

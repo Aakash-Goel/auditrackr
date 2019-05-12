@@ -4,22 +4,22 @@ import classnames from 'classnames';
 
 import { withStyles } from '@material-ui/core/styles';
 
-import createNewAuditStyles from './CreateNew.style';
+import dashboardStyles from './Dashboard.style';
 
 const propTypes = {
   classes: object.isRequired,
 };
 
-const CreateNewAuditComponent = props => {
+const DashboardComponent = props => {
   const { classes } = props;
 
   return (
     <div className={classnames(classes.content)}>
-      Create New Audit contents goes here
+      Dashboard contents goes here
     </div>
   );
 };
 
-CreateNewAuditComponent.propTypes = propTypes;
+DashboardComponent.propTypes = propTypes;
 
-export default withStyles(createNewAuditStyles)(CreateNewAuditComponent);
+export default withStyles(dashboardStyles)(DashboardComponent);

@@ -1,6 +1,6 @@
 const drawerWidth = 240;
 
-const navBarStyles = theme => ({
+const menuBarStyles = theme => ({
   nav: {
     padding: 0,
   },
@@ -29,4 +29,4 @@ const navBarStyles = theme => ({
   appBarSpacer: theme.mixins.toolbar,
 });
 
-export default navBarStyles;
+export default menuBarStyles;

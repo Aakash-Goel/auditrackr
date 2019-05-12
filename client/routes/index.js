@@ -12,9 +12,14 @@ const routes = require('next-routes')();
 // ------------ ROUTES ---------------
 // @StartRoutes
 routes.add({
-  name: 'create-audit',
+  name: 'audit-new',
   pattern: '/account/audit/create',
   page: 'audit/create-new',
+});
+routes.add({
+  name: 'audit-dashboard',
+  pattern: '/account/dashboard',
+  page: 'dashboard',
 });
 // @EndRoutes
 // ------------ ROUTES ---------------

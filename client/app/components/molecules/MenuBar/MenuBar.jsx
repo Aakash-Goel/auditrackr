@@ -8,7 +8,7 @@ import { Drawer, List } from '@material-ui/core';
 import { pageToTitle } from 'app-utils/helpers';
 import NavBarItems from './NavBarItems';
 
-import navBarStyles from './NavBar.style';
+import menuBarStyles from './MenuBar.style';
 
 const propTypes = {
   classes: object.isRequired,
@@ -29,7 +29,7 @@ const defaultProps = {
 };
 
 /* eslint-disable react/no-array-index-key */
-class NavBar extends PureComponent {
+class MenuBar extends PureComponent {
   renderNavItems() {
     const { classes, pages, onRequestClose } = this.props;
     const navItems = [];
@@ -74,7 +74,7 @@ class NavBar extends PureComponent {
   }
 }
 
-NavBar.propTypes = propTypes;
-NavBar.defaultProps = defaultProps;
+MenuBar.propTypes = propTypes;
+MenuBar.defaultProps = defaultProps;
 
-export default withStyles(navBarStyles)(NavBar);
+export default withStyles(menuBarStyles)(MenuBar);

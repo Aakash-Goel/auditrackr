@@ -5,11 +5,11 @@ const pages = [
   },
   {
     title: 'Dashboard',
-    pathname: '/dashboard',
+    pathname: '/account/dashboard',
   },
   {
     title: 'Audits',
-    pathname: '/audits',
+    pathname: '/account/audit/create',
   },
   {
     title: 'Reports',
