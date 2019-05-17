@@ -37,6 +37,7 @@ const inputStyles = () => ({
   },
   labelRoot: {
     color: greyColor,
+    fontWeight: '400',
   },
   labelRootError: {
     color: `${errorColor} !important`,
@@ -53,6 +54,7 @@ const inputStyles = () => ({
   },
   input: {
     color: primaryColor,
+    fontWeight: '400',
     '&,&::placeholder': {
       opacity: '1',
     },

@@ -1,7 +1,4 @@
-const dashboardStyles = theme => ({
-  breadcrumbsContainer: {
-    paddingTop: theme.spacing.unit * 5,
-  },
+const contentContainerStyles = theme => ({
   contentContainer: {
     margin: `1em 0`,
   },
@@ -15,4 +12,4 @@ const dashboardStyles = theme => ({
   },
 });
 
-export default dashboardStyles;
+export default contentContainerStyles;

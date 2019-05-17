@@ -58,7 +58,7 @@ const secondaryFontFamily =
 
 const defaultFont = {
   fontFamily: primaryFontFamily,
-  fontWeight: '500',
+  fontWeight: '400',
   fontSize: '16px',
   lineHeight: '1.5em',
 };

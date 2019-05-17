@@ -17,7 +17,7 @@ export default {
     },
     'h1, h2, h3, h4': {
       fontFamily: secondaryFontFamily,
-      fontWeight: 500,
+      fontWeight: 400,
       margin: 0,
     },
     'h5, h6': {

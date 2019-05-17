@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { object } from 'prop-types';
-import classnames from 'classnames';
+// import classnames from 'classnames';
 
 import { withStyles } from '@material-ui/core/styles';
+// import { Paper } from '@material-ui/core';
+
+import { Breadcrumbs, ContentContainer } from 'app-components';
 
 import dashboardStyles from './Dashboard.style';
 
@@ -10,13 +13,14 @@ const propTypes = {
   classes: object.isRequired,
 };
 
-const DashboardComponent = props => {
-  const { classes } = props;
+const DashboardComponent = () => {
+  // const { classes } = props;
 
   return (
-    <div className={classnames(classes.content)}>
-      Dashboard contents goes here
-    </div>
+    <Fragment>
+      <Breadcrumbs titleBreadcrumb="Dashboard" />
+      <ContentContainer>Dashboard contents goes here</ContentContainer>
+    </Fragment>
   );
 };
 
