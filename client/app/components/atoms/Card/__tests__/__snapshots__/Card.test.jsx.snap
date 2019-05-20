@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Card atom should render correctly 1`] = `
+<div
+  className="MuiPaper-root-3 MuiPaper-elevation1-6 MuiPaper-rounded-4 MuiCard-root-2 Card-cardRoot-1"
+>
+  Card content goes here
+</div>
+`;
