@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { object } from 'prop-types';
+import { object, string } from 'prop-types';
 import classnames from 'classnames';
 
 import { withStyles } from '@material-ui/core/styles';
@@ -11,7 +11,6 @@ import {
 } from '@material-ui/icons';
 
 import {
-  Breadcrumbs,
   ContentContainer,
   GridContainer,
   GridItem,
@@ -19,19 +18,19 @@ import {
   Button,
 } from 'app-components';
 
-import createNewAuditStyles from './CreateNew.style';
+import createAuditStyles from './Create.style';
 
 const propTypes = {
   classes: object.isRequired,
+  breadCrumbTitle: string.isRequired,
 };
 
-const CreateNewAuditComponent = props => {
-  const { classes } = props;
+const CreateAuditComponent = props => {
+  const { classes, breadCrumbTitle } = props;
 
   return (
     <Fragment>
-      <Breadcrumbs titleBreadcrumb="Start New Audit" />
-      <ContentContainer>
+      <ContentContainer breadCrumbTitle={breadCrumbTitle}>
         <GridContainer
           className={classnames(classes.container)}
           alignItems="center"
@@ -119,6 +118,6 @@ const CreateNewAuditComponent = props => {
   );
 };
 
-CreateNewAuditComponent.propTypes = propTypes;
+CreateAuditComponent.propTypes = propTypes;
 
-export default withStyles(createNewAuditStyles)(CreateNewAuditComponent);
+export default withStyles(createAuditStyles)(CreateAuditComponent);

@@ -3,30 +3,30 @@ import { connect } from 'react-redux';
 import { object } from 'prop-types';
 
 import LayoutMain from 'app-containers/Layouts/LayoutMain';
-import { Dashboard } from 'app-components';
+import { Create as AuditCreate } from 'app-components';
 
 const propTypes = {
   classes: object.isRequired,
 };
 
 /* eslint-disable react/prefer-stateless-function */
-class DashboardContainer extends PureComponent {
+class AuditCreateContainer extends PureComponent {
   render() {
     // const { classes } = this.props;
 
     return (
       <LayoutMain
-        pageTitle="Dashboard"
-        pageDesc="This is AuditTrackR dashboard"
-        pageId="audit-dashboard"
+        pageTitle="Create Audit"
+        pageDesc="This is AuditTrackR audit create page"
+        pageId="audit-create"
       >
-        <Dashboard breadCrumbTitle="Dashboard" />
+        <AuditCreate breadCrumbTitle="Start New Audit" />
       </LayoutMain>
     );
   }
 }
 
-DashboardContainer.propTypes = propTypes;
+AuditCreateContainer.propTypes = propTypes;
 
 const mapStateToProps = () => ({});
 const mapDispatchToProps = () => ({});
@@ -34,4 +34,4 @@ const mapDispatchToProps = () => ({});
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(DashboardContainer);
+)(AuditCreateContainer);

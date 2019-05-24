@@ -1,25 +1,26 @@
 import React, { Fragment } from 'react';
-import { object } from 'prop-types';
+import { object, string } from 'prop-types';
 // import classnames from 'classnames';
 
 import { withStyles } from '@material-ui/core/styles';
-// import { Paper } from '@material-ui/core';
 
-import { Breadcrumbs, ContentContainer } from 'app-components';
+import { ContentContainer } from 'app-components';
 
 import dashboardStyles from './Dashboard.style';
 
 const propTypes = {
   classes: object.isRequired,
+  breadCrumbTitle: string.isRequired,
 };
 
-const DashboardComponent = () => {
-  // const { classes } = props;
+const DashboardComponent = props => {
+  const { breadCrumbTitle } = props;
 
   return (
     <Fragment>
-      <Breadcrumbs titleBreadcrumb="Dashboard" />
-      <ContentContainer>Dashboard contents goes here</ContentContainer>
+      <ContentContainer breadCrumbTitle={breadCrumbTitle}>
+        Dashboard contents goes here
+      </ContentContainer>
     </Fragment>
   );
 };
