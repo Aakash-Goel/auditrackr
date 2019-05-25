@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import { object, string } from 'prop-types';
 import classnames from 'classnames';
 
+import { Paper } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
 import { ContentContainer, GridContainer, GridItem } from 'app-components';
@@ -28,8 +29,16 @@ const QuestionnairesAuditComponent = props => {
           justify="center"
           spacing={16}
         >
-          <GridItem xs={4}>left side</GridItem>
-          <GridItem xs={8}>right side</GridItem>
+          <GridItem xs={4}>
+            <Paper className={classes.paperRoot} elevation={1}>
+              left side
+            </Paper>
+          </GridItem>
+          <GridItem xs={8}>
+            <Paper className={classes.paperRoot} elevation={1}>
+              right side
+            </Paper>
+          </GridItem>
         </GridContainer>
       </ContentContainer>
     </Fragment>

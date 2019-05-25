@@ -6,6 +6,13 @@ import {
 
 export default {
   '@global': {
+    '@font-face': {
+      fontFamily: 'BebasNeue',
+      fontWeight: 400,
+      fontStyle: 'normal',
+      src:
+        'url("/static/fonts/bebas_neue/BebasNeue-Regular.otf") format("opentype")',
+    },
     html: {
       height: '100%',
     },
