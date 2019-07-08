@@ -13,12 +13,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const mongoose = require('mongoose');
 const { ApolloServer } = require('apollo-server-express');
 
 const logger = require('./logger');
 const rootSchema = require('./rootSchema');
 const rootResolver = require('./rootResolver');
+const mongoose = require('./config/database'); // eslint-disable-line no-unused-vars
 
 /**
  * Module variables.
@@ -50,26 +50,12 @@ const server = new ApolloServer({
 server.applyMiddleware({ app, path: `${graphQlPath}` });
 
 /**
- * Connect to mongoDB and then start the server
+ * Start up the server and listening to port
  */
-mongoose
-  .connect(
-    `mongodb+srv://${process.env.MONGO_USER}:${
-      process.env.MONGO_PASSWORD
-    }@cluster-cxxw1.mongodb.net/${process.env.MONGO_DB}?retryWrites=true`,
-    { useNewUrlParser: true }
-  )
-  .then(() => {
-    // Start up the server and listening to port
-    app.listen(port, host, err => {
-      if (err) {
-        return logger.error(err.message);
-      }
+app.listen(port, host, err => {
+  if (err) {
+    return logger.error(err.message);
+  }
 
-      return logger.appStarted(port, prettyHost, graphQlPath);
-    });
-  })
-  .catch(err => {
-    logger.error(err.stack);
-    process.exit(1);
-  });
+  return logger.appStarted(port, prettyHost, graphQlPath);
+});
