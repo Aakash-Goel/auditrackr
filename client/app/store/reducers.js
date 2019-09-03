@@ -15,6 +15,8 @@ import { combineReducers } from 'redux';
  * Import all your applications reducers here
  */
 import count from './testReducer'; // >>>Delete this
+import { FORM_WRAPPER_STATE_KEY as formWrapperStateKey } from '../components/organisms/Forms/FormWrapper/constants';
+import FormWrapperReducer from '../components/organisms/Forms/FormWrapper/reducer';
 
 /**
  * Module variables.
@@ -24,6 +26,7 @@ import count from './testReducer'; // >>>Delete this
  */
 const rootReducer = injectedReducers => {
   return combineReducers({
+    [formWrapperStateKey]: FormWrapperReducer,
     count, // add all your applications reducers here with comma seperated
     ...injectedReducers,
   });

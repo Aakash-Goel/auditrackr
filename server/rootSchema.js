@@ -24,6 +24,10 @@ const { gql } = require('apollo-server-express');
  * Module schemas.
  */
 const { messageSchema } = require('./src/message');
+const { userSchema } = require('./src/user');
+const { projectSchema } = require('./src/project');
+const { questionSchema } = require('./src/question');
+const { questionnaireSchema } = require('./src/questionnaire');
 
 // *** this is a test schema. Do not create any schema here. Delete below schema
 const r1Schema = gql`
@@ -59,6 +63,10 @@ const linkSchema = gql`
 const rootSchema = [
   linkSchema, // do not remove this schema
   messageSchema,
+  userSchema,
+  projectSchema,
+  questionSchema,
+  questionnaireSchema,
   r1Schema, // *** test schema delete this
   r2Schema, // *** test schema delete this
 ];

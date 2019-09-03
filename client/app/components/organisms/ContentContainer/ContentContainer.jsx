@@ -5,7 +5,7 @@ import classnames from 'classnames';
 import { Paper } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
-import { Breadcrumbs } from 'app-components';
+import Breadcrumbs from '../../molecules/Breadcrumbs';
 
 import contentContainerStyles from './ContentContainer.style';
 

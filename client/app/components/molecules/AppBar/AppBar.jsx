@@ -22,8 +22,8 @@ import {
   NotificationsOutlined,
 } from '@material-ui/icons';
 
-import { Button } from 'app-components';
-import { Link } from 'app-routes';
+import Button from '../../atoms/Button';
+import { Link } from '../../../../routes';
 
 import appBarStyles from './AppBar.style';
 

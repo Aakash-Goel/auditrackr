@@ -13,15 +13,19 @@
  * Module dependencies.
  */
 const Message = require('./model');
+const authUtils = require('../../utils/authUtils');
 
 /**
  * Define graphQL resolvers
  * @public
  */
-const resolvers = {
+const resolvers = authUtils.requiresLogin({
   Query: {
-    messages: async () => {
+    messages: async (parent, args, context) => {
       try {
+        if (!context.isAuth) {
+          throw new Error('User is not authorized');
+        }
         const mszs = await Message.find();
         return mszs.map(msz => {
           return { ...msz._doc }; // eslint-disable-line no-underscore-dangle
@@ -44,7 +48,7 @@ const resolvers = {
       }
     },
   },
-};
+});
 
 /**
  * Export graphQL resolvers

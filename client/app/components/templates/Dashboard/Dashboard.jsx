@@ -4,7 +4,7 @@ import { object, string } from 'prop-types';
 
 import { withStyles } from '@material-ui/core/styles';
 
-import { ContentContainer } from 'app-components';
+import ContentContainer from '../../organisms/ContentContainer';
 
 import dashboardStyles from './Dashboard.style';
 

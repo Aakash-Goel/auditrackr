@@ -5,7 +5,7 @@
  *
  */
 
-const router = require('../routes'); // eslint-disable-line module-resolver/use-alias
+const router = require('../routes');
 
 /**
  * Module variables.

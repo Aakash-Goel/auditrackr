@@ -2,8 +2,8 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { object } from 'prop-types';
 
-import LayoutMain from 'app-containers/Layouts/LayoutMain';
-import { Dashboard } from 'app-components';
+import LayoutMain from '../Layouts/LayoutMain';
+import Dashboard from '../../components/templates/Dashboard';
 
 const propTypes = {
   classes: object.isRequired,

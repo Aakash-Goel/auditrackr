@@ -10,13 +10,11 @@ import {
   LockOutlined,
 } from '@material-ui/icons';
 
-import {
-  ContentContainer,
-  GridContainer,
-  GridItem,
-  Input,
-  Button,
-} from 'app-components';
+import ContentContainer from '../../../organisms/ContentContainer';
+import GridContainer from '../../../atoms/Grid/GridContainer';
+import GridItem from '../../../atoms/Grid/GridItem';
+import Input from '../../../atoms/Input';
+import Button from '../../../atoms/Button';
 
 import createAuditStyles from './Create.style';
 

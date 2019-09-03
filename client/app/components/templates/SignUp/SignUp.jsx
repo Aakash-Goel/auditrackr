@@ -3,25 +3,17 @@ import { connect } from 'react-redux';
 import { object } from 'prop-types';
 import classnames from 'classnames';
 
-import { InputAdornment } from '@material-ui/core';
-import {
-  PersonOutlined,
-  EmailOutlined,
-  LockOutlined,
-} from '@material-ui/icons';
 import { withStyles } from '@material-ui/core/styles';
 
-import {
-  Head,
-  GridContainer,
-  GridItem,
-  Title,
-  Input,
-  Button,
-  Checkbox,
-  Carousel,
-} from 'app-components';
-import { Link } from 'routes';
+import Head from '../../atoms/Head';
+import Button from '../../atoms/Button';
+import GridContainer from '../../atoms/Grid/GridContainer';
+import GridItem from '../../atoms/Grid/GridItem';
+import Title from '../../atoms/Title';
+import Carousel from '../../atoms/Carousel';
+import SignUpForm from '../../organisms/SignUpForm';
+
+import { Link } from '../../../../routes';
 
 import signUpStyles from './SignUp.styles';
 
@@ -35,6 +27,7 @@ const propTypes = {
 
 const SignUpContainer = ({ ...props }) => {
   const { classes } = props;
+  console.log(props);
 
   const settings = {
     dots: true,
@@ -63,121 +56,7 @@ const SignUpContainer = ({ ...props }) => {
                 <Title level={1} className={classnames(classes.heading)}>
                   Sign up for an account
                 </Title>
-                <div className={classnames(classes.formWrapper)}>
-                  <form noValidate autoComplete="off">
-                    <div className={classnames(classes.inputWrapper)}>
-                      <Input
-                        labelText="Enter your username"
-                        formControlProps={{
-                          required: true,
-                          fullWidth: true,
-                        }}
-                        inputProps={{
-                          endAdornment: (
-                            <InputAdornment position="end" color="primary">
-                              <PersonOutlined className={classes.icon} />
-                            </InputAdornment>
-                          ),
-                        }}
-                      />
-                    </div>
-                    <div className={classnames(classes.inputWrapper)}>
-                      <Input
-                        labelText="Enter your e-mail address"
-                        formControlProps={{
-                          required: true,
-                          fullWidth: true,
-                        }}
-                        inputProps={{
-                          endAdornment: (
-                            <InputAdornment position="end" color="primary">
-                              <EmailOutlined className={classes.icon} />
-                            </InputAdornment>
-                          ),
-                        }}
-                      />
-                    </div>
-                    <div className={classnames(classes.inputWrapper)}>
-                      <Input
-                        labelText="Enter your password"
-                        formControlProps={{
-                          required: true,
-                          fullWidth: true,
-                        }}
-                        inputProps={{
-                          type: 'password',
-                          endAdornment: (
-                            <InputAdornment position="end" color="primary">
-                              <LockOutlined className={classes.icon} />
-                            </InputAdornment>
-                          ),
-                        }}
-                      />
-                    </div>
-                    <div className={classnames(classes.inputWrapper)}>
-                      <Input
-                        labelText="Enter your password again"
-                        formControlProps={{
-                          required: true,
-                          fullWidth: true,
-                        }}
-                        inputProps={{
-                          type: 'password',
-                          endAdornment: (
-                            <InputAdornment position="end" color="primary">
-                              <LockOutlined className={classes.icon} />
-                            </InputAdornment>
-                          ),
-                        }}
-                      />
-                    </div>
-                    <div className={classnames(classes.consentWrapper)}>
-                      <p className={classnames(classes.consentContainer)}>
-                        <Checkbox
-                          checkboxProps={{
-                            checked: true,
-                          }}
-                        />
-                        By signing up you agree&nbsp;
-                        <Link to="/tos">
-                          <Button href="/tos" link size="lg" textTransform="nn">
-                            Terms & Conditions
-                          </Button>
-                        </Link>
-                      </p>
-                    </div>
-                    <GridContainer
-                      className={classnames(classes.buttonsWrapper)}
-                    >
-                      <GridItem xs={12} md={6}>
-                        <Button
-                          type="submit"
-                          fullWidth
-                          size="lg"
-                          className={classnames(classes.btnSubmit)}
-                        >
-                          Sign up
-                        </Button>
-                      </GridItem>
-                      <GridItem
-                        xs={12}
-                        md={6}
-                        className={classnames(classes.btnLinkWrapper)}
-                      >
-                        <Link to="/login">
-                          <Button
-                            href="/login"
-                            link
-                            textTransform="nn"
-                            className={classnames(classes.btnLink)}
-                          >
-                            I already have an account
-                          </Button>
-                        </Link>
-                      </GridItem>
-                    </GridContainer>
-                  </form>
-                </div>
+                <SignUpForm />
               </GridItem>
               <GridItem
                 xs={12}

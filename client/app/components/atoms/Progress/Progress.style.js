@@ -5,7 +5,7 @@ import {
   warningColor,
   errorColor,
   greyColor,
-} from 'app-styles/theme/muiKit';
+} from '../../../styles/theme/muiKit';
 
 const progressStyles = {
   root: {

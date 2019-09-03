@@ -3,7 +3,7 @@ import { bool, func } from 'prop-types';
 
 import { withStyles } from '@material-ui/core/styles';
 
-import { AppBar } from 'app-components';
+import AppBar from '../../molecules/AppBar';
 
 const styles = {};
 

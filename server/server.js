@@ -15,6 +15,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const { ApolloServer } = require('apollo-server-express');
 
+const auth = require('./middleware/auth');
 const logger = require('./logger');
 const rootSchema = require('./rootSchema');
 const rootResolver = require('./rootResolver');
@@ -32,12 +33,12 @@ const prettyHost = customHost || 'localhost';
 const port = parseInt(process.env.PORT, 10) || 4000;
 
 /**
- * Added cors to express middleware
+ * Added middleware
  */
 app.use(cors());
-
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(auth);
 
 /**
  * Create new ApolloServer instance
@@ -45,6 +46,9 @@ app.use(bodyParser.json());
 const server = new ApolloServer({
   typeDefs: rootSchema,
   resolvers: rootResolver,
+  context: ({ req }) => {
+    return { isAuth: req.isAuth, user: req.user };
+  },
 });
 
 server.applyMiddleware({ app, path: `${graphQlPath}` });

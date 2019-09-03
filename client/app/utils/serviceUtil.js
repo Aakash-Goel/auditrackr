@@ -6,6 +6,7 @@ import pathOr from 'lodash/fp/pathOr';
 import { cloneDeep } from 'lodash/fp';
 
 const APITimeout = 30000;
+const TOKEN = 'token';
 
 /**
  * method to trigger ajax call as per provided config i.e. an object of url, custom headers and etc.
@@ -93,11 +94,14 @@ const getConfig = (requestHeader, options) => {
 const ServiceUtil = {
   triggerRequest(opt) {
     const options = opt;
-    let requestHeader;
+    const requestHeader = {};
 
     if (!options.headers) {
       delete options.headers;
     }
+
+    const token = localStorage.getItem(TOKEN);
+    requestHeader.Authorization = token ? `Bearer ${token}` : null;
 
     const config = getConfig(requestHeader, options);
 

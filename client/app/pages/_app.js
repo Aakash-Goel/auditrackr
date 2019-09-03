@@ -16,16 +16,16 @@ import { Provider } from 'react-redux';
 import App, { Container } from 'next/app';
 import withRedux from 'next-redux-wrapper';
 import withReduxSaga from 'next-redux-saga';
-import ApolloClient from 'apollo-boost/lib/index'; // used like this because of an issue, https://github.com/apollographql/apollo-client/issues/4843#issuecomment-495585495
-import { ApolloProvider } from 'react-apollo';
+import ApolloClient from 'apollo-boost';
+import { ApolloProvider } from '@apollo/react-hooks';
 import 'isomorphic-fetch'; // used because of the issue, https://github.com/apollographql/apollo-link/issues/513#issuecomment-415869577
 
 import JssProvider from 'react-jss/lib/JssProvider';
 import { MuiThemeProvider, withStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
-import getPageContext from 'app-utils/getPageContext';
-import globalStyles from 'app-styles/globalStyles';
+import getPageContext from '../utils/getPageContext';
+import globalStyles from '../styles/globalStyles';
 import createStore from '../store/store';
 
 class MyApp extends App {

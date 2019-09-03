@@ -22,6 +22,10 @@
  * Module resolvers.
  */
 const { messageResolvers } = require('./src/message');
+const { userResolvers } = require('./src/user');
+const { projectResolvers } = require('./src/project');
+const { questionResolvers } = require('./src/question');
+const { questionnaireResolvers } = require('./src/questionnaire');
 
 // *** this is a test resolver. Do not create any resolver here. Delete below resolver
 const r1 = {
@@ -43,6 +47,10 @@ const r2 = {
  */
 const rootResolver = [
   messageResolvers,
+  userResolvers,
+  projectResolvers,
+  questionResolvers,
+  questionnaireResolvers,
   r1, // *** test resolver delete this
   r2, // *** test resolver delete this
 ];

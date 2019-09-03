@@ -1,1 +1,1 @@
-export { default } from 'app-containers/Dashboard';
+export { default } from '../containers/Dashboard';

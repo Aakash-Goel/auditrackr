@@ -8,7 +8,7 @@ import {
   blackColor,
   whiteColor,
   greyColor,
-} from 'app-styles/theme/muiKit';
+} from '../../../styles/theme/muiKit';
 
 const buttonStyles = theme => ({
   button: {

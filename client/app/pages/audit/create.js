@@ -1,1 +1,1 @@
-export { default } from 'app-containers/AuditCreate';
+export { default } from '../../containers/AuditCreate';

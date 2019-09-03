@@ -5,8 +5,10 @@ import classnames from 'classnames';
 
 import { withStyles } from '@material-ui/core/styles';
 
-import { Head, Header, Menu } from 'app-components';
-import pages from 'app-constants/navBarList';
+import Head from '../../../components/atoms/Head';
+import Header from '../../../components/organisms/Header';
+import Menu from '../../../components/organisms/Menu';
+import pages from '../../../constants/navBarList';
 
 import layoutMainStyles from './LayoutMain.style';
 

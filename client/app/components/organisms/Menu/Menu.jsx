@@ -3,7 +3,7 @@ import { bool, array } from 'prop-types';
 
 import { withStyles } from '@material-ui/core/styles';
 
-import { MenuBar } from 'app-components';
+import MenuBar from '../../molecules/MenuBar';
 
 const styles = {};
 

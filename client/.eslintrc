@@ -14,7 +14,7 @@
     "jest": true
   },
   "extends": ["airbnb", "prettier", "prettier/react"],
-  "plugins": ["react", "jsx-a11y", "prettier", "import", "module-resolver"],
+  "plugins": ["react", "jsx-a11y", "prettier", "import"],
   "globals": {
     "document": true,
     "window": true,
@@ -51,8 +51,7 @@
     "react/no-unused-prop-types": 0,
     "react/react-in-jsx-scope": 0,
     "import/no-extraneous-dependencies": 0,
-    "prettier/prettier": "error",
-    "module-resolver/use-alias": 2
+    "prettier/prettier": "error"
   },
   "settings": {
     "import/resolver": {

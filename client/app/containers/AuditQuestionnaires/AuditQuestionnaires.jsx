@@ -2,8 +2,8 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { object } from 'prop-types';
 
-import LayoutMain from 'app-containers/Layouts/LayoutMain';
-import { Questionnaires as AuditQuestionnaires } from 'app-components';
+import LayoutMain from '../Layouts/LayoutMain';
+import Questionnaires from '../../components/templates/Audit/Questionnaires';
 
 const propTypes = {
   classes: object.isRequired,
@@ -20,7 +20,7 @@ class AuditCreateContainer extends PureComponent {
         pageDesc="This is AuditTrackR audit questionnaires page"
         pageId="audit-questionnaires"
       >
-        <AuditQuestionnaires breadCrumbTitle="Questionnaires" />
+        <Questionnaires breadCrumbTitle="Questionnaires" />
       </LayoutMain>
     );
   }

@@ -4,7 +4,7 @@ import { object, string } from 'prop-types';
 
 import withStyles from '@material-ui/core/styles/withStyles';
 
-import { Title } from 'app-components';
+import Title from '../../atoms/Title';
 
 import breadcrumbsStyles from './Breadcrumbs.style';
 

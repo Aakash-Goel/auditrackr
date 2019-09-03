@@ -3,20 +3,16 @@ import { connect } from 'react-redux';
 import { object } from 'prop-types';
 import classnames from 'classnames';
 
-import { InputAdornment } from '@material-ui/core';
-import { EmailOutlined, LockOutlined } from '@material-ui/icons';
 import { withStyles } from '@material-ui/core/styles';
 
-import {
-  Head,
-  GridContainer,
-  GridItem,
-  Title,
-  Input,
-  Button,
-  Carousel,
-} from 'app-components';
-import { Link } from 'app-routes';
+import Head from '../../atoms/Head';
+import Button from '../../atoms/Button';
+import GridContainer from '../../atoms/Grid/GridContainer';
+import GridItem from '../../atoms/Grid/GridItem';
+import Title from '../../atoms/Title';
+import Carousel from '../../atoms/Carousel';
+import LoginForm from '../../organisms/LoginForm';
+import { Link } from '../../../../routes';
 
 import loginStyles from './Login.style';
 
@@ -58,70 +54,7 @@ const LoginContainer = ({ ...props }) => {
                 <Title level={1} className={classnames(classes.heading)}>
                   Login to your account
                 </Title>
-                <div className={classnames(classes.formWrapper)}>
-                  <form noValidate autoComplete="off">
-                    <div className={classnames(classes.inputWrapper)}>
-                      <Input
-                        labelText="Enter your e-mail address"
-                        formControlProps={{
-                          required: true,
-                          fullWidth: true,
-                        }}
-                        inputProps={{
-                          endAdornment: (
-                            <InputAdornment position="end" color="primary">
-                              <EmailOutlined className={classes.icon} />
-                            </InputAdornment>
-                          ),
-                        }}
-                      />
-                    </div>
-                    <div className={classnames(classes.inputWrapper)}>
-                      <Input
-                        labelText="Enter your password"
-                        formControlProps={{
-                          required: true,
-                          fullWidth: true,
-                        }}
-                        inputProps={{
-                          type: 'password',
-                          endAdornment: (
-                            <InputAdornment position="end" color="primary">
-                              <LockOutlined className={classes.icon} />
-                            </InputAdornment>
-                          ),
-                        }}
-                      />
-                    </div>
-                    <GridContainer
-                      className={classnames(classes.buttonsWrapper)}
-                    >
-                      <GridItem xs={12} md={6}>
-                        <Button
-                          type="submit"
-                          fullWidth
-                          size="lg"
-                          className={classnames(classes.btnSubmit)}
-                        >
-                          Login
-                        </Button>
-                      </GridItem>
-                      <GridItem
-                        xs={12}
-                        md={6}
-                        className={classnames(classes.btnLinkWrapper)}
-                      >
-                        <Button
-                          link
-                          textTransform="nn"
-                          className={classnames(classes.btnLink)}
-                        >
-                          Forget password?
-                        </Button>
-                      </GridItem>
-                    </GridContainer>
-                  </form>
-                </div>
+                <LoginForm />
                 <div>
                   <p className={classnames(classes.helper)}>
                     Don&#39;t have an account?&nbsp;

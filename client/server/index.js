@@ -12,9 +12,10 @@ const express = require('express');
 const next = require('next');
 const compression = require('compression');
 const helmet = require('helmet');
+const cors = require('cors');
 
-const routes = require('../routes'); // eslint-disable-line module-resolver/use-alias
-const logger = require('../app/utils/logger'); // eslint-disable-line module-resolver/use-alias
+const routes = require('../routes');
+const logger = require('../app/utils/logger');
 
 /**
  * Module variables.
@@ -62,6 +63,9 @@ app
   .prepare()
   .then(() => {
     const server = express();
+
+    // Enable cors to express middleware
+    server.use(cors());
 
     // Enable compression on response
     server.use(compression());

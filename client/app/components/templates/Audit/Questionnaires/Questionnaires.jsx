@@ -5,7 +5,9 @@ import classnames from 'classnames';
 import { Paper } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
-import { ContentContainer, GridContainer, GridItem } from 'app-components';
+import ContentContainer from '../../../organisms/ContentContainer';
+import GridContainer from '../../../atoms/Grid/GridContainer';
+import GridItem from '../../../atoms/Grid/GridItem';
 
 import questionnairesAuditStyles from './Questionnaires.style';
 
