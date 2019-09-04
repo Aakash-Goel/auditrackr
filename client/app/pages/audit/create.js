@@ -1,1 +1,1 @@
-export { default } from '../../containers/AuditCreate';
+export { default } from '../../components/templates/Audit/Create';

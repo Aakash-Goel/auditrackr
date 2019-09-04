@@ -1,4 +1,4 @@
-const createAuditStyles = () => ({
+const auditCreateStyles = () => ({
   container: {
     textAlign: 'center',
   },
@@ -13,4 +13,4 @@ const createAuditStyles = () => ({
   },
 });
 
-export default createAuditStyles;
+export default auditCreateStyles;
