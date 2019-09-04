@@ -74,7 +74,6 @@ class NavBarItems extends PureComponent {
               textTransform="nn"
               color="transparent"
               href={href}
-              activeClassName={classes.activeButton}
               className={classnames(classes.button, classes.navLinkButton)}
               disableRipple
               onClick={onClick}
