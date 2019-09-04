@@ -5,12 +5,12 @@ import classnames from 'classnames';
 
 import { withStyles } from '@material-ui/core/styles';
 
-import Head from '../../../components/atoms/Head';
-import Header from '../../../components/organisms/Header';
-import Menu from '../../../components/organisms/Menu';
-import pages from '../../../constants/navBarList';
+import Head from '../../components/atoms/Head';
+import Header from '../../components/organisms/Header';
+import Menu from '../../components/organisms/Menu';
+import pages from '../../constants/navBarList';
 
-import layoutMainStyles from './LayoutMain.style';
+import primaryLayoutStyles from './PrimaryLayout.style';
 
 const propTypes = {
   classes: object.isRequired,
@@ -26,7 +26,7 @@ const defaultProps = {
   pageId: '',
 };
 
-class LayoutMainContainer extends PureComponent {
+class PrimaryLayout extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -81,7 +81,7 @@ class LayoutMainContainer extends PureComponent {
   }
 }
 
-LayoutMainContainer.propTypes = propTypes;
-LayoutMainContainer.defaultProps = defaultProps;
+PrimaryLayout.propTypes = propTypes;
+PrimaryLayout.defaultProps = defaultProps;
 
-export default connect()(withStyles(layoutMainStyles)(LayoutMainContainer));
+export default connect()(withStyles(primaryLayoutStyles)(PrimaryLayout));

@@ -1,4 +1,4 @@
-const layoutMainStyles = theme => ({
+const primaryLayoutStyles = theme => ({
   pageWrapper: {
     display: 'flex',
   },
@@ -13,4 +13,4 @@ const layoutMainStyles = theme => ({
   },
 });
 
-export default layoutMainStyles;
+export default primaryLayoutStyles;

@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { object } from 'prop-types';
 
-import LayoutMain from '../Layouts/LayoutMain';
+import PrimaryLayout from '../../layouts/PrimaryLayout';
 import Dashboard from '../../components/templates/Dashboard';
 
 const propTypes = {
@@ -15,13 +15,13 @@ class DashboardContainer extends PureComponent {
     // const { classes } = this.props;
 
     return (
-      <LayoutMain
+      <PrimaryLayout
         pageTitle="Dashboard"
         pageDesc="This is AuditTrackR dashboard"
         pageId="audit-dashboard"
       >
         <Dashboard breadCrumbTitle="Dashboard" />
-      </LayoutMain>
+      </PrimaryLayout>
     );
   }
 }

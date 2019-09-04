@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { object } from 'prop-types';
 
-import LayoutMain from '../Layouts/LayoutMain';
+import PrimaryLayout from '../../layouts/PrimaryLayout';
 import Create from '../../components/templates/Audit/Create';
 
 const propTypes = {
@@ -15,13 +15,13 @@ class AuditCreateContainer extends PureComponent {
     // const { classes } = this.props;
 
     return (
-      <LayoutMain
+      <PrimaryLayout
         pageTitle="Create Audit"
         pageDesc="This is AuditTrackR audit create page"
         pageId="audit-create"
       >
         <Create breadCrumbTitle="Start New Audit" />
-      </LayoutMain>
+      </PrimaryLayout>
     );
   }
 }

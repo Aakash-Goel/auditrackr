@@ -23,8 +23,8 @@ routes.add({
 });
 routes.add({
   name: 'audit-dashboard',
-  pattern: '/account/dashboard',
-  page: 'dashboard',
+  pattern: '/account/audit/dashboard',
+  page: 'audit/dashboard',
 });
 // @EndRoutes
 // ------------ ROUTES ---------------
