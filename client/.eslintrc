@@ -52,10 +52,5 @@
     "react/react-in-jsx-scope": 0,
     "import/no-extraneous-dependencies": 0,
     "prettier/prettier": "error"
-  },
-  "settings": {
-    "import/resolver": {
-      "babel-module": {}
-    }
   }
 }

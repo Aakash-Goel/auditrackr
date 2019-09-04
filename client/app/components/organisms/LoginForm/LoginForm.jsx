@@ -11,6 +11,7 @@ import GridContainer from '../../atoms/Grid/GridContainer';
 import GridItem from '../../atoms/Grid/GridItem';
 import Input from '../../atoms/Input';
 import Button from '../../atoms/Button';
+import { Link } from '../../../../routes';
 
 import ServiceUtil from '../../../utils/serviceUtil';
 
@@ -154,6 +155,16 @@ class LoginForm extends PureComponent {
               </GridItem>
             </GridContainer>
           </form>
+        </div>
+        <div>
+          <p className={classnames(classes.helper)}>
+            Don&#39;t have an account?&nbsp;
+            <Link to="/signup">
+              <Button href="/signup" link size="lg" textTransform="nn">
+                Sign up
+              </Button>
+            </Link>
+          </p>
         </div>
       </Fragment>
     );

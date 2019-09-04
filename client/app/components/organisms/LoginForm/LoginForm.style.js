@@ -21,6 +21,14 @@ const loginStyles = () => ({
     paddingLeft: 0,
     paddingRight: 0,
   },
+  helper: {
+    textAlign: 'center',
+    '& button': {
+      padding: 0,
+      paddingLeft: '4px',
+      lineHeight: '24px',
+    },
+  },
 });
 
 export default loginStyles;
