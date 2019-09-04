@@ -1,4 +1,4 @@
-const questionnairesAuditStyles = theme => ({
+const auditQuestionnairesStyles = theme => ({
   paperRoot: {
     ...theme.mixins.gutters(),
     position: 'relative',
@@ -9,4 +9,4 @@ const questionnairesAuditStyles = theme => ({
   },
 });
 
-export default questionnairesAuditStyles;
+export default auditQuestionnairesStyles;

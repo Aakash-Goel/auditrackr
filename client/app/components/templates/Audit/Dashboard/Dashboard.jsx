@@ -5,7 +5,7 @@ import PrimaryLayout from '../../../../layouts/PrimaryLayout';
 import ContentContainer from '../../../organisms/ContentContainer';
 
 /* eslint-disable react/prefer-stateless-function */
-class Dashboard extends PureComponent {
+class AuditDashboard extends PureComponent {
   render() {
     return (
       <Fragment>
@@ -29,4 +29,4 @@ const mapDispatchToProps = () => ({});
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Dashboard);
+)(AuditDashboard);

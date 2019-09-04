@@ -1,1 +1,1 @@
-export { default } from '../../containers/AuditQuestionnaires';
+export { default } from '../../components/templates/Audit/Questionnaires';
