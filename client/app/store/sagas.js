@@ -16,6 +16,7 @@ import isFunction from 'lodash/fp/isFunction';
  * Import all your applications sagas here
  */
 import testSaga from './testSaga'; // >>>Delete this
+import labelsSagas from '../lib/labels/sagas';
 
 /**
  * Module variables.
@@ -41,7 +42,7 @@ export default function* rootSaga() {
   try {
     // add your sagas here comma seperated inside `runSagas`
     // >>>Delete `testSaga`
-    const allSagas = [...runSagas(testSaga)];
+    const allSagas = [...runSagas(testSaga), ...runSagas(labelsSagas)];
     yield all(allSagas);
   } catch (err) {
     // yield put(globalDataFailure(err));

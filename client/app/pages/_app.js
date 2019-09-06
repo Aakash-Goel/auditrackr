@@ -27,10 +27,13 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import getPageContext from '../utils/getPageContext';
 import globalStyles from '../styles/globalStyles';
 import createStore from '../store/store';
+// import { fetchLabels } from '../lib/labels/actions';
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
     let pageProps = {};
+    // const { store } = ctx;
+    // await store.dispatch(fetchLabels());
 
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps({ ctx });
@@ -88,5 +91,5 @@ class MyApp extends App {
 }
 
 export default withRedux(createStore)(
-  withReduxSaga({ async: true })(withStyles(globalStyles)(MyApp))
+  withReduxSaga(withStyles(globalStyles)(MyApp))
 );

@@ -17,6 +17,8 @@ import { combineReducers } from 'redux';
 import count from './testReducer'; // >>>Delete this
 import { FORM_WRAPPER_STATE_KEY as formWrapperStateKey } from '../components/organisms/Forms/FormWrapper/constants';
 import FormWrapperReducer from '../components/organisms/Forms/FormWrapper/reducer';
+import { LABELS_STATE_KEY as labelsStateKey } from '../lib/labels/constants';
+import labelsReducer from '../lib/labels/reducer';
 
 /**
  * Module variables.
@@ -27,6 +29,7 @@ import FormWrapperReducer from '../components/organisms/Forms/FormWrapper/reduce
 const rootReducer = injectedReducers => {
   return combineReducers({
     [formWrapperStateKey]: FormWrapperReducer,
+    [labelsStateKey]: labelsReducer,
     count, // add all your applications reducers here with comma seperated
     ...injectedReducers,
   });
