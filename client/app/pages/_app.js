@@ -18,7 +18,7 @@ import withRedux from 'next-redux-wrapper';
 import withReduxSaga from 'next-redux-saga';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
-import 'isomorphic-fetch'; // used because of the issue, https://github.com/apollographql/apollo-link/issues/513#issuecomment-415869577
+import pathOr from 'lodash/fp/pathOr';
 
 import JssProvider from 'react-jss/lib/JssProvider';
 import { MuiThemeProvider, withStyles } from '@material-ui/core/styles';
@@ -27,13 +27,32 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import getPageContext from '../utils/getPageContext';
 import globalStyles from '../styles/globalStyles';
 import createStore from '../store/store';
-// import { fetchLabels } from '../lib/labels/actions';
+import { setLabels } from '../lib/labels/actions';
+import ServiceUtil from '../utils/serviceUtil';
+
+async function fetchLabelGlobalData() {
+  const resp = await ServiceUtil.triggerRequest({
+    url: 'http://localhost:1337/globals',
+  });
+  return resp;
+}
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
     let pageProps = {};
-    // const { store } = ctx;
-    // await store.dispatch(fetchLabels());
+    const { store } = ctx;
+    const globalLabelDetails = await fetchLabelGlobalData();
+    const serviceStatus = pathOr(
+      'ERROR',
+      'body.statusText',
+      globalLabelDetails
+    );
+    const labelsData = {
+      serviceStatus,
+      data: pathOr(null, 'body.data[0]', globalLabelDetails),
+      identifier: 'globals',
+    };
+    store.dispatch(setLabels(labelsData));
 
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps({ ctx });

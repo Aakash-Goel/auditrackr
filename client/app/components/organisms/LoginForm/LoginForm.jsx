@@ -1,7 +1,7 @@
 import React, { PureComponent, Fragment } from 'react';
 import classnames from 'classnames';
 import { object } from 'prop-types';
-import Router from 'next/router';
+// import Router from 'next/router';
 
 import { withStyles } from '@material-ui/core/styles';
 import { InputAdornment } from '@material-ui/core';
@@ -11,7 +11,7 @@ import GridContainer from '../../atoms/Grid/GridContainer';
 import GridItem from '../../atoms/Grid/GridItem';
 import Input from '../../atoms/Input';
 import Button from '../../atoms/Button';
-import { Link } from '../../../../routes';
+import { Link, Router } from '../../../../routes';
 
 import ServiceUtil from '../../../utils/serviceUtil';
 
@@ -68,13 +68,13 @@ class LoginForm extends PureComponent {
       data: JSON.stringify(requestData),
     })
       .then(response => {
-        // console.log('response>>> ', response); // eslint-disable-line
+        console.log('response>>> ', response); // eslint-disable-line
         const { data } = response && response.body;
 
         if (data) {
           console.log('response data>>> ', data); // eslint-disable-line
           localStorage.setItem(TOKEN, data.login.token);
-          Router.push('/account/dashboard');
+          Router.pushRoute('/audit/dashboard');
         }
       })
       .catch(error => {

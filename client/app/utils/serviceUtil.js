@@ -8,6 +8,74 @@ import { cloneDeep } from 'lodash/fp';
 const APITimeout = 30000;
 // const TOKEN = 'token';
 
+const getApiData = response => {
+  let responseData;
+  if (response.data && response.data.data) {
+    responseData = pathOr(null, 'data.data', response);
+  } else if (response.data && response.data.data === null) {
+    responseData = null;
+  } else {
+    responseData = pathOr(null, 'data', response);
+  }
+
+  return responseData;
+};
+
+const getApiErrorData = response => {
+  let errorData = {};
+
+  if (response.data && response.data.errors) {
+    errorData.statusCode = pathOr(
+      null,
+      'data.errors[0].extensions.code',
+      response
+    );
+    errorData.error = pathOr(null, 'data.errors[0].path[0]', response);
+    errorData.message = pathOr(null, 'data.errors[0].message', response);
+  } else {
+    errorData = null;
+  }
+
+  return errorData;
+};
+
+const transformApiResponse = (
+  axiosResponse,
+  identifier,
+  message = null,
+  code = null
+) => {
+  const axiosStatus = pathOr(null, 'status', axiosResponse);
+  const axiosStatusText = pathOr(null, 'statusText', axiosResponse);
+  const axiosData = identifier === 'success' ? getApiData(axiosResponse) : null;
+  const axiosError =
+    identifier === 'success'
+      ? getApiErrorData(axiosResponse)
+      : {
+          statusCode: axiosStatus,
+          error: axiosStatusText,
+          message: axiosStatusText,
+        };
+  const axiosHeaders = pathOr(null, 'headers', axiosResponse);
+  const axiosConfig = pathOr(null, 'config', axiosResponse);
+  const axiosMessage = message;
+
+  const transformResponse = cloneDeep({
+    response: {
+      data: axiosData,
+      error: axiosError,
+      statusCode: axiosStatus,
+      statusText: axiosStatusText,
+      headers: axiosHeaders,
+      axiosErrorMessage: axiosMessage,
+      timeout: code === 'ECONNABORTED',
+      config: axiosConfig,
+    },
+  });
+
+  return transformResponse;
+};
+
 /**
  * method to trigger ajax call as per provided config i.e. an object of url, custom headers and etc.
  * @param {object} config
@@ -21,46 +89,29 @@ const triggerAxios = config => {
     axios(config).then(
       response => {
         if (response.data) {
-          const parsedData = response.data;
+          const successData = transformApiResponse(response, 'success');
 
           return resolve({
-            body: parsedData,
-            response,
+            body: { ...successData.response },
           });
         }
 
         return reject({
           body: response.error,
-          statusCode: response.status,
         });
       },
       e => {
-        const {
-          response: axiosResponse,
-          config: axiosConfig,
-          message,
-          code,
-        } = e;
-        const axiosStatus = pathOr(null, 'status', axiosResponse);
-        const axiosData = pathOr(null, 'data', axiosResponse);
-        const axiosHeaders = pathOr(null, 'headers', axiosResponse);
-        const axiosMessage = message;
+        const { response: axiosResponse, message, code } = e;
 
-        const errorData = cloneDeep({
-          response: {
-            data: axiosData,
-            status: axiosStatus,
-            headers: axiosHeaders,
-            axiosErrorMessage: message,
-            timeout: code === 'ECONNABORTED',
-          },
-          config: axiosConfig,
-          message: axiosMessage,
-        });
+        const errorData = transformApiResponse(
+          axiosResponse,
+          'error',
+          message,
+          code
+        );
 
         return reject({
-          body: { response: errorData.response },
-          statusCode: axiosStatus,
+          body: { ...errorData.response },
         });
       }
     );
@@ -92,7 +143,7 @@ const getConfig = (requestHeader, options) => {
  * @return Promise object of response
  */
 const ServiceUtil = {
-  triggerRequest(opt) {
+  async triggerRequest(opt) {
     const options = opt;
     const requestHeader = {};
 
@@ -104,8 +155,9 @@ const ServiceUtil = {
     // requestHeader.Authorization = token ? `Bearer ${token}` : null;
 
     const config = getConfig(requestHeader, options);
+    const getData = await triggerAxios(config);
 
-    return triggerAxios(config);
+    return getData;
   },
 };
 
