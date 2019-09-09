@@ -2,12 +2,12 @@ import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import { object } from 'prop-types';
 
-import TwoColumnLayout from '../../../layouts/TwoColumnLayout';
-import GridContainer from '../../atoms/Grid/GridContainer';
-import AuthCarousel from '../../molecules/Carousels/AuthCarousel';
-import AuthFooter from '../../molecules/Footers/AuthFooter';
-import AuthRightColumn from '../../organisms/AuthRightColumn';
-import SignUpForm from '../../organisms/SignUpForm';
+import TwoColumnLayout from '../../../../layouts/TwoColumnLayout';
+import GridContainer from '../../../atoms/Grid/GridContainer';
+import AuthCarousel from '../../../molecules/Carousels/AuthCarousel';
+import AuthFooter from '../../../molecules/Footers/AuthFooter';
+import AuthRightColumn from '../../../organisms/AuthRightColumn';
+import LoginForm from '../../../organisms/LoginForm';
 
 /**
  * Type checking - Define prop types
@@ -19,8 +19,8 @@ const propTypes = {
 
 const rightColumn = () => {
   return (
-    <AuthRightColumn title="Sign up for an account">
-      <SignUpForm />
+    <AuthRightColumn title="Login to your account">
+      <LoginForm />
     </AuthRightColumn>
   );
 };
@@ -34,13 +34,13 @@ const leftColumn = () => {
   );
 };
 
-const SignUpContainer = () => {
+const AccountLogin = () => {
   return (
     <Fragment>
       <TwoColumnLayout
-        pageTitle="Sign up | AuditTrackR"
+        pageTitle="Login | AuditTrackR"
         pageDesc="My website description goes here"
-        pageId="signUpPage"
+        pageId="loginPage"
         childrenRightColumn={rightColumn()}
         childrenLeftColumn={leftColumn()}
       />
@@ -48,6 +48,6 @@ const SignUpContainer = () => {
   );
 };
 
-SignUpContainer.propTypes = propTypes;
+AccountLogin.propTypes = propTypes;
 
-export default connect()(SignUpContainer);
+export default connect()(AccountLogin);
