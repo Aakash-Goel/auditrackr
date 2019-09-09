@@ -11,6 +11,7 @@
 /**
  * Module dependencies.
  */
+import 'cross-fetch/polyfill';
 import React from 'react';
 import { Provider } from 'react-redux';
 import App, { Container } from 'next/app';
@@ -31,10 +32,16 @@ import { setLabels } from '../lib/labels/actions';
 import ServiceUtil from '../utils/serviceUtil';
 
 async function fetchLabelGlobalData() {
-  const resp = await ServiceUtil.triggerRequest({
+  await ServiceUtil.triggerRequest({
     url: 'http://localhost:1337/globals',
-  });
-  return resp;
+  }).then(
+    resolvedValue => {
+      return resolvedValue;
+    },
+    error => {
+      return error;
+    }
+  );
 }
 
 class MyApp extends App {

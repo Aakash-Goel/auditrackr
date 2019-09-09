@@ -56,8 +56,6 @@ class Homepage extends React.PureComponent {
   }
 
   render() {
-    console.log('1212>>>>>validationObject ', this.validationObject);
-    console.log('1212>>>>formWrapperData ', this.props.formWrapperData);
     return (
       <Fragment>
         <Head

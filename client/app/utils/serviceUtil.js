@@ -143,7 +143,7 @@ const getConfig = (requestHeader, options) => {
  * @return Promise object of response
  */
 const ServiceUtil = {
-  async triggerRequest(opt) {
+  triggerRequest(opt) {
     const options = opt;
     const requestHeader = {};
 
@@ -155,7 +155,7 @@ const ServiceUtil = {
     // requestHeader.Authorization = token ? `Bearer ${token}` : null;
 
     const config = getConfig(requestHeader, options);
-    const getData = await triggerAxios(config);
+    const getData = triggerAxios(config);
 
     return getData;
   },
