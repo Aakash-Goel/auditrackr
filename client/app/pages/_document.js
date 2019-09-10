@@ -19,8 +19,8 @@ import flush from 'styled-jsx/server';
 
 import { withStyles } from '@material-ui/core/styles';
 
-import catchErrors from '../utils/errorBoundary';
-import preloadAssets from '../utils/preloadAssets';
+import catchErrors from '../lib/errorBoundary';
+import preloadAssets from '../lib/preloadAssets';
 import globalStyles from '../styles/globalStyles';
 import { WEB_FONTS_PATH } from '../constants';
 

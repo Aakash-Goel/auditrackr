@@ -52,6 +52,7 @@ const schema = gql`
 
   extend type Query {
     login(email: String!, password: String!): AuthData!
+    getUser(userId: ID!): User
   }
 
   extend type Mutation {

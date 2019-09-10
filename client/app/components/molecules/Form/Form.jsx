@@ -13,7 +13,7 @@ import {
   setFocus,
   isMobileDevice,
   calculateOffset,
-} from '../../../utils/helpers';
+} from '../../../utils/helpersUtil';
 
 /**
  * @property propTypes

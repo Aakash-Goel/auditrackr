@@ -10,7 +10,7 @@
  */
 import { Component } from 'react';
 
-import logger from './logger';
+import logger from '../utils/loggerUtil';
 
 /**
  * Module exports.

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, PureComponent } from 'react';
 import { object } from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -21,8 +21,14 @@ const defaultProps = {
   formWrapperData: {},
 };
 
-/* istanbul ignore next */
-class Homepage extends React.PureComponent {
+/* getInitialProps
+ * { req, res, pathname, query, asPath, store, isServer } = ctx
+ */
+class Homepage extends PureComponent {
+  // static async getInitialProps({ res, ctx }) {
+  //   return {};
+  // }
+
   constructor(props) {
     super(props);
 

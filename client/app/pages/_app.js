@@ -25,11 +25,16 @@ import JssProvider from 'react-jss/lib/JssProvider';
 import { MuiThemeProvider, withStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
-import getPageContext from '../utils/getPageContext';
+import getPageContext from '../lib/getPageContext';
 import globalStyles from '../styles/globalStyles';
 import createStore from '../store/store';
 import { setLabels } from '../lib/labels/actions';
 import ServiceUtil from '../utils/serviceUtil';
+import LocalStorageUtil from '../utils/localStorageUtil';
+import { isBrowser, setStoreRef } from '../utils/helpersUtil';
+import { setIsUserAuthenticated } from '../components/templates/Account/Login/actions';
+
+const ID_TOKEN = 'id_token'; // @TODO: move this to the config
 
 async function fetchLabelGlobalData() {
   await ServiceUtil.triggerRequest({
@@ -67,9 +72,24 @@ class MyApp extends App {
     return { pageProps };
   }
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.pageContext = getPageContext();
+    this.store = this.props.store;
+
+    // @TODO: move below logic to one singleton file
+    if (isBrowser()) {
+      // set store to the external js
+      setStoreRef(this.store);
+
+      // check if user is authenticated or not
+      const storageUtil = new LocalStorageUtil();
+      const token = storageUtil.getItem(ID_TOKEN);
+      // if token exist, dispatch an action to set the state isAuthenticated to true.
+      if (token) {
+        this.store.dispatch(setIsUserAuthenticated());
+      }
+    }
 
     this.client = new ApolloClient({
       uri: 'http://localhost:4000/graphql',
@@ -85,7 +105,7 @@ class MyApp extends App {
   }
 
   render() {
-    const { Component, pageProps, store } = this.props;
+    const { Component, pageProps /* store */ } = this.props;
 
     return (
       <Container>
@@ -101,7 +121,7 @@ class MyApp extends App {
               theme={this.pageContext.theme}
               sheetsManager={this.pageContext.sheetsManager}
             >
-              <Provider store={store}>
+              <Provider store={this.store}>
                 {/* CssBaseline kick start an elegant, consistent, and simple baseline to build upon. */}
                 <CssBaseline />
                 {/* Pass pageContext to the _document though the renderPage enhancer

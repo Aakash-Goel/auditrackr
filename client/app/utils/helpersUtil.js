@@ -1,6 +1,32 @@
 import warning from 'warning';
 import upperFirst from 'lodash/upperFirst';
 import camelCase from 'lodash/camelCase';
+import pathOr from 'lodash/fp/pathOr';
+
+let storeRef = null;
+
+/**
+ * @param {value} prop
+ * sets storeRef value
+ */
+export const setStoreRef = value => {
+  storeRef = value;
+};
+
+/*
+ * resets storeRef to default value
+ */
+export const resetStoreRef = () => {
+  storeRef = null;
+};
+
+/** To get store ref to dispatch action from external js
+ * @return {storeRef}
+ * it returns storeRef value
+ */
+export const getStoreRef = () => {
+  return storeRef || {};
+};
 
 export function titleize(string) {
   warning(
@@ -81,4 +107,76 @@ export const calculateOffset = element => {
     top,
     left,
   };
+};
+
+/** @function
+ * Purpose: to check if localStroage available or not
+ */
+export const isStorageUsable = () => {
+  if (typeof window === 'undefined') {
+    return false;
+  }
+  const storage = window.localStorage;
+
+  try {
+    storage.setItem('testkey', 'test');
+    storage.removeItem('testkey');
+  } catch (e) {
+    if (e.code === DOMException.QUOTA_EXCEEDED_ERR && storage.length === 0) {
+      return false;
+    }
+  }
+  return true;
+};
+
+/** @function
+ * Purpose: to get cookie expiration date
+ *
+ */
+export const getCookieExpirationDate = () => {
+  const date = new Date();
+  const nextDay = date.getTime() + 24 * 60 * 60 * 1000;
+  return new Date(nextDay).toUTCString();
+};
+
+/**
+ * @function isBrowser
+ * Determines whether or not the document, body, & window are available
+ *
+ * @returns {boolean}
+ */
+export const isBrowser = () => {
+  return (
+    typeof document !== 'undefined' &&
+    document.body &&
+    typeof window !== 'undefined'
+  );
+};
+
+/**
+ * Function to encode the params before sending to API
+ * @param {*} str
+ * @return {strng}
+ */
+export const getEncodedValue = data => {
+  if (isBrowser()) {
+    return encodeURIComponent(data);
+  }
+  return data;
+};
+
+/**
+ * @description This function is used to check if the user is in logged-in state
+ */
+export const isUserAuthenticated = () => {
+  /* istanbul ignore if */
+  if (isBrowser()) {
+    const store = getStoreRef();
+    const state = store.getState();
+    const isAuthenticated = pathOr(false, 'account.isAuthenticated', state);
+    if (isAuthenticated) {
+      return true;
+    }
+  }
+  return false;
 };

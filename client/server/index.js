@@ -15,7 +15,7 @@ const helmet = require('helmet');
 const cors = require('cors');
 
 const routes = require('../routes');
-const logger = require('../app/utils/logger');
+const logger = require('../app/utils/loggerUtil');
 
 /**
  * Module variables.

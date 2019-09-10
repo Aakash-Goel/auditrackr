@@ -61,6 +61,22 @@ const resolvers = {
         throw err;
       }
     },
+    getUser: authUtils.requiresLogin(async (parent, args, context) => {
+      try {
+        const { userId } = args;
+        if (context.user.userId === userId) {
+          const existingUser = await User.findById(userId);
+          if (!existingUser) {
+            throw new Error('User does not exist');
+          }
+          return { ...existingUser._doc, password: null, _id: existingUser.id }; // eslint-disable-line no-underscore-dangle
+        }
+
+        throw new Error('Only logged-in user can execute this query');
+      } catch (error) {
+        throw error;
+      }
+    }),
   },
   Mutation: {
     createUser: async (parent, args) => {

@@ -79,6 +79,7 @@
     "redux-devtools-extension": "^2.13.8",
     "redux-saga": "^1.0.1",
     "reselect": "^4.0.0",
+    "universal-cookie": "^4.0.2",
     "validate.js": "^0.13.1"
   },
   "devDependencies": {
