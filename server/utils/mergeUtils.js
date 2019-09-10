@@ -66,9 +66,18 @@ const transformProject = project => {
   };
 };
 
+const transformProjectCategory = projectCategory => {
+  return {
+    ...projectCategory._doc, // eslint-disable-line no-underscore-dangle
+    _id: projectCategory.id,
+    createdBy: getUserById.bind(this, projectCategory.createdBy),
+  };
+};
+
 // exports.getUserById = getUserById;
 // exports.getProjectById = getProjectById;
 // exports.getProjectsByIds = getProjectsByIds;
 
 exports.transformQuestionnaire = transformQuestionnaire;
 exports.transformProject = transformProject;
+exports.transformProjectCategory = transformProjectCategory;

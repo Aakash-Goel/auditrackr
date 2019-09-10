@@ -28,20 +28,7 @@ const { userSchema } = require('./src/user');
 const { projectSchema } = require('./src/project');
 const { questionSchema } = require('./src/question');
 const { questionnaireSchema } = require('./src/questionnaire');
-
-// *** this is a test schema. Do not create any schema here. Delete below schema
-const r1Schema = gql`
-  extend type Query {
-    field1: String
-  }
-`;
-
-// *** this is a test schema. Do not create any schema here. Delete below schema
-const r2Schema = gql`
-  extend type Query {
-    field2: String
-  }
-`;
+const { projectCategorySchema } = require('./src/project-category');
 
 /**
  * Add type which is needed to be extend on other schema
@@ -67,8 +54,7 @@ const rootSchema = [
   projectSchema,
   questionSchema,
   questionnaireSchema,
-  r1Schema, // *** test schema delete this
-  r2Schema, // *** test schema delete this
+  projectCategorySchema,
 ];
 // console.log('>>>rootSchema ', rootSchema);
 
