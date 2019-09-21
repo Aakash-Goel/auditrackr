@@ -1,4 +1,4 @@
-import React, { Fragment, PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 // import { object } from 'prop-types';
 import { createStructuredSelector } from 'reselect';
@@ -6,7 +6,7 @@ import { createStructuredSelector } from 'reselect';
 import AuthValidator from '../../../organisms/AuthValidator';
 import PrimaryLayout from '../../../../layouts/PrimaryLayout';
 import ContentContainer from '../../../organisms/ContentContainer';
-import CreateAuditPage from '../../../organisms/PageContentWrappers/CreateAuditPage';
+import CreateAuditPage from '../../../organisms/views/CreateAuditPage';
 import { formWrapperSelector } from '../../../organisms/Forms/FormWrapper/selectors';
 import {
   makeSelectIsLoading,
@@ -23,7 +23,7 @@ import { submitCreateAuditForm, clearCreateAuditData } from './actions';
 class AuditCreate extends PureComponent {
   render() {
     return (
-      <Fragment>
+      <>
         <AuthValidator>
           <PrimaryLayout
             pageTitle="Create Audit"
@@ -35,7 +35,7 @@ class AuditCreate extends PureComponent {
             </ContentContainer>
           </PrimaryLayout>
         </AuthValidator>
-      </Fragment>
+      </>
     );
   }
 }

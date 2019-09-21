@@ -1,4 +1,4 @@
-import React, { Fragment, PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 import { object, func } from 'prop-types';
 import classnames from 'classnames';
 
@@ -41,7 +41,7 @@ class CreateAuditPage extends PureComponent {
     const { classes, ...rest } = this.props;
 
     return (
-      <Fragment>
+      <>
         <GridContainer alignItems="center" justify="center">
           <GridItem xs={12} sm={12} md={8} lg={6} xl={4}>
             <Typography
@@ -55,7 +55,7 @@ class CreateAuditPage extends PureComponent {
             <CreateAuditForm {...rest} />
           </GridItem>
         </GridContainer>
-      </Fragment>
+      </>
     );
   }
 }
