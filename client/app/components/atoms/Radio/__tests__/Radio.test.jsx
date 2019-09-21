@@ -10,7 +10,7 @@ describe('<Radio />', () => {
         options={[
           {
             radioProps: {
-              checked: 'a',
+              checked: true,
               value: 'a',
               name: 'radio-button-demo',
               'aria-label': 'A',
@@ -33,7 +33,7 @@ describe('<Radio />', () => {
         options={[
           {
             radioProps: {
-              checked: 'a',
+              checked: false,
               value: 'a',
               name: 'radio-button-demo',
               'aria-label': 'A',

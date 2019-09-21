@@ -2,29 +2,28 @@
 
 exports[`<Input /> renders correctly 1`] = `
 <div
-  className="MuiFormControl-root-12 CustomInput-formControl-9"
+  className="MuiFormControl-root CustomInput-formControl-9"
 >
   <label
-    className="MuiFormLabel-root-27 MuiFormLabel-required-32 MuiInputLabel-required-20 MuiInputLabel-root-16 MuiInputLabel-formControl-21 MuiInputLabel-animated-24 CustomInput-labelRoot-6 "
+    className="MuiFormLabel-root MuiInputLabel-root CustomInput-labelRoot-6  MuiInputLabel-formControl MuiInputLabel-animated Mui-required Mui-required"
     data-shrink={false}
-    htmlFor=""
   >
     Required
     <span
-      className="MuiFormLabel-asterisk-33"
+      className="MuiFormLabel-asterisk MuiInputLabel-asterisk"
     >
-       *
+       
+      *
     </span>
   </label>
   <div
-    className="MuiInputBase-root-47 MuiInput-root-34 MuiInput-underline-38 CustomInput-underline-2 MuiInputBase-formControl-48 MuiInput-formControl-35"
+    className="MuiInputBase-root MuiInput-root MuiInput-underline CustomInput-underline-2 MuiInputBase-formControl MuiInput-formControl"
     onClick={[Function]}
   >
     <input
       aria-invalid={false}
-      className="MuiInputBase-input-57 MuiInput-input-42 CustomInput-input-10"
+      className="MuiInputBase-input MuiInput-input CustomInput-input-10"
       disabled={false}
-      id=""
       onBlur={[Function]}
       onChange={[Function]}
       onFocus={[Function]}
@@ -32,22 +31,27 @@ exports[`<Input /> renders correctly 1`] = `
       type="text"
     />
   </div>
+  <p
+    className="MuiFormHelperText-root Mui-required"
+    id="undefined_error_msg"
+  >
+    
+  </p>
 </div>
 `;
 
 exports[`<Input /> renders correctly if formControlProps and labelText is not passed 1`] = `
 <div
-  className="MuiFormControl-root-12 CustomInput-formControl-9"
+  className="MuiFormControl-root CustomInput-formControl-9"
 >
   <div
-    className="MuiInputBase-root-47 MuiInput-root-34 MuiInput-underline-38 CustomInput-underline-2 MuiInputBase-formControl-48 MuiInput-formControl-35"
+    className="MuiInputBase-root MuiInput-root MuiInput-underline CustomInput-underline-2 MuiInputBase-formControl MuiInput-formControl"
     onClick={[Function]}
   >
     <input
       aria-invalid={false}
-      className="MuiInputBase-input-57 MuiInput-input-42 CustomInput-input-10"
+      className="MuiInputBase-input MuiInput-input CustomInput-input-10"
       disabled={false}
-      id=""
       onBlur={[Function]}
       onChange={[Function]}
       onFocus={[Function]}
@@ -55,30 +59,34 @@ exports[`<Input /> renders correctly if formControlProps and labelText is not pa
       type="text"
     />
   </div>
+  <p
+    className="MuiFormHelperText-root"
+    id="undefined_error_msg"
+  >
+    
+  </p>
 </div>
 `;
 
 exports[`<Input /> renders correctly in error state 1`] = `
 <div
-  className="MuiFormControl-root-12 CustomInput-formControl-9"
+  className="MuiFormControl-root CustomInput-formControl-9"
 >
   <label
-    className="MuiFormLabel-root-27 MuiInputLabel-root-16 MuiInputLabel-formControl-21 MuiInputLabel-animated-24 CustomInput-labelRoot-6 "
+    className="MuiFormLabel-root MuiInputLabel-root CustomInput-labelRoot-6  MuiInputLabel-formControl MuiInputLabel-animated"
     data-shrink={false}
-    htmlFor=""
   >
     Error Input Prop
   </label>
   <div
     aria-label="Description"
-    className="MuiInputBase-root-47 MuiInput-root-34 MuiInput-underline-38 CustomInput-underline-2 MuiInputBase-error-53 MuiInput-error-39 MuiInputBase-formControl-48 MuiInput-formControl-35"
+    className="MuiInputBase-root MuiInput-root MuiInput-underline CustomInput-underline-2 Mui-error Mui-error MuiInputBase-formControl MuiInput-formControl"
     onClick={[Function]}
   >
     <input
       aria-invalid={true}
-      className="MuiInputBase-input-57 MuiInput-input-42 CustomInput-input-10"
+      className="MuiInputBase-input MuiInput-input CustomInput-input-10"
       disabled={false}
-      id=""
       onBlur={[Function]}
       onChange={[Function]}
       onFocus={[Function]}
@@ -86,29 +94,33 @@ exports[`<Input /> renders correctly in error state 1`] = `
       type="text"
     />
   </div>
+  <p
+    className="MuiFormHelperText-root"
+    id="undefined_error_msg"
+  >
+    
+  </p>
 </div>
 `;
 
 exports[`<Input /> renders correctly in success state 1`] = `
 <div
-  className="MuiFormControl-root-12 CustomInput-formControl-9"
+  className="MuiFormControl-root CustomInput-formControl-9"
 >
   <label
-    className="MuiFormLabel-root-27 MuiInputLabel-root-16 MuiInputLabel-formControl-21 MuiInputLabel-animated-24 CustomInput-labelRoot-6  CustomInput-labelRootSuccess-8"
+    className="MuiFormLabel-root MuiInputLabel-root CustomInput-labelRoot-6  CustomInput-labelRootSuccess-8 MuiInputLabel-formControl MuiInputLabel-animated"
     data-shrink={false}
-    htmlFor="success"
   >
     Success Prop
   </label>
   <div
-    className="MuiInputBase-root-47 MuiInput-root-34 MuiInput-underline-38 CustomInput-underlineSuccess-4 CustomInput-underline-2 MuiInputBase-formControl-48 MuiInput-formControl-35"
+    className="MuiInputBase-root MuiInput-root MuiInput-underline CustomInput-underlineSuccess-4 CustomInput-underline-2 MuiInputBase-formControl MuiInput-formControl"
     onClick={[Function]}
   >
     <input
       aria-invalid={false}
-      className="MuiInputBase-input-57 MuiInput-input-42 CustomInput-input-10"
+      className="MuiInputBase-input MuiInput-input CustomInput-input-10"
       disabled={false}
-      id="success"
       onBlur={[Function]}
       onChange={[Function]}
       onFocus={[Function]}
@@ -116,5 +128,11 @@ exports[`<Input /> renders correctly in success state 1`] = `
       type="text"
     />
   </div>
+  <p
+    className="MuiFormHelperText-root"
+    id="undefined_error_msg"
+  >
+    
+  </p>
 </div>
 `;

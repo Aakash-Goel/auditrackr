@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { object, arrayOf } from 'prop-types';
 import { isEmpty } from 'lodash';
 
@@ -46,7 +46,7 @@ const CustomRadio = ({ ...props }) => {
   }
 
   return (
-    <Fragment>
+    <>
       {options &&
         options.map((option, index) => (
           <FormControlLabel
@@ -55,7 +55,7 @@ const CustomRadio = ({ ...props }) => {
             control={<Radio color="primary" {...option.radioProps} />}
           />
         ))}
-    </Fragment>
+    </>
   );
 };
 

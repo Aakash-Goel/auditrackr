@@ -53,10 +53,10 @@ exports[`<Button/> renders correctly with empty props 1`] = `
 exports[`<Button/> renders correctly with props 1`] = `
 <button
   aria-label="Checkout"
-  className="MuiButtonBase-root-56 MuiButton-root-30 MuiButton-text-32 MuiButton-flat-35 CustomButton-button-1 CustomButton-primary-3 CustomButton-round-20 CustomButton-upc-29"
+  className="MuiButtonBase-root MuiButton-root CustomButton-button-1 CustomButton-primary-3 CustomButton-round-20 CustomButton-upc-29 MuiButton-text"
   disabled={false}
   onBlur={[Function]}
-  onContextMenu={[Function]}
+  onDragLeave={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -71,16 +71,13 @@ exports[`<Button/> renders correctly with props 1`] = `
       "backgroudColor": "#f9a825",
     }
   }
-  tabIndex="0"
+  tabIndex={0}
   type="button"
 >
   <span
-    className="MuiButton-label-31"
+    className="MuiButton-label"
   >
     Click Here
   </span>
-  <span
-    className="MuiTouchRipple-root-59"
-  />
 </button>
 `;

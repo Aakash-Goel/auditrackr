@@ -20,15 +20,11 @@ exports[`Carousel atom should renders correctly 1`] = `
     <svg
       aria-hidden="true"
       aria-label="alt-prevArrowButton"
-      className="MuiSvgIcon-root-1 MuiSvgIcon-colorPrimary-2"
+      className="MuiSvgIcon-root MuiSvgIcon-colorPrimary"
       focusable="false"
       role="presentation"
       viewBox="0 0 24 24"
     >
-      <path
-        d="M0 0h24v24H0V0z"
-        fill="none"
-      />
       <path
         d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12l4.58-4.59z"
       />
@@ -266,15 +262,11 @@ exports[`Carousel atom should renders correctly 1`] = `
     <svg
       aria-hidden="true"
       aria-label="alt-nextArrowButton"
-      className="MuiSvgIcon-root-1 MuiSvgIcon-colorPrimary-2"
+      className="MuiSvgIcon-root MuiSvgIcon-colorPrimary"
       focusable="false"
       role="presentation"
       viewBox="0 0 24 24"
     >
-      <path
-        d="M0 0h24v24H0V0z"
-        fill="none"
-      />
       <path
         d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6-6-6z"
       />

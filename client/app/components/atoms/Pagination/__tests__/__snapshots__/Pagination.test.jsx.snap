@@ -8,11 +8,11 @@ exports[`<Pagination/> renders correctly 1`] = `
     className="Pagination-paginationItem-2"
   >
     <button
-      className="MuiButtonBase-root-36 MuiButton-root-10 MuiButton-text-12 MuiButton-flat-15 Pagination-paginationLink-3"
+      className="MuiButtonBase-root MuiButton-root Pagination-paginationLink-3 MuiButton-text"
       disabled={false}
       onBlur={[Function]}
       onClick={[Function]}
-      onContextMenu={[Function]}
+      onDragLeave={[Function]}
       onFocus={[Function]}
       onKeyDown={[Function]}
       onKeyUp={[Function]}
@@ -22,28 +22,25 @@ exports[`<Pagination/> renders correctly 1`] = `
       onTouchEnd={[Function]}
       onTouchMove={[Function]}
       onTouchStart={[Function]}
-      tabIndex="0"
+      tabIndex={0}
       type="button"
     >
       <span
-        className="MuiButton-label-11"
+        className="MuiButton-label"
       >
         1
       </span>
-      <span
-        className="MuiTouchRipple-root-39"
-      />
     </button>
   </li>
   <li
     className="Pagination-paginationItem-2"
   >
     <button
-      className="MuiButtonBase-root-36 MuiButton-root-10 MuiButton-text-12 MuiButton-flat-15 Pagination-paginationLink-3"
+      className="MuiButtonBase-root MuiButton-root Pagination-paginationLink-3 MuiButton-text"
       disabled={false}
       onBlur={[Function]}
       onClick={[Function]}
-      onContextMenu={[Function]}
+      onDragLeave={[Function]}
       onFocus={[Function]}
       onKeyDown={[Function]}
       onKeyUp={[Function]}
@@ -53,28 +50,25 @@ exports[`<Pagination/> renders correctly 1`] = `
       onTouchEnd={[Function]}
       onTouchMove={[Function]}
       onTouchStart={[Function]}
-      tabIndex="0"
+      tabIndex={0}
       type="button"
     >
       <span
-        className="MuiButton-label-11"
+        className="MuiButton-label"
       >
         ...
       </span>
-      <span
-        className="MuiTouchRipple-root-39"
-      />
     </button>
   </li>
   <li
     className="Pagination-paginationItem-2"
   >
     <button
-      className="MuiButtonBase-root-36 MuiButton-root-10 MuiButton-text-12 MuiButton-flat-15 Pagination-paginationLink-3 Pagination-primary-4"
+      className="MuiButtonBase-root MuiButton-root Pagination-paginationLink-3 Pagination-primary-4 MuiButton-text"
       disabled={false}
       onBlur={[Function]}
       onClick={[Function]}
-      onContextMenu={[Function]}
+      onDragLeave={[Function]}
       onFocus={[Function]}
       onKeyDown={[Function]}
       onKeyUp={[Function]}
@@ -84,28 +78,25 @@ exports[`<Pagination/> renders correctly 1`] = `
       onTouchEnd={[Function]}
       onTouchMove={[Function]}
       onTouchStart={[Function]}
-      tabIndex="0"
+      tabIndex={0}
       type="button"
     >
       <span
-        className="MuiButton-label-11"
+        className="MuiButton-label"
       >
         5
       </span>
-      <span
-        className="MuiTouchRipple-root-39"
-      />
     </button>
   </li>
   <li
     className="Pagination-paginationItem-2"
   >
     <button
-      className="MuiButtonBase-root-36 MuiButton-root-10 MuiButton-text-12 MuiButton-flat-15 Pagination-paginationLink-3"
+      className="MuiButtonBase-root MuiButton-root Pagination-paginationLink-3 MuiButton-text"
       disabled={false}
       onBlur={[Function]}
       onClick={[Function]}
-      onContextMenu={[Function]}
+      onDragLeave={[Function]}
       onFocus={[Function]}
       onKeyDown={[Function]}
       onKeyUp={[Function]}
@@ -115,28 +106,25 @@ exports[`<Pagination/> renders correctly 1`] = `
       onTouchEnd={[Function]}
       onTouchMove={[Function]}
       onTouchStart={[Function]}
-      tabIndex="0"
+      tabIndex={0}
       type="button"
     >
       <span
-        className="MuiButton-label-11"
+        className="MuiButton-label"
       >
         6
       </span>
-      <span
-        className="MuiTouchRipple-root-39"
-      />
     </button>
   </li>
   <li
     className="Pagination-paginationItem-2"
   >
     <button
-      className="MuiButtonBase-root-36 MuiButton-root-10 MuiButton-text-12 MuiButton-flat-15 Pagination-paginationLink-3"
+      className="MuiButtonBase-root MuiButton-root Pagination-paginationLink-3 MuiButton-text"
       disabled={false}
       onBlur={[Function]}
       onClick={[Function]}
-      onContextMenu={[Function]}
+      onDragLeave={[Function]}
       onFocus={[Function]}
       onKeyDown={[Function]}
       onKeyUp={[Function]}
@@ -146,28 +134,25 @@ exports[`<Pagination/> renders correctly 1`] = `
       onTouchEnd={[Function]}
       onTouchMove={[Function]}
       onTouchStart={[Function]}
-      tabIndex="0"
+      tabIndex={0}
       type="button"
     >
       <span
-        className="MuiButton-label-11"
+        className="MuiButton-label"
       >
         7
       </span>
-      <span
-        className="MuiTouchRipple-root-39"
-      />
     </button>
   </li>
   <li
     className="Pagination-paginationItem-2"
   >
     <button
-      className="MuiButtonBase-root-36 MuiButton-root-10 MuiButton-text-12 MuiButton-flat-15 Pagination-paginationLink-3"
+      className="MuiButtonBase-root MuiButton-root Pagination-paginationLink-3 MuiButton-text"
       disabled={false}
       onBlur={[Function]}
       onClick={[Function]}
-      onContextMenu={[Function]}
+      onDragLeave={[Function]}
       onFocus={[Function]}
       onKeyDown={[Function]}
       onKeyUp={[Function]}
@@ -177,28 +162,25 @@ exports[`<Pagination/> renders correctly 1`] = `
       onTouchEnd={[Function]}
       onTouchMove={[Function]}
       onTouchStart={[Function]}
-      tabIndex="0"
+      tabIndex={0}
       type="button"
     >
       <span
-        className="MuiButton-label-11"
+        className="MuiButton-label"
       >
         ...
       </span>
-      <span
-        className="MuiTouchRipple-root-39"
-      />
     </button>
   </li>
   <li
     className="Pagination-paginationItem-2"
   >
     <button
-      className="MuiButtonBase-root-36 MuiButton-root-10 MuiButton-text-12 MuiButton-flat-15 Pagination-paginationLink-3"
+      className="MuiButtonBase-root MuiButton-root Pagination-paginationLink-3 MuiButton-text"
       disabled={false}
       onBlur={[Function]}
       onClick={[Function]}
-      onContextMenu={[Function]}
+      onDragLeave={[Function]}
       onFocus={[Function]}
       onKeyDown={[Function]}
       onKeyUp={[Function]}
@@ -208,17 +190,14 @@ exports[`<Pagination/> renders correctly 1`] = `
       onTouchEnd={[Function]}
       onTouchMove={[Function]}
       onTouchStart={[Function]}
-      tabIndex="0"
+      tabIndex={0}
       type="button"
     >
       <span
-        className="MuiButton-label-11"
+        className="MuiButton-label"
       >
         11
       </span>
-      <span
-        className="MuiTouchRipple-root-39"
-      />
     </button>
   </li>
 </ul>
@@ -232,11 +211,11 @@ exports[`<Pagination/> renders correctly when onclick props is passed 1`] = `
     className="Pagination-paginationItem-2"
   >
     <button
-      className="MuiButtonBase-root-36 MuiButton-root-10 MuiButton-text-12 MuiButton-flat-15 Pagination-paginationLink-3"
+      className="MuiButtonBase-root MuiButton-root Pagination-paginationLink-3 MuiButton-text"
       disabled={false}
       onBlur={[Function]}
       onClick={[Function]}
-      onContextMenu={[Function]}
+      onDragLeave={[Function]}
       onFocus={[Function]}
       onKeyDown={[Function]}
       onKeyUp={[Function]}
@@ -246,16 +225,16 @@ exports[`<Pagination/> renders correctly when onclick props is passed 1`] = `
       onTouchEnd={[Function]}
       onTouchMove={[Function]}
       onTouchStart={[Function]}
-      tabIndex="0"
+      tabIndex={0}
       type="button"
     >
       <span
-        className="MuiButton-label-11"
+        className="MuiButton-label"
       >
         1
       </span>
       <span
-        className="MuiTouchRipple-root-39"
+        className="MuiTouchRipple-root"
       />
     </button>
   </li>
@@ -263,11 +242,11 @@ exports[`<Pagination/> renders correctly when onclick props is passed 1`] = `
     className="Pagination-paginationItem-2"
   >
     <button
-      className="MuiButtonBase-root-36 MuiButton-root-10 MuiButton-text-12 MuiButton-flat-15 Pagination-paginationLink-3"
+      className="MuiButtonBase-root MuiButton-root Pagination-paginationLink-3 MuiButton-text"
       disabled={false}
       onBlur={[Function]}
       onClick={[Function]}
-      onContextMenu={[Function]}
+      onDragLeave={[Function]}
       onFocus={[Function]}
       onKeyDown={[Function]}
       onKeyUp={[Function]}
@@ -277,16 +256,16 @@ exports[`<Pagination/> renders correctly when onclick props is passed 1`] = `
       onTouchEnd={[Function]}
       onTouchMove={[Function]}
       onTouchStart={[Function]}
-      tabIndex="0"
+      tabIndex={0}
       type="button"
     >
       <span
-        className="MuiButton-label-11"
+        className="MuiButton-label"
       >
         ...
       </span>
       <span
-        className="MuiTouchRipple-root-39"
+        className="MuiTouchRipple-root"
       />
     </button>
   </li>
@@ -294,11 +273,11 @@ exports[`<Pagination/> renders correctly when onclick props is passed 1`] = `
     className="Pagination-paginationItem-2"
   >
     <button
-      className="MuiButtonBase-root-36 MuiButton-root-10 MuiButton-text-12 MuiButton-flat-15 Pagination-paginationLink-3 Pagination-primary-4"
+      className="MuiButtonBase-root MuiButton-root Pagination-paginationLink-3 Pagination-primary-4 MuiButton-text"
       disabled={false}
       onBlur={[Function]}
       onClick={[Function]}
-      onContextMenu={[Function]}
+      onDragLeave={[Function]}
       onFocus={[Function]}
       onKeyDown={[Function]}
       onKeyUp={[Function]}
@@ -308,16 +287,16 @@ exports[`<Pagination/> renders correctly when onclick props is passed 1`] = `
       onTouchEnd={[Function]}
       onTouchMove={[Function]}
       onTouchStart={[Function]}
-      tabIndex="0"
+      tabIndex={0}
       type="button"
     >
       <span
-        className="MuiButton-label-11"
+        className="MuiButton-label"
       >
         5
       </span>
       <span
-        className="MuiTouchRipple-root-39"
+        className="MuiTouchRipple-root"
       />
     </button>
   </li>
@@ -325,11 +304,11 @@ exports[`<Pagination/> renders correctly when onclick props is passed 1`] = `
     className="Pagination-paginationItem-2"
   >
     <button
-      className="MuiButtonBase-root-36 MuiButton-root-10 MuiButton-text-12 MuiButton-flat-15 Pagination-paginationLink-3"
+      className="MuiButtonBase-root MuiButton-root Pagination-paginationLink-3 MuiButton-text"
       disabled={false}
       onBlur={[Function]}
       onClick={[MockFunction]}
-      onContextMenu={[Function]}
+      onDragLeave={[Function]}
       onFocus={[Function]}
       onKeyDown={[Function]}
       onKeyUp={[Function]}
@@ -339,16 +318,16 @@ exports[`<Pagination/> renders correctly when onclick props is passed 1`] = `
       onTouchEnd={[Function]}
       onTouchMove={[Function]}
       onTouchStart={[Function]}
-      tabIndex="0"
+      tabIndex={0}
       type="button"
     >
       <span
-        className="MuiButton-label-11"
+        className="MuiButton-label"
       >
         6
       </span>
       <span
-        className="MuiTouchRipple-root-39"
+        className="MuiTouchRipple-root"
       />
     </button>
   </li>
@@ -356,11 +335,11 @@ exports[`<Pagination/> renders correctly when onclick props is passed 1`] = `
     className="Pagination-paginationItem-2"
   >
     <button
-      className="MuiButtonBase-root-36 MuiButton-root-10 MuiButton-text-12 MuiButton-flat-15 Pagination-paginationLink-3"
+      className="MuiButtonBase-root MuiButton-root Pagination-paginationLink-3 MuiButton-text"
       disabled={false}
       onBlur={[Function]}
       onClick={[Function]}
-      onContextMenu={[Function]}
+      onDragLeave={[Function]}
       onFocus={[Function]}
       onKeyDown={[Function]}
       onKeyUp={[Function]}
@@ -370,16 +349,16 @@ exports[`<Pagination/> renders correctly when onclick props is passed 1`] = `
       onTouchEnd={[Function]}
       onTouchMove={[Function]}
       onTouchStart={[Function]}
-      tabIndex="0"
+      tabIndex={0}
       type="button"
     >
       <span
-        className="MuiButton-label-11"
+        className="MuiButton-label"
       >
         7
       </span>
       <span
-        className="MuiTouchRipple-root-39"
+        className="MuiTouchRipple-root"
       />
     </button>
   </li>
@@ -387,11 +366,11 @@ exports[`<Pagination/> renders correctly when onclick props is passed 1`] = `
     className="Pagination-paginationItem-2"
   >
     <button
-      className="MuiButtonBase-root-36 MuiButton-root-10 MuiButton-text-12 MuiButton-flat-15 Pagination-paginationLink-3"
+      className="MuiButtonBase-root MuiButton-root Pagination-paginationLink-3 MuiButton-text"
       disabled={false}
       onBlur={[Function]}
       onClick={[Function]}
-      onContextMenu={[Function]}
+      onDragLeave={[Function]}
       onFocus={[Function]}
       onKeyDown={[Function]}
       onKeyUp={[Function]}
@@ -401,16 +380,16 @@ exports[`<Pagination/> renders correctly when onclick props is passed 1`] = `
       onTouchEnd={[Function]}
       onTouchMove={[Function]}
       onTouchStart={[Function]}
-      tabIndex="0"
+      tabIndex={0}
       type="button"
     >
       <span
-        className="MuiButton-label-11"
+        className="MuiButton-label"
       >
         ...
       </span>
       <span
-        className="MuiTouchRipple-root-39"
+        className="MuiTouchRipple-root"
       />
     </button>
   </li>
@@ -418,11 +397,11 @@ exports[`<Pagination/> renders correctly when onclick props is passed 1`] = `
     className="Pagination-paginationItem-2"
   >
     <button
-      className="MuiButtonBase-root-36 MuiButton-root-10 MuiButton-text-12 MuiButton-flat-15 Pagination-paginationLink-3"
+      className="MuiButtonBase-root MuiButton-root Pagination-paginationLink-3 MuiButton-text"
       disabled={false}
       onBlur={[Function]}
       onClick={[Function]}
-      onContextMenu={[Function]}
+      onDragLeave={[Function]}
       onFocus={[Function]}
       onKeyDown={[Function]}
       onKeyUp={[Function]}
@@ -432,16 +411,16 @@ exports[`<Pagination/> renders correctly when onclick props is passed 1`] = `
       onTouchEnd={[Function]}
       onTouchMove={[Function]}
       onTouchStart={[Function]}
-      tabIndex="0"
+      tabIndex={0}
       type="button"
     >
       <span
-        className="MuiButton-label-11"
+        className="MuiButton-label"
       >
         11
       </span>
       <span
-        className="MuiTouchRipple-root-39"
+        className="MuiTouchRipple-root"
       />
     </button>
   </li>

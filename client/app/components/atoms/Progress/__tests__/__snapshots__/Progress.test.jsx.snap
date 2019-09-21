@@ -2,15 +2,15 @@
 
 exports[`<Progress /> renders correctly 1`] = `
 <div
-  className="MuiLinearProgress-root-21 CustomProgress-root-1 CustomProgress-greyBackground-14 MuiLinearProgress-colorPrimary-22 MuiLinearProgress-indeterminate-25"
+  className="MuiLinearProgress-root CustomProgress-root-1 CustomProgress-greyBackground-14 MuiLinearProgress-colorPrimary MuiLinearProgress-indeterminate"
   role="progressbar"
 >
   <div
-    className="MuiLinearProgress-bar-31 CustomProgress-bar-2 CustomProgress-grey-8 MuiLinearProgress-barColorPrimary-32 MuiLinearProgress-bar1Indeterminate-34"
+    className="MuiLinearProgress-bar CustomProgress-bar-2 CustomProgress-grey-8 MuiLinearProgress-barColorPrimary MuiLinearProgress-bar1Indeterminate"
     style={Object {}}
   />
   <div
-    className="MuiLinearProgress-bar-31 CustomProgress-bar-2 CustomProgress-grey-8 MuiLinearProgress-barColorPrimary-32 MuiLinearProgress-bar2Indeterminate-37"
+    className="MuiLinearProgress-bar CustomProgress-bar-2 CustomProgress-grey-8 MuiLinearProgress-bar2Indeterminate MuiLinearProgress-barColorPrimary"
     style={Object {}}
   />
 </div>

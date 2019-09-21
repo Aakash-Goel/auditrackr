@@ -335,9 +335,9 @@ class CustomInput extends React.PureComponent {
           }}
           onChange={e => this.handleOnChange(e)}
           onBlur={e => this.handleOnBlur(validationRule, isRequired, e)}
-          {...this.props[fieldError] && {
+          {...(this.props[fieldError] && {
             'aria-describedby': `${inputProps.id}_error_msg`,
-          }}
+          })}
           {...inputProps}
         />
         {showFieldLevelErrorMsz && (
