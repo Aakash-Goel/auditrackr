@@ -19,7 +19,7 @@ const twoColumnLayoutStyles = theme => ({
     justifyContent: 'center',
   },
   infoBlock: {
-    background: theme.palette.common.black,
+    background: theme.palette.primary.main,
     textAlign: 'center',
 
     '& h2': {
@@ -27,7 +27,7 @@ const twoColumnLayoutStyles = theme => ({
     },
   },
   utilityBlock: {
-    background: theme.palette.custom.brand,
+    background: '#fff',
 
     '& h1': {
       color: theme.palette.common.white,

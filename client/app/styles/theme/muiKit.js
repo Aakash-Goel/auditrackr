@@ -63,16 +63,15 @@ const defaultFont = {
   lineHeight: '1.5em',
 };
 
-const primaryColor = '#9c27b0';
-const secondaryColor = '#01a78f';
-const infoColor = '#00acc1';
-const successColor = '#4caf50';
-const warningColor = '#ff9800';
-const errorColor = '#f44336';
-const whiteColor = '#fff';
-const blackColor = '#14171a'; // possible list ['#262B33']
+const primaryColor = '#4e3883'; // possible list [9c27b0, ~05386b, 66fcf1, ~4056a1, ~123c69, ~4A4E9D, F5AEB9]
+const secondaryColor = '#846fce'; // possible list [01a78f, 846fce, f5aeb9]
+const infoColor = '#4688f1'; // possible list [2aabe4, 11ABC1, 4688f1, 00acc1] light blue
+const successColor = '#44ac5e'; // possible list [116466, 44ac5e, 4caf50] green
+const warningColor = '#f8bc2f'; // possible list [d05a00, ff8800, f8bc2f, ff9800] yellow
+const errorColor = '#e9483e'; // possible list [f44336, e9483e] red
+const whiteColor = '#fff'; // possible list ['#f8fafb']
+const blackColor = '#14171a'; // possible list [262B33, ~22223A, 18181E]
 const greyColor = '#999999';
-const brandColor = '#191846';
 
 const primaryBoxShadow = {
   boxShadow:
@@ -192,7 +191,6 @@ export {
   whiteColor,
   blackColor,
   greyColor,
-  brandColor,
   primaryBoxShadow,
   infoBoxShadow,
   successBoxShadow,

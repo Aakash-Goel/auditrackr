@@ -137,5 +137,5 @@ class MyApp extends App {
 }
 
 export default withRedux(createStore)(
-  withReduxSaga(withStyles(globalStyles)(MyApp))
+  withReduxSaga({ async: true })(withStyles(globalStyles)(MyApp))
 );

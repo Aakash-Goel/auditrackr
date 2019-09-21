@@ -1,11 +1,46 @@
+import validate from 'validate.js';
+
+// custom validators
+validate.validators.multiFormat = (value, options, ...args) => {
+  if (!Array.isArray(options)) {
+    throw new TypeError(`${options} should be an Array`);
+  }
+  const getOptionWithErrorMessage = option =>
+    validate.validators.format(value, option, ...args);
+  const optionWithErrorMessage = options.find(
+    option => getOptionWithErrorMessage(option) != null
+  );
+  if (optionWithErrorMessage) {
+    return getOptionWithErrorMessage(optionWithErrorMessage);
+  }
+  return optionWithErrorMessage;
+};
+
+// set messages
+const setMessage = (key, withCarat = true, optionArr, caratAtLast = false) => {
+  // let labelText = LabelsUtil.getLabel(getFormLabelsInfo(), key, optionArr);
+  let labelText;
+
+  if (!labelText) {
+    labelText = key;
+  }
+  let finalLabel = withCarat ? `^${labelText}` : labelText;
+
+  if (caratAtLast) {
+    finalLabel = `${labelText}^`;
+  }
+  return finalLabel;
+};
+
 export const required = {
   required: {
     presence: {
-      message: 'This field is required',
+      message: setMessage('This field is required.'),
     },
   },
 };
 
+// @TODO: to modify or removed
 export const passwordRequired = {
   passwordRequired: {
     presence: {
@@ -14,12 +49,14 @@ export const passwordRequired = {
   },
 };
 
+// @TODO: to modify or removed
 export const email = {
   email: {
     email: true,
   },
 };
 
+// @TODO: to modify or removed
 export const passwordValidation = {
   passwordValidation: {
     presence: {
@@ -77,6 +114,7 @@ export const passwordValidation = {
   },
 };
 
+// @TODO: to modify or removed
 export const confirmPassword = {
   confirmPassword: {
     presence: {
@@ -95,6 +133,7 @@ export const confirmPassword = {
   },
 };
 
+// @TODO: to modify or removed
 export const emailMessage = {
   emailMessage: {
     presence: {
@@ -105,19 +144,50 @@ export const emailMessage = {
 
 export const name = {
   name: {
+    presence: {
+      allowEmpty: false,
+      message: setMessage('Please enter a valid name.'),
+    },
     multiFormat: [
       {
         pattern: /^[a-zA-Z0-9]{1}.*$/,
-        message: 'Name should not have special characters',
+        message: setMessage('Cannot start with special characters.'),
       },
       {
         pattern: /^[a-zA-Z'’\-\s]*$/,
-        message: 'Pattern is not correct',
+        message: setMessage(
+          'Please enter letters, apostrophes, hyphens, and spaces only.'
+        ),
       },
     ],
     length: {
-      minimum: 2,
-      tooShort: 'Enter minimum 2 characters',
+      minimum: 3,
+      tooShort: setMessage('Please enter at least 3 characters.'),
+    },
+  },
+};
+
+export const number = {
+  number: {
+    presence: {
+      allowEmpty: false,
+      message: setMessage('This field is required.'),
+    },
+    numericality: {
+      message: setMessage('Please enter number only.'),
+    },
+    format: {
+      pattern: /^[0-9]*[1-9]+[0-9]*$/,
+      message: setMessage('Please enter a valid number.'),
+    },
+  },
+};
+
+export const category = {
+  category: {
+    presence: {
+      allowEmpty: false,
+      message: setMessage('Please select a category.'),
     },
   },
 };

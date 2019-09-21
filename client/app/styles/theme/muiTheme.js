@@ -34,7 +34,6 @@ import {
   successColor,
   warningColor,
   greyColor,
-  brandColor,
   primaryFontFamily,
 } from './muiKit';
 
@@ -62,12 +61,35 @@ const muiTheme = {
       success: successColor,
       warning: warningColor,
       grey: greyColor,
-      brand: brandColor,
     },
   },
   typography: {
     fontFamily: primaryFontFamily,
     useNextVariants: true,
+  },
+  overrides: {
+    MuiInputLabel: {
+      // Name of the component ⚛️ / style sheet
+      root: {
+        // Name of the rule
+        // color: 'orange',
+        '&$focused': {
+          // increase the specificity for the pseudo class
+          color: primaryColor,
+        },
+      },
+    },
+    MuiInput: {
+      // Name of the component ⚛️ / style sheet
+      underline: {
+        // Name of the rule
+        // color: 'orange',
+        '&:after': {
+          // increase the specificity for the pseudo class
+          borderBottom: `2px solid ${primaryColor}`,
+        },
+      },
+    },
   },
 };
 

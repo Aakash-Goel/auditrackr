@@ -15,6 +15,7 @@ const inputStyles = () => ({
   underline: {
     '&:hover:not($disabled):before,&:before': {
       borderColor: `${greyColor} !important`,
+      borderWidth: '1px !important',
     },
   },
   underlineError: {

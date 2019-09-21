@@ -1,3 +1,5 @@
+import isEmpty from 'lodash/fp/isEmpty';
+
 import { validateChange } from './validation/validationUtil';
 
 /**
@@ -72,22 +74,19 @@ export const getFormWrapperDataValue = (dataObj, identifier, key) => {
 };
 
 /**
- * This method iterated on the formated error object created by getErrorStateForPassword
- * returns true if any validation has failed
- * @param {Object} passwordErrorState - This is the parsed error object
+ * This function check if error exist against the form field
+ * from the formWrapperData Object.
+ * @param {Object} formDataObj formWrapperData object of specific identifier
+ * @param {string} formInputKey
  */
-export const checkIfPasswordErrorOccured = (passwordErrorState, validators) => {
-  if (passwordErrorState) {
-    return !Object.keys(validators).every(errorType => {
-      return passwordErrorState[errorType];
-    });
+export const checkIsError = (formDataObj, formInputKey) => {
+  if (isEmpty(formDataObj[formInputKey])) {
+    return false;
   }
-  return false;
-};
-export const getPasswordValidationObj = (name, rule, value, fName) => {
-  const newValue = {
-    firstName: fName,
-    passwordValidation: value,
-  };
-  return validateChange(name, newValue, rule, true);
+
+  if (isEmpty(formDataObj[formInputKey][`${formInputKey}Error`])) {
+    return false;
+  }
+
+  return true;
 };

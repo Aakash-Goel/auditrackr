@@ -15,7 +15,7 @@ import isFunction from 'lodash/fp/isFunction';
 /**
  * Import all your applications sagas here
  */
-import testSaga from './testSaga'; // >>>Delete this
+import createAuditSagas from '../components/templates/Audit/Create/sagas';
 import accountLogInSagas from '../components/templates/Account/Login/sagas';
 import labelsSagas from '../lib/labels/sagas';
 
@@ -41,10 +41,9 @@ const runSagas = sagas => {
  */
 export default function* rootSaga() {
   try {
-    // add your sagas here comma seperated inside `runSagas`
-    // >>>Delete `testSaga`
+    // add your sagas here comma separated inside `runSagas`
     const allSagas = [
-      ...runSagas(testSaga),
+      ...runSagas(createAuditSagas),
       ...runSagas(accountLogInSagas),
       ...runSagas(labelsSagas),
     ];

@@ -36,5 +36,8 @@ export default {
       padding: 0,
       listStyle: 'none',
     },
+    '.someGlobalCss': {
+      background: 'red',
+    },
   },
 };

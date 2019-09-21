@@ -9,6 +9,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Input from '@material-ui/core/Input';
 import FormHelperText from '@material-ui/core/FormHelperText';
 
+import Select from '../Select';
 import { validateChange } from '../../../utils/validation/validationUtil';
 
 import inputStyles from './Input.style';
@@ -26,6 +27,9 @@ const propTypes = {
   inputProps: object,
   formControlProps: object,
   formWrapperSelector: object.isRequired,
+  selectProps: object,
+  validators: object,
+  onSelectChangeHandler: func,
   onChangeHandler: func,
   onBlurHandler: func,
   onErrorCallback: func,
@@ -49,21 +53,18 @@ const defaultProps = {
   labelText: null,
   labelProps: {},
   validationRule: '',
-  inputProps: {
-    name: null,
-    id: null,
-  },
-  formControlProps: {
-    required: false,
-    className: '',
-  },
+  inputProps: {},
+  formControlProps: {},
+  selectProps: {},
+  validators: {},
+  onSelectChangeHandler: () => {},
   onChangeHandler: () => {},
   onBlurHandler: () => {},
   onErrorCallback: () => {},
   onValidationDoneCallback: () => {},
   inputRootCustomClasses: '',
   fieldErrorMsg: '',
-  showFieldLevelErrorMsz: false,
+  showFieldLevelErrorMsz: true,
   error: false,
   success: false,
   white: false,
@@ -90,7 +91,7 @@ class CustomInput extends React.PureComponent {
         // value,
         identifier,
         addFormIdentifierData,
-        // validators,
+        validators,
         fieldErrorMsg,
         isChangedOnce,
       } = this.props;
@@ -106,7 +107,7 @@ class CustomInput extends React.PureComponent {
             value: dataValue,
             required: isRequired,
             isChangedOnce,
-            validators: {},
+            validators: validators || {},
             [`${name}Error`]: fieldErrorMsg,
           },
         });
@@ -231,6 +232,39 @@ class CustomInput extends React.PureComponent {
     }
   }
 
+  handleOnSelectChange(e) {
+    const { name, value } = e.target;
+    const {
+      updateFormIdentifierData,
+      identifier,
+      onSelectChangeHandler,
+      validationRule,
+    } = this.props;
+    const validationObj = validateChange(name, value, validationRule);
+    const errorKey = Object.keys(validationObj)[1];
+    if (updateFormIdentifierData) {
+      updateFormIdentifierData({
+        [name]: { value, [errorKey]: validationObj[errorKey] },
+        identifier,
+      });
+    }
+    if (onSelectChangeHandler) {
+      onSelectChangeHandler(value, name, e);
+    }
+  }
+
+  renderSelect(props) {
+    const { onSelectChangeHandler, classes, ...otherProps } = props;
+
+    return (
+      <Select
+        onSelectChange={e => this.handleOnSelectChange(e)}
+        {...otherProps}
+      />
+    );
+  }
+
+  /* eslint-disable complexity */
   render() {
     const {
       classes,
@@ -276,6 +310,10 @@ class CustomInput extends React.PureComponent {
 
     const fieldError = `${inputProps.name}Error`;
     const isRequired = formControlProps ? formControlProps.required : false;
+
+    if (inputProps && inputProps.type === 'select') {
+      return this.renderSelect(this.props);
+    }
 
     return (
       <FormControl {...formControlProps} className={formControlClasses}>

@@ -17,7 +17,7 @@ const initialState = {};
 //   },
 // };
 
-function FormWrapperReducer(state = initialState, { type, data }) {
+function formWrapperReducer(state = initialState, { type, data }) {
   switch (type) {
     case ADD_FORM_IDENTIFIER_FIELD: {
       const previousFieldData = state[data.identifier]
@@ -63,4 +63,4 @@ function FormWrapperReducer(state = initialState, { type, data }) {
   }
 }
 
-export default FormWrapperReducer;
+export default formWrapperReducer;

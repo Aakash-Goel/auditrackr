@@ -14,11 +14,15 @@ import { combineReducers } from 'redux';
 /**
  * Import all your applications reducers here
  */
-import count from './testReducer'; // >>>Delete this
+import { CREATE_AUDIT_STATE_KEY as createAuditStateKey } from '../components/templates/Audit/Create/constants';
+import createAuditReducer from '../components/templates/Audit/Create/reducer';
+
 import { ACCOUNT_PROFILE_STATE_KEY as accountProfileStateKey } from '../components/templates/Account/Login/constants';
-import AccountLoginReducer from '../components/templates/Account/Login/reducer';
+import accountLogInReducer from '../components/templates/Account/Login/reducer';
+
 import { FORM_WRAPPER_STATE_KEY as formWrapperStateKey } from '../components/organisms/Forms/FormWrapper/constants';
-import FormWrapperReducer from '../components/organisms/Forms/FormWrapper/reducer';
+import formWrapperReducer from '../components/organisms/Forms/FormWrapper/reducer';
+
 import { LABELS_STATE_KEY as labelsStateKey } from '../lib/labels/constants';
 import labelsReducer from '../lib/labels/reducer';
 
@@ -30,10 +34,10 @@ import labelsReducer from '../lib/labels/reducer';
  */
 const rootReducer = injectedReducers => {
   return combineReducers({
-    [formWrapperStateKey]: FormWrapperReducer,
-    [accountProfileStateKey]: AccountLoginReducer,
+    [createAuditStateKey]: createAuditReducer,
+    [accountProfileStateKey]: accountLogInReducer,
+    [formWrapperStateKey]: formWrapperReducer,
     [labelsStateKey]: labelsReducer,
-    count, // add all your applications reducers here with comma seperated
     ...injectedReducers,
   });
 };

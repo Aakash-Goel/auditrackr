@@ -2,23 +2,57 @@ import React, { Fragment, PureComponent } from 'react';
 import { object } from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+import classnames from 'classnames';
 
+import { withStyles } from '@material-ui/core/styles';
+
+import GridContainer from '../../atoms/Grid/GridContainer';
+import GridItem from '../../atoms/Grid/GridItem';
+import Title from '../../atoms/Title';
 import Head from '../../atoms/Head';
 import FormWrapper from '../../organisms/Forms/FormWrapper';
 import FormInput from '../../organisms/Forms/FormInput';
 import Button from '../../atoms/Button';
 import Checkbox from '../../atoms/Checkbox';
 import { formWrapperSelector } from '../../organisms/Forms/FormWrapper/selectors';
+import {
+  checkIsError,
+  getFormWrapperDataValue,
+} from '../../../utils/formInputUtil';
 
 /**
  * @property propTypes
  */
 const propTypes = {
+  classes: object.isRequired,
   formWrapperData: object,
 };
 
 const defaultProps = {
   formWrapperData: {},
+};
+
+const homepageStyle = {
+  bgBrand: {
+    background: '#4E3883',
+    color: '#000',
+  },
+  bgPrimary: {
+    background: '#1181B2', // '#4A4E9D',
+    color: '#fff',
+  },
+  bgSecondary: {
+    background: '#00438b',
+    color: '#fff',
+  },
+  bgWhite: {
+    background: '#fff',
+    color: '#000',
+  },
+  bgBlack: {
+    background: '#212221', // '#262B33',
+    color: '#fff',
+  },
 };
 
 /* getInitialProps
@@ -62,12 +96,63 @@ class Homepage extends PureComponent {
   }
 
   render() {
+    const { classes } = this.props;
+    console.log('1212-===classes ', classes);
+    console.log('1212-===this.props ', this.props);
+
     return (
       <Fragment>
         <Head
           title="My website"
           description="My website description goes here"
         />
+
+        <GridContainer alignItems="center">
+          <GridItem xs={3} className={classnames(classes.bgPrimary)}>
+            <Title level={1}>Randome title</Title>
+            <p className={classnames(classes.description)}>
+              Random description
+            </p>
+            <GridItem xs={4}>
+              <Button type="button" fullWidth size="lg">
+                button
+              </Button>
+            </GridItem>
+          </GridItem>
+          <GridItem xs={3} className={classnames(classes.bgWhite)}>
+            <Title level={1}>Randome title</Title>
+            <p className={classnames(classes.description)}>
+              Random description
+            </p>
+            <GridItem xs={4}>
+              <Button type="button" fullWidth size="lg">
+                button
+              </Button>
+            </GridItem>
+          </GridItem>
+          <GridItem xs={3} className={classnames(classes.bgBlack)}>
+            <Title level={1}>Randome title</Title>
+            <p className={classnames(classes.description)}>
+              Random description
+            </p>
+            <GridItem xs={4}>
+              <Button type="button" fullWidth size="lg">
+                button
+              </Button>
+            </GridItem>
+          </GridItem>
+          <GridItem xs={3} className={classnames(classes.bgSecondary)}>
+            <Title level={1}>Randome title</Title>
+            <p className={classnames(classes.description)}>
+              Random description
+            </p>
+            <GridItem xs={4}>
+              <Button type="button" fullWidth size="lg">
+                button
+              </Button>
+            </GridItem>
+          </GridItem>
+        </GridContainer>
 
         <FormWrapper
           id="testForm"
@@ -95,11 +180,7 @@ class Homepage extends PureComponent {
             {...{
               emailError: this.validationObject.emailError,
             }}
-            showFieldLevelErrorMsz
-            error={
-              this.props.formWrapperData.email &&
-              this.props.formWrapperData.email.emailError
-            }
+            error={checkIsError(this.props.formWrapperData, 'email')}
           />
           <FormInput
             validationRule="passwordValidation"
@@ -120,11 +201,7 @@ class Homepage extends PureComponent {
             {...{
               passwordError: this.validationObject.passwordError,
             }}
-            showFieldLevelErrorMsz
-            error={
-              this.props.formWrapperData.password &&
-              this.props.formWrapperData.password.passwordError
-            }
+            error={checkIsError(this.props.formWrapperData, 'password')}
           />
           <Checkbox
             checkboxProps={{
@@ -134,7 +211,6 @@ class Homepage extends PureComponent {
                 name: 'agreeTnC',
               },
             }}
-            showFieldLevelErrorMsz
             {...{
               agreeTnCError: !this.state.isCheckBoxChecked
                 ? 'This is required'
@@ -142,6 +218,45 @@ class Homepage extends PureComponent {
             }}
             error={!this.state.isCheckBoxChecked}
             groupLabel="Test Checkbox Group"
+          />
+          <FormInput
+            validationRule="category"
+            identifier="testLoginForm"
+            labelText="Select a category"
+            formControlProps={{
+              required: true,
+              fullWidth: true,
+            }}
+            inputProps={{
+              value: getFormWrapperDataValue(
+                this.props.formWrapperData,
+                'projectCategory',
+                'value'
+              ),
+              id: 'projectCategory',
+              name: 'projectCategory',
+              'aria-label': 'Select a category',
+              type: 'select',
+            }}
+            {...{
+              projectCategoryError: this.validationObject.projectCategoryError,
+            }}
+            error={checkIsError(this.props.formWrapperData, 'projectCategory')}
+            selectProps={{
+              optionList: [
+                { text: 'Action', value: 'action' },
+                {
+                  text: 'Another action',
+                  value: 'another action',
+                  disabled: true,
+                },
+                { text: 'Something else here', value: 'something else' },
+                { divider: true },
+                { text: 'Separated link', value: 'link' },
+                { divider: true },
+                { text: 'One more separated link', value: 'more links' },
+              ],
+            }}
           />
           <Button type="submit" fullWidth size="lg">
             Login
@@ -159,4 +274,4 @@ export const mapStateToProps = createStructuredSelector({
   formWrapperData: formWrapperSelector('testLoginForm'),
 });
 
-export default connect(mapStateToProps)(Homepage);
+export default connect(mapStateToProps)(withStyles(homepageStyle)(Homepage));
