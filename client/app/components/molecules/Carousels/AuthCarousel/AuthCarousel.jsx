@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { object } from 'prop-types';
 import classnames from 'classnames';
@@ -30,7 +30,7 @@ const AuthCarousel = ({ ...props }) => {
   };
 
   return (
-    <Fragment>
+    <>
       <GridItem xs={12} md={5} className={classnames(classes.carouselWrapper)}>
         <Carousel {...settings}>
           <div>
@@ -67,7 +67,7 @@ const AuthCarousel = ({ ...props }) => {
           </div>
         </Carousel>
       </GridItem>
-    </Fragment>
+    </>
   );
 };
 

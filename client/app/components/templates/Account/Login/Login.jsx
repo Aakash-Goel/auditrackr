@@ -1,4 +1,4 @@
-import React, { Fragment, PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { object, bool } from 'prop-types';
 import { createStructuredSelector } from 'reselect';
@@ -65,7 +65,7 @@ export class AccountLogin extends PureComponent {
 
   render() {
     return (
-      <Fragment>
+      <>
         <TwoColumnLayout
           pageTitle="Login | AuditTrackR"
           pageDesc="My website description goes here"
@@ -73,7 +73,7 @@ export class AccountLogin extends PureComponent {
           childrenRightColumn={rightColumn(this.props)}
           childrenLeftColumn={leftColumn()}
         />
-      </Fragment>
+      </>
     );
   }
 }

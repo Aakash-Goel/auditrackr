@@ -1,4 +1,4 @@
-import React, { Fragment, PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 import { object } from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -97,11 +97,11 @@ class Homepage extends PureComponent {
 
   render() {
     const { classes } = this.props;
-    console.log('1212-===classes ', classes);
-    console.log('1212-===this.props ', this.props);
+    // console.log('1212-===classes ', classes);
+    // console.log('1212-===this.props ', this.props);
 
     return (
-      <Fragment>
+      <>
         <Head
           title="My website"
           description="My website description goes here"
@@ -262,7 +262,7 @@ class Homepage extends PureComponent {
             Login
           </Button>
         </FormWrapper>
-      </Fragment>
+      </>
     );
   }
 }

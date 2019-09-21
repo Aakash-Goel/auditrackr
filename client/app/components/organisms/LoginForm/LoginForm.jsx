@@ -1,4 +1,4 @@
-import React, { PureComponent, Fragment } from 'react';
+import React, { PureComponent } from 'react';
 import classnames from 'classnames';
 import { object, func } from 'prop-types';
 
@@ -51,7 +51,7 @@ class LoginForm extends PureComponent {
     const { userEmail, userPassword } = this.state;
 
     return (
-      <Fragment>
+      <>
         <div className={classnames(classes.formWrapper)}>
           <form noValidate autoComplete="off" onSubmit={this.submitHandler}>
             <div className={classnames(classes.inputWrapper)}>
@@ -130,7 +130,7 @@ class LoginForm extends PureComponent {
             </Link>
           </p>
         </div>
-      </Fragment>
+      </>
     );
   }
 }

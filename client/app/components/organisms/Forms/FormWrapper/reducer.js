@@ -41,7 +41,7 @@ function formWrapperReducer(state = initialState, { type, data }) {
     }
 
     case UPDATE_FORM_IDENTIFIER_FIELD: {
-      const newData = Object.assign({}, data);
+      const newData = _merge({}, data);
       const { identifier } = newData;
       delete newData.identifier;
       const formState = state[identifier];

@@ -18,6 +18,7 @@ export default {
     },
     body: {
       ...defaultFont,
+      margin: 0,
       height: '100%',
       background: '#e6ecf0',
       color: '#14171a',

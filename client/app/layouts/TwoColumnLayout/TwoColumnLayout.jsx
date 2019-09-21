@@ -1,4 +1,4 @@
-import React, { Fragment, PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { object, node, string } from 'prop-types';
 import classnames from 'classnames';
@@ -39,7 +39,7 @@ class TwoColumnLayout extends PureComponent {
     } = this.props;
 
     return (
-      <Fragment>
+      <>
         <Head title={`${pageTitle} | AuditTrackR`} description={pageDesc} />
         <div
           id={pageId || pageTitle}
@@ -63,7 +63,7 @@ class TwoColumnLayout extends PureComponent {
             </GridItem>
           </GridContainer>
         </div>
-      </Fragment>
+      </>
     );
   }
 }

@@ -316,16 +316,21 @@ const buttonStyles = theme => ({
       color: '#999999',
       backgroundColor: 'transparent',
       boxShadow: 'none',
-      textDecoration: 'underline',
     },
     '&$primary': {
-      '&,&:focus,&:hover,&:visited': {
+      '&,&:focus,&:visited': {
         color: primaryColor,
+      },
+      '&:hover': {
+        color: secondaryColor,
       },
     },
     '&$secondary': {
-      '&,&:focus,&:hover,&:visited': {
+      '&,&:focus,&:visited': {
         color: secondaryColor,
+      },
+      '&:hover,&:visited': {
+        color: whiteColor,
       },
     },
     '&$info': {

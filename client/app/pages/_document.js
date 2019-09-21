@@ -12,7 +12,7 @@
 /**
  * Module dependencies.
  */
-import React, { Fragment } from 'react';
+import React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
 import { object } from 'prop-types';
 import flush from 'styled-jsx/server';
@@ -24,7 +24,7 @@ import preloadAssets from '../lib/preloadAssets';
 import globalStyles from '../styles/globalStyles';
 import { WEB_FONTS_PATH } from '../constants';
 
-export default class MyDocument extends Document {
+class MyDocument extends Document {
   static getInitialProps({ renderPage }) {
     // Resolution order
     //
@@ -53,34 +53,35 @@ export default class MyDocument extends Document {
     const page = renderPage(Component => {
       const WrappedComponent = props => {
         ({ pageContext } = props);
-        return <Component {...props} />;
+        const App = withStyles(globalStyles)(Component);
+        return pageContext.serverStyleSheets.collect(<App {...props} />);
       };
 
       WrappedComponent.propTypes = {
         pageContext: object.isRequired,
       };
 
-      return withStyles(globalStyles)(WrappedComponent);
+      return WrappedComponent;
     });
 
     let css;
     // It might be undefined, e.g. after an error.
     if (pageContext) {
-      css = pageContext.sheetsRegistry.toString();
+      css = pageContext.serverStyleSheets.toString();
     }
 
     return {
       ...page,
       pageContext,
       styles: (
-        <Fragment>
+        <>
           <style
             id="jss-server-side"
             // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{ __html: css }}
           />
           {flush() || null}
-        </Fragment>
+        </>
       ),
     };
   }
@@ -110,3 +111,5 @@ export default class MyDocument extends Document {
     );
   }
 }
+
+export default MyDocument;

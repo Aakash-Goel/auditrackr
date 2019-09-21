@@ -1,4 +1,5 @@
 import isEmpty from 'lodash/fp/isEmpty';
+import _merge from 'lodash/merge';
 
 import { validateChange } from './validation/validationUtil';
 
@@ -12,7 +13,7 @@ export const getErrorStateForPassword = (
   detailedValidationResult,
   validators
 ) => {
-  const newValidators = Object.assign({}, validators);
+  const newValidators = _merge({}, validators);
   // Setting default state of every property to true
   Object.keys(newValidators).forEach(v => (newValidators[v] = true)); // eslint-disable-line no-return-assign
   if (detailedValidationResult.detailedValidationResult) {

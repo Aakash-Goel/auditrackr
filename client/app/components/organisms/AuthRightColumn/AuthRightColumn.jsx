@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { object, string, node } from 'prop-types';
 import classnames from 'classnames';
@@ -30,7 +30,7 @@ const AuthRightColumn = ({ ...props }) => {
   const { classes, title, children } = props;
 
   return (
-    <Fragment>
+    <>
       <GridContainer direction="column" alignItems="center">
         <GridItem xs={8}>
           <Title level={1} className={classnames(classes.heading)}>
@@ -42,7 +42,7 @@ const AuthRightColumn = ({ ...props }) => {
           <p>Copyright &copy; 2019-2020 AuditTrackR. All rights reserved </p>
         </GridItem>
       </GridContainer>
-    </Fragment>
+    </>
   );
 };
 

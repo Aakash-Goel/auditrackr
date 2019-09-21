@@ -8,6 +8,8 @@ import {
   func,
   bool,
 } from 'prop-types';
+import _merge from 'lodash/merge';
+
 import { validateAll } from '../../../utils/validation/validationUtil';
 import {
   setFocus,
@@ -76,7 +78,7 @@ class Form extends React.PureComponent {
 
     if (formWrapperDataLength && formWrapperDataLength.length) {
       formWrapperDataLength.forEach(item => {
-        const checkobj = Object.assign({}, formWrapperData[item]);
+        const checkobj = _merge({}, formWrapperData[item]);
         if (checkobj.required || (checkobj.value && checkobj.value.length))
           errorValidationObj[item] = {
             rule: checkobj.rule,

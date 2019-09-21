@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { object } from 'prop-types';
 import classnames from 'classnames';
@@ -23,7 +23,7 @@ const AuthFooter = ({ ...props }) => {
   const { classes } = props;
 
   return (
-    <Fragment>
+    <>
       <GridItem xs={12} className={classnames(classes.footerWrapper)}>
         <ul className={classnames(classes.footerList)}>
           <li className={classnames(classes.footerItem)}>
@@ -107,7 +107,7 @@ const AuthFooter = ({ ...props }) => {
           </li>
         </ul>
       </GridItem>
-    </Fragment>
+    </>
   );
 };
 

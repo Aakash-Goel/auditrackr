@@ -1,8 +1,9 @@
-import { SheetsRegistry } from 'jss';
+// import { SheetsRegistry } from 'jss';
 import {
-  createMuiTheme,
+  ServerStyleSheets,
   createGenerateClassName,
-} from '@material-ui/core/styles';
+} from '@material-ui/styles';
+import { createMuiTheme } from '@material-ui/core/styles';
 
 import muiTheme from '../styles/theme/muiTheme';
 
@@ -14,9 +15,11 @@ function createPageContext() {
   return {
     theme,
     // This is needed in order to deduplicate the injection of CSS in the page.
-    sheetsManager: new Map(),
+    // sheetsManager: new Map(),
     // This is needed in order to inject the critical CSS.
-    sheetsRegistry: new SheetsRegistry(),
+    // sheetsRegistry: new SheetsRegistry(),
+
+    serverStyleSheets: new ServerStyleSheets(),
     // The standard class name generator.
     generateClassName: createGenerateClassName(),
   };

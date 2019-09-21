@@ -14,15 +14,15 @@
 import 'cross-fetch/polyfill';
 import React from 'react';
 import { Provider } from 'react-redux';
-import App, { Container } from 'next/app';
+import App from 'next/app';
 import withRedux from 'next-redux-wrapper';
 import withReduxSaga from 'next-redux-saga';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
 import pathOr from 'lodash/fp/pathOr';
 
-import JssProvider from 'react-jss/lib/JssProvider';
-import { MuiThemeProvider, withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
+import { StylesProvider, ThemeProvider } from '@material-ui/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 import getPageContext from '../lib/getPageContext';
@@ -108,34 +108,32 @@ class MyApp extends App {
     const { Component, pageProps /* store */ } = this.props;
 
     return (
-      <Container>
-        <ApolloProvider client={this.client}>
-          {/* Wrap every page in JSS and Theme providers */}
-          <JssProvider
-            registry={this.pageContext.sheetsRegistry}
-            generateClassName={this.pageContext.generateClassName}
-          >
-            {/* MuiThemeProvider makes the theme available down the React
+      <ApolloProvider client={this.client}>
+        {/* Wrap every page in JSS and Theme providers */}
+        <StylesProvider
+          injectFirst
+          generateClassName={this.pageContext.generateClassName}
+        >
+          {/* MuiThemeProvider makes the theme available down the React
               tree thanks to React context. */}
-            <MuiThemeProvider
-              theme={this.pageContext.theme}
-              sheetsManager={this.pageContext.sheetsManager}
-            >
-              <Provider store={this.store}>
-                {/* CssBaseline kick start an elegant, consistent, and simple baseline to build upon. */}
-                <CssBaseline />
-                {/* Pass pageContext to the _document though the renderPage enhancer
+          <ThemeProvider
+            theme={this.pageContext.theme}
+            // sheetsManager={this.pageContext.sheetsManager}
+          >
+            <Provider store={this.store}>
+              {/* CssBaseline kick start an elegant, consistent, and simple baseline to build upon. */}
+              <CssBaseline />
+              {/* Pass pageContext to the _document though the renderPage enhancer
                     to render collected styles on server-side. */}
-                <Component pageContext={this.pageContext} {...pageProps} />
-              </Provider>
-            </MuiThemeProvider>
-          </JssProvider>
-        </ApolloProvider>
-      </Container>
+              <Component pageContext={this.pageContext} {...pageProps} />
+            </Provider>
+          </ThemeProvider>
+        </StylesProvider>
+      </ApolloProvider>
     );
   }
 }
 
 export default withRedux(createStore)(
-  withReduxSaga({ async: true })(withStyles(globalStyles)(MyApp))
+  withReduxSaga(withStyles(globalStyles)(MyApp))
 );
