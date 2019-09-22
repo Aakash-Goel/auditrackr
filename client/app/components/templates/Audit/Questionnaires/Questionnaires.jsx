@@ -1,4 +1,4 @@
-import React, { Fragment, PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { object } from 'prop-types';
 import classnames from 'classnames';
@@ -23,7 +23,7 @@ class AuditQuestionnaires extends PureComponent {
     const { classes } = this.props;
 
     return (
-      <Fragment>
+      <>
         <PrimaryLayout
           pageTitle="Audit Questionnaires"
           pageDesc="This is AuditTrackR audit questionnaires page"
@@ -52,7 +52,7 @@ class AuditQuestionnaires extends PureComponent {
             </GridContainer>
           </ContentContainer>
         </PrimaryLayout>
-      </Fragment>
+      </>
     );
   }
 }

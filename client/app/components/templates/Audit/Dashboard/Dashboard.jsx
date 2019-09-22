@@ -1,4 +1,4 @@
-import React, { Fragment, PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 
 import PrimaryLayout from '../../../../layouts/PrimaryLayout';
@@ -9,7 +9,7 @@ import AuthValidator from '../../../organisms/AuthValidator';
 class AuditDashboard extends PureComponent {
   render() {
     return (
-      <Fragment>
+      <>
         <AuthValidator>
           <PrimaryLayout
             pageTitle="Dashboard"
@@ -21,7 +21,7 @@ class AuditDashboard extends PureComponent {
             </ContentContainer>
           </PrimaryLayout>
         </AuthValidator>
-      </Fragment>
+      </>
     );
   }
 }

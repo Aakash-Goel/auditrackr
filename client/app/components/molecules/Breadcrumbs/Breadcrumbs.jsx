@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import classnames from 'classnames';
 import { object, string } from 'prop-types';
 
@@ -28,7 +28,7 @@ const Breadcrumbs = ({
   titleBreadcrumb,
 }) => {
   return (
-    <Fragment>
+    <>
       <div className={classnames(classes.breadcrumbsContainer, containerClass)}>
         <Title
           level={1}
@@ -37,7 +37,7 @@ const Breadcrumbs = ({
           {titleBreadcrumb}
         </Title>
       </div>
-    </Fragment>
+    </>
   );
 };
 

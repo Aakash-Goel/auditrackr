@@ -1,4 +1,4 @@
-import React, { Fragment, PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { object, node, string } from 'prop-types';
 import classnames from 'classnames';
@@ -59,7 +59,7 @@ class PrimaryLayout extends PureComponent {
     const { openMenu } = this.state;
 
     return (
-      <Fragment>
+      <>
         <Head title={`${pageTitle} | AuditTrackR`} description={pageDesc} />
         <div
           id={pageId || pageTitle}
@@ -76,7 +76,7 @@ class PrimaryLayout extends PureComponent {
             <div className={classes.sectionWrapper}>{children}</div>
           </main>
         </div>
-      </Fragment>
+      </>
     );
   }
 }

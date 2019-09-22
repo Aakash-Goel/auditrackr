@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { object, node, string, bool } from 'prop-types';
 import classnames from 'classnames';
 
@@ -36,7 +36,7 @@ const ContentContainer = props => {
   } = props;
 
   return (
-    <Fragment>
+    <>
       {shouldRenderBeforeWrapper && (
         <div className={classes.contentWrapperBefore} />
       )}
@@ -50,10 +50,10 @@ const ContentContainer = props => {
               {children}
             </Paper>
           )}
-          {!shouldRenderInsidePaper && <Fragment>{children}</Fragment>}
+          {!shouldRenderInsidePaper && <>{children}</>}
         </div>
       </div>
-    </Fragment>
+    </>
   );
 };
 

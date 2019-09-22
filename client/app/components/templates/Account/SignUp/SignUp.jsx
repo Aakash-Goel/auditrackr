@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { object } from 'prop-types';
 
@@ -36,7 +36,7 @@ const leftColumn = () => {
 
 const AccountSignUp = () => {
   return (
-    <Fragment>
+    <>
       <TwoColumnLayout
         pageTitle="Sign up | AuditTrackR"
         pageDesc="My website description goes here"
@@ -44,7 +44,7 @@ const AccountSignUp = () => {
         childrenRightColumn={rightColumn()}
         childrenLeftColumn={leftColumn()}
       />
-    </Fragment>
+    </>
   );
 };
 

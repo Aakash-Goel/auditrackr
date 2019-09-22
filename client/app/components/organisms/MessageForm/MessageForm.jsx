@@ -138,13 +138,13 @@ class MessageForm extends Component {
     }
 
     return (
-      <React.Fragment>
+      <>
         {data.messages.map(msz => (
           <GridItem key={msz._id} xs={6} sm={4} lg={3} xl={2}>
             <div>{msz.title}</div>
           </GridItem>
         ))}
-      </React.Fragment>
+      </>
     );
   };
 

@@ -13,7 +13,7 @@
  *
  */
 
-import React, { Fragment, PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 import { node, bool } from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -47,7 +47,7 @@ class AuthValidator extends PureComponent {
   }
 
   render() {
-    return <Fragment>{this.props.children}</Fragment>;
+    return <>{this.props.children}</>;
   }
 }
 

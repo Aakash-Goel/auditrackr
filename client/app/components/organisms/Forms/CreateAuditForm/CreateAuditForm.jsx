@@ -1,4 +1,4 @@
-import React, { PureComponent, Fragment } from 'react';
+import React, { PureComponent } from 'react';
 import classnames from 'classnames';
 import { object, func } from 'prop-types';
 import isEmpty from 'lodash/fp/isEmpty';
@@ -65,7 +65,7 @@ class CreateAuditForm extends PureComponent {
     const { classes } = this.props;
 
     return (
-      <Fragment>
+      <>
         <div>
           <FormWrapper
             id="createAuditForm"
@@ -170,7 +170,7 @@ class CreateAuditForm extends PureComponent {
             </div>
           </FormWrapper>
         </div>
-      </Fragment>
+      </>
     );
   }
 }
