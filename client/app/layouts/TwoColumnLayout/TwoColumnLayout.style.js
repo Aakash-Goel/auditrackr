@@ -30,7 +30,7 @@ const twoColumnLayoutStyles = theme => ({
     background: '#fff',
 
     '& h1': {
-      color: theme.palette.common.white,
+      color: theme.palette.common.black,
     },
   },
 });

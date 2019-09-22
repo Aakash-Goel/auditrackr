@@ -1,9 +1,10 @@
-// import { primaryColor } from '../../../styles/theme/muiKit';
+import { blackColor } from '../../../styles/theme/muiKit';
 
-const switchStyles = {
+const switchStyles = theme => ({
   disabled: {
-    color: `rgba(0, 0, 0, 0.45)`,
+    ...theme.palette.custom.disabled,
+    color: blackColor,
   },
-};
+});
 
 export default switchStyles;

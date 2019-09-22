@@ -53,8 +53,7 @@ const card = {
 
 const primaryFontFamily = '"Roboto", "Helvetica", "Arial", sans-serif';
 
-const secondaryFontFamily =
-  '"BebasNeue", "Helvetica Neue", "Arial", sans-serif';
+const secondaryFontFamily = '"Montserrat", "Helvetica", "Arial", sans-serif';
 
 const defaultFont = {
   fontFamily: primaryFontFamily,

@@ -61,6 +61,10 @@ const muiTheme = {
       success: successColor,
       warning: warningColor,
       grey: greyColor,
+      disabled: {
+        opacity: '0.45',
+        color: greyColor,
+      },
     },
   },
   typography: {
