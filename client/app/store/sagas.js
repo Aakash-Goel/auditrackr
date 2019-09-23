@@ -17,6 +17,7 @@ import isFunction from 'lodash/fp/isFunction';
  */
 import createAuditSagas from '../components/templates/Audit/Create/sagas';
 import accountLogInSagas from '../components/templates/Account/Login/sagas';
+import accountSignUpSagas from '../components/templates/Account/SignUp/sagas';
 import labelsSagas from '../lib/labels/sagas';
 
 /**
@@ -45,6 +46,7 @@ export default function* rootSaga() {
     const allSagas = [
       ...runSagas(createAuditSagas),
       ...runSagas(accountLogInSagas),
+      ...runSagas(accountSignUpSagas),
       ...runSagas(labelsSagas),
     ];
     yield all(allSagas);

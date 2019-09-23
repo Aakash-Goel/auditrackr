@@ -21,9 +21,7 @@ const signUpFormStyles = () => ({
     paddingLeft: 0,
     paddingRight: 0,
   },
-  consentWrapper: {
-    paddingTop: '24px',
-  },
+  consentWrapper: {},
   consentContainer: {
     margin: 0,
     padding: 0,

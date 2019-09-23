@@ -45,10 +45,10 @@ export const email = {
   email: {
     presence: {
       allowEmpty: false,
-      message: setMessage('This field is required..'),
+      message: setMessage('Please enter an email.'),
     },
     email: {
-      message: setMessage('Please enter a valid email id.'),
+      message: setMessage('Please enter a valid email.'),
     },
   },
 };
@@ -58,7 +58,7 @@ export const password = {
   password: {
     presence: {
       allowEmpty: false,
-      message: setMessage('This field is required.'),
+      message: setMessage('Please enter a password.'),
     },
     // format: {
     //   pattern: /(?!)/,

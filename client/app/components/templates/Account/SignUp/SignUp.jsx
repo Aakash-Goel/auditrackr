@@ -1,53 +1,40 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { object } from 'prop-types';
+import { createStructuredSelector } from 'reselect';
 
-import TwoColumnLayout from '../../../../layouts/TwoColumnLayout';
-import GridContainer from '../../../atoms/Grid/GridContainer';
-import AuthCarousel from '../../../molecules/Carousels/AuthCarousel';
-import AuthFooter from '../../../molecules/Footers/AuthFooter';
-import AuthRightColumn from '../../../organisms/AuthRightColumn';
-import SignUpForm from '../../../organisms/SignUpForm';
+import SignUpPage from '../../../organisms/views/SignUpPage';
+import { submitAccountSignUp } from './actions';
+import {
+  makeSelectData,
+  makeSelectIsLoading,
+  makeSelectError,
+} from './selectors';
+import { formWrapperSelector } from '../../../organisms/Forms/FormWrapper/selectors';
 
-/**
- * Type checking - Define prop types
- * @private
- */
-const propTypes = {
-  classes: object.isRequired,
-};
+export class AccountSignUp extends PureComponent {
+  render() {
+    return (
+      <>
+        <SignUpPage {...this.props} />
+      </>
+    );
+  }
+}
 
-const rightColumn = () => {
-  return (
-    <AuthRightColumn title="Sign up for an account">
-      <SignUpForm />
-    </AuthRightColumn>
-  );
-};
+export const mapStateToProps = createStructuredSelector({
+  data: makeSelectData(),
+  isLoading: makeSelectIsLoading(),
+  error: makeSelectError(),
+  formWrapperData: formWrapperSelector('signUpForm'),
+});
 
-const leftColumn = () => {
-  return (
-    <GridContainer direction="column" alignItems="center">
-      <AuthCarousel />
-      <AuthFooter />
-    </GridContainer>
-  );
-};
+export const mapDispatchToProps = dispatch => ({
+  onSubmitSignUpForm(args) {
+    dispatch(submitAccountSignUp(args));
+  },
+});
 
-const AccountSignUp = () => {
-  return (
-    <>
-      <TwoColumnLayout
-        pageTitle="Sign up | AuditTrackR"
-        pageDesc="My website description goes here"
-        pageId="signUpPage"
-        childrenRightColumn={rightColumn()}
-        childrenLeftColumn={leftColumn()}
-      />
-    </>
-  );
-};
-
-AccountSignUp.propTypes = propTypes;
-
-export default connect()(AccountSignUp);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AccountSignUp);

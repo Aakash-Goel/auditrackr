@@ -65,7 +65,7 @@ class CustomCheckbox extends React.PureComponent {
     const fieldError = `${checkboxName}Error`;
 
     return (
-      <FormControl error={error}>
+      <FormControl component="span" error={error}>
         {groupLabel && (
           <FormLabel component="legend" htmlFor={checkboxId}>
             {groupLabel}

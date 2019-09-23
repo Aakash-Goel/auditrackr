@@ -20,6 +20,9 @@ import createAuditReducer from '../components/templates/Audit/Create/reducer';
 import { ACCOUNT_PROFILE_STATE_KEY as accountProfileStateKey } from '../components/templates/Account/Login/constants';
 import accountLogInReducer from '../components/templates/Account/Login/reducer';
 
+import { ACCOUNT_SIGNUP_STATE_KEY as accountSignUpStateKey } from '../components/templates/Account/SignUp/constants';
+import accountSignUpReducer from '../components/templates/Account/SignUp/reducer';
+
 import { FORM_WRAPPER_STATE_KEY as formWrapperStateKey } from '../components/organisms/Forms/FormWrapper/constants';
 import formWrapperReducer from '../components/organisms/Forms/FormWrapper/reducer';
 
@@ -36,6 +39,7 @@ const rootReducer = injectedReducers => {
   return combineReducers({
     [createAuditStateKey]: createAuditReducer,
     [accountProfileStateKey]: accountLogInReducer,
+    [accountSignUpStateKey]: accountSignUpReducer,
     [formWrapperStateKey]: formWrapperReducer,
     [labelsStateKey]: labelsReducer,
     ...injectedReducers,
