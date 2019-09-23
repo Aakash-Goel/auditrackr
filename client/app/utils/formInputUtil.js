@@ -91,3 +91,14 @@ export const checkIsError = (formDataObj, formInputKey) => {
 
   return true;
 };
+
+export const validationObject = formDataObj => {
+  const objValidation = {};
+  Object.keys(formDataObj).forEach(item => {
+    const fieldError = `${item}Error`;
+    objValidation[item] = formDataObj[item].value;
+    objValidation[fieldError] = formDataObj[item][fieldError] || '';
+  });
+
+  return objValidation;
+};

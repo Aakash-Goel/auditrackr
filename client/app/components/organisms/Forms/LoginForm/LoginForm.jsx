@@ -11,7 +11,10 @@ import Button from '../../../atoms/Button';
 import Link from '../../../atoms/Link';
 import FormWrapper from '../FormWrapper';
 import FormInput from '../FormInput';
-import { checkIsError } from '../../../../utils/formInputUtil';
+import {
+  checkIsError,
+  validationObject,
+} from '../../../../utils/formInputUtil';
 
 import loginFormStyles from './LoginForm.style';
 
@@ -35,12 +38,7 @@ class LoginForm extends PureComponent {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.formWrapperData) {
-      Object.keys(nextProps.formWrapperData).forEach(item => {
-        const fieldError = `${item}Error`;
-        this.validationObject[item] = nextProps.formWrapperData[item].value;
-        this.validationObject[fieldError] =
-          nextProps.formWrapperData[item][fieldError] || '';
-      });
+      this.validationObject = validationObject(nextProps.formWrapperData);
     }
   }
 

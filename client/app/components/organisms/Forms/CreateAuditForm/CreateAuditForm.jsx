@@ -8,7 +8,10 @@ import { withStyles } from '@material-ui/core/styles';
 import Button from '../../../atoms/Button';
 import FormWrapper from '../FormWrapper';
 import FormInput from '../FormInput';
-import { checkIsError } from '../../../../utils/formInputUtil';
+import {
+  checkIsError,
+  validationObject,
+} from '../../../../utils/formInputUtil';
 
 import createAuditFormStyles from './CreateAuditForm.style';
 
@@ -32,12 +35,7 @@ class CreateAuditForm extends PureComponent {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.formWrapperData) {
-      Object.keys(nextProps.formWrapperData).forEach(item => {
-        const fieldError = `${item}Error`;
-        this.validationObject[item] = nextProps.formWrapperData[item].value;
-        this.validationObject[fieldError] =
-          nextProps.formWrapperData[item][fieldError] || '';
-      });
+      this.validationObject = validationObject(nextProps.formWrapperData);
     }
   }
 
