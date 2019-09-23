@@ -41,55 +41,55 @@ export const required = {
 };
 
 // @TODO: to modify or removed
-export const passwordRequired = {
-  passwordRequired: {
-    presence: {
-      message: 'Password is required',
-    },
-  },
-};
-
-// @TODO: to modify or removed
 export const email = {
   email: {
-    email: true,
+    presence: {
+      allowEmpty: false,
+      message: setMessage('This field is required..'),
+    },
+    email: {
+      message: setMessage('Please enter a valid email id.'),
+    },
   },
 };
 
 // @TODO: to modify or removed
-export const passwordValidation = {
-  passwordValidation: {
+export const password = {
+  password: {
     presence: {
-      message: 'Password is required',
+      allowEmpty: false,
+      message: setMessage('This field is required.'),
     },
-    format: {
-      pattern: /(?!)/,
-      message: value => {
-        let failedFormat = '';
-        const patterns = {
-          passwordAtLeast1Digit: /^.*\d{1,}.*$/,
-          passwordAtLeast1LowerCase: /^.*[a-z]{1,}.*$/,
-          passwordAtLeast1CapCase: /^.*[A-Z]{1,}.*$/,
-        };
+    // format: {
+    //   pattern: /(?!)/,
+    //   message: value => {
+    //     let failedFormat = '';
+    //     const patterns = {
+    //       passwordAtLeast1Digit: /^.*\d{1,}.*$/,
+    //       passwordAtLeast1LowerCase: /^.*[a-z]{1,}.*$/,
+    //       passwordAtLeast1CapCase: /^.*[A-Z]{1,}.*$/,
+    //     };
 
-        Object.keys(patterns).forEach(pattern => {
-          if (!patterns[pattern].test(value)) {
-            failedFormat = `${failedFormat + pattern} `;
-          }
-        });
-        if (/\s/g.test(value)) {
-          /* istanbul ignore next */
-          failedFormat = `${failedFormat} passwordSpacesNotAllowed `;
-        }
-        /* istanbul ignore next */
-        return failedFormat.trim();
-      },
-    },
+    //     Object.keys(patterns).forEach(pattern => {
+    //       if (!patterns[pattern].test(value)) {
+    //         failedFormat = `${failedFormat + pattern} `;
+    //       }
+    //     });
+    //     if (/\s/g.test(value)) {
+    //       /* istanbul ignore next */
+    //       failedFormat = `${failedFormat} passwordSpacesNotAllowed `;
+    //     }
+    //     /* istanbul ignore next */
+    //     return failedFormat.trim();
+    //   },
+    // },
     length: {
       minimum: 8,
       maximum: 20,
-      tooShort: 'Password is too short',
-      tooLong: 'Password is too long',
+      tooShort: setMessage('Password should contain minimum 8 characters.'),
+      tooLong: setMessage(
+        'Password should not contain more than 20 characters.'
+      ),
     },
     equality: {
       attribute: 'name',
@@ -129,15 +129,6 @@ export const confirmPassword = {
       maximum: 20,
       tooShort: 'Password is too short',
       tooLong: 'Password is too long',
-    },
-  },
-};
-
-// @TODO: to modify or removed
-export const emailMessage = {
-  emailMessage: {
-    presence: {
-      message: 'Please enter an email',
     },
   },
 };

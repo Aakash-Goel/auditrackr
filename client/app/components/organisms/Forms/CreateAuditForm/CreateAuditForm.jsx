@@ -92,7 +92,6 @@ class CreateAuditForm extends PureComponent {
                 {...{
                   auditNameError: this.validationObject.auditNameError,
                 }}
-                showFieldLevelErrorMsz
                 error={checkIsError(this.props.formWrapperData, 'auditName')}
               />
             </div>
@@ -113,7 +112,6 @@ class CreateAuditForm extends PureComponent {
                 {...{
                   projectNameError: this.validationObject.projectNameError,
                 }}
-                showFieldLevelErrorMsz
                 error={checkIsError(this.props.formWrapperData, 'projectName')}
               />
             </div>
@@ -134,7 +132,6 @@ class CreateAuditForm extends PureComponent {
                 {...{
                   projectIdError: this.validationObject.projectIdError,
                 }}
-                showFieldLevelErrorMsz
                 error={checkIsError(this.props.formWrapperData, 'projectId')}
               />
             </div>
@@ -156,7 +153,6 @@ class CreateAuditForm extends PureComponent {
                   projectCategoryError: this.validationObject
                     .projectCategoryError,
                 }}
-                showFieldLevelErrorMsz
                 error={checkIsError(
                   this.props.formWrapperData,
                   'projectCategory'

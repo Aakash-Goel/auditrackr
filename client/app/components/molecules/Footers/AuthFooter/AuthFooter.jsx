@@ -6,8 +6,7 @@ import classnames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 
 import GridItem from '../../../atoms/Grid/GridItem';
-import Button from '../../../atoms/Button';
-import { Link } from '../../../../../routes';
+import Link from '../../../atoms/Link';
 
 import authFooterStyles from './AuthFooter.style';
 
@@ -27,82 +26,34 @@ const AuthFooter = ({ ...props }) => {
       <GridItem xs={12} className={classnames(classes.footerWrapper)}>
         <ul className={classnames(classes.footerList)}>
           <li className={classnames(classes.footerItem)}>
-            <Link to="/about">
-              <Button
-                href="/about"
-                link
-                size="lg"
-                textTransform="nn"
-                color="secondary"
-              >
-                About us
-              </Button>
+            <Link href="/about" color="secondary">
+              About us
             </Link>
           </li>
 
           <li className={classnames(classes.footerItem)}>
-            <Link to="/help">
-              <Button
-                href="/help"
-                link
-                size="lg"
-                textTransform="nn"
-                color="secondary"
-              >
-                Help center
-              </Button>
+            <Link href="/help" color="secondary">
+              Help center
             </Link>
           </li>
           <li className={classnames(classes.footerItem)}>
-            <Link to="/contact">
-              <Button
-                href="/contact"
-                link
-                size="lg"
-                textTransform="nn"
-                color="secondary"
-              >
-                Contact us
-              </Button>
+            <Link href="/contact" color="secondary">
+              Contact us
             </Link>
           </li>
           <li className={classnames(classes.footerItem)}>
-            <Link to="/tos">
-              <Button
-                href="/tos"
-                link
-                size="lg"
-                textTransform="nn"
-                color="secondary"
-              >
-                Terms
-              </Button>
+            <Link href="/tos" color="secondary">
+              Terms
             </Link>
           </li>
           <li className={classnames(classes.footerItem)}>
-            <Link to="/privacy">
-              <Button
-                href="/privacy"
-                link
-                size="lg"
-                textTransform="nn"
-                color="secondary"
-              >
-                Privacy policy
-              </Button>
+            <Link href="/privacy" color="secondary">
+              Privacy policy
             </Link>
           </li>
           <li className={classnames(classes.footerItem)}>
-            <Link to="/cookies">
-              <Button
-                href="/cookies"
-                link
-                size="lg"
-                textTransform="nn"
-                color="secondary"
-              >
-                Cookies
-              </Button>
+            <Link href="/cookies" color="secondary">
+              Cookies
             </Link>
           </li>
         </ul>
