@@ -1,19 +1,35 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 
 import ServiceUtil from '../../../../utils/serviceUtil';
-import { requestCreateAudit } from './queries';
+import { requestCreateAudit, requestCreateQuestionnaireSet } from './queries';
 import {
   submitCreateAuditFormSuccess,
   submitCreateAuditFormError,
+  createQuestionnaireSet,
+  createQuestionnaireSetSuccess,
+  createQuestionnaireSetError,
 } from './actions';
-import { SUBMIT_CREATE_AUDIT } from './constants';
+import { SUBMIT_CREATE_AUDIT, CREATE_QUESTIONNAIRE_SET } from './constants';
 
 function* handleApiSuccess(data) {
+  yield put(
+    createQuestionnaireSet({
+      projectId: data.createProject._id, // eslint-disable-line no-underscore-dangle
+    })
+  );
   return yield put(submitCreateAuditFormSuccess(data));
 }
 
 export function* handleCatchErrors(err) {
   return yield put(submitCreateAuditFormError(err.body));
+}
+
+function* handleQSApiSuccess(data) {
+  return yield put(createQuestionnaireSetSuccess(data));
+}
+
+export function* handleQSCatchErrors(err) {
+  return yield put(createQuestionnaireSetError(err.body));
 }
 
 /**
@@ -48,8 +64,36 @@ export function* submitCreateAudit({ args } = {}) {
   }
 }
 
+export function* createQS({ args } = {}) {
+  const createQSQuery = requestCreateQuestionnaireSet(args);
+
+  try {
+    const {
+      body: { statusText, error, data },
+    } = yield call(ServiceUtil.triggerRequest, {
+      url: 'http://localhost:4000/graphql',
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      data: JSON.stringify(createQSQuery),
+    });
+
+    if (statusText === 'OK') {
+      return yield* handleQSApiSuccess(data);
+    }
+    return yield put(createQuestionnaireSetError(error));
+  } catch (err) {
+    return yield handleQSCatchErrors(err);
+  }
+}
+
 export function* createAuditSaga() {
   yield takeLatest(SUBMIT_CREATE_AUDIT, submitCreateAudit);
 }
 
-export default createAuditSaga;
+export function* createQSSaga() {
+  yield takeLatest(CREATE_QUESTIONNAIRE_SET, createQS);
+}
+
+export default [createAuditSaga, createQSSaga];

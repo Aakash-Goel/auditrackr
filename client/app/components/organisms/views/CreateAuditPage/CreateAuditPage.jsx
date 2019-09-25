@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { object, func } from 'prop-types';
+import { object, func, bool } from 'prop-types';
 import classnames from 'classnames';
 
 import { withStyles } from '@material-ui/core/styles';
@@ -15,11 +15,13 @@ import createAuditPageStyles from './CreateAuditPage.style';
 const propTypes = {
   classes: object.isRequired,
   data: object,
+  isQSCreated: bool,
   clearCreateAuditData: func.isRequired,
 };
 
 const defaultProps = {
   data: null,
+  isQSCreated: false,
 };
 
 /* eslint-disable react/prefer-stateless-function */
@@ -27,14 +29,16 @@ class CreateAuditPage extends PureComponent {
   componentWillReceiveProps(nextProps) {
     // @TODO: move below logic to one singleton file
     if (this.props.data !== nextProps.data) {
-      if (nextProps.data) {
-        Router.pushRoute('audit-questionnaires');
+      if (nextProps.data && nextProps.isQSCreated) {
+        Router.pushRoute('audit-project', {
+          projectId: nextProps.data._id, // eslint-disable-line no-underscore-dangle
+        });
       }
     }
   }
 
   componentWillUnmount() {
-    this.props.clearCreateAuditData();
+    // this.props.clearCreateAuditData();
   }
 
   render() {

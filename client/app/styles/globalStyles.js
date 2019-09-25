@@ -20,7 +20,7 @@ export default {
       ...defaultFont,
       margin: 0,
       height: '100%',
-      background: '#e6ecf0',
+      background: '#fff',
       color: '#14171a',
     },
     'h1, h2, h3, h4': {

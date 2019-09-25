@@ -3,6 +3,9 @@ import {
   SUBMIT_CREATE_AUDIT_SUCCESS,
   SUBMIT_CREATE_AUDIT_ERROR,
   CLEAR_CREATE_AUDIT_DATA,
+  CREATE_QUESTIONNAIRE_SET,
+  CREATE_QUESTIONNAIRE_SET_SUCCESS,
+  CREATE_QUESTIONNAIRE_SET_ERROR,
 } from './constants';
 
 export function submitCreateAuditForm(args) {
@@ -29,5 +32,25 @@ export function submitCreateAuditFormError(error) {
 export function clearCreateAuditData() {
   return {
     type: CLEAR_CREATE_AUDIT_DATA,
+  };
+}
+
+export function createQuestionnaireSet(args) {
+  return {
+    type: CREATE_QUESTIONNAIRE_SET,
+    args,
+  };
+}
+
+export function createQuestionnaireSetSuccess() {
+  return {
+    type: CREATE_QUESTIONNAIRE_SET_SUCCESS,
+  };
+}
+
+export function createQuestionnaireSetError(error) {
+  return {
+    type: CREATE_QUESTIONNAIRE_SET_ERROR,
+    error,
   };
 }

@@ -40,6 +40,7 @@ class SignUpForm extends PureComponent {
     this.validationObject = {};
     this.handleChange = this.handleChange.bind(this);
     this.submitFormHandler = this.submitFormHandler.bind(this);
+    this.renderTnC = this.renderTnC.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {

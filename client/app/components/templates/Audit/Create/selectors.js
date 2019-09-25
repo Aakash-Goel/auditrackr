@@ -20,3 +20,21 @@ export const makeSelectError = () =>
     selectCreateAudit,
     createAuditState => createAuditState.error
   );
+
+export const makeSelectIsQSCreating = () =>
+  createSelector(
+    selectCreateAudit,
+    createAuditState => createAuditState.isQSCreating
+  );
+
+export const makeSelectIsQSCreated = () =>
+  createSelector(
+    selectCreateAudit,
+    createAuditState => createAuditState.isQSCreated
+  );
+
+export const makeSelectErrorQS = () =>
+  createSelector(
+    selectCreateAudit,
+    createAuditState => createAuditState.errorQS
+  );

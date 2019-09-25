@@ -11,26 +11,26 @@ import ContentContainer from '../../../organisms/ContentContainer';
 import GridContainer from '../../../atoms/Grid/GridContainer';
 import GridItem from '../../../atoms/Grid/GridItem';
 
-import auditQuestionnairesStyles from './Questionnaires.style';
+import auditProjectStyles from './Project.style';
 
 const propTypes = {
   classes: object.isRequired,
 };
 
 /* eslint-disable react/prefer-stateless-function */
-class AuditQuestionnaires extends PureComponent {
+class AuditProject extends PureComponent {
   render() {
     const { classes } = this.props;
 
     return (
       <>
         <PrimaryLayout
-          pageTitle="Audit Questionnaires"
-          pageDesc="This is AuditTrackR audit questionnaires page"
-          pageId="audit-questionnaires"
+          pageTitle="Audit Project"
+          pageDesc="This is AuditTrackR audit project page"
+          pageId="audit-project"
         >
           <ContentContainer
-            breadCrumbTitle="Questionnaires"
+            breadCrumbTitle="Project"
             shouldRenderInsidePaper={false}
           >
             <GridContainer
@@ -57,7 +57,7 @@ class AuditQuestionnaires extends PureComponent {
   }
 }
 
-AuditQuestionnaires.propTypes = propTypes;
+AuditProject.propTypes = propTypes;
 
 const mapStateToProps = () => ({});
 const mapDispatchToProps = () => ({});
@@ -65,4 +65,4 @@ const mapDispatchToProps = () => ({});
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withStyles(auditQuestionnairesStyles)(AuditQuestionnaires));
+)(withStyles(auditProjectStyles)(AuditProject));

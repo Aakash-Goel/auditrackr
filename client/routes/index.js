@@ -27,9 +27,9 @@ routes.add({
   page: 'audit/create',
 });
 routes.add({
-  name: 'audit-questionnaires',
-  pattern: '/account/audit/questionnaires',
-  page: 'audit/questionnaires',
+  name: 'audit-project',
+  pattern: '/account/audit/project/:projectId',
+  page: 'audit/project',
 });
 routes.add({
   name: 'audit-dashboard',

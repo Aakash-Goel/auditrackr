@@ -12,6 +12,9 @@ import {
   makeSelectIsLoading,
   makeSelectData,
   makeSelectError,
+  makeSelectIsQSCreating,
+  makeSelectIsQSCreated,
+  makeSelectErrorQS,
 } from './selectors';
 import { submitCreateAuditForm, clearCreateAuditData } from './actions';
 
@@ -46,6 +49,9 @@ export const mapStateToProps = createStructuredSelector({
   isLoading: makeSelectIsLoading(),
   data: makeSelectData(),
   error: makeSelectError(),
+  isQSCreating: makeSelectIsQSCreating(),
+  isQSCreated: makeSelectIsQSCreated(),
+  errorQS: makeSelectErrorQS(),
   formWrapperData: formWrapperSelector('createAuditForm'),
 });
 

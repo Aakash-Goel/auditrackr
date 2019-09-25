@@ -1,5 +1,3 @@
-/* eslint-disable import/prefer-default-export */
-
 export const requestCreateAudit = args => {
   const data = {
     query: `
@@ -10,11 +8,21 @@ export const requestCreateAudit = args => {
           code: ${args.projectIdVal},
           category: "${args.projectCategoryVal}"
         }) {
-            auditName
-            name
-            code
-            category
-            questionnaires
+            _id
+          }
+      }
+    `,
+  };
+
+  return data;
+};
+
+export const requestCreateQuestionnaireSet = args => {
+  const data = {
+    query: `
+      mutation {
+        createQuestionnaireSet(projectId: "${args.projectId}") {
+            _id
           }
       }
     `,
