@@ -23,11 +23,12 @@
  */
 const { messageResolvers } = require('./src/message');
 const { userResolvers } = require('./src/user');
-const { projectResolvers } = require('./src/project');
-const { questionResolvers } = require('./src/question');
-const { questionnaireResolvers } = require('./src/questionnaire');
-const { projectCategoryResolvers } = require('./src/project-category');
 const { userRoleResolvers } = require('./src/user-role');
+const { projectResolvers } = require('./src/project');
+const { projectCategoryResolvers } = require('./src/project-category');
+const { questionResolvers } = require('./src/question');
+const { questionCategoryResolvers } = require('./src/question-category');
+const { questionnaireResolvers } = require('./src/questionnaire');
 
 /**
  * Add or Remove resolvers.
@@ -36,11 +37,12 @@ const { userRoleResolvers } = require('./src/user-role');
 const rootResolver = [
   messageResolvers,
   userResolvers,
-  projectResolvers,
-  questionResolvers,
-  questionnaireResolvers,
-  projectCategoryResolvers,
   userRoleResolvers,
+  projectResolvers,
+  projectCategoryResolvers,
+  questionResolvers,
+  questionCategoryResolvers,
+  questionnaireResolvers,
 ];
 // console.log('>>>rootResolver ', rootResolver);
 

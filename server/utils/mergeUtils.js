@@ -112,7 +112,16 @@ const transformUserRole = userRole => {
   };
 };
 
+const transformQuestionCategory = questionCategory => {
+  return {
+    ...questionCategory._doc, // eslint-disable-line no-underscore-dangle
+    _id: questionCategory.id,
+    createdBy: getUserById.bind(this, questionCategory.createdBy),
+  };
+};
+
 exports.transformQuestionnaire = transformQuestionnaire;
+exports.transformQuestionCategory = transformQuestionCategory;
 exports.transformProject = transformProject;
 exports.transformProjectCategory = transformProjectCategory;
 exports.transformUserRole = transformUserRole;

@@ -25,11 +25,12 @@ const { gql } = require('apollo-server-express');
  */
 const { messageSchema } = require('./src/message');
 const { userSchema } = require('./src/user');
-const { projectSchema } = require('./src/project');
-const { questionSchema } = require('./src/question');
-const { questionnaireSchema } = require('./src/questionnaire');
-const { projectCategorySchema } = require('./src/project-category');
 const { userRoleSchema } = require('./src/user-role');
+const { projectSchema } = require('./src/project');
+const { projectCategorySchema } = require('./src/project-category');
+const { questionSchema } = require('./src/question');
+const { questionCategorySchema } = require('./src/question-category');
+const { questionnaireSchema } = require('./src/questionnaire');
 
 /**
  * Add type which is needed to be extend on other schema
@@ -52,11 +53,12 @@ const rootSchema = [
   linkSchema, // do not remove this schema
   messageSchema,
   userSchema,
-  projectSchema,
-  questionSchema,
-  questionnaireSchema,
-  projectCategorySchema,
   userRoleSchema,
+  projectSchema,
+  projectCategorySchema,
+  questionSchema,
+  questionCategorySchema,
+  questionnaireSchema,
 ];
 // console.log('>>>rootSchema ', rootSchema);
 
