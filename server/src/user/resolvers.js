@@ -49,7 +49,7 @@ const resolvers = {
           },
           'somesecretkey',
           {
-            expiresIn: '1h',
+            expiresIn: '7d',
           }
         );
         return {
@@ -61,7 +61,7 @@ const resolvers = {
         throw err;
       }
     },
-    getUser: authUtils.requiresLogin(async (parent, args, context) => {
+    getUser: async (parent, args, context) => {
       try {
         const { userId } = args;
         if (context.user.userId === userId) {
@@ -76,7 +76,7 @@ const resolvers = {
       } catch (error) {
         throw error;
       }
-    }),
+    },
   },
   Mutation: {
     createUser: async (parent, args) => {

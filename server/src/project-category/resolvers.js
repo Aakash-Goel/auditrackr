@@ -14,7 +14,7 @@
  */
 const ProjectCategory = require('./model');
 
-const authUtils = require('../../utils/authUtils');
+// const authUtils = require('../../utils/authUtils');
 const { transformProjectCategory } = require('../../utils/mergeUtils');
 
 /**
@@ -23,7 +23,7 @@ const { transformProjectCategory } = require('../../utils/mergeUtils');
  */
 const resolvers = {
   Query: {
-    getCategories: authUtils.requiresLogin(async () => {
+    getProjectCategories: async () => {
       try {
         const projectCategories = await ProjectCategory.find();
         return projectCategories.map(projectCat => {
@@ -32,10 +32,10 @@ const resolvers = {
       } catch (err) {
         throw err;
       }
-    }),
+    },
   },
   Mutation: {
-    createCategory: authUtils.requiresLogin(async (parent, args, context) => {
+    createProjectCategory: async (parent, args, context) => {
       try {
         const projectCat = new ProjectCategory({
           name: args.categoryName,
@@ -48,7 +48,7 @@ const resolvers = {
       } catch (error) {
         throw error;
       }
-    }),
+    },
   },
 };
 

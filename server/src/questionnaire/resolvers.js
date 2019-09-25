@@ -14,8 +14,9 @@
  */
 const Questionnaire = require('./model');
 const Project = require('../project/model');
+const Question = require('../question/model');
 
-const authUtils = require('../../utils/authUtils');
+// const authUtils = require('../../utils/authUtils');
 const { transformQuestionnaire } = require('../../utils/mergeUtils');
 
 /* eslint-disable no-use-before-define */
@@ -38,27 +39,41 @@ const resolvers = {
     },
   },
   Mutation: {
-    createQuestionnaireSet: authUtils.requiresLogin(
-      async (parent, args, context) => {
-        try {
-          const existingProject = await Project.findOne({
-            _id: args.projectId,
-          });
-          if (!existingProject) {
-            throw new Error('Project does not exist');
-          }
-          const questionnaireSet = new Questionnaire({
-            project: existingProject,
-            user: context.user.userId,
-            category: 'Requirement Viewpoint',
-          });
-          const result = await questionnaireSet.save();
-          return transformQuestionnaire(result);
-        } catch (error) {
-          throw error;
+    createQuestionnaireSet: async (parent, args, context) => {
+      try {
+        const existingProject = await Project.findOne({
+          _id: args.projectId,
+        });
+        if (!existingProject) {
+          throw new Error('Project does not exist');
         }
+
+        // check if Questionnaire for this specific project id is already created.
+        const existingQuestionnaire = await Questionnaire.findOne({
+          project: {
+            _id: args.projectId,
+          },
+        });
+        if (existingQuestionnaire) {
+          throw new Error(
+            'Questionnaire list for this project is already exist'
+          );
+        }
+
+        // get all questions from database
+        const questionList = await Question.find({});
+
+        const questionnaireSet = new Questionnaire({
+          project: existingProject,
+          user: context.user.userId,
+          questions: questionList,
+        });
+        const result = await questionnaireSet.save();
+        return transformQuestionnaire(result);
+      } catch (error) {
+        throw error;
       }
-    ),
+    },
   },
 };
 

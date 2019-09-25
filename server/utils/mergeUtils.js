@@ -1,7 +1,9 @@
+/* eslint-disable no-use-before-define */
+
 const Project = require('../src/project/model');
 const User = require('../src/user/model');
-
-/* eslint-disable no-use-before-define */
+const Question = require('../src/question/model');
+const Questionnaire = require('../src/questionnaire/model');
 
 const getProjectsByIds = async projectIds => {
   try {
@@ -44,6 +46,32 @@ const getUserById = async userId => {
   }
 };
 
+const getAllQuestions = async () => {
+  try {
+    const questionList = await Question.find({});
+    return questionList;
+  } catch (error) {
+    throw error;
+  }
+};
+
+const getQuestionnaireByProjectId = async projectId => {
+  try {
+    const existingQuestionnaire = await Questionnaire.findOne({
+      project: {
+        _id: projectId,
+      },
+    });
+    return {
+      ...existingQuestionnaire._doc, // eslint-disable-line no-underscore-dangle
+      _id: existingQuestionnaire.id,
+      questions: getAllQuestions.bind(this),
+    };
+  } catch (error) {
+    throw error;
+  }
+};
+
 const transformQuestionnaire = questionnaireData => {
   return {
     ...questionnaireData._doc, // eslint-disable-line no-underscore-dangle
@@ -53,6 +81,7 @@ const transformQuestionnaire = questionnaireData => {
       this,
       questionnaireData._doc.project // eslint-disable-line no-underscore-dangle
     ),
+    questions: getAllQuestions.bind(this),
     createdAt: questionnaireData.createdAt,
     updatedAt: questionnaireData.updatedAt,
   };
@@ -63,6 +92,7 @@ const transformProject = project => {
     ...project._doc, // eslint-disable-line no-underscore-dangle
     _id: project.id,
     createdBy: getUserById.bind(this, project.createdBy),
+    questionnaire: getQuestionnaireByProjectId.bind(this, project.id),
   };
 };
 
@@ -74,10 +104,15 @@ const transformProjectCategory = projectCategory => {
   };
 };
 
-// exports.getUserById = getUserById;
-// exports.getProjectById = getProjectById;
-// exports.getProjectsByIds = getProjectsByIds;
+const transformUserRole = userRole => {
+  return {
+    ...userRole._doc, // eslint-disable-line no-underscore-dangle
+    _id: userRole.id,
+    createdBy: getUserById.bind(this, userRole.createdBy),
+  };
+};
 
 exports.transformQuestionnaire = transformQuestionnaire;
 exports.transformProject = transformProject;
 exports.transformProjectCategory = transformProjectCategory;
+exports.transformUserRole = transformUserRole;

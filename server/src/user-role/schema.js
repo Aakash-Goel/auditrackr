@@ -1,9 +1,9 @@
 /**
- * questionnaire/schema.js
+ * user-role/schema.js
  * Copyright (c) 2019-present, Aakash Goel
  * MIT Licensed
  *
- * This is where Questionnaire graphQL schema is defined
+ * This is where UserRole graphQL schema is defined
  *
  */
 
@@ -19,21 +19,19 @@ const { gql } = require('apollo-server-express');
  * @public
  */
 const schema = gql`
-  type Questionnaire {
+  type UserRole {
     _id: ID!
-    project: Project!
-    user: User!
-    questions: [Question!]!
+    name: String!
     createdAt: String!
-    updatedAt: String!
+    createdBy: User!
   }
 
   extend type Query {
-    getQuestionnaires: [Questionnaire!]!
+    getUserRoles: [UserRole!]!
   }
 
   extend type Mutation {
-    createQuestionnaireSet(projectId: ID!): Questionnaire!
+    createUserRole(roleType: String!): UserRole
   }
 `;
 

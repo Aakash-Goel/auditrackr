@@ -15,7 +15,7 @@
 const Project = require('./model');
 const User = require('../user/model');
 
-const authUtils = require('../../utils/authUtils');
+// const authUtils = require('../../utils/authUtils');
 const { transformProject } = require('../../utils/mergeUtils');
 
 /**
@@ -34,9 +34,22 @@ const resolvers = {
         throw err;
       }
     },
+    getProjectById: async (parent, args) => {
+      try {
+        const existingProject = await Project.findOne({
+          _id: args.projectId,
+        });
+        if (!existingProject) {
+          throw new Error('Project does not exist');
+        }
+        return transformProject(existingProject);
+      } catch (error) {
+        throw error;
+      }
+    },
   },
   Mutation: {
-    createProject: authUtils.requiresLogin(async (parent, args, context) => {
+    createProject: async (parent, args, context) => {
       try {
         const project = new Project({
           auditName: args.createProjectInput.auditName,
@@ -61,7 +74,7 @@ const resolvers = {
       } catch (error) {
         throw error;
       }
-    }),
+    },
   },
 };
 

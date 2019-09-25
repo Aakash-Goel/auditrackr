@@ -31,7 +31,7 @@ const schema = gql`
     lastUpdatedBy: String!
     auditors: [String]
     collaborators: [String]
-    questionnaires: [ID]
+    questionnaire: Questionnaire
   }
 
   input createProjectInput {
@@ -43,6 +43,7 @@ const schema = gql`
 
   extend type Query {
     getProjects: [Project!]!
+    getProjectById(projectId: ID!): Project!
   }
 
   extend type Mutation {

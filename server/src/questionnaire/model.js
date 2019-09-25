@@ -33,13 +33,10 @@ const questionnaireSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: 'User',
     },
-    category: {
-      type: String,
-      required: true,
-    },
     questions: [
       {
         type: Schema.Types.ObjectId,
+        ref: 'Question',
       },
     ],
   },

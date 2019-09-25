@@ -58,11 +58,10 @@ const projectSchema = new Schema({
   },
   auditors: [String],
   collaborators: [String],
-  questionnaires: [
-    {
-      type: Schema.Types.ObjectId,
-    },
-  ],
+  questionnaire: {
+    type: Schema.Types.ObjectId,
+    ref: 'Questionnaire',
+  },
 });
 
 /**

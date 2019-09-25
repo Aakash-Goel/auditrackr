@@ -27,11 +27,11 @@ const schema = gql`
   }
 
   extend type Query {
-    getCategories: [ProjectCategory!]!
+    getProjectCategories: [ProjectCategory!]!
   }
 
   extend type Mutation {
-    createCategory(categoryName: String!): ProjectCategory
+    createProjectCategory(categoryName: String!): ProjectCategory
   }
 `;
 

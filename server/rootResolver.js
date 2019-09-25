@@ -27,6 +27,7 @@ const { projectResolvers } = require('./src/project');
 const { questionResolvers } = require('./src/question');
 const { questionnaireResolvers } = require('./src/questionnaire');
 const { projectCategoryResolvers } = require('./src/project-category');
+const { userRoleResolvers } = require('./src/user-role');
 
 /**
  * Add or Remove resolvers.
@@ -39,6 +40,7 @@ const rootResolver = [
   questionResolvers,
   questionnaireResolvers,
   projectCategoryResolvers,
+  userRoleResolvers,
 ];
 // console.log('>>>rootResolver ', rootResolver);
 
