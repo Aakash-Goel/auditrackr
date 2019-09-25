@@ -31,6 +31,7 @@ const { projectCategorySchema } = require('./src/project-category');
 const { questionSchema } = require('./src/question');
 const { questionCategorySchema } = require('./src/question-category');
 const { questionnaireSchema } = require('./src/questionnaire');
+const { assessmentTypeSchema } = require('./src/assessment-type');
 
 /**
  * Add type which is needed to be extend on other schema
@@ -59,6 +60,7 @@ const rootSchema = [
   questionSchema,
   questionCategorySchema,
   questionnaireSchema,
+  assessmentTypeSchema,
 ];
 // console.log('>>>rootSchema ', rootSchema);
 

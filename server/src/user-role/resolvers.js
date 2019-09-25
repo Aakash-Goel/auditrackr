@@ -25,8 +25,8 @@ const resolvers = {
   Query: {
     getUserRoles: async () => {
       try {
-        const userRoleTypes = await UserRole.find();
-        return userRoleTypes.map(userRole => {
+        const userRoles = await UserRole.find();
+        return userRoles.map(userRole => {
           return transformUserRole(userRole);
         });
       } catch (err) {

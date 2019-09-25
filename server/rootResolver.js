@@ -29,6 +29,7 @@ const { projectCategoryResolvers } = require('./src/project-category');
 const { questionResolvers } = require('./src/question');
 const { questionCategoryResolvers } = require('./src/question-category');
 const { questionnaireResolvers } = require('./src/questionnaire');
+const { assessmentTypeResolvers } = require('./src/assessment-type');
 
 /**
  * Add or Remove resolvers.
@@ -43,6 +44,7 @@ const rootResolver = [
   questionResolvers,
   questionCategoryResolvers,
   questionnaireResolvers,
+  assessmentTypeResolvers,
 ];
 // console.log('>>>rootResolver ', rootResolver);
 
