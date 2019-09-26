@@ -22,6 +22,7 @@ const schema = gql`
   type ProjectCategory {
     _id: ID!
     name: String!
+    value: String!
     createdAt: String!
     createdBy: User!
   }
@@ -31,7 +32,7 @@ const schema = gql`
   }
 
   extend type Mutation {
-    createProjectCategory(categoryName: String!): ProjectCategory
+    createProjectCategory(catName: String!, catValue: String!): ProjectCategory
   }
 `;
 

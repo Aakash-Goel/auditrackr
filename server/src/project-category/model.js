@@ -28,6 +28,10 @@ const projectCategorySchema = new Schema({
     type: String,
     required: true,
   },
+  value: {
+    type: String,
+    required: true,
+  },
   createdAt: {
     type: Date,
     required: true,

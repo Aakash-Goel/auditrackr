@@ -37,16 +37,17 @@ const resolvers = {
   Mutation: {
     createProjectCategory: async (parent, args, context) => {
       try {
-        const { categoryName } = args;
+        const { catName, catValue } = args;
         const existingProjectCategory = await ProjectCategory.findOne({
-          name: categoryName,
+          name: catName,
         });
         if (existingProjectCategory) {
           throw new Error('Project Category already exist with this name');
         }
 
         const projectCat = new ProjectCategory({
-          name: categoryName,
+          name: catName,
+          value: catValue,
           createdAt: new Date(),
           createdBy: context.user.userId, // @TODO: needs to update this field
         });
