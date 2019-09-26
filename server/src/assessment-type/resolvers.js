@@ -37,8 +37,14 @@ const resolvers = {
   Mutation: {
     createAssessmentType: async (parent, args, context) => {
       try {
+        const { type } = args;
+        const existingType = await AssessmentType.findOne({ name: type });
+        if (existingType) {
+          throw new Error('Assessment Type already exist with this name');
+        }
+
         const assessmentTypeModel = new AssessmentType({
-          name: args.type,
+          name: type,
           createdAt: new Date(),
           createdBy: context.user.userId, // @TODO: needs to update this field
         });

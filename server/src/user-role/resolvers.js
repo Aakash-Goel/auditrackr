@@ -37,8 +37,14 @@ const resolvers = {
   Mutation: {
     createUserRole: async (parent, args, context) => {
       try {
+        const { roleType } = args;
+        const existingUserRole = await UserRole.findOne({ name: roleType });
+        if (existingUserRole) {
+          throw new Error('User role already exist with this name');
+        }
+
         const userRoleModel = new UserRole({
-          name: args.roleType,
+          name: roleType,
           createdAt: new Date(),
           createdBy: context.user.userId, // @TODO: needs to update this field
         });

@@ -1,4 +1,7 @@
 const { isFunction, isObject, mapValues } = require('lodash');
+const pathOr = require('lodash/fp/pathOr');
+
+const { isUserExist } = require('../utils/dbUtils');
 
 const TYPES_OF_ROLES = {
   admin: 'ADMIN',
@@ -8,6 +11,9 @@ const TYPES_OF_ROLES = {
 const requiresRole = role => resolver => {
   if (isFunction(resolver)) {
     return (parent, args, context, info) => {
+      if (!isUserExist(pathOr(null, 'user.userId', context))) {
+        throw new Error('User does not exist');
+      }
       if (context.user && (!role || context.user.userRole === role)) {
         return resolver(parent, args, context, info);
       }
