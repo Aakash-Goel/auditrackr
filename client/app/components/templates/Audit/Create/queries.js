@@ -8,8 +8,8 @@ export const requestCreateAudit = args => {
           code: ${args.projectIdVal},
           category: "${args.projectCategoryVal}"
         }) {
-            _id
-          }
+          _id
+        }
       }
     `,
   };
@@ -22,8 +22,23 @@ export const requestCreateQuestionnaireSet = args => {
     query: `
       mutation {
         createQuestionnaireSet(projectId: "${args.projectId}") {
-            _id
-          }
+          _id
+        }
+      }
+    `,
+  };
+
+  return data;
+};
+
+export const getProjCategories = () => {
+  const data = {
+    query: `
+      query {
+        getProjectCategories {
+          name
+          value
+        }
       }
     `,
   };

@@ -7,6 +7,9 @@ import {
   CREATE_QUESTIONNAIRE_SET,
   CREATE_QUESTIONNAIRE_SET_SUCCESS,
   CREATE_QUESTIONNAIRE_SET_ERROR,
+  GET_PROJECT_CATEGORIES,
+  GET_PROJECT_CATEGORIES_SUCCESS,
+  GET_PROJECT_CATEGORIES_ERROR,
 } from './constants';
 
 const initialState = {
@@ -16,8 +19,12 @@ const initialState = {
   isQSCreating: false,
   isQSCreated: false,
   errorQS: null,
+  isProjCatFetching: false,
+  projCatList: null,
+  errorProjCat: null,
 };
 
+/* eslint-disable complexity */
 function createAuditReducer(state = initialState, { type, error, data }) {
   switch (type) {
     case SUBMIT_CREATE_AUDIT:
@@ -60,6 +67,20 @@ function createAuditReducer(state = initialState, { type, error, data }) {
         isQSCreating: false,
         isQSCreated: false,
         errorQS: error,
+      });
+    case GET_PROJECT_CATEGORIES:
+      return _merge({}, state, {
+        isProjCatFetching: true,
+      });
+    case GET_PROJECT_CATEGORIES_SUCCESS:
+      return _merge({}, state, {
+        isProjCatFetching: false,
+        projCatList: data.getProjectCategories,
+      });
+    case GET_PROJECT_CATEGORIES_ERROR:
+      return _merge({}, state, {
+        isProjCatFetching: false,
+        errorProjCat: error,
       });
     default:
       return state;

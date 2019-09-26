@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import classnames from 'classnames';
-import { object, func } from 'prop-types';
+import { object, func, array } from 'prop-types';
 import isEmpty from 'lodash/fp/isEmpty';
 
 import { withStyles } from '@material-ui/core/styles';
@@ -11,6 +11,7 @@ import FormInput from '../FormInput';
 import {
   checkIsError,
   validationObject,
+  getFormWrapperDataValue,
 } from '../../../../utils/formInputUtil';
 
 import createAuditFormStyles from './CreateAuditForm.style';
@@ -18,11 +19,13 @@ import createAuditFormStyles from './CreateAuditForm.style';
 const propTypes = {
   classes: object.isRequired,
   formWrapperData: object,
+  projCatList: array,
   onSubmitCreateAuditForm: func.isRequired,
 };
 
 const defaultProps = {
   formWrapperData: {},
+  projCatList: [],
 };
 
 class CreateAuditForm extends PureComponent {
@@ -54,13 +57,13 @@ class CreateAuditForm extends PureComponent {
         auditNameVal: formWrapperData.auditName.value,
         projectNameVal: formWrapperData.projectName.value,
         projectIdVal: formWrapperData.projectId.value,
-        projectCategoryVal: 'Finance', // formWrapperData.projectCategory.value
+        projectCategoryVal: formWrapperData.projectCategory.value,
       });
     }
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, projCatList } = this.props;
 
     return (
       <>
@@ -143,9 +146,15 @@ class CreateAuditForm extends PureComponent {
                   fullWidth: true,
                 }}
                 inputProps={{
+                  value: getFormWrapperDataValue(
+                    this.props.formWrapperData,
+                    'projectCategory',
+                    'value'
+                  ),
                   id: 'projectCategory',
                   name: 'projectCategory',
                   'aria-label': 'Select a category',
+                  type: 'select',
                 }}
                 {...{
                   projectCategoryError: this.validationObject
@@ -155,6 +164,9 @@ class CreateAuditForm extends PureComponent {
                   this.props.formWrapperData,
                   'projectCategory'
                 )}
+                selectProps={{
+                  optionList: projCatList,
+                }}
               />
             </div>
             <div className={classnames(classes.buttonsWrapper)}>

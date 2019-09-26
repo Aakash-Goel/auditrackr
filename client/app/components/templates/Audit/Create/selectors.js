@@ -38,3 +38,21 @@ export const makeSelectErrorQS = () =>
     selectCreateAudit,
     createAuditState => createAuditState.errorQS
   );
+
+export const makeSelectIsProjCatFetching = () =>
+  createSelector(
+    selectCreateAudit,
+    createAuditState => createAuditState.isProjCatFetching
+  );
+
+export const makeSelectProjCatList = () =>
+  createSelector(
+    selectCreateAudit,
+    createAuditState => createAuditState.projCatList
+  );
+
+export const makeSelectErrorProjCat = () =>
+  createSelector(
+    selectCreateAudit,
+    createAuditState => createAuditState.errorProjCat
+  );

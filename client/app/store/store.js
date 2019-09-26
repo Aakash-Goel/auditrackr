@@ -14,21 +14,8 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import createSagaMiddleware from 'redux-saga';
 
-import reducers from './reducers';
-import sagas from './sagas';
-
-/**
- * Module variables.
- * @private
- */
-const sagaMiddleware = createSagaMiddleware();
-
-/**
- * Add/change middleware here
- * @private
- */
-const middlewares = [sagaMiddleware];
-const enhancers = [applyMiddleware(...middlewares)];
+import rootReducers from './reducers';
+import rootSagas from './sagas';
 
 /**
  * Choose compose method depending upon environment and platform
@@ -46,17 +33,28 @@ const composeEnhancers =
  * @returns {Object} store
  */
 function configureStore(initialState = {}) {
+  /**
+   * Recreate the stdChannel (saga middleware) with every context.
+   */
+  const sagaMiddleware = createSagaMiddleware();
+  const middlewares = [sagaMiddleware]; // <<-- add your middleware here.
+  const enhancers = [applyMiddleware(...middlewares)];
+
+  /**
+   * Since Next.js does server-side rendering, you are REQUIRED to pass
+   * `initialState` when creating the store.
+   */
   const store = createStore(
-    reducers(),
+    rootReducers(),
     initialState,
     composeEnhancers(...enhancers)
   );
 
-  store.runSagaTask = () => {
-    store.sagaTask = sagaMiddleware.run(sagas);
-  };
-
-  store.runSagaTask();
+  /**
+   * next-redux-saga depends on `sagaTask` being attached to the store.
+   * It is used to await the rootSaga task before sending results to the client.
+   */
+  store.sagaTask = sagaMiddleware.run(rootSagas);
 
   return store;
 }

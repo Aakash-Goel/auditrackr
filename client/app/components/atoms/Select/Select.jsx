@@ -55,7 +55,7 @@ class CustomSelect extends React.Component {
     if (isDisplayLabel) {
       const labelAsObject = [
         {
-          text: label,
+          name: label,
           value: '',
           disabled: true,
         },
@@ -154,7 +154,7 @@ class CustomSelect extends React.Component {
                   }}
                   className={selectItemClass}
                 >
-                  {prop.text}
+                  {prop.name}
                 </MenuItem>
               );
             })}

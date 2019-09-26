@@ -105,7 +105,7 @@ class MyApp extends App {
   }
 
   render() {
-    const { Component, pageProps /* store */ } = this.props;
+    const { Component, pageProps, store } = this.props;
 
     return (
       <ApolloProvider client={this.client}>
@@ -120,7 +120,7 @@ class MyApp extends App {
             theme={this.pageContext.theme}
             // sheetsManager={this.pageContext.sheetsManager}
           >
-            <Provider store={this.store}>
+            <Provider store={store}>
               {/* CssBaseline kick start an elegant, consistent, and simple baseline to build upon. */}
               <CssBaseline />
               {/* Pass pageContext to the _document though the renderPage enhancer

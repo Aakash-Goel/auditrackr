@@ -6,6 +6,9 @@ import {
   CREATE_QUESTIONNAIRE_SET,
   CREATE_QUESTIONNAIRE_SET_SUCCESS,
   CREATE_QUESTIONNAIRE_SET_ERROR,
+  GET_PROJECT_CATEGORIES,
+  GET_PROJECT_CATEGORIES_SUCCESS,
+  GET_PROJECT_CATEGORIES_ERROR,
 } from './constants';
 
 export function submitCreateAuditForm(args) {
@@ -51,6 +54,26 @@ export function createQuestionnaireSetSuccess() {
 export function createQuestionnaireSetError(error) {
   return {
     type: CREATE_QUESTIONNAIRE_SET_ERROR,
+    error,
+  };
+}
+
+export function getProjectCategories() {
+  return {
+    type: GET_PROJECT_CATEGORIES,
+  };
+}
+
+export function getProjectCategoriesSuccess(data) {
+  return {
+    type: GET_PROJECT_CATEGORIES_SUCCESS,
+    data,
+  };
+}
+
+export function getProjectCategoriesError(error) {
+  return {
+    type: GET_PROJECT_CATEGORIES_ERROR,
     error,
   };
 }

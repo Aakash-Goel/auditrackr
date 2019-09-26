@@ -15,8 +15,15 @@ import {
   makeSelectIsQSCreating,
   makeSelectIsQSCreated,
   makeSelectErrorQS,
+  makeSelectIsProjCatFetching,
+  makeSelectProjCatList,
+  makeSelectErrorProjCat,
 } from './selectors';
-import { submitCreateAuditForm, clearCreateAuditData } from './actions';
+import {
+  submitCreateAuditForm,
+  clearCreateAuditData,
+  getProjectCategories,
+} from './actions';
 
 // const propTypes = {
 //   classes: object.isRequired,
@@ -24,6 +31,23 @@ import { submitCreateAuditForm, clearCreateAuditData } from './actions';
 
 /* eslint-disable react/prefer-stateless-function */
 class AuditCreate extends PureComponent {
+  static async getInitialProps({ ctx }) {
+    const { store } = ctx;
+
+    store.dispatch(getProjectCategories());
+
+    // Wait for your dependencies to be resolved.
+    await new Promise(resolve => {
+      const unsubscribe = store.subscribe(() => {
+        const state = store.getState();
+        if (!state.isProjCatFetching) {
+          unsubscribe();
+          resolve();
+        }
+      });
+    });
+  }
+
   render() {
     return (
       <>
@@ -52,6 +76,9 @@ export const mapStateToProps = createStructuredSelector({
   isQSCreating: makeSelectIsQSCreating(),
   isQSCreated: makeSelectIsQSCreated(),
   errorQS: makeSelectErrorQS(),
+  isProjCatFetching: makeSelectIsProjCatFetching(),
+  projCatList: makeSelectProjCatList(),
+  errorProjCat: makeSelectErrorProjCat(),
   formWrapperData: formWrapperSelector('createAuditForm'),
 });
 

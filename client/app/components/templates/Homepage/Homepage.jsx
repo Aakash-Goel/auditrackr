@@ -244,17 +244,17 @@ class Homepage extends PureComponent {
             error={checkIsError(this.props.formWrapperData, 'projectCategory')}
             selectProps={{
               optionList: [
-                { text: 'Action', value: 'action' },
+                { name: 'Action', value: 'action' },
                 {
-                  text: 'Another action',
+                  name: 'Another action',
                   value: 'another action',
                   disabled: true,
                 },
-                { text: 'Something else here', value: 'something else' },
+                { name: 'Something else here', value: 'something else' },
                 { divider: true },
-                { text: 'Separated link', value: 'link' },
+                { name: 'Separated link', value: 'link' },
                 { divider: true },
-                { text: 'One more separated link', value: 'more links' },
+                { name: 'One more separated link', value: 'more links' },
               ],
             }}
           />
