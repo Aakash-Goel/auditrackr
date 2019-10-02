@@ -39,7 +39,7 @@ export function* submitAccountSignUp({ args } = {}) {
       data: JSON.stringify(signUpQuery),
     });
 
-    if (statusText === 'OK') {
+    if (statusText === 'OK' && data) {
       yield* handleSuccess(data);
     }
     return yield put(submitAccountSignUpError(error));

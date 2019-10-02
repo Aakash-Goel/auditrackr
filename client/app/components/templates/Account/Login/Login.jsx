@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { bool } from 'prop-types';
+import { bool, object } from 'prop-types';
 import { createStructuredSelector } from 'reselect';
 
 import LoginPage from '../../../organisms/views/LoginPage';
@@ -21,6 +21,11 @@ import { isBrowser } from '../../../../utils/helpersUtil';
  */
 const propTypes = {
   isAuthenticated: bool.isRequired,
+  error: object,
+};
+
+const defaultProps = {
+  error: null,
 };
 
 export class AccountLogin extends PureComponent {
@@ -34,7 +39,7 @@ export class AccountLogin extends PureComponent {
   componentWillReceiveProps(nextProps) {
     // @TODO: move below logic to one singleton file
     if (this.props.isAuthenticated !== nextProps.isAuthenticated) {
-      if (nextProps.isAuthenticated) {
+      if (nextProps.isAuthenticated && !nextProps.error) {
         Router.pushRoute('audit-dashboard');
       }
     }
@@ -63,6 +68,7 @@ export const mapDispatchToProps = dispatch => ({
 });
 
 AccountLogin.propTypes = propTypes;
+AccountLogin.defaultProps = defaultProps;
 
 export default connect(
   mapStateToProps,

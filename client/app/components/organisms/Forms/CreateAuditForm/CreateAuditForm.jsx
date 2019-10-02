@@ -20,12 +20,16 @@ const propTypes = {
   classes: object.isRequired,
   formWrapperData: object,
   projCatList: array,
+  error: object,
+  errorQS: object,
   onSubmitCreateAuditForm: func.isRequired,
 };
 
 const defaultProps = {
   formWrapperData: {},
   projCatList: [],
+  error: null,
+  errorQS: null,
 };
 
 class CreateAuditForm extends PureComponent {
@@ -63,7 +67,7 @@ class CreateAuditForm extends PureComponent {
   };
 
   render() {
-    const { classes, projCatList } = this.props;
+    const { classes, projCatList, error, errorQS } = this.props;
 
     return (
       <>
@@ -73,6 +77,9 @@ class CreateAuditForm extends PureComponent {
             identifier="createAuditForm"
             onSubmit={this.submitFormHandler}
             formWrapperData={this.props.formWrapperData}
+            {...{
+              createAuditFormError: error || errorQS,
+            }}
             noValidate
             autoComplete="off"
           >

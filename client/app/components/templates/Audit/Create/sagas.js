@@ -57,7 +57,7 @@ export function* submitCreateAudit({ args } = {}) {
       data: JSON.stringify(createAuditQuery),
     });
 
-    if (statusText === 'OK') {
+    if (statusText === 'OK' && data) {
       return yield* handleApiSuccess(data);
     }
     return yield put(submitCreateAuditFormError(error));
@@ -81,7 +81,7 @@ export function* createQS({ args } = {}) {
       data: JSON.stringify(createQSQuery),
     });
 
-    if (statusText === 'OK') {
+    if (statusText === 'OK' && data) {
       return yield put(createQuestionnaireSetSuccess(data));
     }
     return yield put(createQuestionnaireSetError(error));

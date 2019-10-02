@@ -58,7 +58,7 @@ export function* submitAccountLogIn({ args } = {}) {
       data: JSON.stringify(logInQuery),
     });
 
-    if (statusText === 'OK') {
+    if (statusText === 'OK' && data) {
       yield* handleSuccessLogin(data, email);
     }
     return yield put(submitAccountLogInError(error));

@@ -1,5 +1,7 @@
 const signUpFormStyles = () => ({
-  formWrapper: {},
+  formWrapper: {
+    marginBottom: '24px',
+  },
   inputWrapper: {
     marginBottom: '24px',
   },
@@ -7,7 +9,7 @@ const signUpFormStyles = () => ({
     fontSize: 22,
   },
   buttonsWrapper: {
-    margin: '48px 0',
+    margin: '48px 0 24px 0',
     alignItems: 'center',
   },
   btnSubmit: {

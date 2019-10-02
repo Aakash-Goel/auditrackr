@@ -341,7 +341,10 @@ class CustomInput extends React.PureComponent {
           {...inputProps}
         />
         {showFieldLevelErrorMsz && (
-          <FormHelperText id={`${inputProps.id}_error_msg`}>
+          <FormHelperText
+            id={`${inputProps.id}_error_msg`}
+            error={showFieldLevelErrorMsz}
+          >
             {this.props[fieldError] || ''}
           </FormHelperText>
         )}

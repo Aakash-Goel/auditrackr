@@ -8,7 +8,10 @@ import {
   func,
   bool,
 } from 'prop-types';
+import { isEmpty } from 'lodash';
 import _merge from 'lodash/merge';
+
+import FormHelperText from '@material-ui/core/FormHelperText';
 
 import { validateAll } from '../../../utils/validation/validationUtil';
 import {
@@ -22,7 +25,8 @@ import {
  * @description Defined property types for component
  */
 const propTypes = {
-  id: string,
+  id: string.isRequired,
+  className: string,
   children: oneOfType([arrayOf(object), object, node]).isRequired,
   onSubmit: func.isRequired,
   formWrapperData: object.isRequired,
@@ -30,14 +34,16 @@ const propTypes = {
   updateFormIdentifierData: func.isRequired,
   clearFormIdentifierData: func.isRequired,
   shouldClearFormDataOnUnmount: bool,
+  showFormLevelErrorMsz: bool,
   method: string,
   otherFormAttr: object,
 };
 
 const defaultProps = {
-  id: '',
+  className: '',
   method: 'post',
   shouldClearFormDataOnUnmount: true,
+  showFormLevelErrorMsz: true,
   otherFormAttr: {},
 };
 
@@ -46,6 +52,12 @@ const defaultProps = {
  * @param {Object} props
  */
 class Form extends React.PureComponent {
+  constructor(props) {
+    super(props);
+
+    this.getFormErrorMsz = this.getFormErrorMsz.bind(this);
+  }
+
   componentWillUnmount() {
     const {
       identifier,
@@ -122,17 +134,59 @@ class Form extends React.PureComponent {
     return onSubmit(errors);
   };
 
+  getFormErrorMsz() {
+    let errorMsz;
+    const { id } = this.props;
+
+    const formError = `${id}Error`;
+    const errorObj = this.props[formError] ? this.props[formError] : null;
+
+    if (errorObj) {
+      if (errorObj.data === null) {
+        if (isEmpty(errorObj.error.message)) {
+          // modify form API level error messages here
+          errorMsz = errorObj.axiosErrorMessage;
+        } else {
+          // modify form API level error messages here
+          errorMsz = errorObj.error.message;
+        }
+      } else {
+        errorMsz = errorObj.message;
+      }
+    } else {
+      errorMsz = '';
+    }
+
+    return errorMsz;
+  }
+
   render() {
-    const { children, id, method, otherFormAttr } = this.props;
+    const {
+      id,
+      className,
+      children,
+      method,
+      otherFormAttr,
+      showFormLevelErrorMsz,
+    } = this.props;
+
+    const formErrorMsz = this.getFormErrorMsz();
+
     return (
       <form
         id={id}
         onSubmit={this.onSubmitCheck}
         method={method}
         noValidate
+        className={className}
         {...otherFormAttr}
       >
         {children}
+        {showFormLevelErrorMsz && (
+          <FormHelperText id={`${id}_error_msg`} error={showFormLevelErrorMsz}>
+            {formErrorMsz}
+          </FormHelperText>
+        )}
       </form>
     );
   }

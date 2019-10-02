@@ -22,11 +22,13 @@ import signUpFormStyles from './SignUpForm.style';
 const propTypes = {
   classes: object.isRequired,
   formWrapperData: object,
+  error: object,
   onSubmitSignUpForm: func.isRequired,
 };
 
 const defaultProps = {
   formWrapperData: {},
+  error: null,
 };
 
 class SignUpForm extends PureComponent {
@@ -82,7 +84,7 @@ class SignUpForm extends PureComponent {
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, error } = this.props;
     const { hasTermsChecked } = this.state;
 
     return (
@@ -93,6 +95,10 @@ class SignUpForm extends PureComponent {
             identifier="signUpForm"
             onSubmit={this.submitFormHandler}
             formWrapperData={this.props.formWrapperData}
+            className={classnames(classes.formWrapper)}
+            {...{
+              signUpFormError: error,
+            }}
             noValidate
             autoComplete="off"
           >

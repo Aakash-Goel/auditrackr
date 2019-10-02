@@ -21,11 +21,13 @@ import loginFormStyles from './LoginForm.style';
 const propTypes = {
   classes: object.isRequired,
   formWrapperData: object,
+  error: object,
   onSubmitLoginForm: func.isRequired,
 };
 
 const defaultProps = {
   formWrapperData: {},
+  error: null,
 };
 
 class LoginForm extends PureComponent {
@@ -55,7 +57,7 @@ class LoginForm extends PureComponent {
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, error } = this.props;
 
     return (
       <>
@@ -65,6 +67,10 @@ class LoginForm extends PureComponent {
             identifier="loginForm"
             onSubmit={this.submitFormHandler}
             formWrapperData={this.props.formWrapperData}
+            className={classnames(classes.formWrapper)}
+            {...{
+              loginFormError: error,
+            }}
             noValidate
             autoComplete="off"
           >
