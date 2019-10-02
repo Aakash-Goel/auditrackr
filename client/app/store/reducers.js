@@ -17,6 +17,9 @@ import { combineReducers } from 'redux';
 import { CREATE_AUDIT_STATE_KEY as createAuditStateKey } from '../components/templates/Audit/Create/constants';
 import createAuditReducer from '../components/templates/Audit/Create/reducer';
 
+import { PROJECT_AUDIT_STATE_KEY as projectAuditStateKey } from '../components/templates/Audit/Project/constants';
+import projectAuditReducer from '../components/templates/Audit/Project/reducer';
+
 import { ACCOUNT_PROFILE_STATE_KEY as accountProfileStateKey } from '../components/templates/Account/Login/constants';
 import accountLogInReducer from '../components/templates/Account/Login/reducer';
 
@@ -38,6 +41,7 @@ import labelsReducer from '../lib/labels/reducer';
 const rootReducer = injectedReducers => {
   return combineReducers({
     [createAuditStateKey]: createAuditReducer,
+    [projectAuditStateKey]: projectAuditReducer,
     [accountProfileStateKey]: accountLogInReducer,
     [accountSignUpStateKey]: accountSignUpReducer,
     [formWrapperStateKey]: formWrapperReducer,

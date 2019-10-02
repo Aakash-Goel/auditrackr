@@ -1,68 +1,67 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { object } from 'prop-types';
-import classnames from 'classnames';
+import { createStructuredSelector } from 'reselect';
 
-import { Paper } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
-
+import AuthValidator from '../../../organisms/AuthValidator';
 import PrimaryLayout from '../../../../layouts/PrimaryLayout';
 import ContentContainer from '../../../organisms/ContentContainer';
-import GridContainer from '../../../atoms/Grid/GridContainer';
-import GridItem from '../../../atoms/Grid/GridItem';
+import ProjectAuditPage from '../../../organisms/views/ProjectAuditPage';
+import {
+  makeSelectIsFetching,
+  makeSelectData,
+  makeSelectError,
+} from './selectors';
+import { getProject } from './actions';
 
-import auditProjectStyles from './Project.style';
-
-const propTypes = {
-  classes: object.isRequired,
-};
-
-/* eslint-disable react/prefer-stateless-function */
 class AuditProject extends PureComponent {
-  render() {
-    const { classes } = this.props;
+  static async getInitialProps({ ctx }) {
+    const { store, query } = ctx;
 
+    store.dispatch(getProject(query.projectId));
+
+    // Wait for your dependencies to be resolved.
+    await new Promise(resolve => {
+      const unsubscribe = store.subscribe(() => {
+        const state = store.getState();
+        if (!state.isFetching) {
+          unsubscribe();
+          resolve();
+        }
+      });
+    });
+  }
+
+  render() {
     return (
       <>
-        <PrimaryLayout
-          pageTitle="Audit Project"
-          pageDesc="This is AuditTrackR audit project page"
-          pageId="audit-project"
-        >
-          <ContentContainer
-            breadCrumbTitle="Project"
-            shouldRenderInsidePaper={false}
+        <AuthValidator>
+          <PrimaryLayout
+            pageTitle="Project Audit"
+            pageDesc="This is AuditTrackR project audit page"
+            pageId="audit-project"
           >
-            <GridContainer
-              className={classnames(classes.container)}
-              alignItems="center"
-              justify="center"
-              spacing={16}
+            <ContentContainer
+              breadCrumbTitle="Project"
+              shouldRenderInsidePaper={false}
             >
-              <GridItem xs={4}>
-                <Paper className={classes.paperRoot} elevation={1}>
-                  left side
-                </Paper>
-              </GridItem>
-              <GridItem xs={8}>
-                <Paper className={classes.paperRoot} elevation={1}>
-                  right side
-                </Paper>
-              </GridItem>
-            </GridContainer>
-          </ContentContainer>
-        </PrimaryLayout>
+              <ProjectAuditPage {...this.props} />
+            </ContentContainer>
+          </PrimaryLayout>
+        </AuthValidator>
       </>
     );
   }
 }
 
-AuditProject.propTypes = propTypes;
+export const mapStateToProps = createStructuredSelector({
+  isFetching: makeSelectIsFetching(),
+  data: makeSelectData(),
+  error: makeSelectError(),
+});
 
-const mapStateToProps = () => ({});
 const mapDispatchToProps = () => ({});
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withStyles(auditProjectStyles)(AuditProject));
+)(AuditProject);

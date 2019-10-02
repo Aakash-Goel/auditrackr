@@ -6,7 +6,7 @@ export const selectCreateAudit = state => state[CREATE_AUDIT_STATE_KEY];
 export const makeSelectIsLoading = () =>
   createSelector(
     selectCreateAudit,
-    createAuditState => createAuditState.isLoading
+    createAuditState => createAuditState.isFetching
   );
 
 export const makeSelectData = () =>
