@@ -139,22 +139,22 @@ class CustomSelect extends React.Component {
           >
             {selectHeader ? <MenuItem>{selectHeader}</MenuItem> : null}
             {selectOptionList.map((prop, key) => {
-              if (prop.divider) {
+              if (prop && prop.divider) {
                 return (
                   <Divider key={key} className={classes.selectDividerItem} />
                 );
               }
               return (
                 <MenuItem
-                  value={prop.value}
+                  value={prop && prop.value}
                   key={key}
-                  disabled={prop.disabled}
+                  disabled={prop && prop.disabled}
                   classes={{
                     selected: classes.selectedMenuItem,
                   }}
                   className={selectItemClass}
                 >
-                  {prop.name}
+                  {prop && prop.name}
                 </MenuItem>
               );
             })}

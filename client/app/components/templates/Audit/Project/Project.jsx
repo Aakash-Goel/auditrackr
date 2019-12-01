@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
+import { object } from 'prop-types';
 import { createStructuredSelector } from 'reselect';
 
 import AuthValidator from '../../../organisms/AuthValidator';
@@ -12,6 +13,14 @@ import {
   makeSelectError,
 } from './selectors';
 import { getProject } from './actions';
+
+const propTypes = {
+  data: object,
+};
+
+const defaultProps = {
+  data: null,
+};
 
 class AuditProject extends PureComponent {
   static async getInitialProps({ ctx }) {
@@ -32,6 +41,7 @@ class AuditProject extends PureComponent {
   }
 
   render() {
+    const { data } = this.props;
     return (
       <>
         <AuthValidator>
@@ -41,7 +51,7 @@ class AuditProject extends PureComponent {
             pageId="audit-project"
           >
             <ContentContainer
-              breadCrumbTitle="Project"
+              breadCrumbTitle={data && data.auditName}
               shouldRenderInsidePaper={false}
             >
               <ProjectAuditPage {...this.props} />
@@ -52,6 +62,9 @@ class AuditProject extends PureComponent {
     );
   }
 }
+
+AuditProject.propTypes = propTypes;
+AuditProject.defaultProps = defaultProps;
 
 export const mapStateToProps = createStructuredSelector({
   isFetching: makeSelectIsFetching(),

@@ -20,6 +20,7 @@ export const requestProjectDetailsById = args => {
             _id
             questions {
               question
+              shortName
               definition
               recommendation
               inOut
