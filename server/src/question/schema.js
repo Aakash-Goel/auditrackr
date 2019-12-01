@@ -22,6 +22,8 @@ const schema = gql`
   type Question {
     _id: ID!
     question: String!
+    shortName: String!
+    answer: String
     definition: String!
     recommendation: String
     inOut: String
@@ -32,6 +34,7 @@ const schema = gql`
     priority: String!
     notes: String
     points: Int
+    status: String
     lastUpdatedAt: String!
     lastUpdatedBy: String!
     category: String!
@@ -39,6 +42,7 @@ const schema = gql`
 
   input questionInput {
     question: String!
+    shortName: String!
     definition: String!
     recommendation: String
     inOut: String

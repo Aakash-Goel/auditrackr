@@ -28,6 +28,13 @@ const questionSchema = new Schema({
     type: String,
     required: true,
   },
+  shortName: {
+    type: String,
+    required: true,
+  },
+  answer: {
+    type: String,
+  },
   definition: {
     type: String,
     required: true,
@@ -58,6 +65,9 @@ const questionSchema = new Schema({
   },
   points: {
     type: Number,
+  },
+  status: {
+    type: String,
   },
   lastUpdatedAt: {
     type: Date,

@@ -37,6 +37,7 @@ const resolvers = {
       try {
         const question = new Question({
           question: args.questionInput.question,
+          shortName: args.questionInput.shortName,
           definition: args.questionInput.definition,
           recommendation: args.questionInput.recommendation || '',
           inOut: args.questionInput.inOut || '',
@@ -47,6 +48,7 @@ const resolvers = {
           priority: args.questionInput.priority, // @TODO: needs to update this field
           notes: args.questionInput.notes || '',
           points: args.questionInput.points || 1,
+          status: 'Incomplete',
           lastUpdatedAt: new Date(),
           lastUpdatedBy: 'xyz', // @TODO: needs to update this field
           category: args.questionInput.category, // @TODO: needs to update this field
