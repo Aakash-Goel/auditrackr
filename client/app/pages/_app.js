@@ -26,7 +26,7 @@ import { StylesProvider, ThemeProvider } from '@material-ui/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 import getPageContext from '../lib/getPageContext';
-import globalStyles from '../styles/globalStyles';
+import globalStyles from '../styles/global';
 import createStore from '../store/store';
 import { setLabels } from '../lib/labels/actions';
 import ServiceUtil from '../utils/serviceUtil';

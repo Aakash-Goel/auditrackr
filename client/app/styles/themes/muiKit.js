@@ -51,15 +51,15 @@ const card = {
   background: '#fff',
 };
 
-const primaryFontFamily = '"Roboto", "Helvetica", "Arial", sans-serif';
+const primaryFontFamily = '"Raleway", "Helvetica", "Arial", sans-serif';
 
-const secondaryFontFamily = '"Montserrat", "Helvetica", "Arial", sans-serif';
+const secondaryFontFamily = '"Josefin Sans", "Helvetica", "Arial", sans-serif';
 
 const defaultFont = {
   fontFamily: primaryFontFamily,
-  fontWeight: '400',
+  fontWeight: '500',
   fontSize: '16px',
-  lineHeight: '1.5em',
+  lineHeight: '1.5',
 };
 
 const primaryColor = '#4e3883'; // possible list [9c27b0, ~05386b, 66fcf1, ~4056a1, ~123c69, ~4A4E9D, F5AEB9]

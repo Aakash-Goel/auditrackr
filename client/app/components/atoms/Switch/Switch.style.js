@@ -1,4 +1,4 @@
-import { blackColor } from '../../../styles/theme/muiKit';
+import { blackColor } from '../../../styles/themes/muiKit';
 
 const switchStyles = theme => ({
   disabled: {

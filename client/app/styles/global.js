@@ -2,7 +2,7 @@ import {
   defaultFont,
   primaryFontFamily,
   secondaryFontFamily,
-} from './theme/muiKit';
+} from './themes/muiKit';
 
 export default {
   '@global': {
@@ -23,14 +23,14 @@ export default {
       background: '#fff',
       color: '#14171a',
     },
-    'h1, h2, h3, h4': {
+    'h1, h2': {
       fontFamily: secondaryFontFamily,
-      fontWeight: 400,
+      fontWeight: 300,
       margin: 0,
     },
-    'h5, h6': {
+    'h3, h4, h5, h6': {
       fontFamily: primaryFontFamily,
-      fontWeight: 400,
+      fontWeight: 500,
     },
     'ol, ul': {
       margin: 0,

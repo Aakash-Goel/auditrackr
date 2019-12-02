@@ -4,7 +4,7 @@ import {
   errorColor,
   whiteColor,
   greyColor,
-} from '../../../styles/theme/muiKit';
+} from '../../../styles/themes/muiKit';
 
 const inputStyles = () => ({
   disabled: {
@@ -38,7 +38,7 @@ const inputStyles = () => ({
   },
   labelRoot: {
     color: greyColor,
-    fontWeight: '400',
+    fontWeight: '500',
   },
   labelRootError: {
     color: `${errorColor} !important`,
@@ -55,7 +55,7 @@ const inputStyles = () => ({
   },
   input: {
     color: primaryColor,
-    fontWeight: '400',
+    fontWeight: '500',
     '&,&::placeholder': {
       opacity: '1',
     },

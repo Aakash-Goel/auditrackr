@@ -14,7 +14,7 @@
 import React, { Component } from 'react';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
-import muiTheme from '../../styles/theme/muiTheme';
+import muiTheme from '../../styles/themes/muiTheme';
 import './tapEvents';
 
 /**

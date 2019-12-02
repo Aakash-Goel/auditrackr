@@ -21,7 +21,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 import catchErrors from '../lib/errorBoundary';
 import preloadAssets from '../lib/preloadAssets';
-import globalStyles from '../styles/globalStyles';
+import globalStyles from '../styles/global';
 import { WEB_FONTS_PATH } from '../constants';
 
 class MyDocument extends Document {

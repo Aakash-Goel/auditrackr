@@ -1,5 +1,3 @@
-// import { primaryColor } from '../../../styles/theme/muiKit';
-
 const radioStyles = {
   disabled: {
     color: `rgba(0, 0, 0, 0.45)`,

@@ -5,7 +5,7 @@ import {
 } from '@material-ui/styles';
 import { createMuiTheme } from '@material-ui/core/styles';
 
-import muiTheme from '../styles/theme/muiTheme';
+import muiTheme from '../styles/themes/muiTheme';
 
 // A theme with custom options.
 // It's optional.

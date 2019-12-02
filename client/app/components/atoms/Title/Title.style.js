@@ -1,27 +1,23 @@
 const titleStyles = () => ({
   h1: {
-    fontSize: '46px',
-    lineHeight: '1.14',
-    letterSpacing: '1px',
+    fontSize: '48px',
+    lineHeight: '1.20',
   },
   h2: {
-    fontSize: '40px',
-    lineHeight: '1.18',
-    letterSpacing: '0.8px',
+    fontSize: '32px',
+    lineHeight: '1.25',
   },
   h3: {
-    fontSize: '34px',
-    lineHeight: '1.22',
-    letterSpacing: '0.6px',
+    fontSize: '24px',
+    lineHeight: '1.35',
   },
   h4: {
-    fontSize: '28px',
-    lineHeight: '1.26',
-    letterSpacing: '0.4px',
+    fontSize: '20px',
+    lineHeight: '1.40',
   },
   h5: {
-    fontSize: '22px',
-    lineHeight: '1.42',
+    fontSize: '18px',
+    lineHeight: '1.45',
   },
   h6: {
     fontSize: '16px',

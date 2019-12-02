@@ -11,7 +11,7 @@ import {
   warningBoxShadow,
   errorColor,
   errorBoxShadow,
-} from '../../../styles/theme/muiKit';
+} from '../../../styles/themes/muiKit';
 
 const selectStyles = () => ({
   formControl: {
