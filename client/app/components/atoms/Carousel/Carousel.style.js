@@ -1,4 +1,6 @@
-const carouselStyles = () => ({
+import { fade } from '@material-ui/core/styles/colorManipulator';
+
+const carouselStyles = theme => ({
   '@global': {
     /* Slider */
     '.slick-slider': {
@@ -134,24 +136,24 @@ const carouselStyles = () => ({
     '.slick-dots li button': {
       display: 'block',
       cursor: 'pointer',
-      width: '.5rem',
-      height: '.5rem',
+      width: '.65rem',
+      height: '.65rem',
       padding: 0,
       lineHeight: 0,
       textIndent: '-999px',
       borderRadius: '50%',
       background: 'transparent',
       opacity: 0.5,
-      border: `1px solid #999`,
+      border: `1px solid ${theme.palette.grey[500]}`,
     },
     '.slick-dots li button:hover, .slick-dots li button:focus': {
       opacity: 0.75,
-      border: `1px solid #6D1B7B`,
+      border: `1px solid ${fade(theme.palette.common.white, 0.65)}`,
     },
     '.slick-dots li.slick-active button': {
       opacity: 1,
-      border: `1px solid #9c27b0`,
-      background: `#9c27b0`,
+      border: `1px solid ${fade(theme.palette.common.white, 0.65)}`,
+      background: fade(theme.palette.common.white, 0.65),
     },
   },
 });

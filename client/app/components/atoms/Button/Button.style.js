@@ -1,568 +1,492 @@
-import {
-  primaryColor,
-  secondaryColor,
-  infoColor,
-  successColor,
-  warningColor,
-  errorColor,
-  blackColor,
-  whiteColor,
-  greyColor,
-} from '../../../styles/themes/muiKit';
+import { fade } from '@material-ui/core/styles/colorManipulator';
 
-const buttonStyles = theme => ({
-  button: {
-    minHeight: 'auto',
-    minWidth: 'auto',
-    backgroundColor: greyColor,
-    color: whiteColor,
-    boxShadow:
-      '0 2px 2px 0 rgba(153, 153, 153, 0.14), 0 3px 1px -2px rgba(153, 153, 153, 0.2), 0 1px 5px 0 rgba(153, 153, 153, 0.12)',
-    border: 'none',
-    position: 'relative',
-    padding: '12px 26px',
-    margin: '.3125rem 1px',
-    fontSize: '16px',
-    fontWeight: '500',
-    letterSpacing: '0',
-    willChange: 'box-shadow, transform',
-    transition:
-      'box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1), background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
-    lineHeight: '1.5',
-    textAlign: 'center',
-    whiteSpace: 'nowrap',
-    verticalAlign: 'middle',
-    touchAction: 'manipulation',
-    cursor: 'pointer',
-    '&:hover,&:focus': {
-      color: whiteColor,
-      backgroundColor: greyColor,
-      boxShadow:
-        '0 14px 26px -12px rgba(153, 153, 153, 0.42), 0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(153, 153, 153, 0.2)',
-    },
-    '& .fab,& .fas,& .far,& .fal,& .material-icons': {
+import linksStyles from '../../../styles/mixins/links';
+import { textTransform } from '../../../styles/variables';
+
+// constants
+const outlineBorder = 1;
+const outlineBorderUnit = 'px';
+const outlineBorderStyle = 'solid';
+const outlineAlpha = 0.5;
+const linkAlpha = 0.75;
+const roundButtonRadius = '30px';
+
+const buttonStyles = theme => {
+  // theme constants
+  const primaryColor = theme.palette.primary.main;
+  const secondaryColor = theme.palette.secondary.main;
+  const infoColor = theme.palette.custom.info;
+  const successColor = theme.palette.custom.success;
+  const warningColor = theme.palette.custom.warning;
+  const errorColor = theme.palette.error.main;
+  const whiteColor = theme.palette.common.white;
+  const blackColor = theme.palette.common.black;
+  const greyColor = theme.palette.grey[500];
+  const { fontSize, fontSizeRegular, fontSizeExtraSmall } = theme.typography;
+
+  const styleObject = {
+    button: {
+      minHeight: 'auto',
+      minWidth: 'auto',
+      boxShadow: theme.shadows[3],
+      border: 'none',
       position: 'relative',
-      display: 'inline-block',
-      top: '0',
-      fontSize: '1.1rem',
-      marginRight: '4px',
+      padding: theme.spacing(1.5, 3), // 12px 24px
+      willChange: 'box-shadow, transform',
+      transition:
+        'box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1), background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
+      textAlign: 'center',
+      whiteSpace: 'nowrap',
       verticalAlign: 'middle',
-    },
-    '& svg': {
-      position: 'relative',
-      display: 'inline-block',
-      top: '0',
-      width: '18px',
-      height: '18px',
-      marginRight: '4px',
-      verticalAlign: 'middle',
-    },
-    '&$justIcon': {
+      touchAction: 'manipulation',
+      cursor: 'pointer',
+      '&:hover,&:focus': {
+        boxShadow: theme.shadows[8],
+      },
       '& .fab,& .fas,& .far,& .fal,& .material-icons': {
-        marginRight: '0px',
-        position: 'absolute',
-        width: '100%',
-        transform: 'none',
-        left: '0px',
-        top: '0px',
-        height: '100%',
-        lineHeight: '41px',
-        fontSize: '20px',
+        position: 'relative',
+        display: 'inline-block',
+        top: '0',
+        // fontSize: fontSize,
+        marginRight: theme.spacing(0.5), // 4px
+        verticalAlign: 'middle',
+      },
+      '& svg': {
+        position: 'relative',
+        display: 'inline-block',
+        top: '0',
+        width: '18px',
+        height: '18px',
+        marginRight: theme.spacing(0.5), // 4px
+        verticalAlign: 'middle',
+      },
+      '&$justIcon': {
+        '& .fab,& .fas,& .far,& .fal,& .material-icons': {
+          position: 'absolute',
+          width: '100%',
+          height: '100%',
+          transform: 'none',
+          left: '0',
+          top: '0',
+          marginRight: '0px',
+          // lineHeight: '41px',
+          // fontSize: '20px', // do not hard code
+        },
       },
     },
-  },
-  fullWidth: {
-    width: '100%',
-  },
-  primary: {
-    backgroundColor: theme.palette.primary.main,
-    boxShadow:
-      '0 2px 2px 0 rgba(78, 58, 129, 0.14), 0 3px 1px -2px rgba(78, 58, 129, 0.2), 0 1px 5px 0 rgba(78, 58, 129, 0.12)',
-    '&:hover,&:focus': {
-      backgroundColor: theme.palette.primary.dark,
-      boxShadow:
-        '0 14px 26px -12px rgba(78, 58, 129, 0.42), 0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(78, 58, 129, 0.2)',
-      transition: 'all .5s',
-    },
-  },
-  secondary: {
-    backgroundColor: theme.palette.secondary.main,
-    boxShadow:
-      '0 2px 2px 0 rgba(1, 167, 143, 0.14), 0 3px 1px -2px rgba(1, 167, 143, 0.2), 0 1px 5px 0 rgba(1, 167, 143, 0.12)',
-    '&:hover,&:focus': {
-      backgroundColor: theme.palette.secondary.main,
-      boxShadow:
-        '0 14px 26px -12px rgba(1, 167, 143, 0.42), 0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(1, 167, 143, 0.2)',
-    },
-  },
-  info: {
-    backgroundColor: infoColor,
-    boxShadow:
-      '0 2px 2px 0 rgba(0, 188, 212, 0.14), 0 3px 1px -2px rgba(0, 188, 212, 0.2), 0 1px 5px 0 rgba(0, 188, 212, 0.12)',
-    '&:hover,&:focus': {
-      backgroundColor: infoColor,
-      boxShadow:
-        '0 14px 26px -12px rgba(0, 188, 212, 0.42), 0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 188, 212, 0.2)',
-    },
-  },
-  success: {
-    backgroundColor: successColor,
-    boxShadow:
-      '0 2px 2px 0 rgba(76, 175, 80, 0.14), 0 3px 1px -2px rgba(76, 175, 80, 0.2), 0 1px 5px 0 rgba(76, 175, 80, 0.12)',
-    '&:hover,&:focus': {
-      backgroundColor: successColor,
-      boxShadow:
-        '0 14px 26px -12px rgba(76, 175, 80, 0.42), 0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(76, 175, 80, 0.2)',
-    },
-  },
-  warning: {
-    backgroundColor: warningColor,
-    boxShadow:
-      '0 2px 2px 0 rgba(255, 152, 0, 0.14), 0 3px 1px -2px rgba(255, 152, 0, 0.2), 0 1px 5px 0 rgba(255, 152, 0, 0.12)',
-    '&:hover,&:focus': {
-      backgroundColor: warningColor,
-      boxShadow:
-        '0 14px 26px -12px rgba(255, 152, 0, 0.42), 0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(255, 152, 0, 0.2)',
-    },
-  },
-  error: {
-    backgroundColor: errorColor,
-    boxShadow:
-      '0 2px 2px 0 rgba(244, 67, 54, 0.14), 0 3px 1px -2px rgba(244, 67, 54, 0.2), 0 1px 5px 0 rgba(244, 67, 54, 0.12)',
-    '&:hover,&:focus': {
-      backgroundColor: errorColor,
-      boxShadow:
-        '0 14px 26px -12px rgba(244, 67, 54, 0.42), 0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(244, 67, 54, 0.2)',
-    },
-  },
-  black: {
-    backgroundColor: blackColor,
-    boxShadow:
-      '0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12)',
-    '&:hover,&:focus': {
-      backgroundColor: blackColor,
-      boxShadow:
-        '0 14px 26px -12px rgba(0, 0, 0, 0.42), 0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2)',
-    },
-  },
-  white: {
-    '&,&:focus,&:hover,&:visited': {
-      backgroundColor: '#FFFFFF',
-      color: blackColor,
-    },
-  },
-  twitter: {
-    backgroundColor: '#55acee',
-    color: '#fff',
-    boxShadow:
-      '0 2px 2px 0 rgba(85, 172, 238, 0.14), 0 3px 1px -2px rgba(85, 172, 238, 0.2), 0 1px 5px 0 rgba(85, 172, 238, 0.12)',
-    '&:hover,&:focus,&:visited': {
-      backgroundColor: '#55acee',
-      color: '#fff',
-      boxShadow:
-        '0 14px 26px -12px rgba(85, 172, 238, 0.42), 0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(85, 172, 238, 0.2)',
-    },
-  },
-  facebook: {
-    backgroundColor: '#3b5998',
-    color: '#fff',
-    boxShadow:
-      '0 2px 2px 0 rgba(59, 89, 152, 0.14), 0 3px 1px -2px rgba(59, 89, 152, 0.2), 0 1px 5px 0 rgba(59, 89, 152, 0.12)',
-    '&:hover,&:focus': {
-      backgroundColor: '#3b5998',
-      color: '#fff',
-      boxShadow:
-        '0 14px 26px -12px rgba(59, 89, 152, 0.42), 0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(59, 89, 152, 0.2)',
-    },
-  },
-  google: {
-    backgroundColor: '#dd4b39',
-    color: '#fff',
-    boxShadow:
-      '0 2px 2px 0 rgba(221, 75, 57, 0.14), 0 3px 1px -2px rgba(221, 75, 57, 0.2), 0 1px 5px 0 rgba(221, 75, 57, 0.12)',
-    '&:hover,&:focus': {
-      backgroundColor: '#dd4b39',
-      color: '#fff',
-      boxShadow:
-        '0 14px 26px -12px rgba(221, 75, 57, 0.42), 0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(221, 75, 57, 0.2)',
-    },
-  },
-  github: {
-    backgroundColor: '#333333',
-    color: '#fff',
-    boxShadow:
-      '0 2px 2px 0 rgba(51, 51, 51, 0.14), 0 3px 1px -2px rgba(51, 51, 51, 0.2), 0 1px 5px 0 rgba(51, 51, 51, 0.12)',
-    '&:hover,&:focus': {
-      backgroundColor: '#333333',
-      color: '#fff',
-      boxShadow:
-        '0 14px 26px -12px rgba(51, 51, 51, 0.42), 0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(51, 51, 51, 0.2)',
-    },
-  },
-  simple: {
-    '&': {
-      color: greyColor,
-      background: 'transparent',
-      boxShadow: 'none',
-    },
-    '&:hover': {
-      color: blackColor,
-      background: 'transparent',
-      boxShadow: 'none',
-    },
-    '&$primary': {
-      '&,&:focus,&:hover,&:visited': {
+    primary: {
+      backgroundColor: primaryColor,
+      color: whiteColor,
+
+      '&:hover,&:focus': {
+        backgroundColor: whiteColor,
         color: primaryColor,
       },
     },
-    '&$secondary': {
-      '&,&:focus,&:hover,&:visited': {
+    secondary: {
+      backgroundColor: secondaryColor,
+      color: whiteColor,
+      '&:hover,&:focus': {
+        backgroundColor: whiteColor,
         color: secondaryColor,
       },
     },
-    '&$info': {
-      '&,&:focus,&:hover,&:visited': {
+    info: {
+      backgroundColor: infoColor,
+      color: whiteColor,
+      '&:hover,&:focus': {
+        backgroundColor: whiteColor,
         color: infoColor,
       },
     },
-    '&$success': {
-      '&,&:focus,&:hover,&:visited': {
+    success: {
+      backgroundColor: successColor,
+      color: whiteColor,
+      '&:hover,&:focus': {
+        backgroundColor: whiteColor,
         color: successColor,
       },
     },
-    '&$warning': {
-      '&,&:focus,&:hover,&:visited': {
+    warning: {
+      backgroundColor: warningColor,
+      color: whiteColor,
+      '&:hover,&:focus': {
+        backgroundColor: whiteColor,
         color: warningColor,
       },
     },
-    '&$error': {
-      '&,&:focus,&:hover,&:visited': {
+    error: {
+      backgroundColor: errorColor,
+      color: whiteColor,
+      '&:hover,&:focus': {
+        backgroundColor: whiteColor,
         color: errorColor,
       },
     },
-    '&$black': {
-      '&,&:focus,&:hover,&:visited': {
+    white: {
+      backgroundColor: whiteColor,
+      color: blackColor,
+      '&:hover,&:focus': {
+        backgroundColor: blackColor,
+        color: whiteColor,
+      },
+    },
+    black: {
+      backgroundColor: blackColor,
+      color: whiteColor,
+      '&:hover,&:focus': {
+        backgroundColor: whiteColor,
         color: blackColor,
       },
     },
-    '&$white': {
-      '&,&:focus,&:hover,&:visited': {
-        color: whiteColor,
-      },
-    },
-    '&$twitter': {
-      '&,&:focus,&:hover,&:visited': {
-        color: '#55acee',
-      },
-    },
-    '&$facebook': {
-      '&,&:focus,&:hover,&:visited': {
-        color: '#3b5998',
-      },
-    },
-    '&$google': {
-      '&,&:focus,&:hover,&:visited': {
-        color: '#dd4b39',
-      },
-    },
-    '&$github': {
-      '&': {
-        color: '#333333',
-      },
+    grey: {
+      backgroundColor: greyColor,
+      color: whiteColor,
       '&:hover,&:focus': {
-        color: whiteColor,
+        backgroundColor: whiteColor,
+        color: greyColor,
       },
     },
-  },
-  transparent: {
-    '&,&:hover': {
-      color: 'inherit',
-      background: 'transparent',
-      boxShadow: 'none',
-    },
-  },
-  disabled: {
-    opacity: '0.65',
-    pointerEvents: 'none',
-  },
-  lg: {
-    padding: '1rem 2.125rem',
-    fontSize: '1rem',
-    lineHeight: '1.333333',
-    borderRadius: '0.2rem',
-  },
-  sm: {
-    padding: '0.5rem 1.125rem',
-    fontSize: '0.75rem',
-    lineHeight: '1.5',
-    borderRadius: '0.2rem',
-  },
-  round: {
-    borderRadius: '30px',
-  },
-  block: {
-    width: '100% !important',
-  },
-  link: {
-    '&': {
-      backgroundColor: 'transparent',
-      color: '#999999',
-      boxShadow: 'none',
-      margin: 0,
-      padding: 0,
-      lineHeight: '1.5',
-    },
-    '&:hover,&:focus': {
-      color: '#999999',
-      backgroundColor: 'transparent',
-      boxShadow: 'none',
-    },
-    '&$primary': {
-      '&,&:focus,&:visited': {
-        color: primaryColor,
+
+    // Simple Button Styles
+    simple: {
+      '&': {
+        background: 'transparent',
+        boxShadow: 'none',
       },
       '&:hover': {
-        color: secondaryColor,
+        background: 'transparent',
+        boxShadow: 'none',
+      },
+      '&$primary': {
+        '&,&:focus,&:hover,&:visited': {
+          color: primaryColor,
+        },
+      },
+      '&$secondary': {
+        '&,&:focus,&:hover,&:visited': {
+          color: secondaryColor,
+        },
+      },
+      '&$info': {
+        '&,&:focus,&:hover,&:visited': {
+          color: infoColor,
+        },
+      },
+      '&$success': {
+        '&,&:focus,&:hover,&:visited': {
+          color: successColor,
+        },
+      },
+      '&$warning': {
+        '&,&:focus,&:hover,&:visited': {
+          color: warningColor,
+        },
+      },
+      '&$error': {
+        '&,&:focus,&:hover,&:visited': {
+          color: errorColor,
+        },
+      },
+      '&$white': {
+        '&,&:focus,&:hover,&:visited': {
+          color: whiteColor,
+        },
+      },
+      '&$black': {
+        '&,&:focus,&:hover,&:visited': {
+          color: blackColor,
+        },
+      },
+      '&$grey': {
+        '&,&:focus,&:hover,&:visited': {
+          color: greyColor,
+        },
       },
     },
-    '&$secondary': {
-      '&,&:focus,&:visited': {
-        color: secondaryColor,
-      },
-      '&:hover,&:visited': {
-        color: whiteColor,
-      },
-    },
-    '&$info': {
-      '&,&:focus,&:hover,&:visited': {
-        color: infoColor,
-      },
-    },
-    '&$success': {
-      '&,&:focus,&:hover,&:visited': {
-        color: successColor,
-      },
-    },
-    '&$warning': {
-      '&,&:focus,&:hover,&:visited': {
-        color: warningColor,
-      },
-    },
-    '&$error': {
-      '&,&:focus,&:hover,&:visited': {
-        color: errorColor,
-      },
-    },
-    '&$black': {
-      '&,&:focus,&:hover,&:visited': {
-        color: blackColor,
-      },
-    },
-    '&$white': {
-      '&,&:focus,&:hover,&:visited': {
-        color: whiteColor,
-      },
-    },
-    '&$twitter': {
-      '&,&:focus,&:hover,&:visited': {
-        color: '#55acee',
-      },
-    },
-    '&$facebook': {
-      '&,&:focus,&:hover,&:visited': {
-        color: '#3b5998',
-      },
-    },
-    '&$google': {
-      '&,&:focus,&:hover,&:visited': {
-        color: '#dd4b39',
-      },
-    },
-    '&$github': {
-      '&,&:focus,&:hover,&:visited': {
-        color: '#333333',
-      },
-    },
-  },
-  outlined: {
-    '&': {
-      backgroundColor: 'transparent',
-      color: '#999999',
-      border: '1px solid #999999',
-      boxShadow: 'none',
-    },
-    '&:hover,&:focus': {
-      color: '#fff',
-      opacity: '0.8',
-      boxShadow: 'none',
-    },
-    '&$primary': {
+
+    // Outlined Button Styles
+    outlined: {
       '&': {
-        color: primaryColor,
-        border: `1px solid ${primaryColor}`,
+        backgroundColor: 'transparent',
+        boxShadow: 'none',
+      },
+      '&$primary': {
+        '&': {
+          color: primaryColor,
+          border: `${outlineBorder}${outlineBorderUnit} ${outlineBorderStyle} ${primaryColor}`,
+        },
+        '&:hover,&:focus': {
+          backgroundColor: fade(primaryColor, outlineAlpha),
+        },
+      },
+      '&$secondary': {
+        '&': {
+          color: secondaryColor,
+          border: `${outlineBorder}${outlineBorderUnit} ${outlineBorderStyle} ${secondaryColor}`,
+        },
+        '&:hover,&:focus': {
+          backgroundColor: fade(secondaryColor, outlineAlpha),
+        },
+      },
+      '&$info': {
+        '&': {
+          color: infoColor,
+          border: `${outlineBorder}${outlineBorderUnit} ${outlineBorderStyle} ${infoColor}`,
+        },
+        '&:hover,&:focus': {
+          backgroundColor: fade(infoColor, outlineAlpha),
+        },
+      },
+      '&$success': {
+        '&': {
+          color: successColor,
+          border: `${outlineBorder}${outlineBorderUnit} ${outlineBorderStyle} ${successColor}`,
+        },
+        '&:hover,&:focus': {
+          backgroundColor: fade(successColor, outlineAlpha),
+        },
+      },
+      '&$warning': {
+        '&': {
+          color: warningColor,
+          border: `${outlineBorder}${outlineBorderUnit} ${outlineBorderStyle} ${warningColor}`,
+        },
+        '&:hover,&:focus': {
+          backgroundColor: fade(warningColor, outlineAlpha),
+        },
+      },
+      '&$error': {
+        '&': {
+          color: errorColor,
+          border: `${outlineBorder}${outlineBorderUnit} ${outlineBorderStyle} ${errorColor}`,
+        },
+        '&:hover,&:focus': {
+          backgroundColor: fade(errorColor, outlineAlpha),
+        },
+      },
+      '&$white': {
+        '&': {
+          color: whiteColor,
+          border: `${outlineBorder}${outlineBorderUnit} ${outlineBorderStyle} ${whiteColor}`,
+        },
+        '&:hover,&:focus': {
+          backgroundColor: fade(whiteColor, outlineAlpha),
+        },
+      },
+      '&$black': {
+        '&': {
+          color: blackColor,
+          border: `${outlineBorder}${outlineBorderUnit} ${outlineBorderStyle} ${blackColor}`,
+        },
+        '&:hover,&:focus': {
+          backgroundColor: fade(blackColor, outlineAlpha),
+        },
+      },
+      '&$grey': {
+        '&': {
+          color: greyColor,
+          border: `${outlineBorder}${outlineBorderUnit} ${outlineBorderStyle}
+            ${greyColor}`,
+        },
+        '&:hover,&:focus': {
+          backgroundColor: fade(greyColor, outlineAlpha),
+        },
+      },
+      '&$transparent': {
+        '&': {
+          border: `none`,
+        },
+      },
+    },
+
+    // Link Button Styles
+    link: {
+      '&': {
+        ...linksStyles.default,
       },
       '&:hover,&:focus': {
-        color: '#fff',
+        ...linksStyles.defaultHover,
+      },
+      '&$primary': {
+        '&,&:focus': {
+          color: primaryColor,
+        },
+        '&:hover,&:visited': {
+          color: fade(primaryColor, linkAlpha),
+        },
+      },
+      '&$secondary': {
+        '&,&:focus': {
+          color: secondaryColor,
+        },
+        '&:hover,&:visited': {
+          color: fade(secondaryColor, linkAlpha),
+        },
+      },
+      '&$info': {
+        '&,&:focus': {
+          color: infoColor,
+        },
+        '&:hover,&:visited': {
+          color: fade(infoColor, linkAlpha),
+        },
+      },
+      '&$success': {
+        '&,&:focus': {
+          color: successColor,
+        },
+        '&:hover,&:visited': {
+          color: fade(successColor, linkAlpha),
+        },
+      },
+      '&$warning': {
+        '&,&:focus': {
+          color: warningColor,
+        },
+        '&:hover,&:visited': {
+          color: fade(warningColor, linkAlpha),
+        },
+      },
+      '&$error': {
+        '&,&:focus': {
+          color: errorColor,
+        },
+        '&:hover,&:visited': {
+          color: fade(errorColor, linkAlpha),
+        },
+      },
+      '&$white': {
+        '&,&:focus': {
+          color: whiteColor,
+        },
+        '&:hover,&:visited': {
+          color: fade(whiteColor, linkAlpha),
+        },
+      },
+      '&$black': {
+        '&,&:focus': {
+          color: blackColor,
+        },
+        '&:hover,&:visited': {
+          color: fade(blackColor, linkAlpha),
+        },
+      },
+      '&$grey': {
+        '&,&:focus': {
+          color: greyColor,
+        },
+        '&:hover,&:visited': {
+          color: fade(greyColor, linkAlpha),
+        },
       },
     },
-    '&$secondary': {
-      '&': {
-        color: secondaryColor,
-        border: `1px solid ${secondaryColor}`,
-      },
-      '&:hover,&:focus': {
-        color: '#fff',
+
+    // General Styles
+    round: {
+      borderRadius: roundButtonRadius,
+    },
+    fullWidth: {
+      width: '100%',
+    },
+    transparent: {
+      '&,&:hover': {
+        color: 'inherit',
+        background: 'transparent',
+        boxShadow: 'none',
       },
     },
-    '&$info': {
-      '&': {
-        color: infoColor,
-        border: `1px solid ${infoColor}`,
-      },
-      '&:hover,&:focus': {
-        color: '#fff',
-      },
+    disabled: {
+      ...theme.palette.custom.disabled,
+      pointerEvents: 'none',
     },
-    '&$success': {
-      '&': {
-        color: successColor,
-        border: `1px solid ${successColor}`,
-      },
-      '&:hover,&:focus': {
-        color: '#fff',
-      },
+    block: {
+      width: '100% !important',
     },
-    '&$warning': {
-      '&': {
-        color: warningColor,
-        border: `1px solid ${warningColor}`,
-      },
-      '&:hover,&:focus': {
-        color: '#fff',
-      },
+
+    // Button Sizes
+    sm: {
+      padding: theme.spacing(1, 2.25), // '8px 18px',
+      fontSize: fontSizeExtraSmall,
     },
-    '&$error': {
-      '&': {
-        color: errorColor,
-        border: `1px solid ${errorColor}`,
-      },
-      '&:hover,&:focus': {
-        color: '#fff',
-      },
+    md: {
+      padding: theme.spacing(1.75, 3.75), // 14px 30px
+      fontSize,
     },
-    '&$black': {
-      '&': {
-        color: blackColor,
-        border: `1px solid ${blackColor}`,
-      },
-      '&:hover,&:focus': {
-        color: '#fff',
-      },
+    lg: {
+      padding: theme.spacing(2, 4.25), // 16px, 34px
+      fontSize: fontSizeRegular,
     },
-    '&$white': {
-      '&': {
-        color: whiteColor,
-        border: `1px solid ${whiteColor}`,
-      },
-      '&:hover,&:focus': {
-        color: '#000',
-      },
+
+    // weights
+    bold: {
+      fontWeight: theme.typography.fontWeightBold,
     },
-    '&$twitter': {
-      '&': {
-        color: '#55acee',
-        border: `1px solid #55acee`,
-      },
-      '&:hover,&:focus': {
-        color: '#fff',
-      },
+    medium: {
+      fontWeight: theme.typography.fontWeightRegular,
     },
-    '&$facebook': {
-      '&': {
-        color: '#3b5998',
-        border: `1px solid #3b5998`,
-      },
-      '&:hover,&:focus': {
-        color: '#fff',
-      },
+    light: {
+      fontWeight: theme.typography.fontWeightLight,
     },
-    '&$google': {
-      '&': {
-        color: '#dd4b39',
-        border: `1px solid #dd4b39`,
+
+    // refactor below, remove hard code values
+    justIcon: {
+      paddingLeft: '12px',
+      paddingRight: '12px',
+      fontSize: '20px',
+      height: '41px',
+      minWidth: '41px',
+      width: '41px',
+      '& .fab,& .fas,& .far,& .fal,& svg,& .material-icons': {
+        marginRight: '0px',
       },
-      '&:hover,&:focus': {
-        color: '#fff',
-      },
-    },
-    '&$github': {
-      '&': {
-        color: '#333333',
-        border: `1px solid #333333`,
-      },
-      '&:hover,&:focus': {
-        color: '#fff',
-      },
-    },
-    '&$transparent': {
-      '&': {
-        border: `none`,
-      },
-    },
-  },
-  justIcon: {
-    paddingLeft: '12px',
-    paddingRight: '12px',
-    fontSize: '20px',
-    height: '41px',
-    minWidth: '41px',
-    width: '41px',
-    '& .fab,& .fas,& .far,& .fal,& svg,& .material-icons': {
-      marginRight: '0px',
-    },
-    '&$lg': {
-      height: '57px',
-      minWidth: '57px',
-      width: '57px',
-      lineHeight: '56px',
-      '& .fab,& .fas,& .far,& .fal,& .material-icons': {
-        fontSize: '32px',
+      '&$lg': {
+        height: '57px',
+        minWidth: '57px',
+        width: '57px',
         lineHeight: '56px',
+        '& .fab,& .fas,& .far,& .fal,& .material-icons': {
+          fontSize: '32px',
+          lineHeight: '56px',
+        },
+        '& svg': {
+          width: '32px',
+          height: '32px',
+        },
       },
-      '& svg': {
-        width: '32px',
-        height: '32px',
+      '&$sm': {
+        height: '30px',
+        minWidth: '30px',
+        width: '30px',
+        '& .fab,& .fas,& .far,& .fal,& .material-icons': {
+          fontSize: '17px',
+          lineHeight: '29px',
+        },
+        '& svg': {
+          width: '17px',
+          height: '17px',
+        },
       },
     },
-    '&$sm': {
-      height: '30px',
-      minWidth: '30px',
-      width: '30px',
-      '& .fab,& .fas,& .far,& .fal,& .material-icons': {
-        fontSize: '17px',
-        lineHeight: '29px',
-      },
-      '& svg': {
-        width: '17px',
-        height: '17px',
-      },
+
+    // Button Transform Styles
+    cap: {
+      textTransform: textTransform.cap,
     },
-  },
-  cap: {
-    textTransform: 'capitalize',
-  },
-  iht: {
-    textTransform: 'inherit',
-  },
-  lwc: {
-    textTransform: 'lowercase',
-  },
-  nn: {
-    textTransform: 'none',
-  },
-  upc: {
-    textTransform: 'uppercase',
-  },
-});
+    iht: {
+      textTransform: textTransform.iht,
+    },
+    lwc: {
+      textTransform: textTransform.lwc,
+    },
+    nn: {
+      textTransform: textTransform.nn,
+    },
+    upc: {
+      textTransform: textTransform.upc,
+    },
+  };
+  return styleObject;
+};
 
 export default buttonStyles;

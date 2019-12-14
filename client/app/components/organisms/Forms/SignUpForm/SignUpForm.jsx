@@ -195,6 +195,7 @@ class SignUpForm extends PureComponent {
                     label: this.renderTnC(),
                   }}
                   checkboxProps={{
+                    disabled: true,
                     required: true,
                     checked: hasTermsChecked,
                     onChange: this.handleChange('hasTermsChecked'),

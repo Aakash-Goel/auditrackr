@@ -12,15 +12,7 @@ import progressStyles from './Progress.style';
  */
 const propTypes = {
   classes: object.isRequired,
-  color: oneOf([
-    'primary',
-    'info',
-    'success',
-    'warning',
-    'error',
-    'rose',
-    'grey',
-  ]),
+  color: oneOf(['primary', 'secondary']),
 };
 
 /**
@@ -28,7 +20,7 @@ const propTypes = {
  * @private
  */
 const defaultProps = {
-  color: 'grey',
+  color: 'primary',
 };
 
 const CustomProgress = ({ ...props }) => {
@@ -37,6 +29,7 @@ const CustomProgress = ({ ...props }) => {
   return (
     <LinearProgress
       {...rest}
+      color={color}
       classes={{
         root: `${classes.root} ${classes[`${color}Background`]}`,
         bar: `${classes.bar} ${classes[color]}`,

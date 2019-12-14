@@ -23,19 +23,15 @@
  *  https://material-ui.com/customization/themes/#custom-variables
  *
  */
-
 import {
-  primaryColor,
-  secondaryColor,
-  errorColor,
-  blackColor,
-  whiteColor,
-  infoColor,
-  successColor,
-  warningColor,
-  greyColor,
-  primaryFontFamily,
-} from './muiKit';
+  colors,
+  fontFamily,
+  fontSize,
+  fontWeight,
+  lineHeight,
+  textTransform,
+} from '../variables';
+import { remToPx } from '../mixins/utils';
 
 /**
  * Module variables.
@@ -44,53 +40,133 @@ import {
 const muiTheme = {
   palette: {
     common: {
-      black: blackColor,
-      white: whiteColor,
+      black: colors.black,
+      white: colors.white,
     },
     primary: {
-      main: primaryColor,
+      main: colors.primary,
     },
     secondary: {
-      main: secondaryColor,
+      main: colors.secondary,
     },
     error: {
-      main: errorColor,
+      main: colors.error,
+    },
+    grey: {
+      50: '#fafafa',
+      100: '#f5f5f5',
+      200: '#eeeeee',
+      300: '#e0e0e0',
+      400: '#bdbdbd',
+      500: '#9e9e9e', // commonly used this only
+      600: '#757575',
+      700: '#616161',
+      800: '#424242',
+      900: '#212121',
+      A100: '#d5d5d5',
+      A200: '#aaaaaa',
+      A400: '#303030',
+      A700: '#616161',
     },
     custom: {
-      info: infoColor,
-      success: successColor,
-      warning: warningColor,
-      grey: greyColor,
+      info: colors.info,
+      success: colors.success,
+      warning: colors.warning,
+      grey: colors.grey,
       disabled: {
-        opacity: '0.45',
-        color: greyColor,
+        opacity: 0.45,
       },
     },
   },
   typography: {
-    fontFamily: primaryFontFamily,
-    useNextVariants: true,
+    htmlFontSize: 16,
+    fontFamilyPrimary: fontFamily.primary, // custom field
+    fontFamily: fontFamily.secondary,
+    fontSize: parseInt(remToPx(fontSize.normal)),
+    fontSizeSmall: fontSize.small, // custom field
+    fontSizeExtraSmall: fontSize.extraSmall, // custom field
+    fontSizeRegular: fontSize.regular, // custom field
+    fontSizeMedium: fontSize.medium, // custom field
+    fontSizeExtraMedium: fontSize.extraMedium, // custom field
+    fontSizeLarge: fontSize.large, // custom field
+    fontSizeExtraLarge: fontSize.extraLarge, // custom field
+    fontWeightThin: fontWeight.thin, // custom field
+    fontWeightLight: fontWeight.light,
+    fontWeightRegular: fontWeight.normal,
+    fontWeightMedium: fontWeight.medium,
+    fontWeightBold: fontWeight.bold,
+    button: {
+      fontFamily: fontFamily.secondary,
+      fontWeight: fontWeight.medium,
+      fontSize: parseInt(remToPx(fontSize.normal)),
+      lineHeight: lineHeight.normal,
+      textTransform: textTransform.upc,
+    },
   },
   overrides: {
-    MuiInputLabel: {
-      // Name of the component ⚛️ / style sheet
+    MuiPaper: {
       root: {
-        // Name of the rule
-        // color: 'orange',
-        '&$focused': {
-          // increase the specificity for the pseudo class
-          color: primaryColor,
-        },
+        color: 'inherit',
+      },
+    },
+    MuiFormLabel: {
+      root: {
+        fontSize: parseInt(remToPx(fontSize.normal)),
+        fontWeight: fontWeight.normal,
+        color: colors.grey,
+      },
+    },
+    MuiFormHelperText: {
+      root: {
+        fontSize: parseInt(remToPx(fontSize.small)),
+        color: colors.grey,
+      },
+    },
+    MuiInputBase: {
+      root: {
+        fontSize: parseInt(remToPx(fontSize.normal)),
+        fontWeight: fontWeight.normal,
+      },
+      input: {
+        color: colors.primary,
       },
     },
     MuiInput: {
-      // Name of the component ⚛️ / style sheet
       underline: {
-        // Name of the rule
-        // color: 'orange',
+        color: colors.grey,
+        '&:hover:not($disabled):after': {
+          // borderBottom: '1px solid red',
+        },
+        '&:hover:not($disabled):before': {
+          borderBottom: `1px solid ${colors.grey}`,
+        },
         '&:after': {
-          // increase the specificity for the pseudo class
-          borderBottom: `2px solid ${primaryColor}`,
+          // borderBottom: `1px solid ${colors.primary}`,
+        },
+        '&:before': {
+          borderBottom: `1px solid ${colors.grey}`,
+        },
+      },
+    },
+    MuiMenuItem: {
+      root: {
+        fontFamily: fontFamily.secondary,
+        fontSize: parseInt(remToPx(fontSize.normal)),
+        fontWeight: fontWeight.normal,
+        lineHeight: lineHeight.normal,
+      },
+    },
+    MuiListItem: {
+      root: {
+        '&$selected': {
+          color: colors.white,
+          backgroundColor: colors.primary,
+
+          /** will remove it in future if not required */
+          // '&:hover': {
+          //   color: colors.white,
+          //   backgroundColor: colors.primary,
+          // },
         },
       },
     },

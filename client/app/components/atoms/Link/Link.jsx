@@ -22,7 +22,7 @@ NextLink.propTypes = {
   children: node,
 };
 NextLink.defaultProps = {
-  className: '',
+  className: null,
   children: null,
 };
 
@@ -36,17 +36,18 @@ const propTypes = {
   className: string,
   href: string.isRequired,
   color: oneOf([
-    '',
     'primary',
     'secondary',
     'info',
     'success',
     'warning',
     'error',
-    'black',
     'white',
+    'black',
     'inherit',
   ]),
+  size: oneOf(['sm', 'md', 'lg']),
+  weight: oneOf(['bold', 'medium', 'light']),
   textTransform: oneOf(['cap', 'iht', 'lwc', 'nn', 'upc']),
 };
 
@@ -58,25 +59,34 @@ const defaultProps = {
   children: null,
   className: '',
   color: 'primary',
-  textTransform: 'upc',
+  size: null,
+  weight: null,
+  textTransform: 'iht',
 };
 
 const CustomLink = ({ ...props }) => {
-  const { classes, children, className, href, color } = props;
+  const {
+    classes,
+    children,
+    className,
+    href,
+    color,
+    size,
+    weight,
+    textTransform,
+  } = props;
 
   const linkClasses = classnames({
     [classes.link]: true,
     [classes[color]]: color,
+    [classes[size]]: size,
+    [classes[weight]]: weight,
+    [classes[textTransform]]: textTransform,
     [className]: className,
   });
 
   return (
-    <Link
-      component={NextLink}
-      href={href}
-      className={linkClasses}
-      // color={color}
-    >
+    <Link component={NextLink} href={href} className={linkClasses}>
       {children}
     </Link>
   );

@@ -1,15 +1,23 @@
-const authCarouselStyles = () => ({
+const imgWidth = '400px';
+const dotsWidth = '1em';
+const dotsHeight = '1em';
+const dotsRadius = '50%';
+const dotsOpacity = 0.5;
+const dotsHoverOpacity = 0.75;
+const dotsActiveOpacity = 1;
+
+const authCarouselStyles = theme => ({
   carouselWrapper: {
-    marginBottom: '24px',
+    marginBottom: theme.spacing(3), // 24px
   },
   carouselHeading: {
-    marginBottom: '24px',
+    marginBottom: theme.spacing(3), // 24px
   },
   carouselImgWrapper: {
     '& img': {
       margin: '0 auto',
       maxWidth: '100%',
-      width: '400px',
+      width: imgWidth,
     },
   },
   carouselDotsClass: {
@@ -32,27 +40,28 @@ const authCarouselStyles = () => ({
       '& button': {
         display: 'block',
         cursor: 'pointer',
-        width: '1em',
-        height: '1em',
+        width: dotsWidth,
+        height: dotsHeight,
         padding: 0,
         lineHeight: 0,
         textIndent: '-999px',
-        borderRadius: '50%',
+        borderRadius: dotsRadius,
         background: 'transparent',
-        opacity: 0.5,
-        border: `1px solid #999`,
+        opacity: dotsOpacity,
+        border: `1px solid ${theme.palette.grey[500]}`,
 
         '&:hover': {
-          opacity: 0.75,
-          border: `1px solid #6D1B7B`,
+          opacity: dotsHoverOpacity,
+          border: `1px solid ${theme.palette.common.white}`,
+          background: theme.palette.common.white,
         },
       },
     },
 
-    '& li.slick-active button': {
-      opacity: 1,
-      border: `1px solid #9c27b0`,
-      background: `#9c27b0`,
+    '& li.slick-active button, li.slick-active button:hover': {
+      opacity: dotsActiveOpacity,
+      border: `1px solid ${theme.palette.secondary.main}`,
+      background: theme.palette.secondary.main,
     },
   },
 });

@@ -17,6 +17,7 @@ import selectStyles from './Select.style';
 const propTypes = {
   classes: object.isRequired,
   labelText: node,
+  helperText: node,
   labelProps: object,
   inputProps: object,
   formControlProps: object,
@@ -29,6 +30,7 @@ const propTypes = {
 
 const defaultProps = {
   labelText: null,
+  helperText: null,
   labelProps: {},
   inputProps: {},
   formControlProps: {},
@@ -67,10 +69,12 @@ class CustomSelect extends React.Component {
     return transformOptions;
   }
 
+  /* eslint-disable complexity */
   render() {
     const {
       classes,
       labelText,
+      helperText,
       labelProps,
       inputProps,
       formControlProps,
@@ -83,13 +87,11 @@ class CustomSelect extends React.Component {
     const { id, name, type, value, ...otherInputProps } = inputProps;
     const {
       optionList,
-      selectHeader,
-      displayLabelAsOption,
-      hoverColor,
+      selectHeaderText,
+      displayLabelAsOption = !!labelText,
+      hoverColor = 'primary',
       ...otherSelectProps
     } = selectProps;
-
-    const hoverColorVariant = hoverColor || 'primary';
 
     const selectClasses = classnames({
       [classes.select]: true,
@@ -101,7 +103,7 @@ class CustomSelect extends React.Component {
     });
     const selectItemClass = classnames({
       [classes.selectItem]: true,
-      [classes[`${hoverColorVariant}Hover`]]: true,
+      [classes[`${hoverColor}Hover`]]: true,
     });
 
     const fieldError = `${inputProps.name}Error`;
@@ -112,12 +114,13 @@ class CustomSelect extends React.Component {
     );
 
     return (
-      <div>
+      <>
         <FormControl {...formControlProps} className={classes.formControl}>
           {labelText && (
             <InputLabel
               className={`${classes.labelRoot} ${labelClasses}`}
               htmlFor={id}
+              shrink={selectProps.displayEmpty}
               {...labelProps}
             >
               {labelText}
@@ -137,7 +140,11 @@ class CustomSelect extends React.Component {
             }}
             {...otherSelectProps}
           >
-            {selectHeader ? <MenuItem>{selectHeader}</MenuItem> : null}
+            {selectHeaderText ? (
+              <MenuItem aria-disabled className={classes.selectHeaderItem}>
+                {selectHeaderText}
+              </MenuItem>
+            ) : null}
             {selectOptionList.map((prop, key) => {
               if (prop && prop.divider) {
                 return (
@@ -150,22 +157,25 @@ class CustomSelect extends React.Component {
                   key={key}
                   disabled={prop && prop.disabled}
                   classes={{
+                    root: selectItemClass,
                     selected: classes.selectedMenuItem,
                   }}
-                  className={selectItemClass}
                 >
                   {prop && prop.name}
                 </MenuItem>
               );
             })}
           </Select>
-          {showFieldLevelErrorMsz && (
+          {helperText && (
+            <FormHelperText id={`${id}_msg`}>{helperText}</FormHelperText>
+          )}
+          {showFieldLevelErrorMsz && this.props[fieldError] && (
             <FormHelperText id={`${id}_error_msg`}>
               {this.props[fieldError] || ''}
             </FormHelperText>
           )}
         </FormControl>
-      </div>
+      </>
     );
   }
 }

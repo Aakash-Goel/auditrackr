@@ -1,123 +1,82 @@
-import {
-  greyColor,
-  defaultFont,
-  primaryColor,
-  primaryBoxShadow,
-  infoColor,
-  infoBoxShadow,
-  successColor,
-  successBoxShadow,
-  warningColor,
-  warningBoxShadow,
-  errorColor,
-  errorBoxShadow,
-} from '../../../styles/themes/muiKit';
+import { fade } from '@material-ui/core/styles/colorManipulator';
 
-const selectStyles = () => ({
-  formControl: {
-    position: 'relative',
-    '& svg,& .fab,& .far,& .fal,& .fas,& .material-icons': {
-      color: greyColor,
+const selectStyles = theme => {
+  // theme constants
+  const primaryColor = theme.palette.primary.main;
+  const successColor = theme.palette.custom.success;
+  const errorColor = theme.palette.error.main;
+  const whiteColor = theme.palette.common.white;
+  const greyColor = theme.palette.grey[500];
+  const { fontFamilyPrimary, fontSizeRegular } = theme.typography;
+
+  const styleObject = {
+    // form control - top most container
+    formControl: {
+      width: '100%',
+      '& svg,& .fab,& .far,& .fal,& .fas,& .material-icons': {
+        color: greyColor,
+      },
     },
-  },
-  labelRoot: {
-    color: greyColor,
-    fontWeight: '400',
-  },
-  labelRootError: {
-    color: `${errorColor} !important`,
-  },
-  labelRootSuccess: {
-    color: `${successColor} !important`,
-  },
-  select: {
-    color: primaryColor,
-    fontWeight: '400',
-    '&,&::placeholder': {
-      opacity: '1',
+
+    // custom label styles
+    labelRootError: {
+      color: `${errorColor} !important`,
     },
-    '&::placeholder': {
-      color: greyColor,
+    labelRootSuccess: {
+      color: `${successColor} !important`,
     },
-  },
-  selectItem: {
-    ...defaultFont,
-    // fontSize: "13px",
-    padding: '10px 20px',
-    // margin: '0 5px',
-    // borderRadius: '2px',
-    position: 'relative',
-    transition: 'all 150ms linear',
-    display: 'block',
-    clear: 'both',
-    fontWeight: '400',
-    height: 'fit-content',
-    // color: "#333",
-    whiteSpace: 'nowrap',
-  },
-  selectedMenuItem: {
-    '&:hover': {
-      boxShadow: 'none !important',
-      color: 'inherit !important',
+
+    // select styles
+    select: {
+      '&,&::placeholder': {
+        opacity: '1',
+      },
+      '&::placeholder': {
+        color: greyColor,
+      },
     },
-  },
-  blackHover: {
-    '&:hover': {
-      boxShadow:
-        '0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(33, 33, 33, 0.4)',
-      backgroundColor: '#212121',
-      color: '#fff',
+    // options styles
+    selectItem: {
+      display: 'block',
+      position: 'relative',
+      padding: theme.spacing(1.25, 2.5), // 10px 20px
+      height: 'fit-content',
+      clear: 'both',
+      transition: 'all 150ms linear',
     },
-  },
-  primaryHover: {
-    '&:hover': {
-      backgroundColor: primaryColor,
-      color: '#FFFFFF',
-      ...primaryBoxShadow,
+    selectedMenuItem: {
+      '&:hover': {
+        boxShadow: 'none',
+      },
     },
-  },
-  'primaryHover.selected': {
-    border: '2px solid red',
-  },
-  infoHover: {
-    '&:hover': {
-      backgroundColor: infoColor,
-      color: '#FFFFFF',
-      ...infoBoxShadow,
+    primaryHover: {
+      '&&:hover': {
+        color: whiteColor,
+        backgroundColor: primaryColor,
+      },
     },
-  },
-  successHover: {
-    '&:hover': {
-      backgroundColor: successColor,
-      color: '#FFFFFF',
-      ...successBoxShadow,
+    // select header styles
+    selectHeaderItem: {
+      cursor: 'default',
+      pointerEvents: 'none',
+      fontFamily: fontFamilyPrimary,
+      fontSize: fontSizeRegular,
+      borderBottom: `1px solid ${fade(greyColor, 0.35)}`,
+      margin: theme.spacing(0, 0.25), // 0px 8px
     },
-  },
-  warningHover: {
-    '&:hover': {
-      backgroundColor: warningColor,
-      color: '#FFFFFF',
-      ...warningBoxShadow,
+    // divider styles
+    selectDividerItem: {
+      /** not required as of now, but keeping it */
     },
-  },
-  errorHover: {
-    '&:hover': {
-      backgroundColor: errorColor,
-      color: '#FFFFFF',
-      ...errorBoxShadow,
+    // disabled option styles
+    disabled: {
+      '&:before': {
+        /** not required as of now, but keeping it */
+      },
     },
-  },
-  selectDividerItem: {
-    margin: '5px 0',
-    backgroundColor: 'rgba(0, 0, 0, 0.12)',
-    height: '1px',
-    overflow: 'hidden',
-  },
-  disabled: {
-    '&:before': {
-      borderColor: 'transparent !important',
-    },
-  },
-});
+  };
+
+  return styleObject;
+};
 
 export default selectStyles;

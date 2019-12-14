@@ -1,27 +1,44 @@
+import headingsStyles from '../../../styles/mixins/headings';
+
 const titleStyles = () => ({
-  h1: {
-    fontSize: '48px',
-    lineHeight: '1.20',
+  heading: {
+    ...headingsStyles.default,
   },
-  h2: {
-    fontSize: '32px',
-    lineHeight: '1.25',
+  'h1-primary': {
+    ...headingsStyles.h1Primary,
   },
-  h3: {
-    fontSize: '24px',
-    lineHeight: '1.35',
+  'h2-primary': {
+    ...headingsStyles.h2Primary,
   },
-  h4: {
-    fontSize: '20px',
-    lineHeight: '1.40',
+  'h3-primary': {
+    ...headingsStyles.h3Primary,
   },
-  h5: {
-    fontSize: '18px',
-    lineHeight: '1.45',
+  'h4-primary': {
+    ...headingsStyles.h4Primary,
   },
-  h6: {
-    fontSize: '16px',
-    lineHeight: '1.50',
+  'h5-primary': {
+    ...headingsStyles.h5Primary,
+  },
+  'h6-primary': {
+    ...headingsStyles.h6Primary,
+  },
+  'h1-secondary': {
+    ...headingsStyles.h1Secondary,
+  },
+  'h2-secondary': {
+    ...headingsStyles.h2Secondary,
+  },
+  'h3-secondary': {
+    ...headingsStyles.h3Secondary,
+  },
+  'h4-secondary': {
+    ...headingsStyles.h4Secondary,
+  },
+  'h5-secondary': {
+    ...headingsStyles.h5Secondary,
+  },
+  'h6-secondary': {
+    ...headingsStyles.h6Secondary,
   },
 });
 

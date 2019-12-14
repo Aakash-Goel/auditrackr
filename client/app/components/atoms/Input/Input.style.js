@@ -1,74 +1,67 @@
-import {
-  primaryColor,
-  successColor,
-  errorColor,
-  whiteColor,
-  greyColor,
-} from '../../../styles/themes/muiKit';
+const inputStyles = theme => {
+  // theme constants
+  const successColor = theme.palette.custom.success;
+  const errorColor = theme.palette.error.main;
+  const whiteColor = theme.palette.common.white;
+  const greyColor = theme.palette.grey[500];
 
-const inputStyles = () => ({
-  disabled: {
-    '&:before': {
-      borderColor: 'transparent !important',
+  const styleObject = {
+    // form control - top most container
+    formControl: {
+      '& svg,& .fab,& .far,& .fal,& .fas,& .material-icons': {
+        color: whiteColor,
+      },
     },
-  },
-  underline: {
-    '&:hover:not($disabled):before,&:before': {
-      borderColor: `${greyColor} !important`,
-      borderWidth: '1px !important',
+
+    // custom label styles
+    labelRootError: {
+      color: `${errorColor} !important`,
     },
-  },
-  underlineError: {
-    '&:after': {
-      borderColor: errorColor,
+    labelRootSuccess: {
+      color: `${successColor} !important`,
     },
-  },
-  underlineSuccess: {
-    '&:after': {
-      borderColor: successColor,
+
+    // custom input underline
+    underlineError: {
+      '&:after': {
+        borderColor: errorColor,
+      },
     },
-  },
-  whiteUnderline: {
-    '&:hover:not($disabled):before,&:before': {
-      borderColor: whiteColor,
+    underlineSuccess: {
+      '&:after': {
+        borderColor: successColor,
+      },
     },
-    '&:after': {
-      borderColor: whiteColor,
+    whiteUnderline: {
+      '&:hover:not($disabled):before,&:before': {
+        borderColor: whiteColor,
+      },
+      '&:after': {
+        borderColor: whiteColor,
+      },
     },
-  },
-  labelRoot: {
-    color: greyColor,
-    fontWeight: '500',
-  },
-  labelRootError: {
-    color: `${errorColor} !important`,
-  },
-  labelRootSuccess: {
-    color: `${successColor} !important`,
-  },
-  formControl: {
-    fontWeight: 500,
-    position: 'relative',
-    '& svg,& .fab,& .far,& .fal,& .fas,& .material-icons': {
-      color: greyColor,
+
+    // disabled class | not required as of now
+    disabled: {},
+
+    // input styles
+    input: {
+      '&,&::placeholder': {
+        opacity: '1',
+      },
+      '&::placeholder': {
+        color: greyColor,
+      },
     },
-  },
-  input: {
-    color: primaryColor,
-    fontWeight: '500',
-    '&,&::placeholder': {
-      opacity: '1',
+    whiteInput: {
+      '&,&::placeholder': {
+        color: whiteColor,
+        opacity: '1',
+      },
     },
-    '&::placeholder': {
-      color: greyColor,
-    },
-  },
-  whiteInput: {
-    '&,&::placeholder': {
-      color: whiteColor,
-      opacity: '1',
-    },
-  },
-});
+  };
+
+  return styleObject;
+};
 
 export default inputStyles;

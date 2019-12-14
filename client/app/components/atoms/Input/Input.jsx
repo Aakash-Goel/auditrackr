@@ -287,7 +287,6 @@ class CustomInput extends React.PureComponent {
     const underlineClasses = classnames({
       [classes.underlineError]: error,
       [classes.underlineSuccess]: success && !error,
-      [classes.underline]: true,
       [classes.whiteUnderline]: white,
     });
     const marginTop = classnames({
@@ -319,7 +318,7 @@ class CustomInput extends React.PureComponent {
       <FormControl {...formControlProps} className={formControlClasses}>
         {labelText && (
           <InputLabel
-            className={`${classes.labelRoot} ${labelClasses}`}
+            className={`${labelClasses}`}
             htmlFor={inputProps.id}
             {...labelProps}
           >
@@ -340,7 +339,7 @@ class CustomInput extends React.PureComponent {
           })}
           {...inputProps}
         />
-        {showFieldLevelErrorMsz && (
+        {showFieldLevelErrorMsz && this.props[fieldError] && (
           <FormHelperText
             id={`${inputProps.id}_error_msg`}
             error={showFieldLevelErrorMsz}

@@ -14,22 +14,19 @@ import buttonStyles from './Button.style';
 const propTypes = {
   classes: object.isRequired,
   color: oneOf([
-    '',
     'primary',
     'secondary',
     'info',
     'success',
     'warning',
     'error',
-    'black',
     'white',
-    'facebook',
-    'twitter',
-    'google',
-    'github',
+    'black',
+    'grey',
     'transparent',
   ]),
-  size: oneOf(['', 'sm', 'lg']),
+  size: oneOf(['sm', 'md', 'lg']),
+  weight: oneOf(['bold', 'medium', 'light']),
   simple: bool,
   round: bool,
   outlined: bool,
@@ -49,7 +46,8 @@ const propTypes = {
  */
 const defaultProps = {
   color: 'primary',
-  size: '',
+  size: null,
+  weight: null,
   simple: false,
   round: true,
   outlined: false,
@@ -59,7 +57,7 @@ const defaultProps = {
   link: false,
   justIcon: false,
   children: null,
-  className: '',
+  className: null,
   textTransform: 'upc',
 };
 
@@ -73,6 +71,7 @@ const CustomButton = ({ ...props }) => {
     disabled,
     simple,
     size,
+    weight,
     block,
     link,
     justIcon,
@@ -85,6 +84,7 @@ const CustomButton = ({ ...props }) => {
   const btnClasses = classnames({
     [classes.button]: true,
     [classes[size]]: size,
+    [classes[weight]]: weight,
     [classes[color]]: color,
     [classes.round]: round,
     [classes.outlined]: outlined,
