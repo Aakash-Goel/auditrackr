@@ -4,6 +4,8 @@
  * next.js configuration goes here
  *
  */
+const withPlugins = require('next-compose-plugins');
+const optimizedImages = require('next-optimized-images');
 
 const router = require('../routes');
 
@@ -11,7 +13,7 @@ const router = require('../routes');
  * Module variables.
  * @public
  */
-const initExport = {
+const nextConfig = {
   distDir: '../build',
   // webpack: (config, { dev, isServer }) => {
   webpack: (config, { dev }) => {
@@ -31,7 +33,7 @@ const initExport = {
 };
 
 if (process.env.STATIC_EXPORT) {
-  initExport.exportPathMap = function exportPathMap() {
+  nextConfig.exportPathMap = function exportPathMap() {
     const routes = {};
     routes['/'] = {
       page: '/',
@@ -48,8 +50,19 @@ if (process.env.STATIC_EXPORT) {
   };
 }
 
+const plugins = [
+  [
+    optimizedImages,
+    {
+      /* config for next-optimized-images */
+    },
+  ],
+
+  // other plugins here
+];
+
 /**
  * Module exports.
  * @public
  */
-module.exports = initExport;
+module.exports = withPlugins(plugins, nextConfig);
