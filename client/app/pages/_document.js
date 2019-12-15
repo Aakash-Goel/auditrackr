@@ -16,6 +16,7 @@ import React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
 import { object } from 'prop-types';
 import flush from 'styled-jsx/server';
+import sprite from 'svg-sprite-loader/runtime/sprite.build';
 
 import { withStyles } from '@material-ui/core/styles';
 
@@ -64,6 +65,8 @@ class MyDocument extends Document {
       return WrappedComponent;
     });
 
+    const spriteContent = sprite.stringify();
+
     let css;
     // It might be undefined, e.g. after an error.
     if (pageContext) {
@@ -73,6 +76,14 @@ class MyDocument extends Document {
     return {
       ...page,
       pageContext,
+      spriteContent: (
+        <>
+          <div
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{ __html: spriteContent }}
+          />
+        </>
+      ),
       styles: (
         <>
           <style
@@ -89,7 +100,7 @@ class MyDocument extends Document {
   render() {
     const Content = catchErrors(Main);
     const preLoadFonts = WEB_FONTS_PATH || [];
-    const { pageContext } = this.props;
+    const { pageContext, spriteContent } = this.props;
 
     return (
       <html lang="en">
@@ -104,6 +115,7 @@ class MyDocument extends Document {
           {preloadAssets(preLoadFonts, 'font')}
         </Head>
         <body className="app">
+          {spriteContent}
           <Content />
           <NextScript />
         </body>

@@ -4,10 +4,13 @@
  * next.js configuration goes here
  *
  */
+// const path = require('path');
 const withPlugins = require('next-compose-plugins');
 const optimizedImages = require('next-optimized-images');
 
 const router = require('../routes');
+
+// const cwd = process.cwd();
 
 /**
  * Module variables.
@@ -55,6 +58,9 @@ const plugins = [
     optimizedImages,
     {
       /* config for next-optimized-images */
+      // svgSpriteLoader: {
+      //   include: path.resolve(cwd, 'app/static/icons'),
+      // },
     },
   ],
 
