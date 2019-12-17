@@ -23,7 +23,7 @@ const defaultProps = {
   isOpen: false,
   className: '',
   activePage: {
-    pathname: '',
+    pathUrl: '',
   },
   onRequestClose: () => {},
 };
@@ -39,7 +39,7 @@ class MenuBar extends PureComponent {
           <NavBarItems
             key={index}
             title={pageToTitle(page)}
-            href={page.pathname}
+            href={page.pathUrl}
             onClick={onRequestClose}
             isSubHeader={page.isSubHeader}
           />

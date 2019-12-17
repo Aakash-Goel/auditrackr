@@ -5,27 +5,27 @@ const pages = [
   },
   {
     title: 'Dashboard',
-    pathname: '/account/dashboard',
+    pathUrl: '/account/dashboard',
   },
   {
     title: 'Audits',
-    pathname: '/account/audit/create',
+    pathUrl: '/account/audit/create',
   },
   {
     title: 'Reports',
-    pathname: '/reports',
+    pathUrl: '/reports',
   },
   {
     title: 'Tasks',
-    pathname: '/tasks',
+    pathUrl: '/tasks',
   },
   {
     title: 'Connections',
-    pathname: '/connections',
+    pathUrl: '/connections',
   },
   {
     title: 'Activities',
-    pathname: '/activities',
+    pathUrl: '/activities',
   },
   {
     title: 'More',
@@ -33,27 +33,27 @@ const pages = [
   },
   {
     title: 'Help Center',
-    pathname: '/help',
+    pathUrl: '/help',
   },
   {
     title: 'Cookies',
-    pathname: '/cookies',
+    pathUrl: '/cookies',
   },
   {
     title: 'About Us',
-    pathname: '/about',
+    pathUrl: '/about',
   },
   {
     title: 'Contact Us',
-    pathname: '/contact',
+    pathUrl: '/contact',
   },
   {
     title: 'Privacy Policy',
-    pathname: '/privacy',
+    pathUrl: '/privacy',
   },
   {
     title: 'Terms & Conditions',
-    pathname: '/tos',
+    pathUrl: '/tos',
   },
 ];
 

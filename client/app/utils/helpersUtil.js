@@ -49,9 +49,9 @@ export function pageToTitle(page) {
     return page.title;
   }
 
-  const name = page.pathname.replace(/.*\//, '');
+  const name = page.pathUrl.replace(/.*\//, '');
 
-  if (page.pathname.indexOf('/api') === 0) {
+  if (page.pathUrl.indexOf('/api') === 0) {
     return upperFirst(camelCase(name));
   }
 

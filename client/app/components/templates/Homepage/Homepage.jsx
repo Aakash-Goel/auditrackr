@@ -22,7 +22,7 @@ const defaultProps = {
 };
 
 /* getInitialProps
- * { req, res, pathname, query, asPath, store, isServer } = ctx
+ * { req, res, pathUrl, query, asPath, store, isServer } = ctx
  */
 class Homepage extends PureComponent {
   componentWillReceiveProps() {}
