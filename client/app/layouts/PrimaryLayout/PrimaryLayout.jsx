@@ -72,7 +72,7 @@ class PrimaryLayout extends PureComponent {
           />
           <Menu isMenuOpen={openMenu} menuItems={pages} />
           <main className={classes.mainWrapper}>
-            <div className={classes.appBarSpacer} />
+            {/* <div className={classes.appBarSpacer} /> */}
             <div className={classes.sectionWrapper}>{children}</div>
           </main>
         </div>

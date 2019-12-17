@@ -32,6 +32,8 @@ const Breadcrumbs = ({
       <div className={classnames(classes.breadcrumbsContainer, containerClass)}>
         <Title
           level={1}
+          variant="h2"
+          textTransform="upc"
           className={classnames(classes.breadcrumbsHeading, titleClass)}
         >
           {titleBreadcrumb}

@@ -23,7 +23,9 @@ import {
 } from '@material-ui/icons';
 
 import Button from '../../atoms/Button';
+import Icon from '../../atoms/Icon';
 import { Link } from '../../../../routes';
+import addIcon from '../../../static/icons/add-plus-button.svg?sprite'; // eslint-disable-line import/no-unresolved
 
 import appBarStyles from './AppBar.style';
 
@@ -127,7 +129,13 @@ class CustomAppBar extends PureComponent {
             </IconButton>
             <div className={classes.contentWrapper} />
             <Link to="/account/audit/create">
-              <Button href="/account/audit/create" size="sm">
+              <Button
+                outlined
+                color="secondary"
+                href="/account/audit/create"
+                size="sm"
+                startIcon={<Icon type={addIcon} />}
+              >
                 Start Audit
               </Button>
             </Link>
@@ -139,7 +147,6 @@ class CustomAppBar extends PureComponent {
             <div>
               <IconButton
                 color="inherit"
-                size="sm"
                 buttonRef={node => {
                   this.anchorEl = node;
                 }}

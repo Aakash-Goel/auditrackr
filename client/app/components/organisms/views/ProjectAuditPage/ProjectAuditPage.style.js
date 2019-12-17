@@ -5,7 +5,7 @@ const projectAuditPageStyles = theme => ({
     overflow: 'hidden',
     transition: `box-shadow .25s, -webkit-box-shadow .25s`,
     color: theme.palette.common.black,
-    padding: theme.spacing.unit * 4,
+    padding: theme.spacing(4), // 32px
   },
 });
 

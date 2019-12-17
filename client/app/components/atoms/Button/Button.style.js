@@ -55,9 +55,8 @@ const buttonStyles = theme => {
         position: 'relative',
         display: 'inline-block',
         top: '0',
-        width: '18px',
-        height: '18px',
-        marginRight: theme.spacing(0.5), // 4px
+        width: '1rem',
+        height: '1rem',
         verticalAlign: 'middle',
       },
       '&$justIcon': {
@@ -89,6 +88,10 @@ const buttonStyles = theme => {
       '&:hover,&:focus': {
         backgroundColor: whiteColor,
         color: secondaryColor,
+      },
+
+      '& svg': {
+        fill: secondaryColor,
       },
     },
     info: {
@@ -145,6 +148,18 @@ const buttonStyles = theme => {
       '&:hover,&:focus': {
         backgroundColor: whiteColor,
         color: greyColor,
+      },
+    },
+
+    // icon styles
+    startIcon: {
+      '& svg': {
+        marginRight: theme.spacing(1), // 4px
+      },
+    },
+    endIcon: {
+      '& svg': {
+        marginLeft: theme.spacing(1), // 4px
       },
     },
 

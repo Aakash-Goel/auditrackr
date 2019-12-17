@@ -1,4 +1,5 @@
 import headingsStyles from '../../../styles/mixins/headings';
+import { textTransform } from '../../../styles/variables';
 
 const titleStyles = () => ({
   heading: {
@@ -39,6 +40,23 @@ const titleStyles = () => ({
   },
   'h6-secondary': {
     ...headingsStyles.h6Secondary,
+  },
+
+  // text-transform
+  cap: {
+    textTransform: textTransform.cap,
+  },
+  iht: {
+    textTransform: textTransform.iht,
+  },
+  lwc: {
+    textTransform: textTransform.lwc,
+  },
+  nn: {
+    textTransform: textTransform.nn,
+  },
+  upc: {
+    textTransform: textTransform.upc,
   },
 });
 

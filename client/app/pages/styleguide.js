@@ -116,6 +116,7 @@ class Styleguide extends PureComponent {
     this.handleOnCheckboxChange = this.handleOnCheckboxChange.bind(this);
     this.handleOnRadioChange = this.handleOnRadioChange.bind(this);
     this.handleOnSwitchChange = this.handleOnSwitchChange.bind(this);
+    this.submitFormHandler = this.submitFormHandler.bind(this);
     this.handleOnMultipleSelectChange = this.handleOnMultipleSelectChange.bind(
       this
     );
@@ -165,6 +166,8 @@ class Styleguide extends PureComponent {
     //   multipleSelectedValue: updatedVal,
     // });
   }
+
+  submitFormHandler() {}
 
   render() {
     const { classes } = this.props;

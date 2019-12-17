@@ -21,16 +21,20 @@ const propTypes = {
   classes: object.isRequired,
   level: oneOf([1, 2, 3, 4, 5, 6]).isRequired,
   theme: oneOf(['primary', 'secondary']),
+  variant: oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']),
   img: object,
   children: node,
   className: string,
+  textTransform: oneOf(['cap', 'iht', 'lwc', 'nn', 'upc']),
 };
 
 const defaultProps = {
   theme: 'primary',
+  variant: null,
   img: null,
   children: null,
   className: null,
+  textTransform: 'iht',
 };
 
 /* eslint-disable jsx-a11y/alt-text */
@@ -38,16 +42,20 @@ const Title = ({
   classes,
   level,
   theme,
+  variant,
   img,
   children,
   className,
+  textTransform,
   ...props
 }) => {
   if (React.Children.count(children) < 1) {
     return null;
   }
   const HeadingTag = `h${level}`;
-  const HeadingWithTheme = `${HeadingTag}-${theme}`;
+  const HeadingWithTheme = variant
+    ? `${variant}-${theme}`
+    : `${HeadingTag}-${theme}`;
 
   if (img && img.exist) {
     return (
@@ -61,6 +69,7 @@ const Title = ({
   const headingClasses = classnames({
     [classes.heading]: true,
     [classes[HeadingWithTheme]]: HeadingWithTheme,
+    [classes[textTransform]]: textTransform,
     [className]: className,
   });
 

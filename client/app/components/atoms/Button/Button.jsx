@@ -7,6 +7,35 @@ import Button from '@material-ui/core/Button';
 
 import buttonStyles from './Button.style';
 
+const BtnIcon = React.forwardRef(({ className, startIcon, endIcon }, ref) => {
+  if (startIcon) {
+    return (
+      <span ref={ref} className={className}>
+        {startIcon}
+      </span>
+    );
+  }
+  if (endIcon) {
+    return (
+      <span ref={ref} className={className}>
+        {endIcon}
+      </span>
+    );
+  }
+
+  return null;
+});
+BtnIcon.propTypes = {
+  className: string,
+  startIcon: node,
+  endIcon: node,
+};
+BtnIcon.defaultProps = {
+  className: null,
+  startIcon: null,
+  endIcon: null,
+};
+
 /**
  * Type checking - Define prop types
  * @private
@@ -35,6 +64,8 @@ const propTypes = {
   block: bool,
   link: bool,
   justIcon: bool,
+  startIcon: node,
+  endIcon: node,
   children: node,
   className: string,
   textTransform: oneOf(['cap', 'iht', 'lwc', 'nn', 'upc']),
@@ -56,12 +87,14 @@ const defaultProps = {
   block: false,
   link: false,
   justIcon: false,
+  startIcon: null,
+  endIcon: null,
   children: null,
   className: null,
   textTransform: 'upc',
 };
 
-const CustomButton = ({ ...props }) => {
+const CustomButton = React.forwardRef(({ ...props }, ref) => {
   const {
     classes,
     color,
@@ -75,6 +108,8 @@ const CustomButton = ({ ...props }) => {
     block,
     link,
     justIcon,
+    startIcon,
+    endIcon,
     outlined,
     className,
     textTransform,
@@ -98,12 +133,22 @@ const CustomButton = ({ ...props }) => {
     [className]: className,
   });
 
+  const startIconClasses = classnames({
+    [classes.startIcon]: true,
+  });
+
+  const endIconClasses = classnames({
+    [classes.endIcon]: true,
+  });
+
   return (
-    <Button {...rest} className={btnClasses}>
+    <Button ref={ref} {...rest} className={btnClasses}>
+      <BtnIcon className={startIconClasses} startIcon={startIcon} />
       {children}
+      <BtnIcon className={endIconClasses} endIcon={endIcon} />
     </Button>
   );
-};
+});
 
 CustomButton.propTypes = propTypes;
 CustomButton.defaultProps = defaultProps;

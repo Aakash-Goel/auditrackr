@@ -44,6 +44,7 @@ const propTypes = {
     'error',
     'white',
     'black',
+    'grey',
     'inherit',
   ]),
   size: oneOf(['sm', 'md', 'lg']),

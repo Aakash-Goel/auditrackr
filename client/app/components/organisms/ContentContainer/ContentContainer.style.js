@@ -10,19 +10,11 @@ const contentContainerStyles = theme => ({
     backgroundColor: theme.palette.primary.main,
   },
   contentWrapper: {
-    padding: theme.spacing.unit * 3,
-    color: '#fff',
+    padding: theme.spacing(3), // 24px
+    paddingTop: theme.spacing(10), // 80px
   },
   contentContainer: {
-    margin: `1em 0`,
-  },
-  paperRoot: {
-    ...theme.mixins.gutters(),
-    position: 'relative',
-    overflow: 'hidden',
-    transition: `box-shadow .25s, -webkit-box-shadow .25s`,
-    color: theme.palette.common.black,
-    padding: theme.spacing.unit * 4,
+    margin: theme.spacing(2, 0), // 16px 0
   },
 });
 

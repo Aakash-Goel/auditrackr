@@ -1,3 +1,6 @@
+// import { fade } from '@material-ui/core/styles/colorManipulator';
+
+// constants
 const drawerWidth = 240;
 
 const appBarStyles = theme => ({
@@ -18,9 +21,7 @@ const appBarStyles = theme => ({
       duration: theme.transitions.duration.enteringScreen,
     }),
   },
-  toolbar: {
-    paddingRight: 24, // keep right padding when drawer closed
-  },
+  toolbar: {},
   logo: {
     position: 'absolute',
     width: '100%',
@@ -28,6 +29,7 @@ const appBarStyles = theme => ({
     lineHeight: '64px',
     textAlign: 'center',
     transition: 'width .25s ease-in-out',
+    backgroundColor: theme.palette.primary.light,
   },
   displayHide: {
     display: 'none',

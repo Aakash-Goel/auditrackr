@@ -2,10 +2,10 @@ import React from 'react';
 import { object, node, string, bool } from 'prop-types';
 import classnames from 'classnames';
 
-import { Paper } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
 import Breadcrumbs from '../../molecules/Breadcrumbs';
+import Paper from '../../molecules/Paper';
 
 import contentContainerStyles from './ContentContainer.style';
 
@@ -21,7 +21,7 @@ const propTypes = {
 const defaultProps = {
   breadCrumbTitle: '',
   shouldRenderBreadcrumb: true,
-  shouldRenderBeforeWrapper: true,
+  shouldRenderBeforeWrapper: false,
   shouldRenderInsidePaper: true,
 };
 
@@ -45,11 +45,7 @@ const ContentContainer = props => {
           <Breadcrumbs titleBreadcrumb={breadCrumbTitle} />
         )}
         <div className={classnames(classes.contentContainer)}>
-          {shouldRenderInsidePaper && (
-            <Paper className={classes.paperRoot} elevation={1}>
-              {children}
-            </Paper>
-          )}
+          {shouldRenderInsidePaper && <Paper>{children}</Paper>}
           {!shouldRenderInsidePaper && <>{children}</>}
         </div>
       </div>
