@@ -15,22 +15,26 @@ export const greyColor = '#9e9e9e'; // rgb(153, 153, 153)
 // 4E3883 // rgb(78, 56, 131)
 // 084887
 // 002892
-// 963CBD -------
+// 963cbd -------
 // E95C20 ---
 // A13941 -----
 // 4B878B -
 // 00539C -
 // 616247 --
 // 603F83 ---
+// 5F3BB6 ----------
+// 6A1B9A ----------
+// 8E24AA ----------
 
 /** Secondary alternatives */
 // 846fce // rgb(132, 111, 206)
 // F4D06F
-// FF6F61, 63bd3c -------
+// ff6f61, 63bd3c -------
 // 4F2C1D ---
 // BD7F37 -----
 // DAA03D --
 // C7D3D4 ---
+// FF6F00 ----------
 
 // const primaryColor = '#4e3883'; // possible list [9c27b0, ~05386b, 66fcf1, ~4056a1, ~123c69, ~4A4E9D, F5AEB9]
 // const secondaryColor = '#846fce'; // possible list [01a78f, 846fce, f5aeb9, #6D8338]

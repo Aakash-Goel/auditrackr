@@ -95,6 +95,12 @@ const muiTheme = {
     fontWeightRegular: fontWeight.normal,
     fontWeightMedium: fontWeight.medium,
     fontWeightBold: fontWeight.bold,
+    body1: {
+      fontFamily: fontFamily.secondary,
+      fontSize: parseInt(remToPx(fontSize.normal)),
+      fontWeight: fontWeight.normal,
+      lineHeight: lineHeight.normal,
+    },
     button: {
       fontFamily: fontFamily.secondary,
       fontWeight: fontWeight.medium,
@@ -107,6 +113,13 @@ const muiTheme = {
     MuiPaper: {
       root: {
         color: 'inherit',
+      },
+    },
+    MuiFormControlLabel: {
+      label: {
+        '&$disabled': {
+          color: colors.grey,
+        },
       },
     },
     MuiFormLabel: {
@@ -167,6 +180,31 @@ const muiTheme = {
           //   color: colors.white,
           //   backgroundColor: colors.primary,
           // },
+        },
+      },
+    },
+    MuiSvgIcon: {
+      root: {
+        fontSize: parseInt(remToPx(fontSize.extraMedium)),
+      },
+    },
+    MuiCheckbox: {
+      root: {
+        color: colors.grey,
+      },
+      colorPrimary: {
+        '&$disabled': {
+          color: colors.grey,
+        },
+      },
+    },
+    MuiIconButton: {
+      root: {
+        color: colors.grey,
+        fontSize: parseInt(remToPx(fontSize.normal)),
+
+        '&$disabled': {
+          color: colors.grey,
         },
       },
     },

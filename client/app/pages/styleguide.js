@@ -13,6 +13,9 @@ import Paragraph from '../components/atoms/Paragraph';
 import Button from '../components/atoms/Button';
 import Link from '../components/atoms/Link';
 import Select from '../components/atoms/Select';
+import Checkbox from '../components/atoms/Checkbox';
+import Radio from '../components/atoms/Radio';
+import Switch from '../components/atoms/Switch';
 import Progress from '../components/atoms/Progress';
 import FormWrapper from '../components/organisms/Forms/FormWrapper';
 import FormInput from '../components/organisms/Forms/FormInput';
@@ -110,6 +113,9 @@ class Styleguide extends PureComponent {
 
     this.validationObject = {};
     this.handleOnSelectChange = this.handleOnSelectChange.bind(this);
+    this.handleOnCheckboxChange = this.handleOnCheckboxChange.bind(this);
+    this.handleOnRadioChange = this.handleOnRadioChange.bind(this);
+    this.handleOnSwitchChange = this.handleOnSwitchChange.bind(this);
     this.handleOnMultipleSelectChange = this.handleOnMultipleSelectChange.bind(
       this
     );
@@ -131,6 +137,12 @@ class Styleguide extends PureComponent {
       selectedValue: value,
     });
   }
+
+  handleOnCheckboxChange() {}
+
+  handleOnRadioChange() {}
+
+  handleOnSwitchChange() {}
 
   handleOnMultipleSelectChange(e) {
     const { name, value } = e.target;
@@ -852,17 +864,17 @@ class Styleguide extends PureComponent {
         <section className={classnames(classes.m24)}>
           <h3>Inputs</h3>
           <hr />
-          <GridContainer>
-            <GridItem xs={3}>
-              <FormWrapper
-                id="styleguideForm"
-                identifier="styleguideForm"
-                onSubmit={this.submitFormHandler}
-                formWrapperData={this.props.formWrapperData}
-                className={classnames(classes.formWrapper)}
-                noValidate
-                autoComplete="off"
-              >
+          <FormWrapper
+            id="styleguideForm"
+            identifier="styleguideForm"
+            onSubmit={this.submitFormHandler}
+            formWrapperData={this.props.formWrapperData}
+            className={classnames(classes.formWrapper)}
+            noValidate
+            autoComplete="off"
+          >
+            <GridContainer>
+              <GridItem xs={3}>
                 <FormInput
                   validationRule="email"
                   identifier="styleguideForm"
@@ -880,6 +892,8 @@ class Styleguide extends PureComponent {
                   }}
                   error={checkIsError(this.props.formWrapperData, 'input1')}
                 />
+              </GridItem>
+              <GridItem xs={3} className={classnames(classes.pl16)}>
                 <FormInput
                   validationRule="email"
                   identifier="styleguideForm"
@@ -898,6 +912,8 @@ class Styleguide extends PureComponent {
                   }}
                   error={checkIsError(this.props.formWrapperData, 'input2')}
                 />
+              </GridItem>
+              <GridItem xs={3} className={classnames(classes.pl16)}>
                 <FormInput
                   validationRule="email"
                   identifier="styleguideForm"
@@ -912,6 +928,10 @@ class Styleguide extends PureComponent {
                     disabled: true,
                   }}
                 />
+              </GridItem>
+            </GridContainer>
+            <GridContainer>
+              <GridItem xs={3}>
                 <FormInput
                   validationRule="email"
                   identifier="styleguideForm"
@@ -929,6 +949,8 @@ class Styleguide extends PureComponent {
                   }}
                   error
                 />
+              </GridItem>
+              <GridItem xs={3} className={classnames(classes.pl16)}>
                 <FormInput
                   validationRule="email"
                   identifier="styleguideForm"
@@ -943,6 +965,8 @@ class Styleguide extends PureComponent {
                   }}
                   success
                 />
+              </GridItem>
+              <GridItem xs={3} className={classnames(classes.pl16)}>
                 <FormInput
                   validationRule="email"
                   identifier="styleguideForm"
@@ -957,9 +981,9 @@ class Styleguide extends PureComponent {
                   }}
                   white
                 />
-              </FormWrapper>
-            </GridItem>
-          </GridContainer>
+              </GridItem>
+            </GridContainer>
+          </FormWrapper>
         </section>
         <section className={classnames(classes.m24)}>
           <h3>Select</h3>
@@ -1244,6 +1268,188 @@ class Styleguide extends PureComponent {
                   id: 'demo-select-multiple',
                   name: 'demo-select-multiple',
                   value: multipleSelectedValue,
+                }}
+              />
+            </GridItem>
+          </GridContainer>
+        </section>
+        <section className={classnames(classes.m24)}>
+          <h3>Checkboxes</h3>
+          <hr />
+          <GridContainer>
+            <GridItem xs={3}>
+              <Checkbox
+                formControlLabelProps={{
+                  label: 'Checked',
+                }}
+                checkboxProps={{
+                  disabled: false,
+                  required: true,
+                  checked: true,
+                  onChange: this.handleOnCheckboxChange('hasTermsChecked'),
+                  value: true,
+                  inputProps: {
+                    'aria-label': 'terms and condition checkbox',
+                  },
+                }}
+              />
+            </GridItem>
+            <GridItem xs={3}>
+              <Checkbox
+                formControlLabelProps={{
+                  label: 'Unchecked',
+                }}
+                checkboxProps={{
+                  disabled: false,
+                  required: true,
+                  checked: false,
+                  onChange: this.handleOnCheckboxChange('hasTermsChecked'),
+                  value: false,
+                  inputProps: {
+                    'aria-label': 'terms and condition checkbox',
+                  },
+                }}
+              />
+            </GridItem>
+            <GridItem xs={3}>
+              <Checkbox
+                formControlLabelProps={{
+                  label: 'Disabled Checked',
+                }}
+                checkboxProps={{
+                  disabled: true,
+                  required: false,
+                  checked: true,
+                  onChange: this.handleOnCheckboxChange('hasTermsChecked'),
+                  value: true,
+                  inputProps: {
+                    'aria-label': 'terms and condition checkbox',
+                  },
+                }}
+              />
+            </GridItem>
+            <GridItem xs={3}>
+              <Checkbox
+                formControlLabelProps={{
+                  label: 'Disabled Unchecked',
+                }}
+                checkboxProps={{
+                  disabled: true,
+                  required: false,
+                  checked: false,
+                  onChange: this.handleOnCheckboxChange('hasTermsChecked'),
+                  value: false,
+                  inputProps: {
+                    'aria-label': 'terms and condition checkbox',
+                  },
+                }}
+              />
+            </GridItem>
+          </GridContainer>
+        </section>
+        <section className={classnames(classes.m24)}>
+          <h3>Radios</h3>
+          <hr />
+          <GridContainer>
+            <GridItem xs={3}>
+              <Radio
+                options={[
+                  {
+                    radioProps: {
+                      checked: true,
+                      value: 'checked',
+                      name: 'radio-button-checked',
+                      'aria-label': 'checked',
+                    },
+                    formControlLabelProps: {
+                      label: 'Checked',
+                    },
+                  },
+                ]}
+              />
+            </GridItem>
+            <GridItem xs={3}>
+              <Radio
+                options={[
+                  {
+                    radioProps: {
+                      checked: false,
+                      value: 'unchecked',
+                      name: 'radio-button-unchecked',
+                      'aria-label': 'unchecked',
+                    },
+                    formControlLabelProps: {
+                      label: 'Unchecked',
+                    },
+                  },
+                ]}
+              />
+            </GridItem>
+            <GridItem xs={3}>
+              <Radio
+                options={[
+                  {
+                    radioProps: {
+                      checked: true,
+                      value: 'disabled-checked',
+                      name: 'radio-button-disabled-checked',
+                      'aria-label': 'disabled-checked',
+                    },
+                    formControlLabelProps: {
+                      disabled: true,
+                      label: 'Disabled Checked',
+                    },
+                  },
+                ]}
+              />
+            </GridItem>
+            <GridItem xs={3}>
+              <Radio
+                options={[
+                  {
+                    radioProps: {
+                      checked: false,
+                      value: 'disabled-unchecked',
+                      name: 'radio-button-disabled-unchecked',
+                      'aria-label': 'disabled-unchecked',
+                    },
+                    formControlLabelProps: {
+                      disabled: true,
+                      label: 'Disabled Unchecked',
+                    },
+                  },
+                ]}
+              />
+            </GridItem>
+          </GridContainer>
+        </section>
+        <section className={classnames(classes.m24)}>
+          <h3>Switch</h3>
+          <hr />
+          <GridContainer>
+            <GridItem xs={3}>
+              <Switch
+                switchProps={{
+                  checked: true,
+                  onChange: this.handleOnSwitchChange('on'),
+                  value: 'on',
+                  // color: 'primary',
+                }}
+                formControlLabelProps={{
+                  label: 'Switch is on',
+                }}
+              />
+            </GridItem>
+            <GridItem xs={3}>
+              <Switch
+                switchProps={{
+                  checked: false,
+                  onChange: this.handleOnSwitchChange('off'),
+                  value: 'off',
+                  // color: 'primary',
+                }}
+                formControlLabelProps={{
+                  label: 'Switch is off',
                 }}
               />
             </GridItem>
