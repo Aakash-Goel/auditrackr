@@ -681,10 +681,10 @@ class Styleguide extends PureComponent {
             <p className={classnames(classes.mt16)}>Button Sizes</p>
             <GridItem>
               <Button size="sm">Small</Button>
-              <Button className={classnames(classes.ml16)}>Default</Button>
               <Button size="md" className={classnames(classes.ml16)}>
                 Medium
               </Button>
+              <Button className={classnames(classes.ml16)}>Default</Button>
               <Button size="lg" className={classnames(classes.ml16)}>
                 Large
               </Button>

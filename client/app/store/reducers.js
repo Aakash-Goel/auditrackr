@@ -32,6 +32,9 @@ import formWrapperReducer from '../components/organisms/Forms/FormWrapper/reduce
 import { LABELS_STATE_KEY as labelsStateKey } from '../lib/labels/constants';
 import labelsReducer from '../lib/labels/reducer';
 
+import { ROUTES_STATE_KEY as routesStateKey } from '../lib/routes/constants';
+import routesReducer from '../lib/routes/reducer';
+
 /**
  * Module variables.
  * @public
@@ -46,6 +49,7 @@ const rootReducer = injectedReducers => {
     [accountSignUpStateKey]: accountSignUpReducer,
     [formWrapperStateKey]: formWrapperReducer,
     [labelsStateKey]: labelsReducer,
+    [routesStateKey]: routesReducer,
     ...injectedReducers,
   });
 };

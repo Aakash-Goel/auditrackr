@@ -35,20 +35,21 @@ const iconStyles = {
  * A component that renders svg icon files
  *
  */
-const Icon = ({ classes, type, className, height, width, focusable }) => (
-  <svg
-    className={classnames(classes.icon, className)}
-    height={height}
-    width={width}
-    viewBox={type.viewBox}
-    focusable={focusable}
-    tabIndex={focusable === 'false' ? -1 : 0}
-    aria-hidden={focusable === 'false'}
-    aria-disabled={focusable === 'false'} // For VoiceOver to not call out the image.
-  >
-    <use xlinkHref={`#${type.id}`} />
-  </svg>
-);
+const Icon = ({ classes, type, className, height, width, focusable }) =>
+  type ? (
+    <svg
+      className={classnames(classes.icon, className)}
+      height={height}
+      width={width}
+      viewBox={type.viewBox}
+      focusable={focusable}
+      tabIndex={focusable === 'false' ? -1 : 0}
+      aria-hidden={focusable === 'false'}
+      aria-disabled={focusable === 'false'} // For VoiceOver to not call out the image.
+    >
+      <use xlinkHref={`#${type.id}`} />
+    </svg>
+  ) : null;
 
 Icon.propTypes = propTypes;
 Icon.defaultProps = defaultProps;

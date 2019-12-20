@@ -2,21 +2,21 @@ const navBarItemsStyles = theme => ({
   button: theme.mixins.gutters({
     borderRadius: 0,
     justifyContent: 'flex-start',
-    textTransform: 'none',
     width: '100%',
-    transition: theme.transitions.create('background-color', {
-      duration: theme.transitions.duration.shortest,
-    }),
+    // transition: theme.transitions.create('background-color', {
+    //   duration: theme.transitions.duration.shortest,
+    // }),
+    paddingTop: theme.spacing(1.5),
+    paddingBottom: theme.spacing(1.5),
+    transition: 'none',
     '&:hover': {
-      textDecoration: 'none',
+      // textDecoration: 'none',
     },
   }),
   subHeader: {
-    color: '#666',
+    color: theme.palette.custom.grey,
   },
   navItem: {
-    ...theme.typography.body2,
-    display: 'block',
     paddingTop: 0,
     paddingBottom: 0,
   },
@@ -26,20 +26,14 @@ const navBarItemsStyles = theme => ({
     paddingTop: 0,
     paddingBottom: 0,
     color: theme.palette.custom.grey,
+    fill: theme.palette.custom.grey,
   },
   navLinkButton: {
-    textIndent: 24,
-    fontSize: 14,
-    margin: 0,
-
     '&:hover': {
+      fill: theme.palette.common.white,
       color: theme.palette.common.white,
-      background: theme.palette.primary.dark,
-      transition: 'all .5s',
+      background: theme.palette.primary.main,
     },
-  },
-  activeButton: {
-    color: theme.palette.text.primary,
   },
 });
 

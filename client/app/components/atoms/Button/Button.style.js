@@ -22,7 +22,11 @@ const buttonStyles = theme => {
   const whiteColor = theme.palette.common.white;
   const blackColor = theme.palette.common.black;
   const greyColor = theme.palette.grey[500];
-  const { fontSize, fontSizeRegular, fontSizeExtraSmall } = theme.typography;
+  const {
+    fontSizeSmall,
+    fontSizeRegular,
+    fontSizeExtraSmall,
+  } = theme.typography;
 
   const styleObject = {
     button: {
@@ -58,6 +62,7 @@ const buttonStyles = theme => {
         width: '1rem',
         height: '1rem',
         verticalAlign: 'middle',
+        fill: 'inherit',
       },
       '&$justIcon': {
         '& .fab,& .fas,& .far,& .fal,& .material-icons': {
@@ -76,10 +81,12 @@ const buttonStyles = theme => {
     primary: {
       backgroundColor: primaryColor,
       color: whiteColor,
-
       '&:hover,&:focus': {
         backgroundColor: whiteColor,
         color: primaryColor,
+      },
+      '& svg': {
+        fill: primaryColor,
       },
     },
     secondary: {
@@ -101,6 +108,9 @@ const buttonStyles = theme => {
         backgroundColor: whiteColor,
         color: infoColor,
       },
+      '& svg': {
+        fill: infoColor,
+      },
     },
     success: {
       backgroundColor: successColor,
@@ -108,6 +118,9 @@ const buttonStyles = theme => {
       '&:hover,&:focus': {
         backgroundColor: whiteColor,
         color: successColor,
+      },
+      '& svg': {
+        fill: successColor,
       },
     },
     warning: {
@@ -117,6 +130,9 @@ const buttonStyles = theme => {
         backgroundColor: whiteColor,
         color: warningColor,
       },
+      '& svg': {
+        fill: warningColor,
+      },
     },
     error: {
       backgroundColor: errorColor,
@@ -124,6 +140,9 @@ const buttonStyles = theme => {
       '&:hover,&:focus': {
         backgroundColor: whiteColor,
         color: errorColor,
+      },
+      '& svg': {
+        fill: errorColor,
       },
     },
     white: {
@@ -133,6 +152,9 @@ const buttonStyles = theme => {
         backgroundColor: blackColor,
         color: whiteColor,
       },
+      '& svg': {
+        fill: whiteColor,
+      },
     },
     black: {
       backgroundColor: blackColor,
@@ -141,6 +163,9 @@ const buttonStyles = theme => {
         backgroundColor: whiteColor,
         color: blackColor,
       },
+      '& svg': {
+        fill: blackColor,
+      },
     },
     grey: {
       backgroundColor: greyColor,
@@ -148,6 +173,9 @@ const buttonStyles = theme => {
       '&:hover,&:focus': {
         backgroundColor: whiteColor,
         color: greyColor,
+      },
+      '& svg': {
+        fill: greyColor,
       },
     },
 
@@ -421,15 +449,15 @@ const buttonStyles = theme => {
 
     // Button Sizes
     sm: {
-      padding: theme.spacing(1, 2.25), // '8px 18px',
+      padding: theme.spacing(1, 2), // '8px 16px',
       fontSize: fontSizeExtraSmall,
     },
     md: {
-      padding: theme.spacing(1.75, 3.75), // 14px 30px
-      fontSize,
+      padding: theme.spacing(1.25, 2.5), // 10px 20px
+      fontSize: fontSizeSmall,
     },
     lg: {
-      padding: theme.spacing(2, 4.25), // 16px, 34px
+      padding: theme.spacing(1.75, 3.5), // 14px, 28px
       fontSize: fontSizeRegular,
     },
 

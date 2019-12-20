@@ -31,7 +31,7 @@ const defaultProps = {
 /* eslint-disable react/no-array-index-key */
 class MenuBar extends PureComponent {
   renderNavItems() {
-    const { classes, pages, onRequestClose } = this.props;
+    const { classes, pages, onRequestClose, isOpen } = this.props;
     const navItems = [];
     if (pages && pages.length) {
       pages.forEach((page, index) => {
@@ -42,6 +42,8 @@ class MenuBar extends PureComponent {
             href={page.pathUrl}
             onClick={onRequestClose}
             isSubHeader={page.isSubHeader}
+            icon={page.icon}
+            isOpen={isOpen}
           />
         );
       });

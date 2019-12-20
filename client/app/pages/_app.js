@@ -29,6 +29,7 @@ import getPageContext from '../lib/getPageContext';
 import globalStyles from '../styles/global';
 import createStore from '../store/store';
 import { setLabels } from '../lib/labels/actions';
+import { updateRoutes } from '../lib/routes/actions';
 import ServiceUtil from '../utils/serviceUtil';
 import LocalStorageUtil from '../utils/localStorageUtil';
 import { isBrowser, setStoreRef } from '../utils/helpersUtil';
@@ -50,9 +51,10 @@ async function fetchLabelGlobalData() {
 }
 
 class MyApp extends App {
-  static async getInitialProps({ Component, ctx }) {
+  static async getInitialProps({ Component, ctx, router }) {
     let pageProps = {};
     const { store } = ctx;
+    store.dispatch(updateRoutes(router));
     const globalLabelDetails = await fetchLabelGlobalData();
     const serviceStatus = pathOr(
       'ERROR',

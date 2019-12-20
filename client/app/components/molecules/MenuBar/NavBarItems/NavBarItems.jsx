@@ -6,6 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { ListItem, ListSubheader, Collapse } from '@material-ui/core';
 
 import Button from '../../../atoms/Button';
+import Icon from '../../../atoms/Icon';
 import { Link } from '../../../../../routes';
 
 import navBarItemsStyles from './NavBarItems.style';
@@ -18,6 +19,8 @@ const propTypes = {
   onClick: func,
   openImmediately: bool,
   isSubHeader: bool,
+  icon: node,
+  isOpen: bool,
 };
 
 const defaultProps = {
@@ -26,6 +29,8 @@ const defaultProps = {
   onClick: () => {},
   openImmediately: false,
   isSubHeader: false,
+  icon: null,
+  isOpen: false,
 };
 
 class NavBarItems extends PureComponent {
@@ -56,17 +61,24 @@ class NavBarItems extends PureComponent {
       openImmediately,
       onClick,
       isSubHeader,
+      icon,
+      isOpen,
     } = this.props;
 
     if (isSubHeader) {
-      return (
+      const navSubHeader = isOpen ? (
         <ListSubheader className={classes.subHeader}>{title}</ListSubheader>
-      );
+      ) : null;
+      return navSubHeader;
     }
 
     if (href) {
       return (
-        <ListItem className={classes.navLink} disableGutters>
+        <ListItem
+          selected={title === 'Dashboard'}
+          className={classes.navLink}
+          disableGutters
+        >
           <Link to={href}>
             <Button
               simple
@@ -77,8 +89,10 @@ class NavBarItems extends PureComponent {
               className={classnames(classes.button, classes.navLinkButton)}
               disableRipple
               onClick={onClick}
+              size="md"
+              startIcon={<Icon type={icon} />}
             >
-              {title}
+              {isOpen ? title : ''}
             </Button>
           </Link>
         </ListItem>

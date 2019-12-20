@@ -172,6 +172,7 @@ const muiTheme = {
     MuiListItem: {
       root: {
         '&$selected': {
+          fill: colors.white,
           color: colors.white,
           backgroundColor: colors.primary,
 
