@@ -1,14 +1,20 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { object, node, string } from 'prop-types';
+import { object, node, string, bool, func } from 'prop-types';
+import { createStructuredSelector } from 'reselect';
 import classnames from 'classnames';
 
 import { withStyles } from '@material-ui/core/styles';
 
+// components
 import Head from '../../components/atoms/Head';
 import Header from '../../components/organisms/Header';
 import Menu from '../../components/organisms/Menu';
 import pages from '../../constants/navBarList';
+
+// actions/selectors
+import { toggleDrawerStatus } from './actions';
+import { makeSelectDrawer } from './selectors';
 
 import primaryLayoutStyles from './PrimaryLayout.style';
 
@@ -19,31 +25,31 @@ const propTypes = {
   pageDesc: string.isRequired,
   pageWrapperClassName: string,
   pageId: string,
+  isDrawerOpen: bool,
+  toggleDrawer: func,
 };
 
 const defaultProps = {
   pageWrapperClassName: '',
   pageId: '',
+  isDrawerOpen: true,
+  toggleDrawer: () => {},
 };
 
 class PrimaryLayout extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = {
-      openMenu: true,
-    };
-
     this.handleDrawerOpen = this.handleDrawerOpen.bind(this);
     this.handleDrawerClose = this.handleDrawerClose.bind(this);
   }
 
   handleDrawerOpen = () => {
-    this.setState({ openMenu: true });
+    this.props.toggleDrawer(true);
   };
 
   handleDrawerClose = () => {
-    this.setState({ openMenu: false });
+    this.props.toggleDrawer(false);
   };
 
   render() {
@@ -54,9 +60,8 @@ class PrimaryLayout extends PureComponent {
       pageDesc,
       pageId,
       pageWrapperClassName,
+      isDrawerOpen,
     } = this.props;
-
-    const { openMenu } = this.state;
 
     return (
       <>
@@ -66,11 +71,11 @@ class PrimaryLayout extends PureComponent {
           className={classnames(classes.pageWrapper, pageWrapperClassName)}
         >
           <Header
-            isMenuOpen={openMenu}
+            isMenuOpen={isDrawerOpen}
             onMenuOpen={this.handleDrawerOpen}
             onMenuClose={this.handleDrawerClose}
           />
-          <Menu isMenuOpen={openMenu} menuItems={pages} />
+          <Menu isMenuOpen={isDrawerOpen} menuItems={pages} />
           <main className={classes.mainWrapper}>
             {/* <div className={classes.appBarSpacer} /> */}
             <div className={classes.sectionWrapper}>{children}</div>
@@ -84,4 +89,17 @@ class PrimaryLayout extends PureComponent {
 PrimaryLayout.propTypes = propTypes;
 PrimaryLayout.defaultProps = defaultProps;
 
-export default connect()(withStyles(primaryLayoutStyles)(PrimaryLayout));
+export const mapStateToProps = createStructuredSelector({
+  isDrawerOpen: makeSelectDrawer(),
+});
+
+export const mapDispatchToProps = dispatch => ({
+  toggleDrawer(openDrawer) {
+    dispatch(toggleDrawerStatus(openDrawer));
+  },
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withStyles(primaryLayoutStyles)(PrimaryLayout));

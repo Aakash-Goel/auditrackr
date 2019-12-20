@@ -14,6 +14,9 @@ import { combineReducers } from 'redux';
 /**
  * Import all your applications reducers here
  */
+import { PRIMARY_LAYOUT_STATE_KEY as primaryLayoutStateKey } from '../layouts/PrimaryLayout/constants';
+import primaryLayoutReducer from '../layouts/PrimaryLayout/reducer';
+
 import { CREATE_AUDIT_STATE_KEY as createAuditStateKey } from '../components/templates/Audit/Create/constants';
 import createAuditReducer from '../components/templates/Audit/Create/reducer';
 
@@ -43,6 +46,7 @@ import routesReducer from '../lib/routes/reducer';
  */
 const rootReducer = injectedReducers => {
   return combineReducers({
+    [primaryLayoutStateKey]: primaryLayoutReducer,
     [createAuditStateKey]: createAuditReducer,
     [projectAuditStateKey]: projectAuditReducer,
     [accountProfileStateKey]: accountLogInReducer,
