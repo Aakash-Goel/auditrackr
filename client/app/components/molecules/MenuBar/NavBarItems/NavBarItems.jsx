@@ -14,6 +14,7 @@ import navBarItemsStyles from './NavBarItems.style';
 const propTypes = {
   classes: object.isRequired,
   title: string.isRequired,
+  activePage: object.isRequired,
   href: string,
   children: node,
   onClick: func,
@@ -63,6 +64,7 @@ class NavBarItems extends PureComponent {
       isSubHeader,
       icon,
       isOpen,
+      activePage,
     } = this.props;
 
     if (isSubHeader) {
@@ -75,7 +77,7 @@ class NavBarItems extends PureComponent {
     if (href) {
       return (
         <ListItem
-          selected={title === 'Dashboard'}
+          selected={href === activePage.asPath}
           className={classes.navLink}
           disableGutters
         >

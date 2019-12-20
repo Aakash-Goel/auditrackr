@@ -13,7 +13,7 @@ const pages = [
   },
   {
     title: 'Dashboard',
-    pathUrl: '/account/dashboard',
+    pathUrl: '/account/audit/dashboard',
     icon: dashboardIcon,
   },
   {

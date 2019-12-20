@@ -49,13 +49,17 @@ export function pageToTitle(page) {
     return page.title;
   }
 
-  const name = page.pathUrl.replace(/.*\//, '');
+  if (page.pathUrl) {
+    const name = page.pathUrl.replace(/.*\//, '');
 
-  if (page.pathUrl.indexOf('/api') === 0) {
-    return upperFirst(camelCase(name));
+    if (page.pathUrl.indexOf('/api') === 0) {
+      return upperFirst(camelCase(name));
+    }
+
+    return titleize(name);
   }
 
-  return titleize(name);
+  return '';
 }
 
 /**
