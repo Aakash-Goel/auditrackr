@@ -1,9 +1,10 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 
+import AuthValidator from '../../../organisms/AuthValidator';
 import PrimaryLayout from '../../../../layouts/PrimaryLayout';
 import ContentContainer from '../../../organisms/ContentContainer';
-import AuthValidator from '../../../organisms/AuthValidator';
+import DashboardAuditPage from '../../../organisms/views/DashboardAuditPage';
 
 /* eslint-disable react/prefer-stateless-function */
 class AuditDashboard extends PureComponent {
@@ -16,8 +17,11 @@ class AuditDashboard extends PureComponent {
             pageDesc="This is AuditTrackR dashboard"
             pageId="audit-dashboard"
           >
-            <ContentContainer breadCrumbTitle="Dashboard">
-              Dashboard contents goes here
+            <ContentContainer
+              breadCrumbTitle="Dashboard"
+              shouldRenderInsidePaper={false}
+            >
+              <DashboardAuditPage {...this.props} />
             </ContentContainer>
           </PrimaryLayout>
         </AuthValidator>

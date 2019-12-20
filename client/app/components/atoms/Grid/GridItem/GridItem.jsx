@@ -20,7 +20,7 @@ const propTypes = {
  * @private
  */
 const defaultProps = {
-  className: '',
+  className: null,
 };
 
 const style = {
