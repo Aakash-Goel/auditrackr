@@ -20,7 +20,7 @@ const propTypes = {
   onClick: func,
   openImmediately: bool,
   isSubHeader: bool,
-  icon: node,
+  icon: func,
   isOpen: bool,
 };
 
@@ -92,7 +92,7 @@ class NavBarItems extends PureComponent {
               disableRipple
               onClick={onClick}
               size="md"
-              startIcon={<Icon type={icon} />}
+              startIcon={icon && <Icon type={icon} />}
             >
               {isOpen ? title : ''}
             </Button>

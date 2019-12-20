@@ -48,32 +48,32 @@ const pages = [
   {
     title: 'Help Center',
     pathUrl: '/help',
-    iconType: 'nav-help',
+    // iconType: 'nav-help',
   },
   {
     title: 'Cookies',
     pathUrl: '/cookies',
-    iconType: 'nav-cookie',
+    // iconType: 'nav-cookie',
   },
   {
     title: 'About Us',
     pathUrl: '/about',
-    iconType: 'nav-about',
+    // iconType: 'nav-about',
   },
   {
     title: 'Contact Us',
     pathUrl: '/contact',
-    iconType: 'nav-contact',
+    // iconType: 'nav-contact',
   },
   {
     title: 'Privacy Policy',
     pathUrl: '/privacy',
-    iconType: 'nav-privacy',
+    // iconType: 'nav-privacy',
   },
   {
     title: 'Terms & Conditions',
     pathUrl: '/tos',
-    iconType: 'nav-tnc',
+    // iconType: 'nav-tnc',
   },
 ];
 
