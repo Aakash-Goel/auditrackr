@@ -22,10 +22,10 @@ import {
   NotificationsOutlined,
 } from '@material-ui/icons';
 
-import Button from '../../atoms/Button';
-import Icon from '../../atoms/Icon';
-import { Link } from '../../../../routes';
-import addIcon from '../../../static/icons/add-plus-button.svg?sprite'; // eslint-disable-line import/no-unresolved
+import Button from '../../../atoms/Button';
+import Icon from '../../../atoms/Icon';
+import { Link } from '../../../../../routes';
+import addIcon from '../../../../static/icons/add-plus-button.svg?sprite'; // eslint-disable-line import/no-unresolved
 
 import appBarStyles from './AppBar.style';
 

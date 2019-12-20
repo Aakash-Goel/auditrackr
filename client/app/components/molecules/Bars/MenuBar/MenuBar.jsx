@@ -5,7 +5,7 @@ import { object, array, bool, string, func } from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { Drawer, List } from '@material-ui/core';
 
-import { pageToTitle } from '../../../utils/helpersUtil';
+import { pageToTitle } from '../../../../utils/helpersUtil';
 import NavBarItems from './NavBarItems';
 
 import menuBarStyles from './MenuBar.style';

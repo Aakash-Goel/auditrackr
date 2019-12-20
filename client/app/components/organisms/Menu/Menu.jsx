@@ -5,7 +5,7 @@ import { createStructuredSelector } from 'reselect';
 
 import { withStyles } from '@material-ui/core/styles';
 
-import MenuBar from '../../molecules/MenuBar';
+import MenuBar from '../../molecules/Bars/MenuBar';
 
 import { makeSelectRoute } from '../../../lib/routes/selectors';
 
