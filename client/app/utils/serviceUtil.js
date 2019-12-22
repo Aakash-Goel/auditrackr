@@ -132,6 +132,7 @@ const getConfig = (requestHeader, options) => {
     url: '/',
     json: true,
     headers: requestHeader,
+    withCredentials: true,
   };
 
   _merge(config, options);
