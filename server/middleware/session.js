@@ -1,6 +1,22 @@
 const jwt = require('jsonwebtoken');
 
+// constants @TODO: move it to config or more secure place
 const TOKEN_SECRET = 'some-token-secret'; // @TODO: need to change this to more secure key
+const commonCookieOptions = {
+  secure: process.env.NODE_ENV === 'production', // to force https (in prod)
+  maxAge: 1000 * 60 * 60 * 24 * 7, // 7 days | ttl in ms (remove this option and cookie will die when browser is closed)
+  // signed: true, // if use the secret with cookieParser
+  // domain: 'example.com', // set domain | enable it for production
+};
+const secureCookieOptions = {
+  httpOnly: true, // to disable accessing cookie via client side js
+  ...commonCookieOptions,
+};
+const unSecureCookieOptions = {
+  // Create cookie which can be read by client js
+  httpOnly: false, // to enable accessing cookie via client side js
+  ...commonCookieOptions,
+};
 
 class Session {
   constructor(request, response) {
@@ -13,10 +29,10 @@ class Session {
     this.userRole = null;
 
     const { token } = request.cookies;
-    this.setUserFromToken(token);
+    this.verifyToken(token);
   }
 
-  setUserFromToken(sessionToken) {
+  verifyToken(sessionToken) {
     if (!sessionToken || sessionToken === '') {
       return;
     }
@@ -55,15 +71,9 @@ class Session {
       }
     );
 
-    const cookieOptions = {
-      httpOnly: true, // to disable accessing cookie via client side js
-      secure: process.env.NODE_ENV === 'production', // to force https (if use it)
-      maxAge: 1000 * 60 * 60 * 24 * 7, // 7 days | ttl in ms (remove this option and cookie will die when browser is closed)
-      // signed: true, // if use the secret with cookieParser
-      // domain: 'example.com', // set domain | enable it for production
-    };
-
-    this.response.cookie('token', sessionToken, cookieOptions);
+    this.response.cookie('token', sessionToken, secureCookieOptions);
+    this.response.cookie('c_user', user.id, unSecureCookieOptions);
+    this.response.cookie('c_role', user.role, unSecureCookieOptions);
   }
 
   storeUserInfo({ id, email, name, role }) {
@@ -75,6 +85,8 @@ class Session {
 
   removeToken() {
     this.response.clearCookie('token');
+    this.response.clearCookie('c_user');
+    this.response.clearCookie('c_role');
   }
 }
 
