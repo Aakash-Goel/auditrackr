@@ -11,10 +11,10 @@ const TYPES_OF_ROLES = {
 const requiresRole = role => resolver => {
   if (isFunction(resolver)) {
     return (parent, args, context, info) => {
-      if (!isUserExist(pathOr(null, 'user.userId', context))) {
+      if (!isUserExist(pathOr(null, 'session.userId', context))) {
         throw new Error('User does not exist');
       }
-      if (context.user && (!role || context.user.userRole === role)) {
+      if (context.session && (!role || context.session.userRole === role)) {
         return resolver(parent, args, context, info);
       }
       throw new Error('Unauthorized');

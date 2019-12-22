@@ -38,6 +38,10 @@ const schema = gql`
     tokenExpiration: Int!
   }
 
+  type Success {
+    success: Boolean
+  }
+
   input userInput {
     name: String!
     email: String!
@@ -51,7 +55,8 @@ const schema = gql`
   }
 
   extend type Query {
-    login(email: String!, password: String!): AuthData!
+    login(email: String!, password: String!): Success!
+    logout: Success!
     getUser(userId: ID!): User
   }
 

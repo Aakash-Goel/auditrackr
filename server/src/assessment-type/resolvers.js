@@ -46,7 +46,7 @@ const resolvers = {
         const assessmentTypeModel = new AssessmentType({
           name: type,
           createdAt: new Date(),
-          createdBy: context.user.userId, // @TODO: needs to update this field
+          createdBy: context.session.userId, // @TODO: needs to update this field
         });
         const result = await assessmentTypeModel.save();
         const createdAssessmentType = transformAssessmentType(result);

@@ -26,7 +26,7 @@ const BCRYPT_SALT_ROUNDS = 12; // @TODO: it should come from the config
  */
 const resolvers = {
   Query: {
-    login: async (parent, args) => {
+    login: async (parent, args, context) => {
       try {
         const { email, password } = args;
         const existingUser = await User.findOne({ email });
@@ -40,31 +40,32 @@ const resolvers = {
         if (!isPasswordEqual) {
           throw new Error('Password is incorrect!');
         }
-        const token = jwt.sign(
-          {
-            userId: existingUser.id,
-            userEmail: existingUser.email,
-            userName: existingUser.name,
-            userRole: existingUser.role,
-          },
-          'somesecretkey',
-          {
-            expiresIn: '7d',
-          }
-        );
+        // update session token
+        context.session.updateToken(existingUser);
+
         return {
-          userId: existingUser.id,
-          token,
-          tokenExpiration: 1,
+          success: true,
         };
       } catch (err) {
         throw err;
       }
     },
+    logout: async (parent, args, context) => {
+      try {
+        // remove session token
+        context.session.removeToken();
+
+        return {
+          success: true,
+        };
+      } catch (error) {
+        throw error;
+      }
+    },
     getUser: async (parent, args, context) => {
       try {
         const { userId } = args;
-        if (context.user.userId === userId) {
+        if (context.session.userId === userId) {
           const existingUser = await User.findById(userId);
           if (!existingUser) {
             throw new Error('User does not exist');

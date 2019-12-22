@@ -13,9 +13,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
 const { ApolloServer } = require('apollo-server-express');
 
-const auth = require('./middleware/auth');
+const sessionMiddleware = require('./middleware/session');
 const logger = require('./logger');
 const rootSchema = require('./rootSchema');
 const rootResolver = require('./rootResolver');
@@ -31,14 +32,27 @@ const customHost = process.env.HOST;
 const host = customHost || null;
 const prettyHost = customHost || 'localhost';
 const port = parseInt(process.env.PORT, 10) || 4000;
+// const corsWhitelistUrls = ['http://localhost:3000', 'http://localhost:4000'];
+const corsOptions = {
+  // origin: (origin, callback) => {
+  //   if (corsWhitelistUrls.indexOf(origin) !== -1) {
+  //     callback(null, true);
+  //   } else {
+  //     callback(new Error('Not allowed by CORS'));
+  //   }
+  // },
+  origin: 'http://localhost:3000',
+  credentials: true,
+};
 
 /**
  * Added middleware
  */
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(auth);
+app.use(cookieParser());
+app.use(sessionMiddleware);
 
 /**
  * Create new ApolloServer instance
@@ -46,12 +60,25 @@ app.use(auth);
 const server = new ApolloServer({
   typeDefs: rootSchema,
   resolvers: rootResolver,
-  context: ({ req }) => {
-    return { isAuth: req.isAuth, user: req.user };
+  context: ({ req, res }) => {
+    return {
+      res,
+      session: req.session,
+    };
+  },
+  playground: {
+    settings: {
+      // include cookies in the requests from the GraphQL playground
+      'request.credentials': 'include',
+    },
   },
 });
 
-server.applyMiddleware({ app, path: `${graphQlPath}` });
+server.applyMiddleware({
+  app,
+  path: `${graphQlPath}`,
+  cors: false, // disables the apollo-server-express cors to allow the cors middleware use
+});
 
 /**
  * Start up the server and listening to port

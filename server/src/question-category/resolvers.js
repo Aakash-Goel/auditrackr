@@ -48,7 +48,7 @@ const resolvers = {
         const questionCat = new QuestionCategory({
           name: categoryName,
           createdAt: new Date(),
-          createdBy: context.user.userId, // @TODO: needs to update this field
+          createdBy: context.session.userId, // @TODO: needs to update this field
         });
         const result = await questionCat.save();
         const createdQuestion = transformQuestionCategory(result);

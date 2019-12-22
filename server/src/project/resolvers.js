@@ -57,13 +57,13 @@ const resolvers = {
           code: args.createProjectInput.code,
           category: args.createProjectInput.category,
           createdAt: new Date(),
-          createdBy: context.user.userId, // @TODO: needs to update this field
+          createdBy: context.session.userId, // @TODO: needs to update this field
           lastUpdatedAt: new Date(),
           lastUpdatedBy: 'xyz', // @TODO: needs to update this field
         });
         const result = await project.save();
         const createdProject = transformProject(result);
-        const existingUser = await User.findById(context.user.userId); // @TODO: needs to update this field
+        const existingUser = await User.findById(context.session.userId); // @TODO: needs to update this field
         if (!existingUser) {
           throw new Error('User does not exist');
         }

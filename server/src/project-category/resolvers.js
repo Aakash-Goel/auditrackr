@@ -49,7 +49,7 @@ const resolvers = {
           name: catName,
           value: catValue,
           createdAt: new Date(),
-          createdBy: context.user.userId, // @TODO: needs to update this field
+          createdBy: context.session.userId, // @TODO: needs to update this field
         });
         const result = await projectCat.save();
         const createdProject = transformProjectCategory(result);

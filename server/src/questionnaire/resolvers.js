@@ -65,7 +65,7 @@ const resolvers = {
 
         const questionnaireSet = new Questionnaire({
           project: existingProject,
-          user: context.user.userId,
+          user: context.session.userId,
           questions: questionList,
         });
         const result = await questionnaireSet.save();

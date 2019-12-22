@@ -1,33 +1,38 @@
-'use strict';
+/**
+ * Not using anymore
+ * Instead using `session` middleware
+ */
 
-const jwt = require('jsonwebtoken');
+// 'use strict';
 
-module.exports = (req, res, next) => {
-  const authHeader = req.get('Authorization');
-  if (!authHeader) {
-    req.isAuth = false;
-    return next();
-  }
-  const token = authHeader.split(' ')[1]; // Authorization value: Bearer some-token-number
-  if (!token || token === '') {
-    req.isAuth = false;
-    return next();
-  }
+// const jwt = require('jsonwebtoken');
 
-  let decodedToken;
-  try {
-    decodedToken = jwt.verify(token, 'somesecretkey');
-  } catch (err) {
-    req.isAuth = false;
-    return next();
-  }
+// module.exports = (req, res, next) => {
+//   const authHeader = req.get('Authorization');
+//   if (!authHeader) {
+//     req.isAuth = false;
+//     return next();
+//   }
+//   const token = authHeader.split(' ')[1]; // Authorization value: Bearer some-token-number
+//   if (!token || token === '') {
+//     req.isAuth = false;
+//     return next();
+//   }
 
-  if (!decodedToken) {
-    req.isAuth = false;
-    return next();
-  }
+//   let decodedToken;
+//   try {
+//     decodedToken = jwt.verify(token, 'somesecretkey');
+//   } catch (err) {
+//     req.isAuth = false;
+//     return next();
+//   }
 
-  req.isAuth = true;
-  req.user = decodedToken;
-  return next();
-};
+//   if (!decodedToken) {
+//     req.isAuth = false;
+//     return next();
+//   }
+
+//   req.isAuth = true;
+//   req.user = decodedToken;
+//   return next();
+// };

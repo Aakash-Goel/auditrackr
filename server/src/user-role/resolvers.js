@@ -46,7 +46,7 @@ const resolvers = {
         const userRoleModel = new UserRole({
           name: roleType,
           createdAt: new Date(),
-          createdBy: context.user.userId, // @TODO: needs to update this field
+          createdBy: context.session.userId, // @TODO: needs to update this field
         });
         const result = await userRoleModel.save();
         const createdRole = transformUserRole(result);
