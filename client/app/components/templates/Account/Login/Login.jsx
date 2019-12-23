@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bool, object } from 'prop-types';
 import { createStructuredSelector } from 'reselect';
+import pathOr from 'lodash/fp/pathOr';
 
 import LoginPage from '../../../organisms/views/LoginPage';
 
@@ -13,7 +14,6 @@ import {
 } from './selectors';
 import { formWrapperSelector } from '../../../organisms/Forms/FormWrapper/selectors';
 import { Router } from '../../../../../routes';
-import { isBrowser } from '../../../../utils/helpersUtil';
 
 /**
  * Type checking - Define prop types
@@ -29,15 +29,28 @@ const defaultProps = {
 };
 
 export class AccountLogin extends PureComponent {
-  componentWillMount() {
-    // @TODO: move below logic to one singleton file
-    if (isBrowser() && this.props.isAuthenticated) {
+  static async getInitialProps({ ctx }) {
+    const { store, isServer } = ctx;
+    const { account } = store.getState();
+    const isUserAuthenticated = pathOr(false, 'isAuthenticated', account);
+
+    /**
+     * This happens on server only.
+     */
+    if (isServer && isUserAuthenticated) {
+      ctx.res.writeHead(302, { Location: '/account/audit/dashboard' });
+      ctx.res.end();
+    }
+
+    /**
+     * This happens on client only.
+     */
+    if (!isServer && isUserAuthenticated) {
       Router.pushRoute('audit-dashboard');
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    // @TODO: move below logic to one singleton file
     if (this.props.isAuthenticated !== nextProps.isAuthenticated) {
       if (nextProps.isAuthenticated && !nextProps.error) {
         Router.pushRoute('audit-dashboard');

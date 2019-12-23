@@ -5,10 +5,7 @@ import _merge from 'lodash/merge';
 import pathOr from 'lodash/fp/pathOr';
 import { cloneDeep } from 'lodash/fp';
 
-import LocalStorageUtil from './localStorageUtil';
-
 const APITimeout = 30000;
-const ID_TOKEN = 'id_token'; // @TODO: move this to the config
 
 const getApiData = response => {
   let responseData;
@@ -153,10 +150,6 @@ const ServiceUtil = {
     if (!options.headers) {
       delete options.headers;
     }
-
-    const storageUtil = new LocalStorageUtil();
-    const token = storageUtil.getItem(ID_TOKEN);
-    requestHeader.Authorization = token ? `Bearer ${token}` : null;
 
     const config = getConfig(requestHeader, options);
     const getData = triggerAxios(config);

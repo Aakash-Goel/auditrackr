@@ -31,11 +31,9 @@ import createStore from '../store/store';
 import { setLabels } from '../lib/labels/actions';
 import { updateRoutes } from '../lib/routes/actions';
 import ServiceUtil from '../utils/serviceUtil';
-import LocalStorageUtil from '../utils/localStorageUtil';
 import { isBrowser, setStoreRef } from '../utils/helpersUtil';
-import { setIsUserAuthenticated } from '../components/templates/Account/Login/actions';
-
-const ID_TOKEN = 'id_token'; // @TODO: move this to the config
+import { getNextCookie } from '../utils/cookieUtil';
+import { toggleUserAuthenticated } from '../components/templates/Account/Login/actions';
 
 async function fetchLabelGlobalData() {
   await ServiceUtil.triggerRequest({
@@ -68,6 +66,15 @@ class MyApp extends App {
     };
     store.dispatch(setLabels(labelsData));
 
+    // check if user is authenticated or not
+    const token = getNextCookie(ctx, 'token'); // only accessible during SSR, because it is httpOnly
+    if (token) {
+      // @TODO: here call an API and check if `token` is valid or not.
+      // if token is valid, dispatch an action to set the state `isAuthenticated`
+      // to true. `isAuthenticated` then used in `withAuth` HOC
+      store.dispatch(toggleUserAuthenticated(true));
+    }
+
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps({ ctx });
     }
@@ -83,14 +90,6 @@ class MyApp extends App {
     if (isBrowser()) {
       // set store to the external js
       setStoreRef(this.store);
-
-      // check if user is authenticated or not
-      const storageUtil = new LocalStorageUtil();
-      const token = storageUtil.getItem(ID_TOKEN);
-      // if token exist, dispatch an action to set the state isAuthenticated to true.
-      if (token) {
-        this.store.dispatch(setIsUserAuthenticated());
-      }
     }
 
     this.client = new ApolloClient({

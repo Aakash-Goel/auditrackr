@@ -3,7 +3,7 @@ import {
   SUBMIT_ACCOUNT_LOGIN_SUCCESS,
   SUBMIT_ACCOUNT_LOGIN_ERROR,
   SUBMIT_ACCOUNT_LOGOUT,
-  SET_IS_USER_AUTHENTICATED,
+  TOGGLE_USER_AUTHENTICATED,
 } from './constants';
 
 export function submitAccountLogIn(args) {
@@ -33,9 +33,9 @@ export function submitAccountLogOut(args) {
   };
 }
 
-export function setIsUserAuthenticated(isAuth) {
+export function toggleUserAuthenticated(isAuth) {
   return {
-    type: SET_IS_USER_AUTHENTICATED,
+    type: TOGGLE_USER_AUTHENTICATED,
     isAuth,
   };
 }

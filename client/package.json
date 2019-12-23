@@ -69,6 +69,7 @@
     "lodash": "^4.17.15",
     "next": "^9.0.6",
     "next-compose-plugins": "^2.2.0",
+    "next-cookies": "^2.0.3",
     "next-optimized-images": "^2.5.4",
     "next-redux-saga": "^4.0.2",
     "next-redux-wrapper": "^3.0.0",

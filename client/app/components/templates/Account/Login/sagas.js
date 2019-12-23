@@ -1,33 +1,18 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
-import pathOr from 'lodash/fp/pathOr';
 
 import ServiceUtil from '../../../../utils/serviceUtil';
 // import { getEncodedValue } from '../../../../utils/helpersUtil';
 import { requestLoginData } from './queries';
-import { submitAccountLogInSuccess, submitAccountLogInError } from './actions';
+import {
+  submitAccountLogInSuccess,
+  submitAccountLogInError,
+  toggleUserAuthenticated,
+} from './actions';
 import { SUBMIT_ACCOUNT_LOGIN } from './constants';
-import LocalStorageUtil from '../../../../utils/localStorageUtil';
 
-const ID_TOKEN = 'id_token'; // @TODO: move this to the config
-const ID_USER = 'id_user'; // @TODO: move this to the config
-
-function storeToken(tokenId, userId) {
-  const storageUtil = new LocalStorageUtil();
-  storageUtil.saveItem(ID_TOKEN, tokenId, tokenId);
-  storageUtil.saveItem(ID_USER, userId, userId);
-}
-
-function* handleLogin(data) {
-  storeToken(
-    pathOr(null, 'login.token', data),
-    pathOr(null, 'login.userId', data)
-  );
-
+function* handleSuccessLogin() {
+  yield put(toggleUserAuthenticated(true));
   return yield put(submitAccountLogInSuccess());
-}
-
-function* handleSuccessLogin(data, email) {
-  yield* handleLogin(data, email);
 }
 
 export function* handleCatchErrors(err) {
