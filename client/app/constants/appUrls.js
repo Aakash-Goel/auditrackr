@@ -26,4 +26,4 @@ const APP_URLS = {
   },
 };
 
-export default APP_URLS;
+module.exports = APP_URLS;
