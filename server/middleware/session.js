@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const { isEmpty } = require('lodash');
 
 // constants @TODO: move it to config or more secure place
 const TOKEN_SECRET = 'some-token-secret'; // @TODO: need to change this to more secure key
@@ -28,7 +29,18 @@ class Session {
     this.userName = null;
     this.userRole = null;
 
-    const { token } = request.cookies;
+    let cookieObj = {};
+
+    if (isEmpty(request.cookies)) {
+      if (!isEmpty(request.headers.cookie)) {
+        cookieObj = JSON.parse(request.headers.cookie);
+      }
+    } else {
+      cookieObj = request.cookies;
+    }
+
+    const { token } = cookieObj;
+
     this.verifyToken(token);
   }
 
