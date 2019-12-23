@@ -1,13 +1,39 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
 import withAuth from '../../../../lib/withAuth';
 import PrimaryLayout from '../../../../layouts/PrimaryLayout';
 import ContentContainer from '../../../organisms/ContentContainer';
 import DashboardAuditPage from '../../../organisms/views/DashboardAuditPage';
 
-/* eslint-disable react/prefer-stateless-function */
+import { allNextCookies } from '../../../../utils/cookieUtil';
+import { fetchProfileData } from './actions';
+import {
+  makeSelectIsFetching,
+  makeSelectData,
+  makeSelectError,
+} from './selectors';
+
 class AuditDashboard extends PureComponent {
+  static async getInitialProps({ ctx }) {
+    const allCookies = allNextCookies(ctx);
+    const { store } = ctx;
+
+    store.dispatch(fetchProfileData({ userId: allCookies.c_user, allCookies }));
+
+    // Wait for your dependencies to be resolved.
+    await new Promise(resolve => {
+      const unsubscribe = store.subscribe(() => {
+        const state = store.getState();
+        if (!state.isFetching) {
+          unsubscribe();
+          resolve();
+        }
+      });
+    });
+  }
+
   render() {
     return (
       <>
@@ -28,7 +54,11 @@ class AuditDashboard extends PureComponent {
   }
 }
 
-const mapStateToProps = () => ({});
+export const mapStateToProps = createStructuredSelector({
+  isFetching: makeSelectIsFetching(),
+  data: makeSelectData(),
+  error: makeSelectError(),
+});
 const mapDispatchToProps = () => ({});
 
 export default connect(

@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
-import { ACCOUNT_PROFILE_STATE_KEY } from './constants';
+import { ACCOUNT_LOGIN_STATE_KEY } from './constants';
 
-export const selectAccountLogIn = state => state[ACCOUNT_PROFILE_STATE_KEY];
+export const selectAccountLogIn = state => state[ACCOUNT_LOGIN_STATE_KEY];
 
 export const makeSelectIsLoading = () =>
   createSelector(

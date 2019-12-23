@@ -1,4 +1,4 @@
-export const ACCOUNT_PROFILE_STATE_KEY = 'account';
+export const ACCOUNT_LOGIN_STATE_KEY = 'account';
 
 export const SUBMIT_ACCOUNT_LOGIN = 'ATR/ACCOUNT_LOGIN/SUBMIT_ACCOUNT_LOGIN';
 export const SUBMIT_ACCOUNT_LOGIN_SUCCESS =

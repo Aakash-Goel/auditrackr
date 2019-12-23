@@ -37,11 +37,6 @@ export function* submitAccountLogIn({ args } = {}) {
     const {
       body: { statusText, error, data },
     } = yield call(ServiceUtil.triggerRequest, {
-      url: 'http://localhost:4000/graphql',
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
       data: JSON.stringify(logInQuery),
     });
 
@@ -61,11 +56,6 @@ export function* submitAccountLogOut() {
     const {
       body: { statusText, error, data },
     } = yield call(ServiceUtil.triggerRequest, {
-      url: 'http://localhost:4000/graphql',
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
       data: JSON.stringify(logOutQuery),
     });
 

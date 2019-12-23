@@ -123,12 +123,14 @@ const triggerAxios = config => {
  * @param {object} options
  * @return object with configuration
  */
-const getConfig = (requestHeader, options) => {
+const getConfig = options => {
   const config = {
-    method: 'GET',
-    url: '/',
+    method: 'POST',
+    url: 'http://localhost:4000/graphql',
     json: true,
-    headers: requestHeader,
+    headers: {
+      'Content-Type': 'application/json',
+    },
     withCredentials: true,
   };
 
@@ -145,13 +147,12 @@ const getConfig = (requestHeader, options) => {
 const ServiceUtil = {
   triggerRequest(opt) {
     const options = opt;
-    const requestHeader = {};
 
     if (!options.headers) {
       delete options.headers;
     }
 
-    const config = getConfig(requestHeader, options);
+    const config = getConfig(options);
     const getData = triggerAxios(config);
 
     return getData;

@@ -35,3 +35,8 @@ export const getNextCookie = (ctx, key) => {
   const cookie = nextCookie(ctx)[key];
   return cookie === 'undefined' ? null : cookie;
 };
+
+export const allNextCookies = ctx => {
+  const allCookies = nextCookie(ctx);
+  return allCookies;
+};

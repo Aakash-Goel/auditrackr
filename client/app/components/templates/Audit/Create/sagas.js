@@ -49,11 +49,6 @@ export function* submitCreateAudit({ args } = {}) {
     const {
       body: { statusText, error, data },
     } = yield call(ServiceUtil.triggerRequest, {
-      url: 'http://localhost:4000/graphql',
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
       data: JSON.stringify(createAuditQuery),
     });
 
@@ -73,11 +68,6 @@ export function* createQS({ args } = {}) {
     const {
       body: { statusText, error, data },
     } = yield call(ServiceUtil.triggerRequest, {
-      url: 'http://localhost:4000/graphql',
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
       data: JSON.stringify(createQSQuery),
     });
 
@@ -97,11 +87,6 @@ export function* getProjCategoryList() {
     const {
       body: { statusText, error, data },
     } = yield call(ServiceUtil.triggerRequest, {
-      url: 'http://localhost:4000/graphql',
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
       data: JSON.stringify(getProjCatQuery),
     });
 
