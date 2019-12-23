@@ -52,9 +52,17 @@ const appBarStyles = theme => ({
   menuButton: {
     marginLeft: 12,
     marginRight: 36,
+    '& svg': {
+      fill: theme.palette.common.white,
+    },
   },
   menuButtonHidden: {
     display: 'none',
+  },
+  icon: {
+    '& svg': {
+      fill: theme.palette.common.white,
+    },
   },
   avatar: {
     width: 30,

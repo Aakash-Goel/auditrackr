@@ -4,7 +4,10 @@ import classnames from 'classnames';
 import Slider from 'react-slick';
 
 import withStyles from '@material-ui/core/styles/withStyles';
-import { ChevronLeftOutlined, ChevronRightOutlined } from '@material-ui/icons';
+
+import Icon from '../Icon';
+import backIcon from '../../../static/icons/back.svg?sprite'; // eslint-disable-line import/no-unresolved
+import nextIcon from '../../../static/icons/next.svg?sprite'; // eslint-disable-line import/no-unresolved
 
 import carouselStyle from './Carousel.style';
 
@@ -152,27 +155,29 @@ class Carousel extends React.PureComponent {
       ),
       prevArrow: (
         <SlickPrevButton>
-          <ChevronLeftOutlined
+          <Icon
+            type={backIcon}
+            width="20px"
+            height="20px"
             aria-label="alt-prevArrowButton"
             className={classnames(
               customizeArrow.prevArrowClass,
               customizeArrow.arrowClass
             )}
-            color={customizeArrow.color}
-            fontSize={customizeArrow.fontSize}
           />
         </SlickPrevButton>
       ),
       nextArrow: (
         <SlickNextButton>
-          <ChevronRightOutlined
+          <Icon
+            type={nextIcon}
+            width="20px"
+            height="20px"
             aria-label="alt-nextArrowButton"
             className={classnames(
               customizeArrow.nextArrowClass,
               customizeArrow.arrowClass
             )}
-            color={customizeArrow.color}
-            fontSize={customizeArrow.fontSize}
           />
         </SlickNextButton>
       ),

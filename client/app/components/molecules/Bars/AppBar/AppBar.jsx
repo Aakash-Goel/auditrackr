@@ -15,11 +15,6 @@ import {
   Grow,
   ClickAwayListener,
 } from '@material-ui/core';
-import {
-  Menu as MenuIcon,
-  ChevronLeft,
-  NotificationsOutlined,
-} from '@material-ui/icons';
 
 import Button from '../../../atoms/Button';
 import Icon from '../../../atoms/Icon';
@@ -27,6 +22,9 @@ import Paper from '../../Paper';
 import { Link } from '../../../../../routes';
 import APP_URLS from '../../../../constants/appUrls';
 import addIcon from '../../../../static/icons/add-plus-button.svg?sprite'; // eslint-disable-line import/no-unresolved
+import backIcon from '../../../../static/icons/back.svg?sprite'; // eslint-disable-line import/no-unresolved
+import alarmIcon from '../../../../static/icons/notifications-bell-button.svg?sprite'; // eslint-disable-line import/no-unresolved
+import menuIcon from '../../../../static/icons/menu-button.svg?sprite'; // eslint-disable-line import/no-unresolved
 
 import appBarStyles from './AppBar.style';
 
@@ -122,7 +120,7 @@ class CustomAppBar extends PureComponent {
                 !isMenuOpen && classes.menuButtonHidden
               )}
             >
-              <ChevronLeft />
+              <Icon type={backIcon} />
             </IconButton>
             <IconButton
               color="inherit"
@@ -133,7 +131,7 @@ class CustomAppBar extends PureComponent {
                 isMenuOpen && classes.menuButtonHidden
               )}
             >
-              <MenuIcon />
+              <Icon type={menuIcon} />
             </IconButton>
             <div className={classes.contentWrapper} />
             <Link to={APP_URLS.auditCreate.url}>
@@ -147,9 +145,9 @@ class CustomAppBar extends PureComponent {
                 Start Audit
               </Button>
             </Link>
-            <IconButton color="inherit">
+            <IconButton className={classnames(classes.icon)}>
               <Badge badgeContent={4} color="primary">
-                <NotificationsOutlined />
+                <Icon type={alarmIcon} width="20px" height="20px" />
               </Badge>
             </IconButton>
             <div>
