@@ -19,7 +19,6 @@ import withRedux from 'next-redux-wrapper';
 import withReduxSaga from 'next-redux-saga';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
-import pathOr from 'lodash/fp/pathOr';
 
 import { withStyles } from '@material-ui/core/styles';
 import { StylesProvider, ThemeProvider } from '@material-ui/styles';
@@ -28,43 +27,16 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import getPageContext from '../lib/getPageContext';
 import globalStyles from '../styles/global';
 import createStore from '../store/store';
-import { setLabels } from '../lib/labels/actions';
 import { updateRoutes } from '../lib/routes/actions';
-import ServiceUtil from '../utils/serviceUtil';
 import { isBrowser, setStoreRef } from '../utils/helpersUtil';
 import { getNextCookie } from '../utils/cookieUtil';
 import { toggleUserAuthenticated } from '../components/templates/Account/Login/actions';
-
-async function fetchLabelGlobalData() {
-  await ServiceUtil.triggerRequest({
-    url: 'http://localhost:1337/globals',
-  }).then(
-    resolvedValue => {
-      return resolvedValue;
-    },
-    error => {
-      return error;
-    }
-  );
-}
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx, router }) {
     let pageProps = {};
     const { store } = ctx;
     store.dispatch(updateRoutes(router));
-    const globalLabelDetails = await fetchLabelGlobalData();
-    const serviceStatus = pathOr(
-      'ERROR',
-      'body.statusText',
-      globalLabelDetails
-    );
-    const labelsData = {
-      serviceStatus,
-      data: pathOr(null, 'body.data[0]', globalLabelDetails),
-      identifier: 'globals',
-    };
-    store.dispatch(setLabels(labelsData));
 
     // check if user is authenticated or not
     const token = getNextCookie(ctx, 'token'); // only accessible during SSR, because it is httpOnly
