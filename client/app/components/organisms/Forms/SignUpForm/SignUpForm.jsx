@@ -16,6 +16,7 @@ import {
   checkIsError,
   validationObject,
 } from '../../../../utils/formInputUtil';
+import APP_URLS from '../../../../constants/appUrls';
 
 import signUpFormStyles from './SignUpForm.style';
 
@@ -223,7 +224,7 @@ class SignUpForm extends PureComponent {
                 md={6}
                 className={classnames(classes.btnLinkWrapper)}
               >
-                <Link href="/account/login">I already have an account</Link>
+                <Link href={APP_URLS.login.url}>I already have an account</Link>
               </GridItem>
             </GridContainer>
           </FormWrapper>

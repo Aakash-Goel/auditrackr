@@ -9,6 +9,7 @@ import GridContainer from '../../../atoms/Grid/GridContainer';
 import GridItem from '../../../atoms/Grid/GridItem';
 import CreateAuditForm from '../../Forms/CreateAuditForm';
 import { Router } from '../../../../../routes';
+import APP_URLS from '../../../../constants/appUrls';
 
 import createAuditPageStyles from './CreateAuditPage.style';
 
@@ -30,7 +31,7 @@ class CreateAuditPage extends PureComponent {
     // @TODO: move below logic to one singleton file
     if (this.props.data !== nextProps.data) {
       if (nextProps.data && nextProps.isQSCreated) {
-        Router.pushRoute('audit-project', {
+        Router.pushRoute(APP_URLS.auditProject.name, {
           projectId: nextProps.data._id, // eslint-disable-line no-underscore-dangle
         });
       }

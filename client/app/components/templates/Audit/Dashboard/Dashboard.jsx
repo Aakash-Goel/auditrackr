@@ -15,7 +15,7 @@ class AuditDashboard extends PureComponent {
           <PrimaryLayout
             pageTitle="Dashboard"
             pageDesc="This is AuditTrackR dashboard"
-            pageId="audit-dashboard"
+            pageId="auditDashboard"
           >
             <ContentContainer
               breadCrumbTitle="Dashboard"

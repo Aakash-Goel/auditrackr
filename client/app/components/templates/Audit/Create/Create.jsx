@@ -55,7 +55,7 @@ class AuditCreate extends PureComponent {
           <PrimaryLayout
             pageTitle="Create Audit"
             pageDesc="This is AuditTrackR audit create page"
-            pageId="audit-create"
+            pageId="auditCreate"
           >
             <ContentContainer breadCrumbTitle="Start New Audit">
               <CreateAuditPage {...this.props} />

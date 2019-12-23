@@ -48,7 +48,7 @@ class AuditProject extends PureComponent {
           <PrimaryLayout
             pageTitle="Project Audit"
             pageDesc="This is AuditTrackR project audit page"
-            pageId="audit-project"
+            pageId="auditProject"
           >
             <ContentContainer
               breadCrumbTitle={data && data.auditName}

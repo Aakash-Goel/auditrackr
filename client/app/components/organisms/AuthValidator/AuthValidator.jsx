@@ -18,6 +18,7 @@ import { node, bool } from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
+import APP_URLS from '../../../constants/appUrls';
 import { Router } from '../../../../routes';
 import { isBrowser } from '../../../utils/helpersUtil';
 import { makeSelectIsAuthenticated } from '../../templates/Account/Login/selectors';
@@ -35,14 +36,14 @@ class AuthValidator extends PureComponent {
   componentWillMount() {
     // @TODO: move below logic to one singleton file
     if (isBrowser() && !this.props.isAuthenticated) {
-      Router.pushRoute('account-login');
+      Router.pushRoute(APP_URLS.login.name);
     }
   }
 
   componentWillUpdate(nextProps) {
     // @TODO: move below logic to one singleton file
     if (!nextProps.isAuthenticated) {
-      Router.pushRoute('account-login');
+      Router.pushRoute(APP_URLS.login.name);
     }
   }
 

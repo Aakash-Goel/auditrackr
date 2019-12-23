@@ -1,3 +1,4 @@
+import APP_URLS from './appUrls';
 // nav icons
 import dashboardIcon from '../static/icons/dashboard.svg?sprite'; // eslint-disable-line import/no-unresolved
 import auditIcon from '../static/icons/audit.svg?sprite'; // eslint-disable-line import/no-unresolved
@@ -13,12 +14,12 @@ const pages = [
   },
   {
     title: 'Dashboard',
-    pathUrl: '/account/audit/dashboard',
+    pathUrl: APP_URLS.auditDashboard.url,
     icon: dashboardIcon,
   },
   {
     title: 'Audits',
-    pathUrl: '/account/audit/create',
+    pathUrl: APP_URLS.auditCreate.url,
     icon: auditIcon,
   },
   {

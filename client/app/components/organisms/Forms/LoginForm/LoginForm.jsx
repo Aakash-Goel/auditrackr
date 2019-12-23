@@ -15,6 +15,7 @@ import {
   checkIsError,
   validationObject,
 } from '../../../../utils/formInputUtil';
+import APP_URLS from '../../../../constants/appUrls';
 
 import loginFormStyles from './LoginForm.style';
 
@@ -145,7 +146,7 @@ class LoginForm extends PureComponent {
         <div>
           <p className={classnames(classes.helper)}>
             Don&#39;t have an account?&nbsp;
-            <Link href="/account/signup">Sign up</Link>
+            <Link href={APP_URLS.signUp.url}>Sign up</Link>
           </p>
         </div>
       </>

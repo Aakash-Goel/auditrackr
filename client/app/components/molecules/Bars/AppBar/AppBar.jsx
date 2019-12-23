@@ -25,6 +25,7 @@ import {
 import Button from '../../../atoms/Button';
 import Icon from '../../../atoms/Icon';
 import { Link } from '../../../../../routes';
+import APP_URLS from '../../../../constants/appUrls';
 import addIcon from '../../../../static/icons/add-plus-button.svg?sprite'; // eslint-disable-line import/no-unresolved
 
 import appBarStyles from './AppBar.style';
@@ -128,11 +129,11 @@ class CustomAppBar extends PureComponent {
               <MenuIcon />
             </IconButton>
             <div className={classes.contentWrapper} />
-            <Link to="/account/audit/create">
+            <Link to={APP_URLS.auditCreate.url}>
               <Button
                 outlined
                 color="secondary"
-                href="/account/audit/create"
+                href={APP_URLS.auditCreate.url}
                 size="sm"
                 startIcon={<Icon type={addIcon} />}
               >

@@ -4,8 +4,9 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import pathOr from 'lodash/fp/pathOr';
 
-import { getNextCookie } from '../utils/cookieUtil';
 import { Router } from '../../routes';
+import APP_URLS from '../constants/appUrls';
+import { getNextCookie } from '../utils/cookieUtil';
 import { makeSelectIsAuthenticated } from '../components/templates/Account/Login/selectors';
 import { toggleUserAuthenticated } from '../components/templates/Account/Login/actions';
 
@@ -31,7 +32,7 @@ const auth = ctx => {
    * `isUserAuthenticated` set to false, by default
    */
   if (isServer && !isUserAuthenticated) {
-    ctx.res.writeHead(302, { Location: '/account/login' });
+    ctx.res.writeHead(302, { Location: APP_URLS.login.url });
     ctx.res.end();
     return;
   }
@@ -46,7 +47,7 @@ const auth = ctx => {
    */
   if (!isServer && (!isUserAuthenticated || !cUser)) {
     store.dispatch(toggleUserAuthenticated(false));
-    Router.pushRoute('account-login');
+    Router.pushRoute(APP_URLS.login.name);
   }
 
   // @TODO: One case is left, i.e. if "token" is deleted and do the client-side
@@ -76,7 +77,7 @@ const withAuth = WrappedComponent => {
 
     componentWillUpdate(nextProps) {
       if (!nextProps.isAuthenticated) {
-        Router.pushRoute('account-login');
+        Router.pushRoute(APP_URLS.login.name);
       }
     }
 

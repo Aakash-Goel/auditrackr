@@ -14,6 +14,7 @@ import {
 } from './selectors';
 import { formWrapperSelector } from '../../../organisms/Forms/FormWrapper/selectors';
 import { Router } from '../../../../../routes';
+import APP_URLS from '../../../../constants/appUrls';
 
 /**
  * Type checking - Define prop types
@@ -38,7 +39,7 @@ export class AccountLogin extends PureComponent {
      * This happens on server only.
      */
     if (isServer && isUserAuthenticated) {
-      ctx.res.writeHead(302, { Location: '/account/audit/dashboard' });
+      ctx.res.writeHead(302, { Location: APP_URLS.auditDashboard.url });
       ctx.res.end();
     }
 
@@ -46,14 +47,14 @@ export class AccountLogin extends PureComponent {
      * This happens on client only.
      */
     if (!isServer && isUserAuthenticated) {
-      Router.pushRoute('audit-dashboard');
+      Router.pushRoute(APP_URLS.auditDashboard.name);
     }
   }
 
   componentWillReceiveProps(nextProps) {
     if (this.props.isAuthenticated !== nextProps.isAuthenticated) {
       if (nextProps.isAuthenticated && !nextProps.error) {
-        Router.pushRoute('audit-dashboard');
+        Router.pushRoute(APP_URLS.auditDashboard.name);
       }
     }
   }

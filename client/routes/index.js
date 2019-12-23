@@ -1,5 +1,7 @@
 const routes = require('next-routes')();
 
+const APP_URLS = require('../app/constants/appUrls');
+
 //
 // Because of awesome Next.js, You don't need to add routes for all pages.
 // Every file on Pages folder basically has route as they named.
@@ -12,29 +14,29 @@ const routes = require('next-routes')();
 // ------------ ROUTES ---------------
 // @StartRoutes
 routes.add({
-  name: 'account-login',
-  pattern: '/account/login',
-  page: 'account/login',
+  name: APP_URLS.login.name,
+  pattern: APP_URLS.login.url,
+  page: APP_URLS.login.pagePath,
 });
 routes.add({
-  name: 'account-signup',
-  pattern: '/account/signup',
-  page: 'account/signup',
+  name: APP_URLS.signUp.name,
+  pattern: APP_URLS.signUp.url,
+  page: APP_URLS.signUp.pagePath,
 });
 routes.add({
-  name: 'audit-create',
-  pattern: '/account/audit/create',
-  page: 'audit/create',
+  name: APP_URLS.auditDashboard.name,
+  pattern: APP_URLS.auditDashboard.url,
+  page: APP_URLS.auditDashboard.pagePath,
 });
 routes.add({
-  name: 'audit-project',
-  pattern: '/account/audit/project/:projectId',
-  page: 'audit/project',
+  name: APP_URLS.auditCreate.name,
+  pattern: APP_URLS.auditCreate.url,
+  page: APP_URLS.auditCreate.pagePath,
 });
 routes.add({
-  name: 'audit-dashboard',
-  pattern: '/account/audit/dashboard',
-  page: 'audit/dashboard',
+  name: APP_URLS.auditProject.name,
+  pattern: APP_URLS.auditProject.url,
+  page: APP_URLS.auditProject.pagePath,
 });
 // @EndRoutes
 // ------------ ROUTES ---------------
