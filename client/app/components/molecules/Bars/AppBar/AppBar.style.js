@@ -60,6 +60,13 @@ const appBarStyles = theme => ({
     width: 30,
     height: 30,
   },
+  popperContainer: {
+    padding: 0,
+
+    '& li': {
+      fontSize: theme.typography.fontSizeSmall,
+    },
+  },
 
   '@media (min-width: 768px)': {
     logo: {

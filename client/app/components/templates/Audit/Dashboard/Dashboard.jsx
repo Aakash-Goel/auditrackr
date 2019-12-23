@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 
-import AuthValidator from '../../../organisms/AuthValidator';
+import withAuth from '../../../../lib/withAuth';
 import PrimaryLayout from '../../../../layouts/PrimaryLayout';
 import ContentContainer from '../../../organisms/ContentContainer';
 import DashboardAuditPage from '../../../organisms/views/DashboardAuditPage';
@@ -11,20 +11,18 @@ class AuditDashboard extends PureComponent {
   render() {
     return (
       <>
-        <AuthValidator>
-          <PrimaryLayout
-            pageTitle="Dashboard"
-            pageDesc="This is AuditTrackR dashboard"
-            pageId="auditDashboard"
+        <PrimaryLayout
+          pageTitle="Dashboard"
+          pageDesc="This is AuditTrackR dashboard"
+          pageId="auditDashboard"
+        >
+          <ContentContainer
+            breadCrumbTitle="Dashboard"
+            shouldRenderInsidePaper={false}
           >
-            <ContentContainer
-              breadCrumbTitle="Dashboard"
-              shouldRenderInsidePaper={false}
-            >
-              <DashboardAuditPage {...this.props} />
-            </ContentContainer>
-          </PrimaryLayout>
-        </AuthValidator>
+            <DashboardAuditPage {...this.props} />
+          </ContentContainer>
+        </PrimaryLayout>
       </>
     );
   }
@@ -36,4 +34,4 @@ const mapDispatchToProps = () => ({});
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(AuditDashboard);
+)(withAuth(AuditDashboard));

@@ -12,7 +12,6 @@ import {
   MenuList,
   MenuItem,
   Popper,
-  Paper,
   Grow,
   ClickAwayListener,
 } from '@material-ui/core';
@@ -24,6 +23,7 @@ import {
 
 import Button from '../../../atoms/Button';
 import Icon from '../../../atoms/Icon';
+import Paper from '../../Paper';
 import { Link } from '../../../../../routes';
 import APP_URLS from '../../../../constants/appUrls';
 import addIcon from '../../../../static/icons/add-plus-button.svg?sprite'; // eslint-disable-line import/no-unresolved
@@ -36,6 +36,7 @@ const propTypes = {
   className: string,
   onHandleDrawerClose: func,
   onHandleDrawerOpen: func,
+  onHandleLogout: func,
 };
 
 const defaultProps = {
@@ -43,6 +44,7 @@ const defaultProps = {
   className: '',
   onHandleDrawerClose: () => {},
   onHandleDrawerOpen: () => {},
+  onHandleLogout: () => {},
 };
 
 class CustomAppBar extends PureComponent {
@@ -67,6 +69,11 @@ class CustomAppBar extends PureComponent {
 
   handleToggle = () => {
     this.setState(state => ({ isPopOverOpen: !state.isPopOverOpen }));
+  };
+
+  handleLogout = () => {
+    this.setState({ isPopOverOpen: false });
+    this.props.onHandleLogout();
   };
 
   render() {
@@ -177,16 +184,18 @@ class CustomAppBar extends PureComponent {
                         placement === 'bottom' ? 'center top' : 'center bottom',
                     }}
                   >
-                    <Paper>
+                    <Paper
+                      className={classes.popperContainer}
+                      borderColor="none"
+                    >
                       <ClickAwayListener onClickAway={this.handleClose}>
                         <MenuList>
                           <MenuItem onClick={this.handleClose}>
                             Profile
                           </MenuItem>
-                          <MenuItem onClick={this.handleClose}>
-                            My account
+                          <MenuItem onClick={this.handleLogout}>
+                            Logout
                           </MenuItem>
-                          <MenuItem onClick={this.handleClose}>Logout</MenuItem>
                         </MenuList>
                       </ClickAwayListener>
                     </Paper>

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { object } from 'prop-types';
 import { createStructuredSelector } from 'reselect';
 
-import AuthValidator from '../../../organisms/AuthValidator';
+import withAuth from '../../../../lib/withAuth';
 import PrimaryLayout from '../../../../layouts/PrimaryLayout';
 import ContentContainer from '../../../organisms/ContentContainer';
 import ProjectAuditPage from '../../../organisms/views/ProjectAuditPage';
@@ -44,20 +44,18 @@ class AuditProject extends PureComponent {
     const { data } = this.props;
     return (
       <>
-        <AuthValidator>
-          <PrimaryLayout
-            pageTitle="Project Audit"
-            pageDesc="This is AuditTrackR project audit page"
-            pageId="auditProject"
+        <PrimaryLayout
+          pageTitle="Project Audit"
+          pageDesc="This is AuditTrackR project audit page"
+          pageId="auditProject"
+        >
+          <ContentContainer
+            breadCrumbTitle={data && data.auditName}
+            shouldRenderInsidePaper={false}
           >
-            <ContentContainer
-              breadCrumbTitle={data && data.auditName}
-              shouldRenderInsidePaper={false}
-            >
-              <ProjectAuditPage {...this.props} />
-            </ContentContainer>
-          </PrimaryLayout>
-        </AuthValidator>
+            <ProjectAuditPage {...this.props} />
+          </ContentContainer>
+        </PrimaryLayout>
       </>
     );
   }
@@ -77,4 +75,4 @@ const mapDispatchToProps = () => ({});
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(AuditProject);
+)(withAuth(AuditProject));

@@ -4,6 +4,8 @@ import {
   SUBMIT_ACCOUNT_LOGIN_SUCCESS,
   SUBMIT_ACCOUNT_LOGIN_ERROR,
   SUBMIT_ACCOUNT_LOGOUT,
+  SUBMIT_ACCOUNT_LOGOUT_SUCCESS,
+  SUBMIT_ACCOUNT_LOGOUT_ERROR,
   TOGGLE_USER_AUTHENTICATED,
 } from './constants';
 
@@ -27,14 +29,28 @@ function accountLogInReducer(state = initialState, { type, error, isAuth }) {
         error: null,
       });
     }
-    case SUBMIT_ACCOUNT_LOGIN_ERROR:
+    case SUBMIT_ACCOUNT_LOGIN_ERROR: {
       return _merge({}, state, {
         isLoading: false,
         error,
       });
+    }
     case SUBMIT_ACCOUNT_LOGOUT: {
       return _merge({}, state, {
+        isLoading: true,
         error: null,
+      });
+    }
+    case SUBMIT_ACCOUNT_LOGOUT_SUCCESS: {
+      return _merge({}, state, {
+        isLoading: false,
+        error: null,
+      });
+    }
+    case SUBMIT_ACCOUNT_LOGOUT_ERROR: {
+      return _merge({}, state, {
+        isLoading: false,
+        error,
       });
     }
     case TOGGLE_USER_AUTHENTICATED: {

@@ -15,6 +15,7 @@ import pages from '../../constants/navBarList';
 // actions/selectors
 import { toggleDrawerStatus } from './actions';
 import { makeSelectDrawer } from './selectors';
+import { submitAccountLogOut } from '../../components/templates/Account/Login/actions';
 
 import primaryLayoutStyles from './PrimaryLayout.style';
 
@@ -27,6 +28,7 @@ const propTypes = {
   pageId: string,
   isDrawerOpen: bool,
   toggleDrawer: func,
+  dispatchLogout: func,
 };
 
 const defaultProps = {
@@ -34,6 +36,7 @@ const defaultProps = {
   pageId: '',
   isDrawerOpen: true,
   toggleDrawer: () => {},
+  dispatchLogout: () => {},
 };
 
 class PrimaryLayout extends PureComponent {
@@ -50,6 +53,10 @@ class PrimaryLayout extends PureComponent {
 
   handleDrawerClose = () => {
     this.props.toggleDrawer(false);
+  };
+
+  handleLogout = () => {
+    this.props.dispatchLogout();
   };
 
   render() {
@@ -74,6 +81,7 @@ class PrimaryLayout extends PureComponent {
             isMenuOpen={isDrawerOpen}
             onMenuOpen={this.handleDrawerOpen}
             onMenuClose={this.handleDrawerClose}
+            onLogout={this.handleLogout}
           />
           <Menu isMenuOpen={isDrawerOpen} menuItems={pages} />
           <main className={classes.mainWrapper}>
@@ -96,6 +104,9 @@ export const mapStateToProps = createStructuredSelector({
 export const mapDispatchToProps = dispatch => ({
   toggleDrawer(openDrawer) {
     dispatch(toggleDrawerStatus(openDrawer));
+  },
+  dispatchLogout() {
+    dispatch(submitAccountLogOut());
   },
 });
 

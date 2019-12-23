@@ -11,22 +11,25 @@ const propTypes = {
   isMenuOpen: bool,
   onMenuOpen: func,
   onMenuClose: func,
+  onLogout: func,
 };
 
 const defaultProps = {
   isMenuOpen: false,
   onMenuOpen: () => {},
   onMenuClose: () => {},
+  onLogout: () => {},
 };
 
 const Header = props => {
-  const { isMenuOpen, onMenuOpen, onMenuClose } = props;
+  const { isMenuOpen, onMenuOpen, onMenuClose, onLogout } = props;
 
   return (
     <AppBar
       isMenuOpen={isMenuOpen}
       onHandleDrawerOpen={onMenuOpen}
       onHandleDrawerClose={onMenuClose}
+      onHandleLogout={onLogout}
     />
   );
 };

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 // import { object } from 'prop-types';
 import { createStructuredSelector } from 'reselect';
 
-import AuthValidator from '../../../organisms/AuthValidator';
+import withAuth from '../../../../lib/withAuth';
 import PrimaryLayout from '../../../../layouts/PrimaryLayout';
 import ContentContainer from '../../../organisms/ContentContainer';
 import CreateAuditPage from '../../../organisms/views/CreateAuditPage';
@@ -51,17 +51,15 @@ class AuditCreate extends PureComponent {
   render() {
     return (
       <>
-        <AuthValidator>
-          <PrimaryLayout
-            pageTitle="Create Audit"
-            pageDesc="This is AuditTrackR audit create page"
-            pageId="auditCreate"
-          >
-            <ContentContainer breadCrumbTitle="Start New Audit">
-              <CreateAuditPage {...this.props} />
-            </ContentContainer>
-          </PrimaryLayout>
-        </AuthValidator>
+        <PrimaryLayout
+          pageTitle="Create Audit"
+          pageDesc="This is AuditTrackR audit create page"
+          pageId="auditCreate"
+        >
+          <ContentContainer breadCrumbTitle="Start New Audit">
+            <CreateAuditPage {...this.props} />
+          </ContentContainer>
+        </PrimaryLayout>
       </>
     );
   }
@@ -94,4 +92,4 @@ export const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(AuditCreate);
+)(withAuth(AuditCreate));

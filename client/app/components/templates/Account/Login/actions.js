@@ -3,6 +3,8 @@ import {
   SUBMIT_ACCOUNT_LOGIN_SUCCESS,
   SUBMIT_ACCOUNT_LOGIN_ERROR,
   SUBMIT_ACCOUNT_LOGOUT,
+  SUBMIT_ACCOUNT_LOGOUT_SUCCESS,
+  SUBMIT_ACCOUNT_LOGOUT_ERROR,
   TOGGLE_USER_AUTHENTICATED,
 } from './constants';
 
@@ -26,10 +28,22 @@ export function submitAccountLogInError(error) {
   };
 }
 
-export function submitAccountLogOut(args) {
+export function submitAccountLogOut() {
   return {
     type: SUBMIT_ACCOUNT_LOGOUT,
-    args,
+  };
+}
+
+export function submitAccountLogOutSuccess() {
+  return {
+    type: SUBMIT_ACCOUNT_LOGOUT_SUCCESS,
+  };
+}
+
+export function submitAccountLogOutError(error) {
+  return {
+    type: SUBMIT_ACCOUNT_LOGOUT_ERROR,
+    error,
   };
 }
 

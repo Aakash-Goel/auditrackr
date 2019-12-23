@@ -2,13 +2,15 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 
 import ServiceUtil from '../../../../utils/serviceUtil';
 // import { getEncodedValue } from '../../../../utils/helpersUtil';
-import { requestLoginData } from './queries';
+import { requestLoginData, requestLogOutData } from './queries';
 import {
   submitAccountLogInSuccess,
   submitAccountLogInError,
   toggleUserAuthenticated,
+  submitAccountLogOutError,
+  submitAccountLogOutSuccess,
 } from './actions';
-import { SUBMIT_ACCOUNT_LOGIN } from './constants';
+import { SUBMIT_ACCOUNT_LOGIN, SUBMIT_ACCOUNT_LOGOUT } from './constants';
 
 function* handleSuccessLogin() {
   yield put(toggleUserAuthenticated(true));
@@ -52,8 +54,37 @@ export function* submitAccountLogIn({ args } = {}) {
   }
 }
 
+export function* submitAccountLogOut() {
+  const logOutQuery = requestLogOutData();
+
+  try {
+    const {
+      body: { statusText, error, data },
+    } = yield call(ServiceUtil.triggerRequest, {
+      url: 'http://localhost:4000/graphql',
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      data: JSON.stringify(logOutQuery),
+    });
+
+    if (statusText === 'OK' && data) {
+      yield put(toggleUserAuthenticated(false));
+      return yield put(submitAccountLogOutSuccess());
+    }
+    return yield put(submitAccountLogOutError(error));
+  } catch (err) {
+    return yield put(submitAccountLogOutError(err.body));
+  }
+}
+
 export function* accountLogInSaga() {
   yield takeLatest(SUBMIT_ACCOUNT_LOGIN, submitAccountLogIn);
 }
 
-export default [accountLogInSaga];
+export function* accountLogOutSaga() {
+  yield takeLatest(SUBMIT_ACCOUNT_LOGOUT, submitAccountLogOut);
+}
+
+export default [accountLogInSaga, accountLogOutSaga];
