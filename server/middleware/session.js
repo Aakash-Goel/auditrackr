@@ -1,3 +1,12 @@
+/**
+ * middleware/session.js
+ * Copyright (c) 2019-present, Aakash Goel
+ * MIT Licensed
+ *
+ * This is where token creation and validation happens
+ *
+ */
+
 const jwt = require('jsonwebtoken');
 const { isEmpty } = require('lodash');
 

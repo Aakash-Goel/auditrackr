@@ -46,7 +46,6 @@ const rootResolver = [
   questionnaireResolvers,
   assessmentTypeResolvers,
 ];
-// console.log('>>>rootResolver ', rootResolver);
 
 /**
  * Module exports.

@@ -62,7 +62,6 @@ const rootSchema = [
   questionnaireSchema,
   assessmentTypeSchema,
 ];
-// console.log('>>>rootSchema ', rootSchema);
 
 /**
  * Module exports.
