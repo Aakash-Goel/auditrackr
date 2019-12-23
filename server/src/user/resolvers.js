@@ -10,7 +10,6 @@
 'use strict';
 
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 
 /**
  * Module dependencies.
