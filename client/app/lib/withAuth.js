@@ -96,7 +96,7 @@ const withAuth = WrappedComponent => {
     // Method to redirect the user when the event is called
     syncLogout(event) {
       if (event.key === 'logout') {
-        console.log('logged out from storage!');
+        console.log('logged out from storage!'); // eslint-disable-line
         // Router.push('/login');
       }
     }
