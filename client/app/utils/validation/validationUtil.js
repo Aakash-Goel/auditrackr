@@ -4,10 +4,19 @@ import * as Constraints from './constraints';
 
 export const setRuleForError = (value, rule, detailed) => {
   let errors;
+  const errorArr = [];
 
   const setConstraints = typeof rule === 'object' ? rule : Constraints[rule];
   const ruleKey = typeof rule === 'object' ? Object.keys(rule)[0] : rule;
-  if (typeof value === 'object') {
+  if (Array.isArray(value)) {
+    value.forEach(val => {
+      const err = validate({ [ruleKey]: val }, setConstraints);
+      if (err) {
+        errorArr.push(err);
+      }
+    });
+    errors = errorArr.length ? errorArr[0] : errors;
+  } else if (typeof value === 'object') {
     if (detailed) {
       errors = validate(value, setConstraints, { format: 'detailed' });
     } else {

@@ -42,9 +42,16 @@ function formWrapperReducer(state = initialState, { type, data }) {
 
     case UPDATE_FORM_IDENTIFIER_FIELD: {
       const newData = _merge({}, data);
-      const { identifier } = newData;
+      const { identifier, name } = newData;
       delete newData.identifier;
       const formState = state[identifier];
+
+      const currentInputValue = name ? newData[name].value : null; // @TODO: convert this to pathOr
+      if (currentInputValue && Array.isArray(currentInputValue)) {
+        formState[name].value = currentInputValue;
+      }
+      delete newData.name;
+
       const newState = _merge({}, formState, newData);
 
       return _merge({}, state, {

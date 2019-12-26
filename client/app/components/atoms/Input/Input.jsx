@@ -10,6 +10,7 @@ import Input from '@material-ui/core/Input';
 import FormHelperText from '@material-ui/core/FormHelperText';
 
 import Select from '../Select';
+import InputChip from '../InputChip';
 import { validateChange } from '../../../utils/validation/validationUtil';
 
 import inputStyles from './Input.style';
@@ -30,6 +31,7 @@ const propTypes = {
   selectProps: object,
   validators: object,
   onSelectChangeHandler: func,
+  onInputChipChangeHandler: func,
   onChangeHandler: func,
   onBlurHandler: func,
   onErrorCallback: func,
@@ -58,6 +60,7 @@ const defaultProps = {
   selectProps: {},
   validators: {},
   onSelectChangeHandler: () => {},
+  onInputChipChangeHandler: () => {},
   onChangeHandler: () => {},
   onBlurHandler: () => {},
   onErrorCallback: () => {},
@@ -95,9 +98,9 @@ class CustomInput extends React.PureComponent {
         fieldErrorMsg,
         isChangedOnce,
       } = this.props;
-      const { name } = inputProps;
+      const { name, type } = inputProps;
       const isRequired = formControlProps ? formControlProps.required : false;
-      const dataValue = '';
+      const dataValue = type === 'multiple' ? [''] : '';
       if (addFormIdentifierData) {
         addFormIdentifierData({
           identifier,
@@ -253,12 +256,82 @@ class CustomInput extends React.PureComponent {
     }
   }
 
+  handleInputChipCallBack(
+    validation,
+    errorKey,
+    value,
+    name,
+    callCallback = true
+  ) {
+    const { onValidationDoneCallback, onErrorCallback } = this.props;
+    if (validation && validation[errorKey] !== '') {
+      if (onErrorCallback) {
+        onErrorCallback();
+      }
+    } else if (onValidationDoneCallback && callCallback) {
+      onValidationDoneCallback(name, value);
+    }
+  }
+
+  handleOnInputChipChange(name, val, rule, isRequired) {
+    const {
+      updateFormIdentifierData,
+      identifier,
+      onInputChipChangeHandler,
+    } = this.props;
+
+    const errorKey = `${name}Error`;
+    let errorMsz = '';
+    let errorObject = {};
+
+    if (isRequired || (!isRequired && val.length)) {
+      errorObject = this.validateAndReturnErrorObject(name, val, rule);
+      errorMsz = errorObject.validation[errorKey];
+    }
+
+    if (updateFormIdentifierData) {
+      updateFormIdentifierData({
+        [name]: {
+          value: val,
+          [errorKey]: errorMsz,
+          isChangedOnce: true,
+        },
+        identifier,
+        name, // this is required here to remove the duplicates from the value array in redux
+      });
+    }
+
+    this.handleInputChipCallBack(
+      errorObject.validation,
+      errorObject.errorKey,
+      val,
+      name
+    );
+
+    if (onInputChipChangeHandler) {
+      onInputChipChangeHandler(name, val, errorMsz);
+    }
+  }
+
   renderSelect(props) {
     const { onSelectChangeHandler, classes, ...otherProps } = props;
 
     return (
       <Select
         onSelectChange={e => this.handleOnSelectChange(e)}
+        {...otherProps}
+      />
+    );
+  }
+
+  renderInputChip(props) {
+    const { classes, ...otherProps } = props;
+
+    return (
+      <InputChip
+        onInputChipChange={(name, inputValues, rule, isRequired) =>
+          this.handleOnInputChipChange(name, inputValues, rule, isRequired)
+        }
         {...otherProps}
       />
     );
@@ -312,6 +385,10 @@ class CustomInput extends React.PureComponent {
 
     if (inputProps && inputProps.type === 'select') {
       return this.renderSelect(this.props);
+    }
+
+    if (inputProps && inputProps.type === 'multiple') {
+      return this.renderInputChip(this.props);
     }
 
     return (

@@ -176,6 +176,31 @@ class CreateAuditForm extends PureComponent {
                 }}
               />
             </div>
+            <div className={classnames(classes.inputWrapper)}>
+              <FormInput
+                validationRule="email"
+                identifier="createAuditForm"
+                labelText="Enter reviewer's id"
+                formControlProps={{
+                  required: true,
+                  fullWidth: true,
+                }}
+                inputProps={{
+                  id: 'projectReviewer',
+                  name: 'projectReviewer',
+                  'aria-label': `Enter reviewer's id`,
+                  type: 'multiple',
+                }}
+                {...{
+                  projectReviewerError: this.validationObject
+                    .projectReviewerError,
+                }}
+                error={checkIsError(
+                  this.props.formWrapperData,
+                  'projectReviewer'
+                )}
+              />
+            </div>
             <div className={classnames(classes.buttonsWrapper)}>
               <Button type="submit" fullWidth size="lg">
                 Start new audit
