@@ -52,6 +52,15 @@ const muiTheme = {
     error: {
       main: colors.error,
     },
+    warning: {
+      main: colors.warning,
+    },
+    info: {
+      main: colors.info,
+    },
+    success: {
+      main: colors.success,
+    },
     grey: {
       50: '#fafafa',
       100: '#f5f5f5',
@@ -68,14 +77,21 @@ const muiTheme = {
       A400: '#303030',
       A700: '#616161',
     },
-    custom: {
-      info: colors.info,
-      success: colors.success,
-      warning: colors.warning,
-      grey: colors.grey,
-      disabled: {
-        opacity: 0.45,
-      },
+    text: {
+      primary: 'rgba(0, 0, 0, 0.87)',
+      secondary: 'rgba(0, 0, 0, 0.54)',
+      disabled: 'rgba(0, 0, 0, 0.38)',
+      hint: 'rgba(0, 0, 0, 0.38)',
+    },
+    divider: 'rgba(0, 0, 0, 0.12)',
+    background: { paper: '#fff', default: '#fafafa' },
+    action: {
+      active: 'rgba(0, 0, 0, 0.54)',
+      hover: 'rgba(0, 0, 0, 0.08)',
+      hoverOpacity: 0.08,
+      selected: 'rgba(0, 0, 0, 0.14)',
+      disabled: 'rgba(0, 0, 0, 0.26)',
+      disabledBackground: 'rgba(0, 0, 0, 0.12)',
     },
   },
   typography: {
@@ -113,6 +129,13 @@ const muiTheme = {
     MuiPaper: {
       root: {
         color: 'inherit',
+      },
+    },
+    MuiButton: {
+      root: {
+        '&$disabled': {
+          color: 'rgba(255, 255, 255, 0.67)',
+        },
       },
     },
     MuiFormControlLabel: {

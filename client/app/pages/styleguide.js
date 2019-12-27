@@ -16,6 +16,7 @@ import Select from '../components/atoms/Select';
 import Checkbox from '../components/atoms/Checkbox';
 import Radio from '../components/atoms/Radio';
 import Switch from '../components/atoms/Switch';
+import Chip from '../components/atoms/Chip';
 import Progress from '../components/atoms/Progress';
 import FormWrapper from '../components/organisms/Forms/FormWrapper';
 import FormInput from '../components/organisms/Forms/FormInput';
@@ -31,13 +32,13 @@ const styleguideStyle = theme => ({
     background: theme.palette.secondary.main,
   },
   bgInfo: {
-    background: theme.palette.custom.info,
+    background: theme.palette.info.main,
   },
   bgSuccess: {
-    background: theme.palette.custom.success,
+    background: theme.palette.success.main,
   },
   bgWarning: {
-    background: theme.palette.custom.warning,
+    background: theme.palette.warning.main,
   },
   bgError: {
     background: theme.palette.error.main,
@@ -1455,6 +1456,16 @@ class Styleguide extends PureComponent {
                   label: 'Switch is off',
                 }}
               />
+            </GridItem>
+          </GridContainer>
+        </section>
+        <section className={classnames(classes.m24)}>
+          <h3>Chip</h3>
+          <hr />
+          <GridContainer>
+            <GridItem>
+              <Chip label="Basic" />
+              <Chip label="Disabled" disabled />
             </GridItem>
           </GridContainer>
         </section>

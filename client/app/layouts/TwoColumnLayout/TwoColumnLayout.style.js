@@ -10,7 +10,7 @@ const twoColumnLayoutStyles = theme => ({
   contentWrapper: {
     display: 'flex',
     flexGrow: 1,
-    color: theme.palette.custom.grey,
+    color: theme.palette.grey[500],
   },
   cell: {
     display: 'flex',

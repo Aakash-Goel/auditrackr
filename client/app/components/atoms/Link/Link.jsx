@@ -1,9 +1,8 @@
 import React from 'react';
-import { object, node, string, oneOf } from 'prop-types';
+import { node, string, oneOf } from 'prop-types';
 import classnames from 'classnames';
 
 import Link from '@material-ui/core/Link';
-import withStyles from '@material-ui/core/styles/withStyles';
 
 import { Link as RouterLink } from '../../../../routes';
 
@@ -31,7 +30,6 @@ NextLink.defaultProps = {
  * @private
  */
 const propTypes = {
-  classes: object.isRequired,
   children: node,
   className: string,
   href: string.isRequired,
@@ -67,7 +65,6 @@ const defaultProps = {
 
 const CustomLink = ({ ...props }) => {
   const {
-    classes,
     children,
     className,
     href,
@@ -77,6 +74,7 @@ const CustomLink = ({ ...props }) => {
     textTransform,
   } = props;
 
+  const classes = linkStyles();
   const linkClasses = classnames({
     [classes.link]: true,
     [classes[color]]: color,
@@ -96,4 +94,4 @@ const CustomLink = ({ ...props }) => {
 CustomLink.propTypes = propTypes;
 CustomLink.defaultProps = defaultProps;
 
-export default withStyles(linkStyles)(CustomLink);
+export default CustomLink;

@@ -1,4 +1,3 @@
-import warning from 'warning';
 import upperFirst from 'lodash/upperFirst';
 import camelCase from 'lodash/camelCase';
 import pathOr from 'lodash/fp/pathOr';
@@ -29,7 +28,8 @@ export const getStoreRef = () => {
 };
 
 export function titleize(string) {
-  warning(
+  /* eslint-disable-next-line no-console */
+  console.warn(
     typeof string === 'string' && string.length > 0,
     'AuditTrackR: titleize(string) expects a non empty string argument.'
   );

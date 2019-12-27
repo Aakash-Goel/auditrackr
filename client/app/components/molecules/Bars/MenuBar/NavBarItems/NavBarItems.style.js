@@ -14,7 +14,7 @@ const navBarItemsStyles = theme => ({
     },
   }),
   subHeader: {
-    color: theme.palette.custom.grey,
+    color: theme.palette.grey[500],
   },
   navItem: {
     paddingTop: 0,
@@ -25,8 +25,8 @@ const navBarItemsStyles = theme => ({
     display: 'flex',
     paddingTop: 0,
     paddingBottom: 0,
-    color: theme.palette.custom.grey,
-    fill: theme.palette.custom.grey,
+    color: theme.palette.grey[500],
+    fill: theme.palette.grey[500],
   },
   navLinkButton: {
     '&:hover': {

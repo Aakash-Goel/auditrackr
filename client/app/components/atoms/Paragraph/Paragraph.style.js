@@ -1,7 +1,9 @@
+import { makeStyles } from '@material-ui/core/styles';
+
 import paragraphsStyles from '../../../styles/mixins/paragraphs';
 import { textTransform } from '../../../styles/variables';
 
-const paragraphStyles = theme => ({
+const paragraphStyles = makeStyles(theme => ({
   paragraph: {
     ...paragraphsStyles.default,
   },
@@ -14,13 +16,13 @@ const paragraphStyles = theme => ({
     color: theme.palette.secondary.main,
   },
   info: {
-    color: theme.palette.custom.info,
+    color: theme.palette.info.main,
   },
   success: {
-    color: theme.palette.custom.success,
+    color: theme.palette.success.main,
   },
   warning: {
-    color: theme.palette.custom.warning,
+    color: theme.palette.warning.main,
   },
   error: {
     color: theme.palette.error.main,
@@ -62,6 +64,6 @@ const paragraphStyles = theme => ({
   upc: {
     textTransform: textTransform.upc,
   },
-});
+}));
 
 export default paragraphStyles;

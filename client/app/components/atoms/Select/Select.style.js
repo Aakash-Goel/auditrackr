@@ -3,7 +3,7 @@ import { fade } from '@material-ui/core/styles/colorManipulator';
 const selectStyles = theme => {
   // theme constants
   const primaryColor = theme.palette.primary.main;
-  const successColor = theme.palette.custom.success;
+  const successColor = theme.palette.success.main;
   const errorColor = theme.palette.error.main;
   const whiteColor = theme.palette.common.white;
   const greyColor = theme.palette.grey[500];

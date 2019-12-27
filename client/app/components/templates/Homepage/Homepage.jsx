@@ -4,16 +4,13 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
 import Head from '../../atoms/Head';
-import Icon from '../../atoms/Icon';
+import Link from '../../atoms/Link';
 import { formWrapperSelector } from '../../organisms/Forms/FormWrapper/selectors';
-
-import homeIcon from '../../../static/icons/home.svg?sprite'; // eslint-disable-line import/no-unresolved
 
 /**
  * @property propTypes
  */
 const propTypes = {
-  classes: object.isRequired,
   formWrapperData: object,
 };
 
@@ -36,7 +33,7 @@ class Homepage extends PureComponent {
           title="My website"
           description="My website description goes here"
         />
-        <Icon type={homeIcon} />
+        <Link href="/styleguide">Styleguide</Link>
       </>
     );
   }

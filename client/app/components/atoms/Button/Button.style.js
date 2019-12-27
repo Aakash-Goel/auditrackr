@@ -10,14 +10,15 @@ const outlineBorderStyle = 'solid';
 const outlineAlpha = 0.5;
 const linkAlpha = 0.75;
 const roundButtonRadius = '30px';
+const disabledOpacity = 0.45;
 
 const buttonStyles = theme => {
   // theme constants
   const primaryColor = theme.palette.primary.main;
   const secondaryColor = theme.palette.secondary.main;
-  const infoColor = theme.palette.custom.info;
-  const successColor = theme.palette.custom.success;
-  const warningColor = theme.palette.custom.warning;
+  const infoColor = theme.palette.info.main;
+  const successColor = theme.palette.success.main;
+  const warningColor = theme.palette.warning.main;
   const errorColor = theme.palette.error.main;
   const whiteColor = theme.palette.common.white;
   const blackColor = theme.palette.common.black;
@@ -440,7 +441,7 @@ const buttonStyles = theme => {
       },
     },
     disabled: {
-      ...theme.palette.custom.disabled,
+      opacity: disabledOpacity,
       pointerEvents: 'none',
     },
     block: {

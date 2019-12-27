@@ -4,9 +4,7 @@
 
 import React from 'react';
 import classnames from 'classnames';
-import { object, oneOf, node, string } from 'prop-types';
-
-import { withStyles } from '@material-ui/styles';
+import { oneOf, node, string } from 'prop-types';
 
 import paragraphStyles from './Paragraph.style';
 
@@ -17,7 +15,6 @@ import paragraphStyles from './Paragraph.style';
  * @param {string} [className=null] - CSS class name to allow custom styling to be passed in. Defaults to null.
  */
 const propTypes = {
-  classes: object.isRequired,
   color: oneOf([
     'primary',
     'secondary',
@@ -44,7 +41,6 @@ const defaultProps = {
 };
 
 const Paragraph = ({
-  classes,
   color,
   weight,
   textTransform,
@@ -52,6 +48,7 @@ const Paragraph = ({
   className,
   ...props
 }) => {
+  const classes = paragraphStyles();
   const paragraphClasses = classnames({
     [classes.paragraph]: true,
     [classes[color]]: color,
@@ -70,4 +67,4 @@ const Paragraph = ({
 Paragraph.propTypes = propTypes;
 Paragraph.defaultProps = defaultProps;
 
-export default withStyles(paragraphStyles)(Paragraph);
+export default Paragraph;

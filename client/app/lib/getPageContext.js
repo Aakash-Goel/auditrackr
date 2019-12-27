@@ -1,9 +1,8 @@
-// import { SheetsRegistry } from 'jss';
 import {
   ServerStyleSheets,
+  createMuiTheme,
   createGenerateClassName,
-} from '@material-ui/styles';
-import { createMuiTheme } from '@material-ui/core/styles';
+} from '@material-ui/core/styles';
 
 import muiTheme from '../styles/themes/muiTheme';
 

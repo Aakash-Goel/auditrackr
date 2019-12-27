@@ -18,8 +18,11 @@ import App from 'next/app';
 import withRedux from 'next-redux-wrapper';
 import withReduxSaga from 'next-redux-saga';
 
-import { withStyles } from '@material-ui/core/styles';
-import { StylesProvider, ThemeProvider } from '@material-ui/styles';
+import {
+  StylesProvider,
+  ThemeProvider,
+  withStyles,
+} from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 import getPageContext from '../lib/getPageContext';

@@ -1,7 +1,7 @@
 import React from 'react';
 import { object } from 'prop-types';
 
-import { withStyles } from '@material-ui/styles';
+import withStyles from '@material-ui/core/styles/withStyles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 

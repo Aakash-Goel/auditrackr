@@ -142,7 +142,7 @@ const CustomButton = React.forwardRef(({ ...props }, ref) => {
   });
 
   return (
-    <Button ref={ref} {...rest} className={btnClasses}>
+    <Button ref={ref} disabled={disabled} {...rest} className={btnClasses}>
       <BtnIcon className={startIconClasses} startIcon={startIcon} />
       {children}
       <BtnIcon className={endIconClasses} endIcon={endIcon} />
