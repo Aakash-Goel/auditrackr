@@ -3,6 +3,7 @@ import React, { PureComponent } from 'react';
 import classnames from 'classnames';
 import { object } from 'prop-types';
 
+import Avatar from '@material-ui/core/Avatar';
 import { withStyles } from '@material-ui/core/styles';
 
 // components
@@ -17,12 +18,18 @@ import Checkbox from '../components/atoms/Checkbox';
 import Radio from '../components/atoms/Radio';
 import Switch from '../components/atoms/Switch';
 import Chip from '../components/atoms/Chip';
+import Icon from '../components/atoms/Icon';
 import Progress from '../components/atoms/Progress';
 import FormWrapper from '../components/organisms/Forms/FormWrapper';
 import FormInput from '../components/organisms/Forms/FormInput';
 
 import { colors, fontFamily, defaultFont } from '../styles/variables';
 import { checkIsError, validationObject } from '../utils/formInputUtil';
+
+import homeIcon from '../static/icons/home.svg?sprite'; // eslint-disable-line import/no-unresolved
+import closeIcon from '../static/icons/close.svg?sprite'; // eslint-disable-line import/no-unresolved
+import tickIcon from '../static/icons/tick.svg?sprite'; // eslint-disable-line import/no-unresolved
+import faceIcon from '../static/icons/face.svg?sprite'; // eslint-disable-line import/no-unresolved
 
 const styleguideStyle = theme => ({
   bgPrimary: {
@@ -113,6 +120,7 @@ class Styleguide extends PureComponent {
     };
 
     this.validationObject = {};
+    this.handleChipDelete = this.handleChipDelete.bind(this);
     this.handleOnSelectChange = this.handleOnSelectChange.bind(this);
     this.handleOnCheckboxChange = this.handleOnCheckboxChange.bind(this);
     this.handleOnRadioChange = this.handleOnRadioChange.bind(this);
@@ -127,6 +135,16 @@ class Styleguide extends PureComponent {
     if (nextProps.formWrapperData) {
       this.validationObject = validationObject(nextProps.formWrapperData);
     }
+  }
+
+  handleChipDelete() {
+    // eslint-disable-next-line no-console
+    console.info('You clicked the chip delete icon.');
+  }
+
+  handleChipClick() {
+    // eslint-disable-next-line no-console
+    console.info('You clicked the Chip.');
   }
 
   handleOnSelectChange(e) {
@@ -1466,6 +1484,83 @@ class Styleguide extends PureComponent {
             <GridItem>
               <Chip label="Basic" />
               <Chip label="Disabled" disabled />
+              <Chip label="Primary" color="primary" />
+              <Chip label="Secondary" color="secondary" />
+              <Chip label="Avatar Text" avatar={<Avatar>M</Avatar>} />
+              <Chip
+                label="Avatar Img"
+                avatar={
+                  <Avatar alt="Natasha" src="/static/images/avatars/1.jpg" />
+                }
+              />
+              <Chip label="With Icon" icon={<Icon type={homeIcon} />} />
+              <Chip
+                label="With Delete Icon"
+                onDelete={this.handleChipDelete}
+                deleteIcon={<Icon type={closeIcon} />}
+              />
+              <Chip
+                label="With Custom Delete Icon"
+                onDelete={this.handleChipDelete}
+                deleteIcon={<Icon type={tickIcon} />}
+              />
+              <Chip
+                label="Clickable"
+                avatar={<Avatar>M</Avatar>}
+                onClick={this.handleChipClick}
+              />
+              <Chip
+                label="Clickable Link"
+                component="a"
+                href="#chip"
+                clickable
+              />
+              <Chip
+                label="Clickable deletable"
+                icon={<Icon type={tickIcon} />}
+                onClick={this.handleChipClick}
+                onDelete={this.handleChipDelete}
+              />
+              <Chip
+                label="Primary clickable"
+                icon={<Icon type={faceIcon} />}
+                clickable
+                color="primary"
+                onDelete={this.handleChipDelete}
+                deleteIcon={<Icon type={closeIcon} />}
+              />
+              <Chip
+                label="Deletable secondary"
+                icon={<Icon type={faceIcon} />}
+                onDelete={this.handleChipDelete}
+                color="secondary"
+              />
+              <Chip label="Outline" variant="outlined" />
+              <Chip
+                label="Outline Primary"
+                clickable
+                variant="outlined"
+                color="primary"
+              />
+              <Chip
+                label="Outline Secondary"
+                variant="outlined"
+                color="secondary"
+              />
+              <Chip
+                label="Outline Text"
+                variant="outlined"
+                avatar={<Avatar>M</Avatar>}
+              />
+              <Chip
+                label="Outline Img Deletable"
+                variant="outlined"
+                avatar={
+                  <Avatar alt="Natasha" src="/static/images/avatars/1.jpg" />
+                }
+                onDelete={this.handleChipDelete}
+                deleteIcon={<Icon type={closeIcon} />}
+              />
             </GridItem>
           </GridContainer>
         </section>

@@ -76,5 +76,8 @@ export default {
       padding: 0,
       listStyle: 'none',
     },
+    svg: {
+      fill: 'currentColor',
+    },
   },
 };

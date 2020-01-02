@@ -4,7 +4,10 @@ import classnames from 'classnames';
 import { isEmpty } from 'lodash';
 
 import ChipInput from 'material-ui-chip-input';
+import blue from '@material-ui/core/colors/blue';
 import withStyles from '@material-ui/core/styles/withStyles';
+
+import Chip from '../Chip';
 
 import inputChipStyles from './InputChip.style';
 
@@ -177,6 +180,30 @@ class InputChip extends React.PureComponent {
         onChange={val => this.handleOnChange(val, validationRule, isRequired)}
         onUpdateInput={e => this.handleOnUpdateInput(e)}
         onBlur={e => this.handleOnBlur(e)}
+        chipRenderer={(
+          {
+            value,
+            isFocused,
+            isDisabled,
+            isReadOnly,
+            handleClick,
+            handleDelete,
+            className,
+          },
+          key
+        ) => (
+          <Chip
+            key={key}
+            className={className}
+            style={{
+              pointerEvents: isDisabled || isReadOnly ? 'none' : undefined,
+              backgroundColor: isFocused ? blue[300] : undefined,
+            }}
+            onClick={handleClick}
+            onDelete={handleDelete}
+            label={value}
+          />
+        )}
       />
     );
   }

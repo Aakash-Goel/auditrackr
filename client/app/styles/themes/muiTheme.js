@@ -232,6 +232,23 @@ const muiTheme = {
         },
       },
     },
+    MuiChip: {
+      root: {
+        '& $avatar': {
+          height: '32px',
+          width: '32px',
+          marginLeft: 0,
+        },
+      },
+      outlined: {
+        '& $avatar': {
+          marginLeft: 0,
+        },
+      },
+      deleteIcon: {
+        color: colors.white,
+      },
+    },
   },
 };
 
