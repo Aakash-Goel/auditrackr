@@ -12,13 +12,16 @@
 const mongoose = require('mongoose'); // #1 Import mongoose
 const logger = require('../logger'); // #2 Import logger library
 
-// #3 Create a query string to connect to MongoDB server
+// #3 Create a query string to connect to MongoDB server locally
 const DB_URI_LOCAL = 'mongodb://localhost:27017/auditrackr';
 
+// #3 Create a query string to connect to MongoDB server at cloud
 /* Uncomment below if you have a mongoDB database setup on cloud atlas */
 // const DB_URI_CLOUD = `mongodb+srv://${process.env.MONGO_USER}:${
 //   process.env.MONGO_PASSWORD
-// }@cluster-cxxw1.mongodb.net/${process.env.MONGO_DB}?retryWrites=true`;
+// }@cluster-cxxw1.mongodb.net/${
+//   process.env.MONGO_DB
+// }?retryWrites=true&w=majority`;
 
 // #4 Connect to MongoDB
 mongoose.connect(DB_URI_LOCAL, { useNewUrlParser: true });
