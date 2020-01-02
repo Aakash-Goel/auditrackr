@@ -7,6 +7,8 @@
  *
  */
 
+// @TODO: refactor to read values from the config.
+
 const mongoose = require('mongoose'); // #1 Import mongoose
 const logger = require('../logger'); // #2 Import logger library
 

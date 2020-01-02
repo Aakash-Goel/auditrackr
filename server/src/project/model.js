@@ -21,7 +21,7 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 /**
- * Generate new message Schema
+ * Generate new project Schema
  */
 const projectSchema = new Schema({
   auditName: {

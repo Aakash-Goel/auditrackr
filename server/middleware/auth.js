@@ -1,6 +1,16 @@
 /**
+ * middleware/auth.js
+ * Copyright (c) 2019-present, Aakash Goel
+ * MIT Licensed
+ *
+ * This is where token validation happens
+ *
+ */
+
+/**
  * Not using anymore
  * Instead using `session` middleware
+ *
  */
 
 // 'use strict';

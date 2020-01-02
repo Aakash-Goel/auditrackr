@@ -1,3 +1,12 @@
+/**
+ * utils/authUtils.js
+ * Copyright (c) 2019-present, Aakash Goel
+ * MIT Licensed
+ *
+ * This is the file where authentication related utilities are define
+ *
+ */
+
 const { isFunction, isObject, mapValues } = require('lodash');
 const pathOr = require('lodash/fp/pathOr');
 

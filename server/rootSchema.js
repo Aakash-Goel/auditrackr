@@ -23,7 +23,6 @@ const { gql } = require('apollo-server-express');
 /**
  * Module schemas.
  */
-const { messageSchema } = require('./src/message');
 const { userSchema } = require('./src/user');
 const { userRoleSchema } = require('./src/user-role');
 const { projectSchema } = require('./src/project');
@@ -52,7 +51,6 @@ const linkSchema = gql`
  */
 const rootSchema = [
   linkSchema, // do not remove this schema
-  messageSchema,
   userSchema,
   userRoleSchema,
   projectSchema,

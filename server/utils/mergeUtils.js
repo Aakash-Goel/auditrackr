@@ -1,3 +1,12 @@
+/**
+ * utils/mergeUtils.js
+ * Copyright (c) 2019-present, Aakash Goel
+ * MIT Licensed
+ *
+ * This is the file where data transformation of related models occurs
+ *
+ */
+
 /* eslint-disable no-use-before-define */
 
 const Project = require('../src/project/model');

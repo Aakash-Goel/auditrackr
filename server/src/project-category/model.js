@@ -21,7 +21,7 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 /**
- * Generate new message Schema
+ * Generate new project-category Schema
  */
 const projectCategorySchema = new Schema({
   name: {

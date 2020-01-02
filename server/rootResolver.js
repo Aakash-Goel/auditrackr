@@ -21,7 +21,6 @@
 /**
  * Module resolvers.
  */
-const { messageResolvers } = require('./src/message');
 const { userResolvers } = require('./src/user');
 const { userRoleResolvers } = require('./src/user-role');
 const { projectResolvers } = require('./src/project');
@@ -36,7 +35,6 @@ const { assessmentTypeResolvers } = require('./src/assessment-type');
  * @public
  */
 const rootResolver = [
-  messageResolvers,
   userResolvers,
   userRoleResolvers,
   projectResolvers,
