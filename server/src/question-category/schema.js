@@ -22,8 +22,12 @@ const schema = gql`
   type QuestionCategory {
     _id: ID!
     name: String!
-    createdAt: String!
     createdBy: User!
+    createdAt: String!
+  }
+
+  type QuestionCategoryDeleted {
+    isSuccess: Boolean
   }
 
   extend type Query {
@@ -32,6 +36,7 @@ const schema = gql`
 
   extend type Mutation {
     createQuestionCategory(categoryName: String!): QuestionCategory
+    deleteQuestionCategory(categoryName: String!): QuestionCategoryDeleted!
   }
 `;
 

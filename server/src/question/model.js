@@ -23,65 +23,60 @@ const { Schema } = mongoose;
 /**
  * Generate new question Schema
  */
-const questionSchema = new Schema({
-  question: {
-    type: String,
-    required: true,
+const questionSchema = new Schema(
+  {
+    question: {
+      type: String,
+      required: true,
+    },
+    questionName: {
+      type: String,
+      required: true,
+    },
+    answer: {
+      type: String,
+    },
+    definition: {
+      type: String,
+      required: true,
+    },
+    recommendation: {
+      type: String,
+    },
+    inOut: {
+      type: String,
+    },
+    mandatory: {
+      type: Boolean,
+      required: true,
+    },
+    references: [String],
+    assessmentType: {
+      type: String,
+    },
+    assessmentResult: {
+      type: String,
+    },
+    priority: {
+      type: String,
+      required: true,
+    },
+    comments: {
+      type: String,
+    },
+    points: {
+      type: Number,
+    },
+    status: {
+      type: String,
+    },
+    category: {
+      type: String,
+      required: true,
+    },
   },
-  shortName: {
-    type: String,
-    required: true,
-  },
-  answer: {
-    type: String,
-  },
-  definition: {
-    type: String,
-    required: true,
-  },
-  recommendation: {
-    type: String,
-  },
-  inOut: {
-    type: String,
-  },
-  mandatory: {
-    type: Boolean,
-    required: true,
-  },
-  references: [String],
-  assessmentType: {
-    type: String,
-  },
-  assessmentResult: {
-    type: String,
-  },
-  priority: {
-    type: String,
-    required: true,
-  },
-  notes: {
-    type: String,
-  },
-  points: {
-    type: Number,
-  },
-  status: {
-    type: String,
-  },
-  lastUpdatedAt: {
-    type: Date,
-    required: true,
-  },
-  lastUpdatedBy: {
-    type: String,
-    required: true,
-  },
-  category: {
-    type: String,
-    required: true,
-  },
-});
+  { timestamps: true } // this extra parameter in the model, will help mongoose to automatically create 2 fields "createdAt" and "updatedAt"
+);
 
 /**
  * Export mongoDB model

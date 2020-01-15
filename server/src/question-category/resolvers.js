@@ -47,12 +47,31 @@ const resolvers = {
 
         const questionCat = new QuestionCategory({
           name: categoryName,
-          createdAt: new Date(),
           createdBy: context.session.userId, // @TODO: needs to update this field
         });
         const result = await questionCat.save();
         const createdQuestion = transformQuestionCategory(result);
         return createdQuestion;
+      } catch (error) {
+        throw error;
+      }
+    },
+    deleteQuestionCategory: async (parent, args) => {
+      try {
+        const { categoryName } = args;
+        const existingQuestionCategory = await QuestionCategory.findOne({
+          name: categoryName,
+        });
+        if (!existingQuestionCategory) {
+          throw new Error('Question Category does not exist with this name');
+        }
+
+        await QuestionCategory.deleteOne({
+          name: categoryName,
+        });
+        return {
+          isSuccess: true,
+        };
       } catch (error) {
         throw error;
       }

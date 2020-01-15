@@ -7,6 +7,8 @@
  *
  */
 
+/* eslint-disable no-underscore-dangle */
+
 'use strict';
 
 /**
@@ -24,7 +26,7 @@ const resolvers = {
       try {
         const questions = await Question.find();
         return questions.map(question => {
-          return { ...question._doc }; // eslint-disable-line no-underscore-dangle
+          return { ...question._doc };
         });
       } catch (err) {
         throw err;
@@ -37,7 +39,7 @@ const resolvers = {
       try {
         const question = new Question({
           question: args.questionInput.question,
-          shortName: args.questionInput.shortName,
+          questionName: args.questionInput.questionName,
           definition: args.questionInput.definition,
           recommendation: args.questionInput.recommendation || '',
           inOut: args.questionInput.inOut || '',
@@ -46,15 +48,30 @@ const resolvers = {
           assessmentType: args.questionInput.assessmentType || '',
           assessmentResult: args.questionInput.assessmentResult || '',
           priority: args.questionInput.priority, // @TODO: needs to update this field
-          notes: args.questionInput.notes || '',
+          comments: args.questionInput.comments || '',
           points: args.questionInput.points || 1,
           status: 'Incomplete',
-          lastUpdatedAt: new Date(),
-          lastUpdatedBy: 'xyz', // @TODO: needs to update this field
           category: args.questionInput.category, // @TODO: needs to update this field
         });
         const result = await question.save();
-        return { ...result._doc }; // eslint-disable-line no-underscore-dangle
+        return { ...result._doc };
+      } catch (error) {
+        throw error;
+      }
+    },
+    deleteQuestion: async (parent, args) => {
+      try {
+        const { questionId } = args;
+        const existingQuestion = await Question.findById(questionId);
+        if (!existingQuestion) {
+          throw new Error('Question does not exist');
+        }
+        await Question.deleteOne({
+          _id: questionId,
+        });
+        return {
+          isSuccess: true,
+        };
       } catch (error) {
         throw error;
       }

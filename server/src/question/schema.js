@@ -22,7 +22,7 @@ const schema = gql`
   type Question {
     _id: ID!
     question: String!
-    shortName: String!
+    questionName: String!
     answer: String
     definition: String!
     recommendation: String
@@ -32,17 +32,17 @@ const schema = gql`
     assessmentType: String
     assessmentResult: String
     priority: String!
-    notes: String
+    comments: String
     points: Int
     status: String
-    lastUpdatedAt: String!
-    lastUpdatedBy: String!
     category: String!
+    createdAt: String
+    updatedAt: String
   }
 
   input questionInput {
     question: String!
-    shortName: String!
+    questionName: String!
     definition: String!
     recommendation: String
     inOut: String
@@ -51,9 +51,13 @@ const schema = gql`
     assessmentType: String
     assessmentResult: String
     priority: String!
-    notes: String
+    comments: String
     points: Int
     category: String!
+  }
+
+  type QuestionDeleted {
+    isSuccess: Boolean
   }
 
   extend type Query {
@@ -62,6 +66,7 @@ const schema = gql`
 
   extend type Mutation {
     createQuestion(questionInput: questionInput): Question
+    deleteQuestion(questionId: ID!): QuestionDeleted!
   }
 `;
 
