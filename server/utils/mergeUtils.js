@@ -100,8 +100,8 @@ const transformProject = project => {
   return {
     ...project._doc, // eslint-disable-line no-underscore-dangle
     _id: project.id,
+    projectQuestionSet: getQuestionnaireByProjectId.bind(this, project.id),
     createdBy: getUserById.bind(this, project.createdBy),
-    questionnaire: getQuestionnaireByProjectId.bind(this, project.id),
   };
 };
 

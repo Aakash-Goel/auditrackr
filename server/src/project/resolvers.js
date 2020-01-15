@@ -52,14 +52,13 @@ const resolvers = {
     createProject: async (parent, args, context) => {
       try {
         const project = new Project({
-          auditName: args.createProjectInput.auditName,
-          name: args.createProjectInput.name,
-          code: args.createProjectInput.code,
-          category: args.createProjectInput.category,
-          createdAt: new Date(),
+          projectAuditName: args.createProjectInput.projectAuditName,
+          projectName: args.createProjectInput.projectName,
+          projectCode: args.createProjectInput.projectCode,
+          projectCategory: args.createProjectInput.projectCategory,
+          projectStatus: 'InProgress',
           createdBy: context.session.userId, // @TODO: needs to update this field
-          lastUpdatedAt: new Date(),
-          lastUpdatedBy: 'xyz', // @TODO: needs to update this field
+          updatedBy: 'xyz', // @TODO: needs to update this field
         });
         const result = await project.save();
         const createdProject = transformProject(result);

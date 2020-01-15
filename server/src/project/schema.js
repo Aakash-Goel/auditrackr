@@ -21,24 +21,27 @@ const { gql } = require('apollo-server-express');
 const schema = gql`
   type Project {
     _id: ID!
-    auditName: String!
-    name: String!
-    code: Int!
-    category: String!
-    createdAt: String!
+    projectAuditName: String!
+    projectName: String!
+    projectCode: Int!
+    projectCategory: String!
+    projectStatus: String!
+    projectAdmins: [String]
+    projectAuditors: [String]
+    projectReviewers: [String]
+    projectQuestionSet: Questionnaire
     createdBy: User!
-    lastUpdatedAt: String!
-    lastUpdatedBy: String!
-    auditors: [String]
-    collaborators: [String]
-    questionnaire: Questionnaire
+    updatedBy: String!
+    createdAt: String!
+    updatedAt: String!
   }
 
   input createProjectInput {
-    auditName: String!
-    name: String!
-    code: Int!
-    category: String!
+    projectAuditName: String!
+    projectName: String!
+    projectCode: Int!
+    projectCategory: String!
+    projectReviewers: [String!]!
   }
 
   extend type Query {

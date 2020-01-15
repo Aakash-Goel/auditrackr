@@ -23,46 +23,48 @@ const { Schema } = mongoose;
 /**
  * Generate new project Schema
  */
-const projectSchema = new Schema({
-  auditName: {
-    type: String,
-    required: true,
+const projectSchema = new Schema(
+  {
+    projectAuditName: {
+      type: String,
+      required: true,
+    },
+    projectName: {
+      type: String,
+      required: true,
+    },
+    projectCode: {
+      type: Number,
+      required: true,
+    },
+    projectCategory: {
+      type: String,
+      required: true,
+    },
+    projectStatus: {
+      type: String,
+      required: true,
+    },
+    projectAdmins: {
+      type: [String],
+    },
+    projectAuditors: [String],
+    projectReviewers: [String],
+    projectQuestionSet: {
+      type: Schema.Types.ObjectId,
+      ref: 'Questionnaire',
+    },
+    createdBy: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+    },
+    updatedBy: {
+      type: String,
+      required: true,
+    },
   },
-  name: {
-    type: String,
-    required: true,
-  },
-  code: {
-    type: Number,
-    required: true,
-  },
-  category: {
-    type: String,
-    required: true,
-  },
-  createdAt: {
-    type: Date,
-    required: true,
-  },
-  createdBy: {
-    type: Schema.Types.ObjectId,
-    ref: 'User',
-  },
-  lastUpdatedAt: {
-    type: Date,
-    required: true,
-  },
-  lastUpdatedBy: {
-    type: String,
-    required: true,
-  },
-  auditors: [String],
-  collaborators: [String],
-  questionnaire: {
-    type: Schema.Types.ObjectId,
-    ref: 'Questionnaire',
-  },
-});
+  { timestamps: true } // this extra parameter in the model, will help mongoose to automatically create 2 fields "createdAt" and "updatedAt"
+);
 
 /**
  * Export mongoDB model
