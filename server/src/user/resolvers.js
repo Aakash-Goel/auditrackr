@@ -16,6 +16,7 @@ const bcrypt = require('bcrypt');
  */
 const User = require('./model');
 const authUtils = require('../../utils/authUtils');
+const { transformUser } = require('../../utils/mergeUtils');
 
 const BCRYPT_SALT_ROUNDS = 12; // @TODO: it should come from the config
 
@@ -69,7 +70,8 @@ const resolvers = {
           if (!existingUser) {
             throw new Error('User does not exist');
           }
-          return { ...existingUser._doc, password: null, _id: existingUser.id }; // eslint-disable-line no-underscore-dangle
+          const result = transformUser(existingUser);
+          return result;
         }
 
         throw new Error('Only logged-in user can execute this query');
@@ -97,7 +99,6 @@ const resolvers = {
           email: args.userInput.email,
           password: hashedPassword,
           role: args.userInput.role || authUtils.typesOfRole.member,
-          createdAt: new Date(),
           agreeTerms: args.userInput.agreeTerms || true,
         });
         const result = await newUser.save();
@@ -108,20 +109,29 @@ const resolvers = {
     },
     updateUser: async (parent, args) => {
       try {
-        const existingUser = await User.findOne({
-          email: args.updateUserInput.email,
-        });
-        if (!existingUser) {
+        const { email, ...restInpArgs } = args.updateUserInput;
+
+        const updateUser = await User.findOneAndUpdate(
+          { email },
+          {
+            $set: {
+              ...restInpArgs,
+            },
+          },
+          { new: true }
+        );
+
+        if (!updateUser) {
           throw new Error('User does not exist');
         }
-        existingUser.name = args.updateUserInput.name;
-        const updatedUser = await existingUser.save();
 
-        return { ...updatedUser._doc, password: null, _id: updatedUser.id }; // eslint-disable-line no-underscore-dangle
+        const result = transformUser(updateUser);
+        return result;
       } catch (error) {
         throw error;
       }
     },
+    // forgetPassword
   },
 };
 

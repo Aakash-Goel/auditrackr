@@ -1,9 +1,9 @@
 /**
- * question-category/model.js
+ * project-domain/model.js
  * Copyright (c) 2019-present, Aakash Goel
  * MIT Licensed
  *
- * This is where mongoDB QuestionCategory model is defined
+ * This is where mongoDB ProjectDomain model is defined
  *
  */
 
@@ -21,11 +21,15 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 /**
- * Generate new question-category Schema
+ * Generate new project-domain Schema
  */
-const questionCategorySchema = new Schema(
+const projectCategorySchema = new Schema(
   {
     name: {
+      type: String,
+      required: true,
+    },
+    value: {
       type: String,
       required: true,
     },
@@ -41,4 +45,4 @@ const questionCategorySchema = new Schema(
  * Export mongoDB model
  * @public
  */
-module.exports = mongoose.model('QuestionCategory', questionCategorySchema);
+module.exports = mongoose.model('ProjectDomain', projectCategorySchema);

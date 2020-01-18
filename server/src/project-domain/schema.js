@@ -1,9 +1,9 @@
 /**
- * question-category/schema.js
+ * project-domain/schema.js
  * Copyright (c) 2019-present, Aakash Goel
  * MIT Licensed
  *
- * This is where QuestionCategory graphQL schema is defined
+ * This is where ProjectDomain graphQL schema is defined
  *
  */
 
@@ -19,24 +19,22 @@ const { gql } = require('apollo-server-express');
  * @public
  */
 const schema = gql`
-  type QuestionCategory {
+  type ProjectDomain {
     _id: ID!
     name: String!
-    createdBy: User!
+    value: String!
     createdAt: String!
-  }
-
-  type QuestionCategoryDeleted {
-    isSuccess: Boolean
+    createdBy: User!
   }
 
   extend type Query {
-    getQuestionCategories: [QuestionCategory!]!
+    getProjectDomains: [ProjectDomain!]!
   }
 
   extend type Mutation {
-    createQuestionCategory(categoryName: String!): QuestionCategory
-    deleteQuestionCategory(categoryName: String!): QuestionCategoryDeleted!
+    createProjectDomain(name: String!, value: String!): ProjectDomain!
+    deleteProjectDomain(id: ID!): ProjectDomain!
+    updateProjectDomain(id: ID!, name: String!, value: String!): ProjectDomain!
   }
 `;
 

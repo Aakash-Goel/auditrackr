@@ -14,6 +14,8 @@
  */
 const mongoose = require('mongoose');
 
+const Questionnaire = require('../questionnaire/model');
+
 /**
  * Define mongoDB schema
  * @private
@@ -37,23 +39,21 @@ const projectSchema = new Schema(
       type: Number,
       required: true,
     },
-    projectCategory: {
+    projectDomain: {
       type: String,
       required: true,
     },
     projectStatus: {
       type: String,
       required: true,
+      default: 'InProgress',
     },
     projectAdmins: {
       type: [String],
     },
     projectAuditors: [String],
     projectReviewers: [String],
-    projectQuestionSet: {
-      type: Schema.Types.ObjectId,
-      ref: 'Questionnaire',
-    },
+    projectQuestionnaires: [Questionnaire.schema],
     createdBy: {
       type: Schema.Types.ObjectId,
       ref: 'User',

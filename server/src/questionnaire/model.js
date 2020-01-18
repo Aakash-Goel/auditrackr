@@ -14,6 +14,8 @@
  */
 const mongoose = require('mongoose');
 
+const Question = require('../question/model');
+
 /**
  * Define mongoDB schema
  * @private
@@ -25,20 +27,16 @@ const { Schema } = mongoose;
  */
 const questionnaireSchema = new Schema(
   {
-    project: {
-      type: Schema.Types.ObjectId,
-      ref: 'Project',
+    category: {
+      type: String,
+      required: true,
     },
-    user: {
-      type: Schema.Types.ObjectId,
-      ref: 'User',
+    questions: [Question.schema],
+    status: {
+      type: String,
+      required: true,
+      default: 'InProgress',
     },
-    questions: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'Question',
-      },
-    ],
   },
   { timestamps: true } // this extra parameter in the schema, will help mongoose to automatically create 2fields "createdAt" and "updatedAt"
 );

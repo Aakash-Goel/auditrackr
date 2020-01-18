@@ -24,24 +24,35 @@ const schema = gql`
     projectAuditName: String!
     projectName: String!
     projectCode: Int!
-    projectCategory: String!
+    projectDomain: String!
     projectStatus: String!
     projectAdmins: [String]
     projectAuditors: [String]
     projectReviewers: [String]
-    projectQuestionSet: Questionnaire
+    projectQuestionnaires: [Questionnaire]
     createdBy: User!
     updatedBy: String!
     createdAt: String!
     updatedAt: String!
   }
 
-  input createProjectInput {
+  input CreateProjectInput {
     projectAuditName: String!
     projectName: String!
     projectCode: Int!
-    projectCategory: String!
+    projectDomain: String!
     projectReviewers: [String!]!
+  }
+
+  input UpdateProjectInput {
+    projectAuditName: String
+    projectName: String
+    projectCode: Int
+    projectDomain: String
+    projectStatus: String
+    projectAdmins: [String]
+    projectAuditors: [String]
+    projectReviewers: [String]
   }
 
   extend type Query {
@@ -50,7 +61,9 @@ const schema = gql`
   }
 
   extend type Mutation {
-    createProject(createProjectInput: createProjectInput): Project
+    createProject(projectData: CreateProjectInput!): Project!
+    deleteProject(projectId: ID!): Project!
+    updateProject(projectId: ID!, projectData: UpdateProjectInput!): Project!
   }
 `;
 

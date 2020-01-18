@@ -10,9 +10,7 @@
 'use strict';
 
 const questionSchema = require('./schema');
-const questionResolvers = require('./resolvers');
 
 module.exports = {
   questionSchema,
-  questionResolvers,
 };

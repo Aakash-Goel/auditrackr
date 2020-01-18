@@ -29,18 +29,17 @@ const schema = gql`
     inOut: String
     mandatory: Boolean!
     references: [String]
-    assessmentType: String
+    assessmentType: String!
     assessmentResult: String
     priority: String!
     comments: String
     points: Int
     status: String
-    category: String!
     createdAt: String
     updatedAt: String
   }
 
-  input questionInput {
+  input QuestionInput {
     question: String!
     questionName: String!
     definition: String!
@@ -48,25 +47,11 @@ const schema = gql`
     inOut: String
     mandatory: Boolean!
     references: [String]
-    assessmentType: String
+    assessmentType: String!
     assessmentResult: String
     priority: String!
     comments: String
     points: Int
-    category: String!
-  }
-
-  type QuestionDeleted {
-    isSuccess: Boolean
-  }
-
-  extend type Query {
-    getQuestions: [Question!]!
-  }
-
-  extend type Mutation {
-    createQuestion(questionInput: questionInput): Question
-    deleteQuestion(questionId: ID!): QuestionDeleted!
   }
 `;
 

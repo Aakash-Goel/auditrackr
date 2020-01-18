@@ -23,8 +23,14 @@ const DB_URI_LOCAL = 'mongodb://localhost:27017/auditrackr';
 //   process.env.MONGO_DB
 // }?retryWrites=true&w=majority`;
 
+const mongooseOptions = {
+  useNewUrlParser: true,
+  useFindAndModify: false,
+  useUnifiedTopology: true,
+};
+
 // #4 Connect to MongoDB
-mongoose.connect(DB_URI_LOCAL, { useNewUrlParser: true });
+mongoose.connect(DB_URI_LOCAL, mongooseOptions);
 
 // #5 Add basic event listeners on the mongoose.connection object
 mongoose.connection.once('open', () =>

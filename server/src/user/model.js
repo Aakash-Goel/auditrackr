@@ -31,13 +31,15 @@ const userSchema = new Schema({
   email: {
     type: String,
     required: true,
+    unique: true,
   },
   password: {
     type: String,
     required: true,
   },
-  picture: {
+  avatar: {
     type: String,
+    default: '',
   },
   projects: [
     {
@@ -52,9 +54,7 @@ const userSchema = new Schema({
   createdAt: {
     type: Date,
     required: true,
-  },
-  lastLoginAt: {
-    type: Date,
+    default: Date.now,
   },
   agreeTerms: {
     type: Boolean,

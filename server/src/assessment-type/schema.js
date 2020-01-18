@@ -22,6 +22,7 @@ const schema = gql`
   type AssessmentType {
     _id: ID!
     name: String!
+    value: String!
     createdAt: String!
     createdBy: User!
   }
@@ -31,7 +32,13 @@ const schema = gql`
   }
 
   extend type Mutation {
-    createAssessmentType(type: String!): AssessmentType
+    createAssessmentType(name: String!, value: String!): AssessmentType!
+    deleteAssessmentType(id: ID!): AssessmentType!
+    updateAssessmentType(
+      id: ID!
+      name: String!
+      value: String!
+    ): AssessmentType!
   }
 `;
 

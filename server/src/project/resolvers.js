@@ -14,8 +14,8 @@
  */
 const Project = require('./model');
 const User = require('../user/model');
+const Questionnaire = require('../questionnaire/model');
 
-// const authUtils = require('../../utils/authUtils');
 const { transformProject } = require('../../utils/mergeUtils');
 
 /**
@@ -51,18 +51,30 @@ const resolvers = {
   Mutation: {
     createProject: async (parent, args, context) => {
       try {
+        // get all questionnaire sets from database
+        const questionList = await Questionnaire.find({});
+
+        const {
+          projectAuditName,
+          projectName,
+          projectCode,
+          projectDomain,
+        } = args.projectData;
+
         const project = new Project({
-          projectAuditName: args.createProjectInput.projectAuditName,
-          projectName: args.createProjectInput.projectName,
-          projectCode: args.createProjectInput.projectCode,
-          projectCategory: args.createProjectInput.projectCategory,
-          projectStatus: 'InProgress',
-          createdBy: context.session.userId, // @TODO: needs to update this field
+          projectAuditName,
+          projectName,
+          projectCode,
+          projectDomain,
+          projectQuestionnaires: questionList,
+          createdBy: context.session.userId,
           updatedBy: 'xyz', // @TODO: needs to update this field
         });
         const result = await project.save();
         const createdProject = transformProject(result);
-        const existingUser = await User.findById(context.session.userId); // @TODO: needs to update this field
+
+        // find current user and add project into database
+        const existingUser = await User.findById(context.session.userId);
         if (!existingUser) {
           throw new Error('User does not exist');
         }
@@ -70,6 +82,59 @@ const resolvers = {
         await existingUser.save();
 
         return createdProject;
+      } catch (error) {
+        throw error;
+      }
+    },
+    deleteProject: async (parent, args, context) => {
+      try {
+        const { projectId } = args;
+
+        // 1. check the project and find the user who created it
+        const currentProject = await Project.findById(projectId);
+        if (!currentProject) {
+          throw new Error('Project does not exist');
+        }
+
+        // 2. validate if current user (context.session.userId) is equal to the user who created the project
+        if (currentProject.createdBy.toString() !== context.session.userId) {
+          throw new Error('You are not authorized to perform this action');
+        }
+
+        // 3. if above success, then remove the project from that User database
+        await User.updateOne(
+          { _id: context.session.userId },
+          { $pull: { projects: { $in: projectId } } }
+        );
+
+        // 4. Finally, find the project and remove it from Project database
+        const removedProject = await Project.findByIdAndRemove(projectId);
+
+        // 5. return the result
+        return removedProject;
+      } catch (error) {
+        throw error;
+      }
+    },
+    updateProject: async (parent, args) => {
+      try {
+        const { projectId, projectData } = args;
+
+        const updatedProject = await Project.findOneAndUpdate(
+          { _id: projectId },
+          {
+            $set: {
+              ...projectData,
+            },
+          },
+          { new: true }
+        );
+
+        if (!updatedProject) {
+          throw new Error('Project with this id does not exist');
+        }
+
+        return updatedProject;
       } catch (error) {
         throw error;
       }

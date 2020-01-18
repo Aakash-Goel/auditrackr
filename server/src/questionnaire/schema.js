@@ -21,11 +21,17 @@ const { gql } = require('apollo-server-express');
 const schema = gql`
   type Questionnaire {
     _id: ID!
-    project: Project!
-    user: User!
-    questions: [Question!]!
+    category: String!
+    questions: [Question]
+    status: String!
     createdAt: String!
     updatedAt: String!
+  }
+
+  input QuestionnaireInput {
+    category: String
+    questions: [QuestionInput]
+    status: String
   }
 
   extend type Query {
@@ -33,7 +39,17 @@ const schema = gql`
   }
 
   extend type Mutation {
-    createQuestionnaireSet(projectId: ID!): Questionnaire!
+    createQuestionnaire(
+      categoryName: String!
+      questionsList: [QuestionInput!]!
+    ): Questionnaire!
+    deleteQuestionnaire(questionnaireId: ID!): Questionnaire!
+    updateQuestionnaire(
+      questionnaireId: ID!
+      questionnaireData: QuestionnaireInput!
+    ): Questionnaire!
+    addQuestion(questionnaireId: ID!, question: QuestionInput!): Questionnaire!
+    deleteQuestion(questionnaireId: ID!, questionId: ID!): Questionnaire!
   }
 `;
 

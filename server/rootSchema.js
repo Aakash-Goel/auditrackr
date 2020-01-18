@@ -26,9 +26,8 @@ const { gql } = require('apollo-server-express');
 const { userSchema } = require('./src/user');
 const { userRoleSchema } = require('./src/user-role');
 const { projectSchema } = require('./src/project');
-const { projectCategorySchema } = require('./src/project-category');
+const { projectDomainSchema } = require('./src/project-domain');
 const { questionSchema } = require('./src/question');
-const { questionCategorySchema } = require('./src/question-category');
 const { questionnaireSchema } = require('./src/questionnaire');
 const { assessmentTypeSchema } = require('./src/assessment-type');
 
@@ -54,9 +53,8 @@ const rootSchema = [
   userSchema,
   userRoleSchema,
   projectSchema,
-  projectCategorySchema,
+  projectDomainSchema,
   questionSchema,
-  questionCategorySchema,
   questionnaireSchema,
   assessmentTypeSchema,
 ];

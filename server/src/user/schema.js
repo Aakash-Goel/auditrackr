@@ -24,11 +24,10 @@ const schema = gql`
     name: String!
     email: String!
     password: String
-    picture: String
+    avatar: String
     projects: [Project!]
     role: String!
     createdAt: String!
-    lastLoginAt: String
     agreeTerms: Boolean!
   }
 
@@ -42,7 +41,7 @@ const schema = gql`
     success: Boolean
   }
 
-  input userInput {
+  input UserInput {
     name: String!
     email: String!
     password: String!
@@ -50,9 +49,10 @@ const schema = gql`
     agreeTerms: Boolean
   }
 
-  input updateUserInput {
+  input UpdateUserInput {
     name: String!
     email: String!
+    avatar: String
   }
 
   extend type Query {
@@ -62,8 +62,8 @@ const schema = gql`
   }
 
   extend type Mutation {
-    createUser(userInput: userInput): User
-    updateUser(updateUserInput: updateUserInput): User
+    createUser(userInput: UserInput): User
+    updateUser(updateUserInput: UpdateUserInput): User
   }
 `;
 

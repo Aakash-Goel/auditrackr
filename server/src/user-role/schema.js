@@ -22,6 +22,7 @@ const schema = gql`
   type UserRole {
     _id: ID!
     name: String!
+    value: String!
     createdAt: String!
     createdBy: User!
   }
@@ -31,7 +32,9 @@ const schema = gql`
   }
 
   extend type Mutation {
-    createUserRole(roleType: String!): UserRole
+    createUserRole(name: String!, value: String!): UserRole!
+    deleteUserRole(id: ID!): UserRole!
+    updateUserRole(id: ID!, name: String!, value: String!): UserRole!
   }
 `;
 

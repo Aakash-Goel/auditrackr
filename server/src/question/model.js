@@ -42,9 +42,11 @@ const questionSchema = new Schema(
     },
     recommendation: {
       type: String,
+      default: 'NA',
     },
     inOut: {
       type: String,
+      default: '',
     },
     mandatory: {
       type: Boolean,
@@ -53,6 +55,8 @@ const questionSchema = new Schema(
     references: [String],
     assessmentType: {
       type: String,
+      required: true,
+      default: 'Self',
     },
     assessmentResult: {
       type: String,
@@ -69,13 +73,10 @@ const questionSchema = new Schema(
     },
     status: {
       type: String,
-    },
-    category: {
-      type: String,
-      required: true,
+      default: 'InProgress',
     },
   },
-  { timestamps: true } // this extra parameter in the model, will help mongoose to automatically create 2 fields "createdAt" and "updatedAt"
+  { timestamps: true } // this extra parameter in the model, will help mongoose to automatically create 2fields "createdAt" and "updatedAt"
 );
 
 /**
