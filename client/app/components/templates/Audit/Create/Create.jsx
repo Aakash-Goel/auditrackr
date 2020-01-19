@@ -12,17 +12,14 @@ import {
   makeSelectIsLoading,
   makeSelectData,
   makeSelectError,
-  makeSelectIsQSCreating,
-  makeSelectIsQSCreated,
-  makeSelectErrorQS,
-  makeSelectIsProjCatFetching,
-  makeSelectProjCatList,
-  makeSelectErrorProjCat,
+  makeSelectIsProjDomainFetching,
+  makeSelectProjDomainList,
+  makeSelectErrorProjDomain,
 } from './selectors';
 import {
   submitCreateAuditForm,
   clearCreateAuditData,
-  getProjectCategories,
+  getProjectDomains,
 } from './actions';
 
 // const propTypes = {
@@ -34,13 +31,13 @@ class AuditCreate extends PureComponent {
   static async getInitialProps({ ctx }) {
     const { store } = ctx;
 
-    store.dispatch(getProjectCategories());
+    store.dispatch(getProjectDomains());
 
     // Wait for your dependencies to be resolved.
     await new Promise(resolve => {
       const unsubscribe = store.subscribe(() => {
         const state = store.getState();
-        if (!state.isProjCatFetching) {
+        if (!state.isProjDomainFetching) {
           unsubscribe();
           resolve();
         }
@@ -71,12 +68,9 @@ export const mapStateToProps = createStructuredSelector({
   isLoading: makeSelectIsLoading(),
   data: makeSelectData(),
   error: makeSelectError(),
-  isQSCreating: makeSelectIsQSCreating(),
-  isQSCreated: makeSelectIsQSCreated(),
-  errorQS: makeSelectErrorQS(),
-  isProjCatFetching: makeSelectIsProjCatFetching(),
-  projCatList: makeSelectProjCatList(),
-  errorProjCat: makeSelectErrorProjCat(),
+  isProjDomainFetching: makeSelectIsProjDomainFetching(),
+  projDomainList: makeSelectProjDomainList(),
+  errorProjDomain: makeSelectErrorProjDomain(),
   formWrapperData: formWrapperSelector('createAuditForm'),
 });
 

@@ -9,7 +9,7 @@ export const requestProjectDetailsById = args => {
           auditName
           name
           code
-          category
+          projectDomain
           createdAt
           createdBy {
             email
@@ -31,7 +31,6 @@ export const requestProjectDetailsById = args => {
               priority
               notes
               points
-              category
             }
           }
         }

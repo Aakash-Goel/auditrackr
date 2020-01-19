@@ -3,12 +3,9 @@ import {
   SUBMIT_CREATE_AUDIT_SUCCESS,
   SUBMIT_CREATE_AUDIT_ERROR,
   CLEAR_CREATE_AUDIT_DATA,
-  CREATE_QUESTIONNAIRE_SET,
-  CREATE_QUESTIONNAIRE_SET_SUCCESS,
-  CREATE_QUESTIONNAIRE_SET_ERROR,
-  GET_PROJECT_CATEGORIES,
-  GET_PROJECT_CATEGORIES_SUCCESS,
-  GET_PROJECT_CATEGORIES_ERROR,
+  GET_PROJECT_DOMAINS,
+  GET_PROJECT_DOMAINS_SUCCESS,
+  GET_PROJECT_DOMAINS_ERROR,
 } from './constants';
 
 export function submitCreateAuditForm(args) {
@@ -38,42 +35,22 @@ export function clearCreateAuditData() {
   };
 }
 
-export function createQuestionnaireSet(args) {
+export function getProjectDomains() {
   return {
-    type: CREATE_QUESTIONNAIRE_SET,
-    args,
+    type: GET_PROJECT_DOMAINS,
   };
 }
 
-export function createQuestionnaireSetSuccess() {
+export function getProjectDomainsSuccess(data) {
   return {
-    type: CREATE_QUESTIONNAIRE_SET_SUCCESS,
-  };
-}
-
-export function createQuestionnaireSetError(error) {
-  return {
-    type: CREATE_QUESTIONNAIRE_SET_ERROR,
-    error,
-  };
-}
-
-export function getProjectCategories() {
-  return {
-    type: GET_PROJECT_CATEGORIES,
-  };
-}
-
-export function getProjectCategoriesSuccess(data) {
-  return {
-    type: GET_PROJECT_CATEGORIES_SUCCESS,
+    type: GET_PROJECT_DOMAINS_SUCCESS,
     data,
   };
 }
 
-export function getProjectCategoriesError(error) {
+export function getProjectDomainsError(error) {
   return {
-    type: GET_PROJECT_CATEGORIES_ERROR,
+    type: GET_PROJECT_DOMAINS_ERROR,
     error,
   };
 }

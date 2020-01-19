@@ -182,3 +182,12 @@ export const category = {
     },
   },
 };
+
+export const domain = {
+  domain: {
+    presence: {
+      allowEmpty: false,
+      message: setMessage('Please select a domain.'),
+    },
+  },
+};

@@ -6,7 +6,7 @@ export const requestCreateAudit = args => {
           auditName: "${args.auditNameVal}",
           name: "${args.projectNameVal}",
           code: ${args.projectIdVal},
-          category: "${args.projectCategoryVal}"
+          projectDomain: "${args.projectDomainVal}"
         }) {
           _id
         }
@@ -17,25 +17,11 @@ export const requestCreateAudit = args => {
   return data;
 };
 
-export const requestCreateQuestionnaireSet = args => {
-  const data = {
-    query: `
-      mutation {
-        createQuestionnaireSet(projectId: "${args.projectId}") {
-          _id
-        }
-      }
-    `,
-  };
-
-  return data;
-};
-
-export const getProjCategories = () => {
+export const getProjDomains = () => {
   const data = {
     query: `
       query {
-        getProjectCategories {
+        getProjectDomains {
           name
           value
         }

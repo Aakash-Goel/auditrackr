@@ -21,38 +21,20 @@ export const makeSelectError = () =>
     createAuditState => createAuditState.error
   );
 
-export const makeSelectIsQSCreating = () =>
+export const makeSelectIsProjDomainFetching = () =>
   createSelector(
     selectCreateAudit,
-    createAuditState => createAuditState.isQSCreating
+    createAuditState => createAuditState.isProjDomainFetching
   );
 
-export const makeSelectIsQSCreated = () =>
+export const makeSelectProjDomainList = () =>
   createSelector(
     selectCreateAudit,
-    createAuditState => createAuditState.isQSCreated
+    createAuditState => createAuditState.projDomainList
   );
 
-export const makeSelectErrorQS = () =>
+export const makeSelectErrorProjDomain = () =>
   createSelector(
     selectCreateAudit,
-    createAuditState => createAuditState.errorQS
-  );
-
-export const makeSelectIsProjCatFetching = () =>
-  createSelector(
-    selectCreateAudit,
-    createAuditState => createAuditState.isProjCatFetching
-  );
-
-export const makeSelectProjCatList = () =>
-  createSelector(
-    selectCreateAudit,
-    createAuditState => createAuditState.projCatList
-  );
-
-export const makeSelectErrorProjCat = () =>
-  createSelector(
-    selectCreateAudit,
-    createAuditState => createAuditState.errorProjCat
+    createAuditState => createAuditState.errorProjDomain
   );

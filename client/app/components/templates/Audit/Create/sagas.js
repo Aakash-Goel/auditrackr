@@ -1,38 +1,14 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 
 import ServiceUtil from '../../../../utils/serviceUtil';
-import {
-  requestCreateAudit,
-  requestCreateQuestionnaireSet,
-  getProjCategories,
-} from './queries';
+import { requestCreateAudit, getProjDomains } from './queries';
 import {
   submitCreateAuditFormSuccess,
   submitCreateAuditFormError,
-  createQuestionnaireSet,
-  createQuestionnaireSetSuccess,
-  createQuestionnaireSetError,
-  getProjectCategoriesSuccess,
-  getProjectCategoriesError,
+  getProjectDomainsSuccess,
+  getProjectDomainsError,
 } from './actions';
-import {
-  SUBMIT_CREATE_AUDIT,
-  CREATE_QUESTIONNAIRE_SET,
-  GET_PROJECT_CATEGORIES,
-} from './constants';
-
-function* handleApiSuccess(data) {
-  yield put(
-    createQuestionnaireSet({
-      projectId: data.createProject._id, // eslint-disable-line no-underscore-dangle
-    })
-  );
-  return yield put(submitCreateAuditFormSuccess(data));
-}
-
-export function* handleCatchErrors(err) {
-  return yield put(submitCreateAuditFormError(err.body));
-}
+import { SUBMIT_CREATE_AUDIT, GET_PROJECT_DOMAINS } from './constants';
 
 /**
  * @method submitCreateAudit [to trigger create audit api]
@@ -40,7 +16,7 @@ export function* handleCatchErrors(err) {
  * @param {string} auditName [audit name field value]
  * @param {string}  projectName [project name field value]
  * @param {number} projectCode [project id field value]
- * @param {string} category [project category drop down value]
+ * @param {string} projectDomainVal [project domain drop down value]
  */
 export function* submitCreateAudit({ args } = {}) {
   const createAuditQuery = requestCreateAudit(args);
@@ -53,49 +29,30 @@ export function* submitCreateAudit({ args } = {}) {
     });
 
     if (statusText === 'OK' && data) {
-      return yield* handleApiSuccess(data);
+      return yield put(submitCreateAuditFormSuccess(data));
     }
     return yield put(submitCreateAuditFormError(error));
   } catch (err) {
-    return yield handleCatchErrors(err);
+    return yield put(submitCreateAuditFormError(err.body));
   }
 }
 
-export function* createQS({ args } = {}) {
-  const createQSQuery = requestCreateQuestionnaireSet(args);
+export function* getProjDomainList() {
+  const getProjDomainQuery = getProjDomains();
 
   try {
     const {
       body: { statusText, error, data },
     } = yield call(ServiceUtil.triggerRequest, {
-      data: JSON.stringify(createQSQuery),
+      data: JSON.stringify(getProjDomainQuery),
     });
 
     if (statusText === 'OK' && data) {
-      return yield put(createQuestionnaireSetSuccess(data));
+      return yield put(getProjectDomainsSuccess(data));
     }
-    return yield put(createQuestionnaireSetError(error));
+    return yield put(getProjectDomainsError(error));
   } catch (err) {
-    return yield put(createQuestionnaireSetError(err.body));
-  }
-}
-
-export function* getProjCategoryList() {
-  const getProjCatQuery = getProjCategories();
-
-  try {
-    const {
-      body: { statusText, error, data },
-    } = yield call(ServiceUtil.triggerRequest, {
-      data: JSON.stringify(getProjCatQuery),
-    });
-
-    if (statusText === 'OK') {
-      return yield put(getProjectCategoriesSuccess(data));
-    }
-    return yield put(getProjectCategoriesError(error));
-  } catch (err) {
-    return yield put(getProjectCategoriesError(err.body));
+    return yield put(getProjectDomainsError(err.body));
   }
 }
 
@@ -103,12 +60,8 @@ export function* createAuditSaga() {
   yield takeLatest(SUBMIT_CREATE_AUDIT, submitCreateAudit);
 }
 
-export function* createQSSaga() {
-  yield takeLatest(CREATE_QUESTIONNAIRE_SET, createQS);
+export function* getProjDomainSaga() {
+  yield takeLatest(GET_PROJECT_DOMAINS, getProjDomainList);
 }
 
-export function* getProjCatSaga() {
-  yield takeLatest(GET_PROJECT_CATEGORIES, getProjCategoryList);
-}
-
-export default [createAuditSaga, createQSSaga, getProjCatSaga];
+export default [createAuditSaga, getProjDomainSaga];

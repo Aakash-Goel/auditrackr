@@ -19,17 +19,15 @@ import createAuditFormStyles from './CreateAuditForm.style';
 const propTypes = {
   classes: object.isRequired,
   formWrapperData: object,
-  projCatList: array,
+  projDomainList: array,
   error: object,
-  errorQS: object,
   onSubmitCreateAuditForm: func.isRequired,
 };
 
 const defaultProps = {
   formWrapperData: {},
-  projCatList: [],
+  projDomainList: [],
   error: null,
-  errorQS: null,
 };
 
 class CreateAuditForm extends PureComponent {
@@ -61,13 +59,13 @@ class CreateAuditForm extends PureComponent {
         auditNameVal: formWrapperData.auditName.value,
         projectNameVal: formWrapperData.projectName.value,
         projectIdVal: formWrapperData.projectId.value,
-        projectCategoryVal: formWrapperData.projectCategory.value,
+        projectDomainVal: formWrapperData.projectDomain.value,
       });
     }
   };
 
   render() {
-    const { classes, projCatList, error, errorQS } = this.props;
+    const { classes, projDomainList, error } = this.props;
 
     return (
       <>
@@ -78,7 +76,7 @@ class CreateAuditForm extends PureComponent {
             onSubmit={this.submitFormHandler}
             formWrapperData={this.props.formWrapperData}
             {...{
-              createAuditFormError: error || errorQS,
+              createAuditFormError: error,
             }}
             noValidate
             autoComplete="off"
@@ -145,9 +143,9 @@ class CreateAuditForm extends PureComponent {
             </div>
             <div className={classnames(classes.inputWrapper)}>
               <FormInput
-                validationRule="category"
+                validationRule="domain"
                 identifier="createAuditForm"
-                labelText="Select a category"
+                labelText="Select a domain"
                 formControlProps={{
                   required: true,
                   fullWidth: true,
@@ -155,24 +153,23 @@ class CreateAuditForm extends PureComponent {
                 inputProps={{
                   value: getFormWrapperDataValue(
                     this.props.formWrapperData,
-                    'projectCategory',
+                    'projectDomain',
                     'value'
                   ),
-                  id: 'projectCategory',
-                  name: 'projectCategory',
-                  'aria-label': 'Select a category',
+                  id: 'projectDomain',
+                  name: 'projectDomain',
+                  'aria-label': 'Select a domain',
                   type: 'select',
                 }}
                 {...{
-                  projectCategoryError: this.validationObject
-                    .projectCategoryError,
+                  projectDomainError: this.validationObject.projectDomainError,
                 }}
                 error={checkIsError(
                   this.props.formWrapperData,
-                  'projectCategory'
+                  'projectDomain'
                 )}
                 selectProps={{
-                  optionList: projCatList,
+                  optionList: projDomainList,
                 }}
               />
             </div>
