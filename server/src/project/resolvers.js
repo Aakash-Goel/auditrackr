@@ -59,6 +59,7 @@ const resolvers = {
           projectName,
           projectCode,
           projectDomain,
+          projectReviewers,
         } = args.projectData;
 
         const project = new Project({
@@ -66,6 +67,7 @@ const resolvers = {
           projectName,
           projectCode,
           projectDomain,
+          projectReviewers,
           projectQuestionnaires: questionList,
           createdBy: context.session.userId,
           updatedBy: 'xyz', // @TODO: needs to update this field
@@ -94,6 +96,10 @@ const resolvers = {
         const currentProject = await Project.findById(projectId);
         if (!currentProject) {
           throw new Error('Project does not exist');
+        }
+
+        if (currentProject && !currentProject.createdBy) {
+          throw new Error('User does not exist');
         }
 
         // 2. validate if current user (context.session.userId) is equal to the user who created the project
