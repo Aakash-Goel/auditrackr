@@ -50,7 +50,7 @@ class AuditProject extends PureComponent {
           pageId="auditProject"
         >
           <ContentContainer
-            breadCrumbTitle={data && data.auditName}
+            breadCrumbTitle={data && data.projectAuditName}
             shouldRenderInsidePaper={false}
           >
             <ProjectAuditPage {...this.props} />

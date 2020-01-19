@@ -1,18 +1,19 @@
 import React, { PureComponent } from 'react';
 import { object } from 'prop-types';
 import classnames from 'classnames';
-import _groupBy from 'lodash/groupBy';
+import _map from 'lodash/map';
+import _find from 'lodash/find';
 
 import { withStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
-// import StepButton from '@material-ui/core/StepButton';
-import StepLabel from '@material-ui/core/StepLabel';
+import StepButton from '@material-ui/core/StepButton';
 import StepContent from '@material-ui/core/StepContent';
 
 import GridContainer from '../../../atoms/Grid/GridContainer';
 import GridItem from '../../../atoms/Grid/GridItem';
+import Button from '../../../atoms/Button';
+import Paper from '../../../molecules/Paper';
 
 import projectAuditPageStyles from './ProjectAuditPage.style';
 
@@ -25,55 +26,107 @@ const defaultProps = {
   data: null,
 };
 
-function getSteps(quesGroupBy) {
-  const keys = Object.keys(quesGroupBy);
+function getSteps(dataObj) {
+  const keys = _map(dataObj, 'category');
   return keys;
 }
 
-function getStepsValues(quesGroupBy) {
-  const values = Object.values(quesGroupBy);
-  return values;
-}
-
-/* eslint-disable react/prefer-stateless-function, react/no-array-index-key */
+/* eslint-disable react/no-array-index-key */
 class ProjectAuditPage extends PureComponent {
-  renderStepsValues(stepsValues, index) {
-    const stepObj = stepsValues[index];
+  constructor(props) {
+    super(props);
 
-    const sdf = stepObj.map((obj, ind) => {
-      return <p key={ind}>{obj.shortName}</p>;
+    this.state = {
+      activeCategoryStep: 0,
+      activeQuestionId: null,
+    };
+    this.handleStep = this.handleStep.bind(this);
+    this.handleQuestionStep = this.handleQuestionStep.bind(this);
+  }
+
+  handleStep(stepIndex) {
+    const { data } = this.props;
+    const currentCategoryObj = data.projectQuestionnaires[stepIndex];
+    const firstQuestionId = currentCategoryObj.questions[0]._id; // eslint-disable-line prefer-destructuring, no-underscore-dangle
+    this.setState({
+      activeCategoryStep: stepIndex,
+      activeQuestionId: firstQuestionId,
+    });
+  }
+
+  handleQuestionStep(questionId) {
+    this.setState({
+      activeQuestionId: questionId,
+    });
+  }
+
+  renderStepsValues(questionnaireList, index) {
+    const questionnaireObj = questionnaireList[index];
+
+    const item = questionnaireObj.questions.map((obj, i) => {
+      return (
+        <div key={i}>
+          <Button
+            simple
+            size="sm"
+            color="black"
+            textTransform="cap"
+            weight="medium"
+            onClick={() => this.handleQuestionStep(obj._id)} // eslint-disable-line no-underscore-dangle
+          >
+            {obj.questionName}
+          </Button>
+        </div>
+      );
     });
 
-    return sdf;
+    return item;
+  }
+
+  renderQuestion(activeCatStep, activeQuesId) {
+    const { data } = this.props;
+    let currentQuestionObj;
+    const currentQuestionnaire = data.projectQuestionnaires[activeCatStep];
+    if (activeQuesId) {
+      currentQuestionObj = _find(currentQuestionnaire.questions, {
+        _id: activeQuesId,
+      });
+    } else {
+      currentQuestionObj = currentQuestionnaire.questions[0]; // eslint-disable-line prefer-destructuring
+    }
+
+    return <div>{currentQuestionObj.question}</div>;
   }
 
   render() {
     const { classes, data } = this.props;
-    console.log('1212===>>>data ', data);
-    const quesGroupBy = _groupBy(data.questionnaire.questions, 'category');
-    console.log('1212===>>>quesGroupBy ', quesGroupBy);
-    const steps = getSteps(quesGroupBy);
-    const stepsValues = getStepsValues(quesGroupBy);
+    const { activeCategoryStep, activeQuestionId } = this.state;
+
+    const steps = getSteps(data.projectQuestionnaires);
 
     return (
       <>
-        <GridContainer
-          className={classnames(classes.container)}
-          alignItems="center"
-          justify="center"
-          spacing={16}
-        >
+        <GridContainer className={classnames(classes.container)}>
           <GridItem xs={4}>
-            <Paper className={classes.paperRoot} elevation={1}>
-              <Stepper nonLinear orientation="vertical" activeStep={1}>
+            <Paper className={classes.paperRoot} borderColor="error">
+              <Stepper
+                nonLinear
+                orientation="vertical"
+                activeStep={activeCategoryStep}
+                classes={{
+                  root: `${classes.stepperRoot}`,
+                }}
+              >
                 {steps.map((label, index) => (
                   <Step key={label}>
-                    {/* <StepButton onClick={handleStep(index)} completed={completed[index]}>
+                    <StepButton onClick={() => this.handleStep(index)}>
                       {label}
-                    </StepButton> */}
-                    <StepLabel>{label}</StepLabel>
+                    </StepButton>
                     <StepContent>
-                      {this.renderStepsValues(stepsValues, index)}
+                      {this.renderStepsValues(
+                        data.projectQuestionnaires,
+                        index
+                      )}
                     </StepContent>
                   </Step>
                 ))}
@@ -81,8 +134,8 @@ class ProjectAuditPage extends PureComponent {
             </Paper>
           </GridItem>
           <GridItem xs={8}>
-            <Paper className={classes.paperRoot} elevation={1}>
-              right side
+            <Paper className={classes.paperRoot} borderColor="success">
+              {this.renderQuestion(activeCategoryStep, activeQuestionId)}
             </Paper>
           </GridItem>
         </GridContainer>

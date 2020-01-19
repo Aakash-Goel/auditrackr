@@ -6,21 +6,28 @@ export const requestProjectDetailsById = args => {
       query {
         getProjectById(projectId: "${args.projectId}") {
           _id
-          auditName
-          name
-          code
+          projectAuditName
+          projectName
+          projectCode
           projectDomain
+          projectStatus
+          projectAdmins
+          projectAuditors
+          projectReviewers
           createdAt
           createdBy {
             email
             name
           }
-          lastUpdatedAt
-          questionnaire {
+          projectQuestionnaires {
             _id
+            status
+            category
             questions {
+              _id
               question
-              shortName
+              questionName
+              answer
               definition
               recommendation
               inOut
@@ -29,8 +36,10 @@ export const requestProjectDetailsById = args => {
               assessmentType
               assessmentResult
               priority
-              notes
+              comments
               points
+              status
+              updatedAt
             }
           }
         }
