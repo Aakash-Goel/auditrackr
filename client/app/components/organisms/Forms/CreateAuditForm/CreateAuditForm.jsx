@@ -56,10 +56,11 @@ class CreateAuditForm extends PureComponent {
       const { formWrapperData } = this.props;
 
       this.props.onSubmitCreateAuditForm({
-        auditNameVal: formWrapperData.auditName.value,
+        projectAuditNameVal: formWrapperData.auditName.value,
         projectNameVal: formWrapperData.projectName.value,
-        projectIdVal: formWrapperData.projectId.value,
+        projectCodeVal: formWrapperData.projectId.value,
         projectDomainVal: formWrapperData.projectDomain.value,
+        projectReviewersVal: formWrapperData.projectReviewers.value,
       });
     }
   };
@@ -183,18 +184,18 @@ class CreateAuditForm extends PureComponent {
                   fullWidth: true,
                 }}
                 inputProps={{
-                  id: 'projectReviewer',
-                  name: 'projectReviewer',
+                  id: 'projectReviewers',
+                  name: 'projectReviewers',
                   'aria-label': `Enter reviewer's id`,
                   type: 'multiple',
                 }}
                 {...{
-                  projectReviewerError: this.validationObject
-                    .projectReviewerError,
+                  projectReviewersError: this.validationObject
+                    .projectReviewersError,
                 }}
                 error={checkIsError(
                   this.props.formWrapperData,
-                  'projectReviewer'
+                  'projectReviewers'
                 )}
               />
             </div>

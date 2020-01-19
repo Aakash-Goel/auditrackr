@@ -13,10 +13,12 @@ import { SUBMIT_CREATE_AUDIT, GET_PROJECT_DOMAINS } from './constants';
 /**
  * @method submitCreateAudit [to trigger create audit api]
  *
- * @param {string} auditName [audit name field value]
- * @param {string}  projectName [project name field value]
- * @param {number} projectCode [project id field value]
- * @param {string} projectDomainVal [project domain drop down value]
+ * @param {Object} args - The employee who is responsible for the project.
+ * @param {string} args.projectAuditNameVal - [audit name field value]
+ * @param {string} args.projectNameVal - [project name field value]
+ * @param {number} args.projectCodeVal - [project code field value]
+ * @param {string} args.projectDomainVal - [project domain drop down value]
+ * @param {string[]} args.projectReviewersVal - [project reviewers array value(s)]
  */
 export function* submitCreateAudit({ args } = {}) {
   const createAuditQuery = requestCreateAudit(args);
