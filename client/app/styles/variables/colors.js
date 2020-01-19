@@ -1,7 +1,7 @@
 /**
  * Colors
  */
-export const primaryColor = '#963cbd'; // rgb(150, 60, 189)
+export const primaryColor = '#4e3883'; // rgb(150, 60, 189)
 export const secondaryColor = '#ff6f61'; // rgb(255, 111, 97)
 export const infoColor = '#4688f1'; // rgb(70, 136, 241)
 export const successColor = '#44ac5e'; // rgb(68, 172, 94)
@@ -36,7 +36,7 @@ export const greyColor = '#9e9e9e'; // rgb(153, 153, 153)
 // C7D3D4 ---
 // FF6F00 ----------
 
-// const primaryColor = '#4e3883'; // possible list [9c27b0, ~05386b, 66fcf1, ~4056a1, ~123c69, ~4A4E9D, F5AEB9]
+// const primaryColor = '#4e3883'; // possible list [9c27b0, ~05386b, 66fcf1, ~4056a1, ~123c69, ~4A4E9D, F5AEB9, 013A6B]
 // const secondaryColor = '#846fce'; // possible list [01a78f, 846fce, f5aeb9, #6D8338]
 // const infoColor = '#4688f1'; // possible list [2aabe4, 11ABC1, 4688f1, 00acc1] light blue
 // const successColor = '#44ac5e'; // possible list [116466, 44ac5e, 4caf50] green

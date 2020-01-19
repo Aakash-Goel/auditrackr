@@ -9,6 +9,7 @@ import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepButton from '@material-ui/core/StepButton';
 import StepContent from '@material-ui/core/StepContent';
+import { ListItem } from '@material-ui/core';
 
 import GridContainer from '../../../atoms/Grid/GridContainer';
 import GridItem from '../../../atoms/Grid/GridItem';
@@ -31,7 +32,7 @@ function getSteps(dataObj) {
   return keys;
 }
 
-/* eslint-disable react/no-array-index-key */
+/* eslint-disable react/no-array-index-key, no-underscore-dangle */
 class ProjectAuditPage extends PureComponent {
   constructor(props) {
     super(props);
@@ -42,6 +43,15 @@ class ProjectAuditPage extends PureComponent {
     };
     this.handleStep = this.handleStep.bind(this);
     this.handleQuestionStep = this.handleQuestionStep.bind(this);
+  }
+
+  componentDidMount() {
+    const { data } = this.props;
+    const { activeCategoryStep } = this.state;
+    const currentQuestionnaire = data.projectQuestionnaires[activeCategoryStep];
+    this.setState({
+      activeQuestionId: currentQuestionnaire.questions[0]._id,
+    });
   }
 
   handleStep(stepIndex) {
@@ -61,21 +71,35 @@ class ProjectAuditPage extends PureComponent {
   }
 
   renderStepsValues(questionnaireList, index) {
+    const { classes } = this.props;
+    const { activeQuestionId } = this.state;
     const questionnaireObj = questionnaireList[index];
 
     const item = questionnaireObj.questions.map((obj, i) => {
       return (
         <div key={i}>
-          <Button
-            simple
-            size="sm"
-            color="black"
-            textTransform="cap"
-            weight="medium"
-            onClick={() => this.handleQuestionStep(obj._id)} // eslint-disable-line no-underscore-dangle
+          <ListItem
+            classes={{
+              selected: classes.selectedContentItem,
+            }}
+            selected={obj._id === activeQuestionId}
+            className={classes.stepsContentItem}
+            disableGutters
           >
-            {obj.questionName}
-          </Button>
+            <Button
+              simple
+              // fullWidth
+              size="sm"
+              color="transparent"
+              textTransform="cap"
+              weight="medium"
+              disableRipple
+              onClick={() => this.handleQuestionStep(obj._id)} // eslint-disable-line no-underscore-dangle
+              className={classnames(classes.stepsContentButton)}
+            >
+              {obj.questionName}
+            </Button>
+          </ListItem>
         </div>
       );
     });
@@ -119,7 +143,12 @@ class ProjectAuditPage extends PureComponent {
               >
                 {steps.map((label, index) => (
                   <Step key={label}>
-                    <StepButton onClick={() => this.handleStep(index)}>
+                    <StepButton
+                      onClick={() => this.handleStep(index)}
+                      classes={{
+                        root: `${classes.stepButtonRoot}`,
+                      }}
+                    >
                       {label}
                     </StepButton>
                     <StepContent>

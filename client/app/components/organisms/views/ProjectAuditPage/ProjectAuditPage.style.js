@@ -1,4 +1,4 @@
-const projectAuditPageStyles = () => ({
+const projectAuditPageStyles = theme => ({
   // paperRoot: {
   //   ...theme.mixins.gutters(),
   //   position: 'relative',
@@ -9,6 +9,33 @@ const projectAuditPageStyles = () => ({
   // },
   stepperRoot: {
     padding: 0,
+  },
+  stepButtonRoot: {
+    textTransform: 'uppercase',
+  },
+  stepsContentItem: {
+    paddingTop: 0,
+
+    '&$selectedContentItem': {
+      color: theme.palette.primary.main,
+      backgroundColor: 'transparent',
+      '&:hover,&:focus': {
+        backgroundColor: 'transparent',
+      },
+
+      '& $stepsContentButton': {
+        fontWeight: 500,
+      },
+    },
+  },
+  stepsContentButton: {
+    '&:hover,&:focus': {
+      color: theme.palette.primary.main,
+      boxShadow: 'none',
+    },
+  },
+  selectedContentItem: {
+    color: theme.palette.primary.main,
   },
 });
 
