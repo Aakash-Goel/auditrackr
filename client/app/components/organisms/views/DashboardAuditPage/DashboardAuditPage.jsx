@@ -1,13 +1,17 @@
 import React, { PureComponent } from 'react';
 import { object } from 'prop-types';
-// import classnames from 'classnames';
+import classnames from 'classnames';
 
 import { withStyles } from '@material-ui/core/styles';
 
 import GridContainer from '../../../atoms/Grid/GridContainer';
 import GridItem from '../../../atoms/Grid/GridItem';
+import Title from '../../../atoms/Title';
+import Paragraph from '../../../atoms/Paragraph';
 import Paper from '../../../molecules/Paper';
 import DoughnutChart from '../../../molecules/Charts/DoughnutChart';
+
+import dashboardAuditPageStyles from './DashboardAuditPage.style';
 
 const propTypes = {
   classes: object.isRequired,
@@ -21,16 +25,15 @@ class DashboardAuditPage extends PureComponent {
 
     this.state = {
       data: {
-        labels: ['Messi', 'Ronaldo', 'Kane', 'Neymar'],
+        labels: ['Closed', 'InProgress', 'Complete', 'InReview'],
         datasets: [
           {
-            label: 'Champions League 2017/2018 Top Scorer',
-            data: [45, 40, 35, 30],
+            data: [45, 40, 35, 3],
             backgroundColor: [
-              'rgba(255,105,145,0.6)',
-              'rgba(155,100,210,0.6)',
-              'rgba(90,178,255,0.6)',
-              'rgba(240,134,67,0.6)',
+              'rgba(68, 172, 94, 1)',
+              'rgba(233, 72, 62, 1)',
+              'rgba(70, 136, 241, 1)',
+              'rgba(248, 188, 47, 1)',
             ],
           },
         ],
@@ -39,16 +42,19 @@ class DashboardAuditPage extends PureComponent {
   }
 
   render() {
-    // const { classes } = this.props;
+    const { classes } = this.props;
     const { data } = this.state;
 
     return (
       <>
-        <GridContainer>
+        <GridContainer spacing={3}>
           <GridItem xs={12} md={4}>
+            <Paragraph color="grey" textTransform="upc" className="m0">
+              Status
+            </Paragraph>
             <DoughnutChart
               chartProps={{
-                height: 200,
+                height: 260,
                 data,
                 options: {
                   legend: {
@@ -64,27 +70,65 @@ class DashboardAuditPage extends PureComponent {
               }}
             />
           </GridItem>
-          <GridItem xs={12} md={4}>
-            <GridContainer>
+          <GridItem xs={12} md={5}>
+            <GridContainer alignContent="center" spacing={3}>
               <GridItem xs={6}>
-                <Paper borderColor="info">1</Paper>
+                <Paper
+                  borderColor="warning"
+                  className={classnames(classes.paperWrapper)}
+                >
+                  <Title level={4} variant="h1" color="warning">
+                    67
+                  </Title>
+                  <Paragraph color="grey" className="m0">
+                    Total Audits
+                  </Paragraph>
+                </Paper>
               </GridItem>
               <GridItem xs={6}>
-                <Paper borderColor="error">2</Paper>
+                <Paper
+                  borderColor="error"
+                  className={classnames(classes.paperWrapper)}
+                >
+                  <Title level={4} variant="h1" color="error">
+                    21
+                  </Title>
+                  <Paragraph color="grey" className="m0">
+                    Audits InProgress
+                  </Paragraph>
+                </Paper>
               </GridItem>
             </GridContainer>
-            <GridContainer>
+            <GridContainer alignContent="center" spacing={3}>
               <GridItem xs={6}>
-                <Paper borderColor="secondary">3</Paper>
+                <Paper
+                  borderColor="info"
+                  className={classnames(classes.paperWrapper)}
+                >
+                  <Title level={4} variant="h1" color="info">
+                    13
+                  </Title>
+                  <Paragraph color="grey" className="m0">
+                    Audits Complete
+                  </Paragraph>
+                </Paper>
               </GridItem>
               <GridItem xs={6}>
-                <Paper borderColor="success">4</Paper>
+                <Paper
+                  borderColor="success"
+                  className={classnames(classes.paperWrapper)}
+                >
+                  <Title level={4} variant="h1" color="success">
+                    33
+                  </Title>
+                  <Paragraph color="grey" className="m0">
+                    Audits Closed
+                  </Paragraph>
+                </Paper>
               </GridItem>
             </GridContainer>
           </GridItem>
-          <GridItem xs={12} md={4}>
-            box 3
-          </GridItem>
+          <GridItem xs={12} md={3} />
         </GridContainer>
       </>
     );
@@ -94,4 +138,4 @@ class DashboardAuditPage extends PureComponent {
 DashboardAuditPage.propTypes = propTypes;
 DashboardAuditPage.defaultProps = defaultProps;
 
-export default withStyles({})(DashboardAuditPage);
+export default withStyles(dashboardAuditPageStyles)(DashboardAuditPage);

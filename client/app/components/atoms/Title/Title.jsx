@@ -22,6 +22,17 @@ const propTypes = {
   level: oneOf([1, 2, 3, 4, 5, 6]).isRequired,
   theme: oneOf(['primary', 'secondary']),
   variant: oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']),
+  color: oneOf([
+    'primary',
+    'secondary',
+    'info',
+    'success',
+    'warning',
+    'error',
+    'white',
+    'black',
+    'grey',
+  ]),
   img: object,
   children: node,
   className: string,
@@ -31,6 +42,7 @@ const propTypes = {
 const defaultProps = {
   theme: 'primary',
   variant: null,
+  color: null,
   img: null,
   children: null,
   className: null,
@@ -43,6 +55,7 @@ const Title = ({
   level,
   theme,
   variant,
+  color,
   img,
   children,
   className,
@@ -69,6 +82,7 @@ const Title = ({
   const headingClasses = classnames({
     [classes.heading]: true,
     [classes[HeadingWithTheme]]: HeadingWithTheme,
+    [classes[color]]: color,
     [classes[textTransform]]: textTransform,
     [className]: className,
   });

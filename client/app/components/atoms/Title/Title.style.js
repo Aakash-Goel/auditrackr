@@ -1,7 +1,7 @@
 import headingsStyles from '../../../styles/mixins/headings';
 import { textTransform } from '../../../styles/variables';
 
-const titleStyles = () => ({
+const titleStyles = theme => ({
   heading: {
     ...headingsStyles.default,
   },
@@ -40,6 +40,35 @@ const titleStyles = () => ({
   },
   'h6-secondary': {
     ...headingsStyles.h6Secondary,
+  },
+
+  // colors
+  primary: {
+    color: theme.palette.primary.main,
+  },
+  secondary: {
+    color: theme.palette.secondary.main,
+  },
+  info: {
+    color: theme.palette.info.main,
+  },
+  success: {
+    color: theme.palette.success.main,
+  },
+  warning: {
+    color: theme.palette.warning.main,
+  },
+  error: {
+    color: theme.palette.error.main,
+  },
+  white: {
+    color: theme.palette.common.white,
+  },
+  black: {
+    color: theme.palette.common.black,
+  },
+  grey: {
+    color: theme.palette.grey[500],
   },
 
   // text-transform

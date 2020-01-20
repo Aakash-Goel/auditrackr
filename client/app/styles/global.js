@@ -79,5 +79,11 @@ export default {
     svg: {
       fill: 'currentColor',
     },
+    '.p0': {
+      padding: 0,
+    },
+    '.m0': {
+      margin: 0,
+    },
   },
 };
