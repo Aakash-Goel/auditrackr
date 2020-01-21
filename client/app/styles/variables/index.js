@@ -164,7 +164,7 @@ export const primaryH4MediumFontMedium = `${fontWeight.medium} ${fontSize.medium
 export const secondaryH4MediumFontLight = `${fontWeight.light} ${fontSize.medium}/${lineHeight.medium} ${fontFamily.secondary}`; // 300 20px/1.4 "Raleway", "Helvetica", "Arial", sans-serif
 export const secondaryH4MediumFontMedium = `${fontWeight.medium} ${fontSize.medium}/${lineHeight.medium} ${fontFamily.secondary}`; // 500 20px/1.4 "Raleway", "Helvetica", "Arial", sans-serif
 
-export const primaryH5RegularFont = `${fontWeight.medium} ${fontSize.regular}/${lineHeight.regular} ${fontFamily.primary}`; // 500 18px/1.45 "Josefin Sans", "Helvetica", "Arial", sans-serif
+export const primaryH5RegularFont = `${fontWeight.light} ${fontSize.regular}/${lineHeight.regular} ${fontFamily.primary}`; // 500 18px/1.45 "Josefin Sans", "Helvetica", "Arial", sans-serif
 export const secondaryH5RegularFont = `${fontWeight.medium} ${fontSize.regular}/${lineHeight.regular} ${fontFamily.secondary}`; // 500 18px/1.45 "Raleway", "Helvetica", "Arial", sans-serif
 
 export const primaryH6NormalFont = `${fontWeight.medium} ${fontSize.normal}/${lineHeight.normal} ${fontFamily.primary}`; // 500 16px/1.5 "Josefin Sans", "Helvetica", "Arial", sans-serif

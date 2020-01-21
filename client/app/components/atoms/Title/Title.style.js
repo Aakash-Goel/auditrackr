@@ -71,6 +71,17 @@ const titleStyles = theme => ({
     color: theme.palette.grey[500],
   },
 
+  // weights
+  bold: {
+    fontWeight: theme.typography.fontWeightBold,
+  },
+  medium: {
+    fontWeight: theme.typography.fontWeightMedium,
+  },
+  light: {
+    fontWeight: theme.typography.fontWeightLight,
+  },
+
   // text-transform
   cap: {
     textTransform: textTransform.cap,

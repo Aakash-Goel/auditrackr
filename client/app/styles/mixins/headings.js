@@ -5,7 +5,7 @@ import {
   secondaryH2LargeFontLight,
   primaryH3ExtraMediumFontLight,
   secondaryH3ExtraMediumFontLight,
-  primaryH4MediumFontMedium,
+  primaryH4MediumFontLight,
   secondaryH4MediumFontMedium,
   primaryH5RegularFont,
   secondaryH5RegularFont,
@@ -28,7 +28,7 @@ const headingsStyles = {
     font: primaryH3ExtraMediumFontLight,
   },
   h4Primary: {
-    font: primaryH4MediumFontMedium,
+    font: primaryH4MediumFontLight,
   },
   h5Primary: {
     font: primaryH5RegularFont,

@@ -10,21 +10,25 @@ import Title from '../../../atoms/Title';
 import Paragraph from '../../../atoms/Paragraph';
 import Paper from '../../../molecules/Paper';
 import DoughnutChart from '../../../molecules/Charts/DoughnutChart';
+import AuditList from '../../Lists/AuditList';
 
 import dashboardAuditPageStyles from './DashboardAuditPage.style';
 
 const propTypes = {
   classes: object.isRequired,
+  data: object,
 };
 
-const defaultProps = {};
+const defaultProps = {
+  data: null,
+};
 
 class DashboardAuditPage extends PureComponent {
   constructor(props) {
     super(props);
 
     this.state = {
-      data: {
+      chartData: {
         labels: ['Closed', 'InProgress', 'Complete', 'InReview'],
         datasets: [
           {
@@ -42,12 +46,16 @@ class DashboardAuditPage extends PureComponent {
   }
 
   render() {
-    const { classes } = this.props;
-    const { data } = this.state;
+    const { classes, data } = this.props;
+    const { chartData } = this.state;
+    // console.log('1212===data==== ', data);
 
     return (
       <>
-        <GridContainer spacing={3}>
+        <GridContainer
+          spacing={3}
+          className={classnames(classes.statusWrapper)}
+        >
           <GridItem xs={12} md={4}>
             <Paragraph color="grey" textTransform="upc" className="m0">
               Status
@@ -55,7 +63,7 @@ class DashboardAuditPage extends PureComponent {
             <DoughnutChart
               chartProps={{
                 height: 260,
-                data,
+                data: chartData,
                 options: {
                   legend: {
                     position: 'bottom',
@@ -128,7 +136,12 @@ class DashboardAuditPage extends PureComponent {
               </GridItem>
             </GridContainer>
           </GridItem>
-          <GridItem xs={12} md={3} />
+          <GridItem xs={12} md={3}>
+            {/* 3rd column */}
+          </GridItem>
+        </GridContainer>
+        <GridContainer>
+          <AuditList auditData={data.projects} />
         </GridContainer>
       </>
     );

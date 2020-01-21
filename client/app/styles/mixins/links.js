@@ -8,7 +8,7 @@ const linksStyles = {
     textDecoration: 'none',
   },
   defaultHover: {
-    backgroundColor: 'transparent',
+    // backgroundColor: 'transparent',
     boxShadow: 'none',
     textDecoration: 'underline',
   },

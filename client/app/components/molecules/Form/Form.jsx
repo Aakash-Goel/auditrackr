@@ -182,7 +182,7 @@ class Form extends React.PureComponent {
         {...otherFormAttr}
       >
         {children}
-        {showFormLevelErrorMsz && (
+        {showFormLevelErrorMsz && formErrorMsz && (
           <FormHelperText id={`${id}_error_msg`} error={showFormLevelErrorMsz}>
             {formErrorMsz}
           </FormHelperText>

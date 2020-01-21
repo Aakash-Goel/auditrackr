@@ -5,8 +5,8 @@ import { createStructuredSelector } from 'reselect';
 
 import withAuth from '../../../../lib/withAuth';
 import PrimaryLayout from '../../../../layouts/PrimaryLayout';
-import ContentContainer from '../../../organisms/ContentContainer';
 import ProjectAuditPage from '../../../organisms/views/ProjectAuditPage';
+import { formWrapperSelector } from '../../../organisms/Forms/FormWrapper/selectors';
 import {
   makeSelectIsFetching,
   makeSelectData,
@@ -41,7 +41,6 @@ class AuditProject extends PureComponent {
   }
 
   render() {
-    const { data } = this.props;
     return (
       <>
         <PrimaryLayout
@@ -49,12 +48,7 @@ class AuditProject extends PureComponent {
           pageDesc="This is AuditTrackR project audit page"
           pageId="auditProject"
         >
-          <ContentContainer
-            breadCrumbTitle={data && data.projectAuditName}
-            shouldRenderInsidePaper={false}
-          >
-            <ProjectAuditPage {...this.props} />
-          </ContentContainer>
+          <ProjectAuditPage {...this.props} />
         </PrimaryLayout>
       </>
     );
@@ -68,6 +62,7 @@ export const mapStateToProps = createStructuredSelector({
   isFetching: makeSelectIsFetching(),
   data: makeSelectData(),
   error: makeSelectError(),
+  formWrapperData: formWrapperSelector('qnaForm'),
 });
 
 const mapDispatchToProps = () => ({});

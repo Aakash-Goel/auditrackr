@@ -35,6 +35,7 @@ const setMessage = (key, withCarat = true, optionArr, caratAtLast = false) => {
 export const required = {
   required: {
     presence: {
+      allowEmpty: false,
       message: setMessage('This field is required.'),
     },
   },

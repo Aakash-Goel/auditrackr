@@ -16,6 +16,8 @@ const propTypes = {
   shouldRenderBreadcrumb: bool,
   shouldRenderBeforeWrapper: bool,
   shouldRenderInsidePaper: bool,
+  wrapperClass: string,
+  containerClass: string,
 };
 
 const defaultProps = {
@@ -23,6 +25,8 @@ const defaultProps = {
   shouldRenderBreadcrumb: true,
   shouldRenderBeforeWrapper: false,
   shouldRenderInsidePaper: true,
+  wrapperClass: '',
+  containerClass: '',
 };
 
 const ContentContainer = props => {
@@ -33,6 +37,8 @@ const ContentContainer = props => {
     shouldRenderBreadcrumb,
     shouldRenderBeforeWrapper,
     shouldRenderInsidePaper,
+    wrapperClass,
+    containerClass,
   } = props;
 
   return (
@@ -40,11 +46,11 @@ const ContentContainer = props => {
       {shouldRenderBeforeWrapper && (
         <div className={classes.contentWrapperBefore} />
       )}
-      <div className={classes.contentWrapper}>
+      <div className={classnames(classes.contentWrapper, wrapperClass)}>
         {shouldRenderBreadcrumb && (
           <Breadcrumbs titleBreadcrumb={breadCrumbTitle} />
         )}
-        <div className={classnames(classes.contentContainer)}>
+        <div className={classnames(classes.contentContainer, containerClass)}>
           {shouldRenderInsidePaper && <Paper>{children}</Paper>}
           {!shouldRenderInsidePaper && <>{children}</>}
         </div>
