@@ -191,3 +191,10 @@ export const textAlign = {
   right: 'right',
   center: 'center',
 };
+
+export const statusColors = {
+  Complete: colors.info,
+  InProgress: colors.error,
+  InReview: colors.warning,
+  Closed: colors.success,
+};

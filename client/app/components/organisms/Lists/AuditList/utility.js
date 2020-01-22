@@ -12,7 +12,7 @@ export const createAuditHeadData = () => {
 
 export const createAuditColumnsData = data => {
   const cellData = [
-    { name: data.projectStatus },
+    { name: data.projectStatus, color: 'status' },
     { name: data.projectAuditName },
     { name: '70%' },
     { name: data.createdAt },
@@ -20,4 +20,13 @@ export const createAuditColumnsData = data => {
   ];
 
   return cellData;
+};
+
+export const createColorPrefix = (identifier, identifierValue) => {
+  let colorPrefix = '';
+  if (identifier === 'status') {
+    colorPrefix = identifierValue;
+  }
+
+  return colorPrefix;
 };
