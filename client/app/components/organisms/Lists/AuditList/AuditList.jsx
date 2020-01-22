@@ -13,6 +13,7 @@ import { Link } from '../../../../../routes';
 import GridContainer from '../../../atoms/Grid/GridContainer';
 import GridItem from '../../../atoms/Grid/GridItem';
 import Paper from '../../../molecules/Paper';
+import Box from '../../../molecules/Box';
 
 import APP_URLS from '../../../../constants/appUrls';
 // import addIcon from '../../../../static/icons/add-plus-button.svg?sprite'; // eslint-disable-line import/no-unresolved
@@ -29,70 +30,74 @@ const defaultProps = {
   auditData: null,
 };
 
-const renderTableHead = classes => {
+const renderTableHead = () => {
   const data = createAuditHeadData();
   const column = data.map((d, index) => {
     return (
-      <Title
-        key={index}
-        level={4}
-        variant="h6"
-        color="grey"
-        weight="light"
-        theme="secondary"
-        className={classnames(classes.tableHead)}
-      >
-        <span>{d.name}</span>
-      </Title>
+      <Box display="table-cell">
+        <Title
+          key={index}
+          level={4}
+          variant="h6"
+          color="grey"
+          weight="light"
+          theme="secondary"
+        >
+          <span>{d.name}</span>
+        </Title>
+      </Box>
     );
   });
 
-  return <div className={classnames(classes.tableRow)}>{column}</div>;
+  return <Box display="table-row">{column}</Box>;
 };
 
-const renderTableColumn = (classes, data) => {
+const renderTableColumn = data => {
   const columns = data.map((d, i) => {
     return (
-      <div key={i} className={classnames(classes.tableCell)}>
+      <Box key={i} display="table-cell">
         <span>{d.name}</span>
-      </div>
+      </Box>
     );
   });
   return columns;
 };
 
-const renderTable = (classes, auditData) => {
+const renderTable = auditData => {
   return (
-    <div className={classnames(classes.table)}>
-      {renderTableHead(classes)}
+    <Box display="table" width="100%">
+      {renderTableHead()}
       {auditData.map((data, index) => {
         const columnData = createAuditColumnsData(data);
         return (
-          <div key={index} className={classnames(classes.tableRow)}>
-            {renderTableColumn(classes, columnData)}
-          </div>
+          <Box key={index} display="table-row">
+            {renderTableColumn(columnData)}
+          </Box>
         );
       })}
-    </div>
+    </Box>
   );
 };
 
-const renderInfo = classes => {
+const renderInfo = () => {
   return (
-    <GridContainer className={classnames(classes.infoWrapper)}>
-      <GridItem>
-        <Paragraph>
-          Ahh! Looks like there is no project created by you or shared with you.
-        </Paragraph>
-        <Paragraph>
-          <Link to={APP_URLS.auditCreate.url}>
-            <Button href={APP_URLS.auditCreate.url} size="md">
-              Start Audit
-            </Button>
-          </Link>
-        </Paragraph>
-      </GridItem>
-    </GridContainer>
+    <Box textAlign="center" clone>
+      <GridContainer>
+        <GridItem>
+          <Paragraph>
+            Ahh! Looks like there is no project created by you or shared with
+            you.
+          </Paragraph>
+          <Paragraph>
+            <Link to={APP_URLS.auditCreate.url}>
+              <Button href={APP_URLS.auditCreate.url} size="md">
+                Start Audit
+              </Button>
+            </Link>
+          </Paragraph>
+        </GridItem>
+      </GridContainer>
+    </Box>
   );
 };
 
@@ -103,17 +108,19 @@ const AuditList = props => {
   return (
     <>
       <Paper className={classnames(classes.paperWrapper)}>
-        <div className={classnames(classes.headingWrapper)}>
-          <Title
-            level={3}
-            variant="h5"
-            color="black"
-            weight="light"
-            textTransform="upc"
-            className={classnames(classes.heading)}
-          >
-            Recent audits
-          </Title>
+        <Box display="flex">
+          <Box flexGrow={1} alignItems="baseline" clone>
+            <Title
+              level={3}
+              variant="h5"
+              color="black"
+              weight="light"
+              textTransform="upc"
+            >
+              Recent audits
+            </Title>
+          </Box>
+
           {hasProjects ? (
             <Link to="/account/audit/dashboard">
               <Button
@@ -121,13 +128,14 @@ const AuditList = props => {
                 href={APP_URLS.auditCreate.url}
                 size="md"
                 textTransform="nn"
+                className={classnames(classes.btnViewAll)}
               >
                 View All &gt;
               </Button>
             </Link>
           ) : null}
-        </div>
-        {hasProjects ? renderTable(classes, auditData) : renderInfo(classes)}
+        </Box>
+        {hasProjects ? renderTable(auditData) : renderInfo()}
       </Paper>
     </>
   );
