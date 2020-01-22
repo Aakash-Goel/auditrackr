@@ -57,6 +57,7 @@
     "cors": "^2.8.5",
     "cross-env": "^6.0.0",
     "cross-fetch": "^3.0.4",
+    "dayjs": "^1.8.19",
     "express": "^4.17.1",
     "graphql": "^14.5.7",
     "helmet": "^3.21.1",

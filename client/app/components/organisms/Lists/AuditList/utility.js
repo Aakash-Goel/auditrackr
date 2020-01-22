@@ -1,3 +1,5 @@
+import dayjs from 'dayjs';
+
 export const createAuditHeadData = () => {
   const headData = [
     { name: 'STATUS' },
@@ -11,11 +13,14 @@ export const createAuditHeadData = () => {
 };
 
 export const createAuditColumnsData = data => {
+  const parseDate = parseInt(data.createdAt); // this is required since api returns in string format
+  const convertToDateString = new Date(parseDate).toString(); // this is required to convert into valid date format
+
   const cellData = [
     { name: data.projectStatus, color: 'status' },
     { name: data.projectAuditName },
     { name: '70%' },
-    { name: data.createdAt },
+    { name: dayjs(convertToDateString).format('MMM D, YYYY') },
     { name: data.projectReviewers.join(', ') },
   ];
 
