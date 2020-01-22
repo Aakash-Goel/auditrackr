@@ -276,11 +276,6 @@ class ProjectAuditPage extends PureComponent {
                 <Title level={1} variant="h2" textTransform="upc">
                   {data && data.projectAuditName}
                 </Title>
-                <Box ml={1}>
-                  <Title level={2} variant="h3" textTransform="upc">
-                    {data && data.projectCode}
-                  </Title>
-                </Box>
                 <Box ml={2} alignSelf="center">
                   <Chip label={data && data.projectStatus} />
                 </Box>

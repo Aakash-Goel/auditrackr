@@ -234,9 +234,13 @@ const muiTheme = {
     },
     MuiChip: {
       root: {
+        color: colors.black,
+        height: '30px',
+        fontSize: fontSize.small,
+
         '& $avatar': {
-          height: '32px',
-          width: '32px',
+          height: '30px', // this should same as chip root height
+          width: '30px', // this should same as chip root height
           marginLeft: 0,
         },
       },
