@@ -136,9 +136,6 @@ class DashboardAuditPage extends PureComponent {
               </GridItem>
             </GridContainer>
           </GridItem>
-          <GridItem xs={12} md={3}>
-            {/* 3rd column */}
-          </GridItem>
         </GridContainer>
         <GridContainer>
           <AuditList auditData={data.projects} />

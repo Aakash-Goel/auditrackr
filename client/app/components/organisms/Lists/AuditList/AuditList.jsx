@@ -35,14 +35,15 @@ const renderTableHead = () => {
   const data = createAuditHeadData();
   const column = data.map((d, index) => {
     return (
-      <Box display="table-cell" color="grey.500" p={1} pl={2} pr={2}>
-        <Title
-          key={index}
-          level={4}
-          variant="h6"
-          weight="light"
-          theme="secondary"
-        >
+      <Box
+        key={index}
+        display="table-cell"
+        color="grey.500"
+        p={1}
+        pl={2}
+        pr={2}
+      >
+        <Title level={4} variant="h6" weight="light" theme="secondary">
           <span>{d.name}</span>
         </Title>
       </Box>
