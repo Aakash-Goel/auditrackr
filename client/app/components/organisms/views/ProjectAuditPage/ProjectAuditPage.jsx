@@ -3,7 +3,7 @@ import { object } from 'prop-types';
 import classnames from 'classnames';
 import _map from 'lodash/map';
 import _find from 'lodash/find';
-import isEmpty from 'lodash/fp/isEmpty';
+import _isEmpty from 'lodash/isEmpty';
 
 import { withStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
@@ -82,7 +82,7 @@ class ProjectAuditPage extends PureComponent {
 
   submitQnAFormHandler = errorObj => {
     // check if there is no error
-    if (isEmpty(errorObj)) {
+    if (_isEmpty(errorObj)) {
       // const { formWrapperData } = this.props;
       // make an api call here
     }

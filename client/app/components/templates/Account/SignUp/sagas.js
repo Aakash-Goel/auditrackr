@@ -1,5 +1,4 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
-// import pathOr from 'lodash/fp/pathOr';
 
 import ServiceUtil from '../../../../utils/serviceUtil';
 import { requestSignUpData } from './queries';

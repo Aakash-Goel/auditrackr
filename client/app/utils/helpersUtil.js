@@ -1,6 +1,6 @@
-import upperFirst from 'lodash/upperFirst';
-import camelCase from 'lodash/camelCase';
-import pathOr from 'lodash/fp/pathOr';
+import _upperFirst from 'lodash/upperFirst';
+import _camelCase from 'lodash/camelCase';
+import _pathOr from 'lodash/fp/pathOr';
 
 let storeRef = null;
 
@@ -53,7 +53,7 @@ export function pageToTitle(page) {
     const name = page.pathUrl.replace(/.*\//, '');
 
     if (page.pathUrl.indexOf('/api') === 0) {
-      return upperFirst(camelCase(name));
+      return _upperFirst(_camelCase(name));
     }
 
     return titleize(name);
@@ -177,7 +177,7 @@ export const isUserAuthenticated = () => {
   if (isBrowser()) {
     const store = getStoreRef();
     const state = store.getState();
-    const isAuthenticated = pathOr(false, 'account.isAuthenticated', state);
+    const isAuthenticated = _pathOr(false, 'account.isAuthenticated', state);
     if (isAuthenticated) {
       return true;
     }

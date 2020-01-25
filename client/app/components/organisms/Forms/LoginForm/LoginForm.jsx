@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import classnames from 'classnames';
 import { object, func } from 'prop-types';
-import isEmpty from 'lodash/fp/isEmpty';
+import _isEmpty from 'lodash/isEmpty';
 
 import { withStyles } from '@material-ui/core/styles';
 
@@ -47,7 +47,7 @@ class LoginForm extends PureComponent {
 
   submitFormHandler = errorObj => {
     // check if there is no error
-    if (isEmpty(errorObj)) {
+    if (_isEmpty(errorObj)) {
       const { formWrapperData } = this.props;
 
       this.props.onSubmitLoginForm({

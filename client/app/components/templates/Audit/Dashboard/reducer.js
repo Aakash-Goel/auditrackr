@@ -20,7 +20,7 @@ function dashboardAuditReducer(state = initialState, { type, error, data }) {
     case FETCH_PROFILE_DATA_SUCCESS:
       return _merge({}, state, {
         isFetching: false,
-        data: data.getUser,
+        data: data.getUser, // lodash merge doesn't overwrite empty array https://github.com/lodash/lodash/issues/1313
       });
     case FETCH_PROFILE_DATA_ERROR:
       return _merge({}, state, {

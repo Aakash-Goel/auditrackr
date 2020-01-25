@@ -1,6 +1,6 @@
 import React from 'react';
 import { object, bool, string } from 'prop-types';
-import { isEmpty } from 'lodash';
+import _isEmpty from 'lodash/isEmpty';
 
 import withStyles from '@material-ui/core/styles/withStyles';
 import FormControl from '@material-ui/core/FormControl';
@@ -55,7 +55,7 @@ class CustomCheckbox extends React.PureComponent {
       groupLabel,
     } = this.props;
 
-    if (isEmpty(checkboxProps)) {
+    if (_isEmpty(checkboxProps)) {
       return null;
     }
     const checkboxId = checkboxProps.id || this.uniqueID;

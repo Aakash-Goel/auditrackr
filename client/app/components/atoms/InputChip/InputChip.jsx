@@ -1,7 +1,7 @@
 import React from 'react';
 import { object, bool, node, string, func, oneOfType } from 'prop-types';
 import classnames from 'classnames';
-import { isEmpty } from 'lodash';
+import _isEmpty from 'lodash/isEmpty';
 
 import ChipInput from 'material-ui-chip-input';
 import blue from '@material-ui/core/colors/blue';
@@ -128,7 +128,7 @@ class InputChip extends React.PureComponent {
       [classes.whiteInput]: white,
     });
     let formControlClasses;
-    if (!isEmpty(formControlProps)) {
+    if (!_isEmpty(formControlProps)) {
       formControlClasses = classnames(
         formControlProps.className,
         classes.formControl

@@ -1,7 +1,7 @@
 import React from 'react';
 import { object, bool, node, string, func } from 'prop-types';
 import classnames from 'classnames';
-import { isEmpty } from 'lodash';
+import _isEmpty from 'lodash/isEmpty';
 
 import withStyles from '@material-ui/core/styles/withStyles';
 import FormControl from '@material-ui/core/FormControl';
@@ -86,7 +86,7 @@ class CustomInput extends React.PureComponent {
   }
 
   componentWillMount() {
-    if (!isEmpty(this.props.inputProps) && this.props.inputProps.name) {
+    if (!_isEmpty(this.props.inputProps) && this.props.inputProps.name) {
       const {
         inputProps,
         formControlProps,
@@ -185,7 +185,7 @@ class CustomInput extends React.PureComponent {
     let errorKey;
     let checkInputHasChanged = false;
 
-    if (!isEmpty(formWrapperSelector)) {
+    if (!_isEmpty(formWrapperSelector)) {
       checkInputHasChanged =
         formWrapperSelector[identifier][name].isChangedOnce;
     }
@@ -371,7 +371,7 @@ class CustomInput extends React.PureComponent {
       [classes.whiteInput]: white,
     });
     let formControlClasses;
-    if (!isEmpty(formControlProps)) {
+    if (!_isEmpty(formControlProps)) {
       formControlClasses = classnames(
         formControlProps.className,
         classes.formControl

@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { bool } from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import pathOr from 'lodash/fp/pathOr';
+import _pathOr from 'lodash/fp/pathOr';
 
 import { Router } from '../../routes';
 import APP_URLS from '../constants/appUrls';
@@ -19,7 +19,7 @@ const auth = ctx => {
   const cUser = getNextCookie(ctx, 'c_user'); // accessible during SSR and CSR, because it is not httpOnly
   const { store, isServer } = ctx;
   const { account } = store.getState();
-  const isUserAuthenticated = pathOr(false, 'isAuthenticated', account);
+  const isUserAuthenticated = _pathOr(false, 'isAuthenticated', account);
 
   /**
    * This happens on server only.

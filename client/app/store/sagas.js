@@ -10,7 +10,7 @@
  * Module dependencies.
  */
 import { all } from 'redux-saga/effects';
-import isFunction from 'lodash/fp/isFunction';
+import _isFunction from 'lodash/isFunction';
 
 /**
  * Import all your applications sagas here
@@ -31,7 +31,7 @@ const runSagas = sagas => {
     return sagas.map(saga => saga());
   }
 
-  if (isFunction(sagas)) {
+  if (_isFunction(sagas)) {
     return Array.of(sagas());
   }
 

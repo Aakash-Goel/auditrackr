@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bool, object } from 'prop-types';
 import { createStructuredSelector } from 'reselect';
-import pathOr from 'lodash/fp/pathOr';
+import _pathOr from 'lodash/fp/pathOr';
 
 import LoginPage from '../../../organisms/views/LoginPage';
 
@@ -33,7 +33,7 @@ export class AccountLogin extends PureComponent {
   static async getInitialProps({ ctx }) {
     const { store, isServer } = ctx;
     const { account } = store.getState();
-    const isUserAuthenticated = pathOr(false, 'isAuthenticated', account);
+    const isUserAuthenticated = _pathOr(false, 'isAuthenticated', account);
 
     /**
      * This happens on server only.

@@ -8,7 +8,7 @@ import {
   func,
   bool,
 } from 'prop-types';
-import { isEmpty } from 'lodash';
+import _isEmpty from 'lodash/isEmpty';
 import _merge from 'lodash/merge';
 
 import FormHelperText from '@material-ui/core/FormHelperText';
@@ -143,7 +143,7 @@ class Form extends React.PureComponent {
 
     if (errorObj) {
       if (errorObj.data === null) {
-        if (isEmpty(errorObj.error.message)) {
+        if (_isEmpty(errorObj.error.message)) {
           // modify form API level error messages here
           errorMsz = errorObj.axiosErrorMessage;
         } else {

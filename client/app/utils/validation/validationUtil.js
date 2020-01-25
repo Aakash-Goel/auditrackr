@@ -1,5 +1,5 @@
-import { reduce } from 'lodash';
 import validate from 'validate.js';
+import _reduce from 'lodash/reduce';
 import * as Constraints from './constraints';
 
 export const setRuleForError = (value, rule, detailed) => {
@@ -60,7 +60,7 @@ export const validateEmpty = (name, value) => {
 
 export const validateAll = fieldMap => {
   const newState = {};
-  reduce(
+  _reduce(
     fieldMap,
     (result, fieldValue, fieldKey) => {
       const { rule, value, depends, dependsMessage } = fieldValue;

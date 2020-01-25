@@ -1,4 +1,4 @@
-import isEmpty from 'lodash/fp/isEmpty';
+import _isEmpty from 'lodash/isEmpty';
 import _merge from 'lodash/merge';
 
 import { validateChange } from './validation/validationUtil';
@@ -81,11 +81,11 @@ export const getFormWrapperDataValue = (dataObj, identifier, key) => {
  * @param {string} formInputKey
  */
 export const checkIsError = (formDataObj, formInputKey) => {
-  if (isEmpty(formDataObj[formInputKey])) {
+  if (_isEmpty(formDataObj[formInputKey])) {
     return false;
   }
 
-  if (isEmpty(formDataObj[formInputKey][`${formInputKey}Error`])) {
+  if (_isEmpty(formDataObj[formInputKey][`${formInputKey}Error`])) {
     return false;
   }
 
