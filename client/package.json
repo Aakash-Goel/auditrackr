@@ -63,7 +63,7 @@
     "helmet": "^3.21.1",
     "imagemin-svgo": "^7.0.0",
     "ip": "^1.1.5",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "material-ui-chip-input": "^2.0.0-beta.2",
     "next": "^9.0.6",
     "next-compose-plugins": "^2.2.0",
