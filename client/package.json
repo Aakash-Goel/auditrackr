@@ -56,7 +56,7 @@
     "compression": "^1.7.4",
     "cors": "^2.8.5",
     "cross-env": "^6.0.0",
-    "cross-fetch": "^3.0.4",
+    "cross-fetch": "^3.1.5",
     "dayjs": "^1.8.19",
     "express": "^4.17.1",
     "graphql": "^14.5.7",
