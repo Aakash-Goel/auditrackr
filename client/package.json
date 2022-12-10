@@ -58,7 +58,7 @@
     "cross-env": "^6.0.0",
     "cross-fetch": "^3.0.4",
     "dayjs": "^1.8.19",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "graphql": "^14.5.7",
     "helmet": "^3.21.1",
     "imagemin-svgo": "^7.0.0",
